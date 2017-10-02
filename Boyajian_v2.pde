@@ -78,6 +78,7 @@ void draw() {
   //---------------*shadowGLSL即時參數
   shadowGLSL.set("bg", tex);
   shadowGLSL.set("bgResolution", float( tex.width )*0.9, float( tex .height ) *0.9);
+  // shadowGLSL.set("bgoffset", 0.0, 0.43+sin(frameCount*0.05)*0.12 );
   shadowGLSL.set("bgoffset", 0.0, 0.43+sin(frameCount*0.005)*0.12 );
 
   scence.beginDraw();

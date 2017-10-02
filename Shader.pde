@@ -29,30 +29,30 @@ static final int BL_COLOR         = 22;
 static final int BL_SATURATION    = 23;
 static final int BL_LUMINOSITY    = 24;
 String[] blendNames = {
-  "Darken", 
-  "Multiply", 
-  "Color burn", 
-  "Linear burn", 
-  "Darker color", 
-  "Lighten", 
-  "Screen", 
-  "Color dodge", 
-  "Linear dodge", 
-  "Lighter color", 
-  "Overlay", 
-  "Soft light", 
-  "Hard light", 
-  "Vivid light", 
-  "Linear light", 
-  "Pin light", 
-  "Hard mix", 
-  "Difference", 
-  "Exclusion", 
-  "Substract", 
-  "Divide", 
-  "Hue", 
-  "Color", 
-  "Saturation", 
+  "Darken",
+  "Multiply",
+  "Color burn",
+  "Linear burn",
+  "Darker color",
+  "Lighten",
+  "Screen",
+  "Color dodge",
+  "Linear dodge",
+  "Lighter color",
+  "Overlay",
+  "Soft light",
+  "Hard light",
+  "Vivid light",
+  "Linear light",
+  "Pin light",
+  "Hard mix",
+  "Difference",
+  "Exclusion",
+  "Substract",
+  "Divide",
+  "Hue",
+  "Color",
+  "Saturation",
   "Luminosity"
 };
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
@@ -65,7 +65,7 @@ void shaderSetting() {
   texlightGLSL = loadShader("glsl/texlightfrag.glsl", "glsl/texlightvert.glsl");
   contrastGLSL = loadShader("glsl/contrast.glsl");
 
-  shadowGLSL = loadShader("glsl/dropshadow.glsl");  
+  shadowGLSL = loadShader("glsl/dropshadow.glsl");
   shadowGLSL.set( "texResolution", float( width ), float(height ) );
   shadowGLSL.set( "bgResolution", float( tex.width ), float( tex .height ) );
 
@@ -79,7 +79,8 @@ void shaderSetting() {
 
   blendGLSL= loadShader("glsl/blendMode.glsl");
   blendGLSL.set( "lowLayer", bgs [imgIndex]);
-  blendGLSL.set( "topLayer", logoMoveing ); 
+  // blendGLSL.set( "topLayer", logoMoving );
+  blendGLSL.set( "topLayer", logoMirror );
   blendGLSL.set( "sketchSize", float(width), float(height) );
   blendGLSL.set( "topLayerResolution", float( tex.width ), float( tex.height ) );
   blendGLSL.set( "lowLayerResolution", float( tex.width ), float( tex.height ) );
