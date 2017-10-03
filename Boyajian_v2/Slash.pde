@@ -1,5 +1,3 @@
-
-
 class Slash {
   float x1;
   float x2;
