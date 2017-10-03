@@ -47,11 +47,11 @@ void draw() {
   workTime=millis();
 
   if ( frameCount % 100 == 0  ) {
-    blendIndex = ( blendIndex + 1 ) % 10;
+    // blendIndex = ( blendIndex + 1 ) % 10;
   }
   if ( frameCount % 300 == 0  ) {
-    imgIndex = ( imgIndex + 1 ) % 5;
-    blendGLSL.set( "lowLayer", bgs [imgIndex]);
+    // imgIndex = ( imgIndex + 1 ) % 5;
+    // blendGLSL.set( "lowLayer", bgs [imgIndex]);
   }
   a1=(a1+1)%360;
   a2=(a1+1)%180;

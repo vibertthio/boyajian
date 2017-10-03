@@ -1,3 +1,21 @@
+class Strips {
+  Strip[] strips;
+  int nOfStrips = 30;
+
+  Strips(PGraphics _c) {
+    strips = new Strip[nOfStrips];
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i] = new Strip(_c);
+    }
+  }
+
+  void draw() {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].draw();
+    }
+  }
+}
+
 class Strip {
   PGraphics canvas;
   float heightOfStrip = 15;

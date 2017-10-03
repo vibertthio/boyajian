@@ -1,22 +1,25 @@
 class Animations {
   PGraphics canvas;
-  Strip[] strips;
-  int nOfStrips = 30;
+  Strips strips;
+  GrowGrid growGrid;
+  RotateGrid rotateGrid;
 
   Animations(PGraphics _c) {
     canvas = _c;
-    strips = new Strip[nOfStrips];
-    for (int i = 0; i < nOfStrips; i++) {
-      strips[i] = new Strip(_c);
-    }
+    strips = new Strips(_c);
+    growGrid = new GrowGrid(_c, colors[0]);
+    rotateGrid = new RotateGrid(_c, colors[1]);
   }
 
   void draw() {
-    for (int i = 0; i < nOfStrips; i++) {
-      strips[i].draw();
-    }
+    strips.draw();
+    growGrid.draw();
+    // rotateGrid.draw();
   }
 }
+
+// X : 400 - 1000
+// Y : 500 - 1000
 
 class Circle {
   PGraphics canvas;
@@ -37,9 +40,4 @@ class Circle {
   }
 }
 
-// X : 400 - 1000
-// Y : 500 - 1000
-
-class Mountain {
-
-}
+class Mountain {}
