@@ -36,6 +36,10 @@ void setup() {
   shaderSetting();
 
   background(255);
+
+  // Vibert
+  blendIndex = 7;
+  blendGLSL.set( "lowLayer", bgs [2]);
 }
 
 void draw() {
