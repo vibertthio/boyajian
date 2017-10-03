@@ -7,6 +7,9 @@ PImage[] pattern = new PImage[3];
 int roro = 0;
 int pp = 0;
 
+// Vibert's
+Animations animations;
+
 color[] colors = {
   color(253, 148, 38),
   color(252, 86, 44),
@@ -34,6 +37,9 @@ void logoSetting() {
       slash[i] = new Slash(colors[int(random(2, 4))]);
     }
   }
+
+  // Vibert's
+  animations = new Animations(logoMirror);
 }
 
 void logoDrawing() {
@@ -41,7 +47,8 @@ void logoDrawing() {
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
-  logosMirrorDraw();
+  // logosMirrorDraw();
+  logos_vibert();
   logoMirror.endDraw();
 
   logoMoving.beginDraw();
@@ -58,6 +65,10 @@ void logosMirrorDraw() {
   for (int i=0; i<nb; i++) {
     slash[i].draw(logoMirror);
   }
+}
+
+void logos_vibert() {
+  animations.draw();
 }
 
 void logos_1() {

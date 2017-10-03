@@ -79,8 +79,8 @@ void shaderSetting() {
 
   blendGLSL= loadShader("glsl/blendMode.glsl");
   blendGLSL.set( "lowLayer", bgs [imgIndex]);
-  // blendGLSL.set( "topLayer", logoMoving );
-  blendGLSL.set( "topLayer", logoMirror );
+  blendGLSL.set( "topLayer", logoMoving );
+  // blendGLSL.set( "topLayer", logoMirror );
   blendGLSL.set( "sketchSize", float(width), float(height) );
   blendGLSL.set( "topLayerResolution", float( tex.width ), float( tex.height ) );
   blendGLSL.set( "lowLayerResolution", float( tex.width ), float( tex.height ) );
