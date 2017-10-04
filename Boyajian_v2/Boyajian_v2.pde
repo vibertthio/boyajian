@@ -127,4 +127,26 @@ void keyPressed() {
   if (key == '4') {
     thread("maskTouchSetting");
   }
+
+  if (key == CODED) {
+    if (keyCode == UP) {
+      blendIndex = ( blendIndex + 1 ) % 10;
+    } else if (keyCode == DOWN) {
+      if (blendIndex > 0) {
+        blendIndex = ( blendIndex - 1 ) % 10;
+      } else {
+        blendIndex = 9;
+      }
+    } else if (keyCode == RIGHT) {
+      imgIndex = ( imgIndex + 1 ) % 5;
+      blendGLSL.set( "lowLayer", bgs [imgIndex]);
+    } else if (keyCode == LEFT) {
+      if (imgIndex > 0) {
+        imgIndex = ( imgIndex - 1 ) % 5;
+      } else {
+        imgIndex = 4;
+      }
+      blendGLSL.set( "lowLayer", bgs [imgIndex]);
+    }
+  }
 }

@@ -3,7 +3,7 @@ class RotateGrid {
   Rectangle[] recs;
   boolean playing;
   int n = 20;
-  float low = 10;
+  float low = 30;
   float high = low * 8;
   int unit = floor(high - low);
   float time = 240;
@@ -31,6 +31,9 @@ class RotateGrid {
   }
 
   void draw() {
+    // low = map(mouseY, 0, height, 10, 50);
+    // high = low * 8;
+    // unit = floor(high - low);
     update();
     render();
   }

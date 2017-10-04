@@ -1,12 +1,12 @@
 class GrowGrid {
   PGraphics canvas;
   int time;
-  float low = 55;
-  float high = 65;
+  float low = 50;
+  float high = 120;
   float length;
 
-  int n = 15;
-  int unit = 60;
+  int n = 8;
+  int unit = 100;
   color col;
 
   GrowGrid(PGraphics _c, color _col) {

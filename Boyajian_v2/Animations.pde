@@ -7,13 +7,15 @@ class Animations {
   Animations(PGraphics _c) {
     canvas = _c;
     strips = new Strips(_c);
-    growGrid = new GrowGrid(_c, colors[0]);
-    rotateGrid = new RotateGrid(_c, colors[1]);
+    // growGrid = new GrowGrid(_c, colors[0]);
+    growGrid = new GrowGrid(_c, color(255, 255, 255));
+    // rotateGrid = new RotateGrid(_c, colors[1]);
+    rotateGrid = new RotateGrid(_c, color(255, 255, 255));
   }
 
   void draw() {
-    strips.draw();
-    growGrid.draw();
+    // strips.draw();
+    // growGrid.draw();
     // rotateGrid.draw();
   }
 }

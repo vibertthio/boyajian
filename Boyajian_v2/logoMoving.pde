@@ -47,7 +47,7 @@ void logoDrawing() {
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
-  // logosMirrorDraw();
+  logosMirrorDraw();
   logos_vibert();
   logoMirror.endDraw();
 
