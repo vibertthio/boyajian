@@ -65,10 +65,6 @@ void shaderSetting() {
   texlightGLSL = loadShader("glsl/texlightfrag.glsl", "glsl/texlightvert.glsl");
   contrastGLSL = loadShader("glsl/contrast.glsl");
 
-  shadowGLSL = loadShader("glsl/dropshadow.glsl");
-  shadowGLSL.set( "texResolution", float( width ), float(height ) );
-  shadowGLSL.set( "bgResolution", float( tex.width ), float( tex .height ) );
-
   logo=loadImage("img/logo.png");
   bgs[0]=loadImage("img/bg_0.png");
   bgs[1]=loadImage("img/bg_1.png");

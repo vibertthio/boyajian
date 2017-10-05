@@ -72,10 +72,37 @@ void showFrameRate() {
   }
 }
 
+float a1;
+float a2;
+float a3;
+float a4;
+
+float rotX=0;
+float rotY=0; 
+
+float camX=600; 
+float camY=200;
+float camZ=430;
+
+float easing = 0.05;
+boolean resetCamDo=false;
+
 void s3dDrawing() {
+  a1=(a1+1)%360;
+  a2=(a1+1)%180;
+  a3=(a1+1)%150;
 
   s3d.beginDraw();
-  s3d.background(0, 0, 0, 0);
+  s3d.background(255, 0);
+  {
+    s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
+    s3d.beginCamera();
+    s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);  
+    //println(rotX, rotY, camX, camY, camZ);
+    s3d.endCamera();
+
+    if (resetCamDo==true)resetCam();
+  }
   GL2 gl = ((PJOGL)beginPGL()).gl.getGL2();
   gl.glEnable(GL2.GL_BLEND);
   gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
@@ -100,5 +127,50 @@ void s3dDrawing() {
   if (showMaskTouch==true) {
     maskTouchdrawing();
   }
+
+  s3d.pushMatrix();
+  s3d.noStroke();
+  s3d.translate(width/2, height/2); 
+  s3d.rotateY(radians(287)); 
+  s3d.shape(globe);
+  s3d.popMatrix();
+
   s3d.endDraw();
+}
+
+void resetCam() {
+  float dcX = 600 - camX;
+  camX+=dcX*easing;
+  camX=float(int(camX*1000))/1000;
+
+  float dcY = 200 - camY;
+  camY+=dcY*easing;
+  camY=float(int(camY*1000))/1000;
+
+  float dcZ = 430 - camZ;
+  camZ+=dcZ*easing;
+  camZ=float(int(camZ*1000))/1000;
+
+  float drX = 0 - rotX;
+  rotX+=drX*easing;
+  rotX=float(int(rotX*1000))/1000;
+
+  float drY = 0 - rotY;
+  rotY+=drY*easing;
+  rotY=float(int(rotY*1000))/1000;
+
+  if (abs(dcX)<1 && abs(dcY)<1 && abs(dcZ)<1 && abs(rotX)<0.01 && abs(rotY)<0.01) {
+    resetCamDo=false;
+  }
+}
+
+
+void autoChBg() {
+  if ( frameCount % 100 == 0  ) {
+    blendIndex = ( blendIndex + 1 ) % 10;
+  }
+  if ( frameCount % 300 == 0  ) {
+    imgIndex = ( imgIndex + 1 ) % 5;
+    blendGLSL.set( "lowLayer", bgs [imgIndex]);
+  }
 }

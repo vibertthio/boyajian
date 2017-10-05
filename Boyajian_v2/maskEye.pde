@@ -58,7 +58,7 @@ void maskEyedrawing() {
   //---------------眼睛_ 左
   s3d.pushMatrix();
   s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-  if (mousePressed==true) {
+  if (keyPressed==true &&key == 'k') {
     randomVertex(maskA_1_1);
   } else {
     returnVertex(RmaskA_1_1, maskA_1_1);
@@ -71,7 +71,7 @@ void maskEyedrawing() {
   //---------------眼睛_右
   s3d.pushMatrix();
   s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*0.01));
-  if (mousePressed==true) {
+  if (keyPressed==true &&key == 'k') {
     randomVertex(maskA_1_2);
   } else {
     returnVertex(RmaskA_1_2, maskA_1_2);
@@ -80,7 +80,7 @@ void maskEyedrawing() {
   s3d.popMatrix();
   //---------------臉
   s3d.pushMatrix();
-  if (mousePressed==true) {
+  if (keyPressed==true &&key == 'k') {
     randomVertex(maskA_2);
   } else {
     returnVertex(RmaskA_2, maskA_2);
@@ -90,7 +90,7 @@ void maskEyedrawing() {
   //---------------左
   s3d.pushMatrix();
   s3d.translate(map(pow(sin(a2/180*6.28), 8.0), 0, 1, 0, -40), 0);
-  if (mousePressed==true) {
+  if (keyPressed==true &&key == 'k') {
     randomVertex(maskA_3_1);
   } else {
     returnVertex(RmaskA_3_1, maskA_3_1);
@@ -100,7 +100,7 @@ void maskEyedrawing() {
   //---------------右
   s3d.pushMatrix();
   s3d.translate(map(pow(sin(a2/180*6.28), 8.0), 0, 1, 0, 40), 0);
-  if (mousePressed==true) {
+  if (keyPressed==true &&key == 'k') {
     randomVertex(maskA_3_2);
   } else {
     returnVertex(RmaskA_3_2, maskA_3_2);
@@ -110,7 +110,7 @@ void maskEyedrawing() {
   //---------------背板
   s3d.pushMatrix();
   s3d.rotate((easeInBack(a1/360))*6.28);
-  if (mousePressed==true) {
+  if (keyPressed==true &&key == 'k') {
     randomVertex(maskA_4);
   } else {
     returnVertex(RmaskA_4, maskA_4);
