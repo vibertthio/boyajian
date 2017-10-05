@@ -45,10 +45,11 @@ class pdLine {
   int dd;
   int delay;
   float o;
+  float oo;
 
-  pdLine(int delay, float duration) {
-    this.delay=delay;
-    this.duration=duration;
+  pdLine(int _delay, float _duration) {
+    this.delay=_delay;
+    this.duration=_duration;
     time=0;
     done=false;
   }
@@ -63,8 +64,8 @@ class pdLine {
 
     if (bang==true) {
       if (workTime>dd) {
-        if (workTime-dd<=duration+delay) {
-          o=(float(workTime-dd)/(duration+delay));
+        if (workTime-dd<=duration) {
+          o=(float(workTime-dd)/(duration));
         } else {
           done=true;
           bang=false;
@@ -73,6 +74,7 @@ class pdLine {
       } else {
         o=0;
       }
+      oo=1.0-o;
     }
   }
 }

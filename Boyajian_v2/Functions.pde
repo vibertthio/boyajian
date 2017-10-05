@@ -86,6 +86,7 @@ float camZ=430;
 
 float easing = 0.05;
 boolean resetCamDo=false;
+float[] cam={600,200,430,0,0}; 
 
 void s3dDrawing() {
   a1=(a1+1)%360;
@@ -98,10 +99,10 @@ void s3dDrawing() {
     s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
     s3d.beginCamera();
     s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);  
-    //println(rotX, rotY, camX, camY, camZ);
+    println(rotX, rotY, camX, camY, camZ);
     s3d.endCamera();
 
-    if (resetCamDo==true)resetCam();
+    if (resetCamDo==true)resetCam(cam[0],cam[1],cam[2],cam[3],cam[4]);
   }
   GL2 gl = ((PJOGL)beginPGL()).gl.getGL2();
   gl.glEnable(GL2.GL_BLEND);
@@ -138,24 +139,24 @@ void s3dDrawing() {
   s3d.endDraw();
 }
 
-void resetCam() {
-  float dcX = 600 - camX;
+void resetCam(float x,float y,float z,float rx,float ry) {
+  float dcX = x - camX;
   camX+=dcX*easing;
   camX=float(int(camX*1000))/1000;
 
-  float dcY = 200 - camY;
+  float dcY = y - camY;
   camY+=dcY*easing;
   camY=float(int(camY*1000))/1000;
 
-  float dcZ = 430 - camZ;
+  float dcZ = z - camZ;
   camZ+=dcZ*easing;
   camZ=float(int(camZ*1000))/1000;
 
-  float drX = 0 - rotX;
+  float drX = rx - rotX;
   rotX+=drX*easing;
   rotX=float(int(rotX*1000))/1000;
 
-  float drY = 0 - rotY;
+  float drY = ry - rotY;
   rotY+=drY*easing;
   rotY=float(int(rotY*1000))/1000;
 

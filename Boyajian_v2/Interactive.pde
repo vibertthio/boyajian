@@ -13,6 +13,20 @@ void keyPressed() {
   }
 
   if (key == 'r') {
+    cam[0]=600;
+    cam[1]=200;
+    cam[2]=430;
+    cam[3]=0;
+    cam[4]=0;
+    resetCamDo=true;
+  }
+
+  if (key == 't') {
+    cam[0]=random(300, 800); 
+    cam[1]=random(100, 300); 
+    cam[2]=random(400, 460); 
+    cam[3]=random(-1, 1);
+    cam[4]=random(-1, 1);
     resetCamDo=true;
   }
 

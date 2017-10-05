@@ -1,5 +1,7 @@
 boolean showMaskEye =false;
 pdLine  MaskEyeLine;
+pdLine  MaskEyeLineIn;
+pdLine  MaskEyeLineOut;
 boolean MaskEyeIn;
 
 PShape maskA_1_1;
@@ -23,12 +25,16 @@ RShape content;
 
 void maskEyeSetting() {
   RG.init(this);
-  name = new RFont("wt040.ttf", 72, RFont.CENTER);
-  content= RG.getText("參眼面具", "wt040.ttf", 72, RFont.CENTER);
-  
+  name = new RFont("wt.ttf", 72, RFont.CENTER);
+  content= RG.getText("三眼面具", "wt.ttf", 72, RFont.CENTER);
+  MaskEyeLineIn=new pdLine(500, 1000);
+  MaskEyeLineOut=new pdLine(3500, 1000);
+
   if (showMaskEye==false) {
 
     MaskEyeLine=new pdLine(0, 1000);
+
+
     MaskEyeIn=true;
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
@@ -44,6 +50,9 @@ void maskEyeSetting() {
     RmaskA_3_2 = loadShape("maskEye/maskA_3_2.obj");
     RmaskA_4 = loadShape("maskEye/maskA_4.obj");
     showMaskEye=true;
+    MaskEyeLineIn.reset();
+    MaskEyeLineOut.reset();
+    MaskEyeLineIn.done=false;
   } else if (showMaskEye==true) {
     MaskEyeIn=false;
   }
@@ -52,6 +61,8 @@ void maskEyeSetting() {
 
 
 void maskEyedrawing() {
+  MaskEyeLineIn.update();
+  MaskEyeLineOut.update();
 
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
   s3d.pushMatrix();
@@ -63,15 +74,29 @@ void maskEyedrawing() {
 
     s3d.pushMatrix();
     {
-      s3d.translate(width/2, height/2+70,-50);
+      s3d.translate(width/2, height/2+100, -50);
       s3d.scale(3.0);
-      //s3d.blendMode(ADD);
-      s3d.fill(color(0.64*255,0.47*255,0),255);
-      content.children[0].transform(-157, -57, 72, 72) ;
-      content.children[1].transform(-74, -57, 72, 72) ;
-      content.children[2].transform(12, -57, 72, 72) ;
-      content.children[3].transform(92, -57, 72, 72) ;
-      content.draw(s3d);
+      //s3d.blendMode(ADD);  
+      s3d.fill(color(0.13*255, 0.59*255, 0.72*255), 255);
+
+      if (MaskEyeLineIn.bang==true ) {
+        content.children[0].transform(-162, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        content.children[1].transform(-81, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        content.children[2].transform(38, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        content.children[3].transform(122, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+      } else if (MaskEyeLineIn.done==true  ) {
+        content.children[0].transform(-162, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        content.children[1].transform(-81, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        content.children[2].transform(38, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        content.children[3].transform(122, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+      }
+
+      if (MaskEyeLineOut.bang==false) {
+        MaskEyeLineIn.done=false;
+      }
+
+      if (MaskEyeLineOut.o>0.001 || MaskEyeLineIn.o>0.001 )
+        if ( MaskEyeIn==true )content.draw(s3d);
     }
     s3d.popMatrix();
 
