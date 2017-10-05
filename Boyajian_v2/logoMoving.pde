@@ -55,8 +55,8 @@ void logoDrawing() {
   logoMoving.background(125);
   logoMoving.imageMode(CENTER);
   //logoMoving.blendMode(ADD);
-  logos_1();
-  // logos_3();
+  //logos_1();
+   logos_3();
   // logos_2();
   logoMoving.endDraw();
 }

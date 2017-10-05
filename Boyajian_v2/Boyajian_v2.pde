@@ -1,4 +1,5 @@
 import com.jogamp.opengl.GL2;
+import geomerative.*;
 PMatrix mat_scene; // to store initial PMatrix
 
 float ry;
@@ -14,9 +15,6 @@ PGraphics scence;
 PShader texlightGLSL;
 PShader blendGLSL;
 PShader contrastGLSL;
-float xx, yy;
-
-
 int workTime;
 
 void settings() {

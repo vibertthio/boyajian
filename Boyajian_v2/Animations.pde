@@ -14,8 +14,8 @@ class Animations {
   }
 
   void draw() {
-    // strips.draw();
-    // growGrid.draw();
+    strips.draw();
+    growGrid.draw();
     // rotateGrid.draw();
   }
 }
