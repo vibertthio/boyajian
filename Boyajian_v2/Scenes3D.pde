@@ -61,21 +61,15 @@ void s3dDrawing() {
   gl.glAlphaFunc(GL2.GL_GREATER, 0.1);
   endPGL();
 
-  if (showMaskEye==true) {
-    maskEyedrawing();
-  }
+  if (showMaskEye==true) maskEyedrawing();
+  if (showMaskListen==true) maskListendrawing();
+  if (showMaskSmell==true) maskSmelldrawing();
+  if (showMaskTouch==true)maskTouchdrawing();
+  if (showMaskTaste==true)maskTastedrawing();
+  if (showMaskDream==true)maskDreamdrawing();
+  if (showMaskMemory==true)maskMemorydrawing();
+  if (showMaskFaces==true)maskFacesdrawing();
 
-  if (showMaskListen==true) {
-    maskListendrawing();
-  }
-
-  if (showMaskSmell==true) {
-    maskSmelldrawing();
-  }
-
-  if (showMaskTouch==true) {
-    maskTouchdrawing();
-  }
 
   s3d.pushMatrix();
   s3d.noStroke();

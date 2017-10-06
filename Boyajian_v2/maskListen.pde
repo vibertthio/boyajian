@@ -98,3 +98,12 @@ void maskListendrawing() {
   }
   s3d.popMatrix();
 }
+void Listen(boolean theFlag) {
+  if (theFlag==true) {
+    showMaskListen=false;
+    thread("maskListenSetting");
+  } else {
+    showMaskListen=true;
+    thread("maskListenSetting");
+  }
+}

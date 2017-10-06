@@ -12,11 +12,11 @@ Animations animations;
 PImage bgbg;
 
 color[] colors = {
-  color(253, 148, 38), 
-  color(252, 86, 44), 
-  color(56, 195, 206), 
-  color(124, 156, 124), 
-  color(18, 99, 104), 
+  color(253, 148, 38),
+  color(252, 86, 44),
+  color(56, 195, 206),
+  color(124, 156, 124),
+  color(18, 99, 104),
 };
 
 void logoSetting() {
@@ -58,8 +58,8 @@ void logoDrawing() {
   logoMoving.imageMode(CENTER);
   logoMoving.blendMode(BLEND);
 
-  //logos_3();//旋轉靜態圖
-  logos_1();//鏡射
+  logos_3();//旋轉靜態圖
+  //logos_1();//鏡射
   // logos_2();//repeat logo
   logoMoving.endDraw();
 }
@@ -76,15 +76,15 @@ void logos_vibert() {
 
 void logos_1() {
   logoMoving.pushMatrix();
-  logoMoving.translate(0+166, logoMirror.height/2);
+  logoMoving.translate(0+63, logoMirror.height/2);
   logoMoving.scale(1, 1);
-  logoMoving.image(logoMirror, 0, 0, logoMirror.width, logoMirror.height);
+  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
   logoMoving.popMatrix();
 
   logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+166, logoMirror.height/2);
+  logoMoving.translate(logoMirror.width+263, logoMirror.height/2);
   logoMoving.scale(-1, 1);
-  logoMoving.image(logoMirror, 0, 0, logoMirror.width, logoMirror.height);
+  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
   logoMoving.popMatrix();
 }
 
@@ -107,7 +107,7 @@ void logos_3() {
   logoMoving.popMatrix();
 
   logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+166, logoMirror.height/2);
+  logoMoving.translate(logoMirror.width+167, logoMirror.height/2);
   logoMoving.scale(-1, 1);
   logoMoving.rotate(radians(roro));
   logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);

@@ -97,3 +97,13 @@ void maskSmelldrawing() {
   }
   s3d.popMatrix();
 }
+
+void Smell(boolean theFlag) {
+  if (theFlag==true) {
+    showMaskSmell=false;
+    thread("maskSmellSetting");
+  } else {
+    showMaskSmell=true;
+    thread("maskSmellSetting");
+  }
+}

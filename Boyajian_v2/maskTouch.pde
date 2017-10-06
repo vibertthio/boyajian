@@ -105,3 +105,13 @@ void maskTouchdrawing() {
   }
   s3d.popMatrix();
 }
+
+void Touch(boolean theFlag) {
+  if (theFlag==true) {
+    showMaskTouch=false;
+    thread("maskTouchSetting");
+  } else {
+    showMaskTouch=true;
+    thread("maskTouchSetting");
+  }
+}

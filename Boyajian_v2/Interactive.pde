@@ -1,16 +1,11 @@
 void keyPressed() {
-  if (key == '1') {
-    thread("maskEyeSetting");
-  }
-  if (key == '2') {
-    thread("maskListenSetting");
-  }
-  if (key == '3') {
-    thread("maskSmellSetting");
-  }
-  if (key == '4') {
-    thread("maskTouchSetting");
-  }
+  if (key == '1') thread("maskEyeSetting");
+  if (key == '2') thread("maskListenSetting");
+  if (key == '3') thread("maskSmellSetting");
+  if (key == '4') thread("maskTouchSetting");
+  if (key == '5') thread("maskTasteSetting");
+  if (key == '6') thread("maskDreamSetting");
+
 
   if (key == 'r') {
     cam[0]=600;
@@ -22,9 +17,9 @@ void keyPressed() {
   }
 
   if (key == 't') {
-    cam[0]=random(300, 800); 
-    cam[1]=random(100, 300); 
-    cam[2]=random(400, 460); 
+    cam[0]=random(300, 800);
+    cam[1]=random(100, 300);
+    cam[2]=random(400, 460);
     cam[3]=random(-1, 1);
     cam[4]=random(-1, 1);
     resetCamDo=true;

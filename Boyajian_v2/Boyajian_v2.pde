@@ -1,11 +1,16 @@
 import com.jogamp.opengl.GL2;
 import geomerative.*;
+
+//---------------
+import controlP5.*;
+ControlP5 cp5;
+CheckBox checkbox;
+
 PMatrix mat_scene; // to store initial PMatrix
 
 float ry;
 PImage[] bgs=new PImage[5] ;
 PImage logo;
-
 
 PShape square;
 PShape globe;
@@ -41,6 +46,44 @@ void setup() {
   globe = createShape(SPHERE, 600);
   globe.setStroke(false);
   globe.setTexture(tex);
+
+  //---------------*控制開關
+  cp5 = new ControlP5(this);
+  cp5.addToggle("Eye")
+    .setPosition(40, 300)
+    .setSize(40, 20)
+    ;
+  cp5.addToggle("Smell")
+    .setPosition(100, 300)
+    .setSize(40, 20)
+    ;
+
+  cp5.addToggle("Listen")
+    .setPosition(160, 300)
+    .setSize(40, 20)
+    ;
+  cp5.addToggle("Touch")
+    .setPosition(220, 300)
+    .setSize(40, 20)
+    ;
+
+  cp5.addToggle("Taste")
+    .setPosition(280, 300)
+    .setSize(40, 20)
+    ;
+  cp5.addToggle("Memory")
+    .setPosition(340, 300)
+    .setSize(40, 20)
+    ;
+
+  cp5.addToggle("Dream")
+    .setPosition(400, 300)
+    .setSize(40, 20)
+    ;
+  cp5.addToggle("Faces")
+    .setPosition(460, 300)
+    .setSize(40, 20)
+    ;
 }
 
 void draw() {
@@ -58,7 +101,7 @@ void draw() {
   logoDrawing() ;
 
   //---------------*底圖繪製
-  tex.beginDraw();
+  tex.beginDraw(); 
   tex.background(255);
   tex.shader(blendGLSL);
   tex.rectMode(CENTER);
@@ -85,6 +128,6 @@ void draw() {
   resetShader();
   showFrameRate();
   if (keyPressed==true &&key == 's') {
-    saveFrame(frameCount+".png");
+    //saveFrame(frameCount+".png");
   }
 }

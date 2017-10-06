@@ -165,3 +165,13 @@ void maskEyedrawing() {
   }
   s3d.popMatrix();
 }
+
+void Eye(boolean theFlag) {
+  if (theFlag==true) {
+    showMaskEye=false;
+    thread("maskEyeSetting");
+  } else {
+    showMaskEye=true;
+    thread("maskEyeSetting");
+  }
+}
