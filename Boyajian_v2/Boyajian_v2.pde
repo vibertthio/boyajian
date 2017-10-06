@@ -50,38 +50,38 @@ void setup() {
   //---------------*控制開關
   cp5 = new ControlP5(this);
   cp5.addToggle("Eye")
-    .setPosition(40, 300)
+    .setPosition(40, 350)
     .setSize(40, 20)
     ;
   cp5.addToggle("Smell")
-    .setPosition(100, 300)
+    .setPosition(100, 350)
     .setSize(40, 20)
     ;
 
   cp5.addToggle("Listen")
-    .setPosition(160, 300)
+    .setPosition(160, 350)
     .setSize(40, 20)
     ;
   cp5.addToggle("Touch")
-    .setPosition(220, 300)
+    .setPosition(220, 350)
     .setSize(40, 20)
     ;
 
   cp5.addToggle("Taste")
-    .setPosition(280, 300)
+    .setPosition(280, 350)
     .setSize(40, 20)
     ;
   cp5.addToggle("Memory")
-    .setPosition(340, 300)
+    .setPosition(340, 350)
     .setSize(40, 20)
     ;
 
   cp5.addToggle("Dream")
-    .setPosition(400, 300)
+    .setPosition(400, 350)
     .setSize(40, 20)
     ;
   cp5.addToggle("Faces")
-    .setPosition(460, 300)
+    .setPosition(460, 350)
     .setSize(40, 20)
     ;
 }
