@@ -23,6 +23,7 @@ void settings() {
 }
 
 void setup() {
+  RG.init(this);
   mat_scene = getMatrix();
   logoSetting() ;
   square = createShape(RECT, 0, 0, width, height);
@@ -36,7 +37,7 @@ void setup() {
   blendIndex = 7;
   blendGLSL.set( "lowLayer", bgs [2]);
 
-  globe = createShape(SPHERE, 600); 
+  globe = createShape(SPHERE, 600);
   globe.setStroke(false);
   globe.setTexture(tex);
 }
@@ -67,6 +68,7 @@ void draw() {
   scence.beginDraw();
   scence.background(0);
   scence.imageMode(CENTER);
+
   scence.image(s3d, width/2, height/2, width, height);//面具畫在的buffer
   scence.endDraw();
 

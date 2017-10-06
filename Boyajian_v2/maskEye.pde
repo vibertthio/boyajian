@@ -1,8 +1,11 @@
+RShape textEye;
+
 boolean showMaskEye =false;
+boolean MaskEyeIn;
+
 pdLine  MaskEyeLine;
 pdLine  MaskEyeLineIn;
 pdLine  MaskEyeLineOut;
-boolean MaskEyeIn;
 
 PShape maskA_1_1;
 PShape maskA_1_2;
@@ -18,23 +21,16 @@ PShape RmaskA_3_1;
 PShape RmaskA_3_2;
 PShape RmaskA_4;
 
-RFont name;
-RGroup maGroupe ;
-RPoint[] points;
-RShape content;
-
 void maskEyeSetting() {
-  RG.init(this);
-  name = new RFont("wt.ttf", 72, RFont.CENTER);
-  content= RG.getText("三眼面具", "wt.ttf", 72, RFont.CENTER);
+ 
+  textEye= RG.getText("三眼面具", "wt.ttf", 72, RFont.CENTER);
+  
   MaskEyeLineIn=new pdLine(500, 1000);
   MaskEyeLineOut=new pdLine(3500, 1000);
 
   if (showMaskEye==false) {
 
     MaskEyeLine=new pdLine(0, 1000);
-
-
     MaskEyeIn=true;
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
@@ -80,23 +76,24 @@ void maskEyedrawing() {
       s3d.fill(color(0.13*255, 0.59*255, 0.72*255), 255);
 
       if (MaskEyeLineIn.bang==true ) {
-        content.children[0].transform(-162, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-        content.children[1].transform(-81, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-        content.children[2].transform(38, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-        content.children[3].transform(122, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        textEye.children[0].transform(-162, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        textEye.children[1].transform(-81, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        textEye.children[2].transform(38, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        textEye.children[3].transform(122, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
       } else if (MaskEyeLineIn.done==true  ) {
-        content.children[0].transform(-162, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-        content.children[1].transform(-81, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-        content.children[2].transform(38, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-        content.children[3].transform(122, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        textEye.children[0].transform(-162, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        textEye.children[1].transform(-81, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        textEye.children[2].transform(38, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        textEye.children[3].transform(122, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
       }
 
       if (MaskEyeLineOut.bang==false) {
         MaskEyeLineIn.done=false;
       }
-
+      s3d.strokeWeight(1); 
+      s3d.noStroke(); 
       if (MaskEyeLineOut.o>0.001 || MaskEyeLineIn.o>0.001 )
-        if ( MaskEyeIn==true )content.draw(s3d);
+        if ( MaskEyeIn==true )textEye.draw(s3d);
     }
     s3d.popMatrix();
 

@@ -72,74 +72,9 @@ void showFrameRate() {
   }
 }
 
-float a1;
-float a2;
-float a3;
-float a4;
 
-float rotX=0;
-float rotY=0; 
 
-float camX=600; 
-float camY=200;
-float camZ=430;
-
-float easing = 0.05;
-boolean resetCamDo=false;
-float[] cam={600,200,430,0,0}; 
-
-void s3dDrawing() {
-  a1=(a1+1)%360;
-  a2=(a1+1)%180;
-  a3=(a1+1)%150;
-
-  s3d.beginDraw();
-  s3d.background(255, 0);
-  {
-    s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
-    s3d.beginCamera();
-    s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);  
-    println(rotX, rotY, camX, camY, camZ);
-    s3d.endCamera();
-
-    if (resetCamDo==true)resetCam(cam[0],cam[1],cam[2],cam[3],cam[4]);
-  }
-  GL2 gl = ((PJOGL)beginPGL()).gl.getGL2();
-  gl.glEnable(GL2.GL_BLEND);
-  gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
-
-  gl.glHint( GL2.GL_POLYGON_SMOOTH_HINT, GL2.GL_NICEST );
-  gl.glEnable(GL2.GL_ALPHA_TEST);
-  gl.glAlphaFunc(GL2.GL_GREATER, 0.1);
-  endPGL();
-
-  if (showMaskEye==true) {
-    maskEyedrawing();
-  }
-
-  if (showMaskListen==true) {
-    maskListendrawing();
-  }
-
-  if (showMaskSmell==true) {
-    maskSmelldrawing();
-  }
-
-  if (showMaskTouch==true) {
-    maskTouchdrawing();
-  }
-
-  s3d.pushMatrix();
-  s3d.noStroke();
-  s3d.translate(width/2, height/2); 
-  s3d.rotateY(radians(287)); 
-  s3d.shape(globe);
-  s3d.popMatrix();
-
-  s3d.endDraw();
-}
-
-void resetCam(float x,float y,float z,float rx,float ry) {
+void resetCam(float x, float y, float z, float rx, float ry) {
   float dcX = x - camX;
   camX+=dcX*easing;
   camX=float(int(camX*1000))/1000;
