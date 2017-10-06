@@ -3,7 +3,7 @@ class RotateGrid {
   Rectangle[] recs;
   boolean playing;
   int n = 20;
-  float low = 30;
+  float low = 10;
   float high = low * 8;
   int unit = floor(high - low);
   float time = 240;

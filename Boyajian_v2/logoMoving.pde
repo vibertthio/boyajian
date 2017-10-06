@@ -12,11 +12,11 @@ Animations animations;
 PImage bgbg;
 
 color[] colors = {
-  color(253, 148, 38),
-  color(252, 86, 44),
-  color(56, 195, 206),
-  color(124, 156, 124),
-  color(18, 99, 104),
+  color(253, 148, 38), 
+  color(252, 86, 44), 
+  color(56, 195, 206), 
+  color(124, 156, 124), 
+  color(18, 99, 104), 
 };
 
 void logoSetting() {
@@ -49,17 +49,18 @@ void logoDrawing() {
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
-  logosMirrorDraw();
+  //logosMirrorDraw();//打開slash 開關
   logos_vibert();
   logoMirror.endDraw();
 
   logoMoving.beginDraw();
   logoMoving.background(125);
   logoMoving.imageMode(CENTER);
-  //logoMoving.blendMode(ADD);
-  //logos_1();
-  // logos_3();
-  // logos_2();
+  logoMoving.blendMode(BLEND);
+
+  //logos_3();//旋轉靜態圖
+  logos_1();//鏡射
+  // logos_2();//repeat logo
   logoMoving.endDraw();
 }
 
@@ -94,10 +95,10 @@ void logos_3() {
   }
 
   if (frameCount%50==0) {
-   pp=int(random(3));
+    pp=int(random(3));
   }
 
-
+  //logoMoving.blendMode(ADD);
   logoMoving.pushMatrix();
   logoMoving.translate(0+166, logoMirror.height/2);
   logoMoving.scale(1, 1);

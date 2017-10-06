@@ -17,7 +17,6 @@ void maskSmellSetting() {
   MaskSmellLineIn=new pdLine(500, 1000);
   MaskSmellLineOut=new pdLine(3500, 1000);
 
-
   if (showMaskSmell==false) {
     MaskSmellLine=new pdLine(0, 1000);
     MaskSmellIn=true;
@@ -83,17 +82,15 @@ void maskSmelldrawing() {
     s3d.scale(0.8);
     //---------------
     s3d.pushMatrix();
-
+    s3d.translate(0, map(pow(sin(a2/180*6.28), 8.0), 0, 1, 0, -40));
     s3d.shape(Smell_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-
     s3d.shape(Smell_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-
     s3d.shape(Smell_3);
     s3d.popMatrix();
     //---------------

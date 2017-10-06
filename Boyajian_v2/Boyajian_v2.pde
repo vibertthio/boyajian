@@ -84,4 +84,7 @@ void draw() {
 
   resetShader();
   showFrameRate();
+  if (keyPressed==true &&key == 's') {
+    saveFrame(frameCount+".png");
+  }
 }

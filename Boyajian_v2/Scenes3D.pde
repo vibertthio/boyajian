@@ -20,7 +20,8 @@ void s3dDrawing() {
   a3=(a1+1)%150;
 
   s3d.beginDraw();
-  s3d.background(bgbg);
+  //s3d.background(bgbg);
+  s3d.background(255,155,0,0);
   {
     s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
 
@@ -31,7 +32,7 @@ void s3dDrawing() {
 
     s3d.beginCamera();
     s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
-    println(rotX, rotY, camX, camY, camZ);
+    //println(rotX, rotY, camX, camY, camZ);
     s3d.endCamera();
 
     if (resetCamDo==true)resetCam(cam[0], cam[1], cam[2], cam[3], cam[4]);

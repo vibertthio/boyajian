@@ -1,7 +1,7 @@
 class RotateGrid {
   Rectangle[] recs;
   boolean playing;
-  int n = 15;
+  int n = 30;
   float low = 10;
   float high = low * 8;
   int unit = floor(high - low);
@@ -29,6 +29,7 @@ class RotateGrid {
   }
 
   void draw() {
+   
     update();
     render();
   }
@@ -46,7 +47,7 @@ class RotateGrid {
 
   void render() {
     for (int i = 0; i < n * n; i++) {
-        recs[i].draw();
+      recs[i].draw();
     }
   }
 }
@@ -92,7 +93,6 @@ class Rectangle {
     angle = grid.angle;
     w = grid.w;
     h = grid.h;
-
   }
 
   void render() {
@@ -105,5 +105,4 @@ class Rectangle {
     rect(0, 0, w, h);
     popMatrix();
   }
-
 }
