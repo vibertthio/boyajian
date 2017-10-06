@@ -20,7 +20,7 @@ void s3dDrawing() {
   a3=(a1+1)%150;
 
   s3d.beginDraw();
-  s3d.background(255, 0);
+  s3d.background(bgbg);
   {
     s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
 

@@ -9,6 +9,7 @@ int pp = 0;
 
 // Vibert's
 Animations animations;
+PImage bgbg;
 
 color[] colors = {
   color(253, 148, 38),
@@ -25,6 +26,7 @@ void logoSetting() {
   pattern[0] = loadImage("img/pp_0.png");
   pattern[1] = loadImage("img/pp_1.png");
   pattern[2] = loadImage("img/pp_2.png");
+  bgbg= loadImage("img/bg.png");
 
   slash = new Slash[nb];
   for (int i = 0; i < nb; i++) {
@@ -56,7 +58,7 @@ void logoDrawing() {
   logoMoving.imageMode(CENTER);
   //logoMoving.blendMode(ADD);
   //logos_1();
-   logos_3();
+  // logos_3();
   // logos_2();
   logoMoving.endDraw();
 }

@@ -1,5 +1,4 @@
 RShape textEye;
-
 boolean showMaskEye =false;
 boolean MaskEyeIn;
 
@@ -22,14 +21,12 @@ PShape RmaskA_3_2;
 PShape RmaskA_4;
 
 void maskEyeSetting() {
- 
+
   textEye= RG.getText("三眼面具", "wt.ttf", 72, RFont.CENTER);
-  
   MaskEyeLineIn=new pdLine(500, 1000);
   MaskEyeLineOut=new pdLine(3500, 1000);
 
   if (showMaskEye==false) {
-
     MaskEyeLine=new pdLine(0, 1000);
     MaskEyeIn=true;
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
@@ -46,20 +43,19 @@ void maskEyeSetting() {
     RmaskA_3_2 = loadShape("maskEye/maskA_3_2.obj");
     RmaskA_4 = loadShape("maskEye/maskA_4.obj");
     showMaskEye=true;
-    MaskEyeLineIn.reset();
-    MaskEyeLineOut.reset();
-    MaskEyeLineIn.done=false;
   } else if (showMaskEye==true) {
     MaskEyeIn=false;
   }
   MaskEyeLine.reset();
+  MaskEyeLineIn.reset();
+  MaskEyeLineIn.done=false;
+  MaskEyeLineOut.reset();
 }
 
 
 void maskEyedrawing() {
   MaskEyeLineIn.update();
   MaskEyeLineOut.update();
-
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
   s3d.pushMatrix();
   {
@@ -67,36 +63,37 @@ void maskEyedrawing() {
     if (MaskEyeIn==true)s3d.translate(0, map(easeOutBack(MaskEyeLine.o), 0, 1, 500, 0));
     else  s3d.translate(0, map(easeInBack(MaskEyeLine.o), 0, 1, 0, -500));
     //----fadeEnd
-
-    s3d.pushMatrix();
-    {
-      s3d.translate(width/2, height/2+100, -50);
+    {//文字開始
+      s3d.pushMatrix();
+      s3d.translate(width/2, height/2+125, -50);
       s3d.scale(3.0);
-      //s3d.blendMode(ADD);  
-      s3d.fill(color(0.13*255, 0.59*255, 0.72*255), 255);
+      s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
 
-      if (MaskEyeLineIn.bang==true ) {
-        textEye.children[0].transform(-162, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-        textEye.children[1].transform(-81, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-        textEye.children[2].transform(38, -57+easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-        textEye.children[3].transform(122, -57-easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
-      } else if (MaskEyeLineIn.done==true  ) {
-        textEye.children[0].transform(-162, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-        textEye.children[1].transform(-81, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-        textEye.children[2].transform(38, -57+easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-        textEye.children[3].transform(122, -57-easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
-      }
+      {//文字動畫
+        if (MaskEyeLineIn.bang==true ) {
+          textEye.children[0].transform(-162, easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+          textEye.children[1].transform(-81, -easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+          textEye.children[2].transform(38, easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+          textEye.children[3].transform(122, -easeInBack(MaskEyeLineIn.oo)*300, 36, 36) ;
+        } else if (MaskEyeLineIn.done==true  ) {
+          textEye.children[0].transform(-162, easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+          textEye.children[1].transform(-81, -easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+          textEye.children[2].transform(38, easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+          textEye.children[3].transform(122, -easeInBack(MaskEyeLineOut.o)*300, 36, 36) ;
+        }
 
-      if (MaskEyeLineOut.bang==false) {
-        MaskEyeLineIn.done=false;
-      }
-      s3d.strokeWeight(1); 
-      s3d.noStroke(); 
+        if (MaskEyeLineOut.bang==false) {
+          MaskEyeLineIn.done=false;
+        }
+      }//文字動畫結束
+
+      s3d.strokeWeight(1);
+      s3d.noStroke();
       if (MaskEyeLineOut.o>0.001 || MaskEyeLineIn.o>0.001 )
         if ( MaskEyeIn==true )textEye.draw(s3d);
-    }
-    s3d.popMatrix();
-
+      s3d.popMatrix();
+    }//文字結束
+    //-----model
     s3d.translate(width/2, height/2+25+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
@@ -167,30 +164,4 @@ void maskEyedrawing() {
     //---------------
   }
   s3d.popMatrix();
-}
-
-void randomVertex(PShape who) {
-  for (int j=0; j<who.getChildCount(); j++) {
-    for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
-      PVector v = who.getChild(j).getVertex(i);
-      v.x += random(-6, 6);
-      v.y += random(-6, 6);
-      v.z += random(-6, 6);
-      who.getChild(j).setVertex(i, v);
-    }
-  }
-}
-
-void returnVertex(PShape origon, PShape who) {
-  for (int j=0; j<origon.getChildCount(); j++) {
-    for (int i = 0; i < origon.getChild(j).getVertexCount(); i++) {
-      PVector v = origon.getChild(j).getVertex(i);
-      PVector v1 = who.getChild(j).getVertex(i);
-
-      v1.x =(v.x-v1.x)*0.05 +v1.x;
-      v1.y =(v.y-v1.y)*0.05 +v1.y;
-      v1.z =(v.z-v1.z)*0.05 +v1.z;
-      who.getChild(j).setVertex(i, v1);
-    }
-  }
 }

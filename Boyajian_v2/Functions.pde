@@ -110,3 +110,29 @@ void autoChBg() {
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
   }
 }
+
+void randomVertex(PShape who) {
+  for (int j=0; j<who.getChildCount(); j++) {
+    for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
+      PVector v = who.getChild(j).getVertex(i);
+      v.x += random(-6, 6);
+      v.y += random(-6, 6);
+      v.z += random(-6, 6);
+      who.getChild(j).setVertex(i, v);
+    }
+  }
+}
+
+void returnVertex(PShape origon, PShape who) {
+  for (int j=0; j<origon.getChildCount(); j++) {
+    for (int i = 0; i < origon.getChild(j).getVertexCount(); i++) {
+      PVector v = origon.getChild(j).getVertex(i);
+      PVector v1 = who.getChild(j).getVertex(i);
+
+      v1.x =(v.x-v1.x)*0.05 +v1.x;
+      v1.y =(v.y-v1.y)*0.05 +v1.y;
+      v1.z =(v.z-v1.z)*0.05 +v1.z;
+      who.getChild(j).setVertex(i, v1);
+    }
+  }
+}

@@ -6,6 +6,7 @@ float ry;
 PImage[] bgs=new PImage[5] ;
 PImage logo;
 
+
 PShape square;
 PShape globe;
 PGraphics tex;
