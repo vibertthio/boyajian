@@ -49,22 +49,23 @@ void maskTouchdrawing() {
 
   {//文字開始
     s3d.pushMatrix();
-    s3d.translate(width/2, height/2+125, -50);
+    s3d.translate(width/2, height/2-17, -50);
     s3d.scale(3.0);
     s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
 
     {//文字動畫
-      if (MaskTouchLineIn.bang==true ) {
-        textTouch.children[0].transform(-162, easeInBack(MaskTouchLineIn.oo)*300, 36, 36) ;
-        textTouch.children[1].transform(-81, -easeInBack(MaskTouchLineIn.oo)*300, 36, 36) ;
-        textTouch.children[2].transform(38, easeInBack(MaskTouchLineIn.oo)*300, 36, 36) ;
-        textTouch.children[3].transform(122, -easeInBack(MaskTouchLineIn.oo)*300, 36, 36) ;
-      } else if (MaskTouchLineIn.done==true  ) {
-        textTouch.children[0].transform(-162, easeInBack(MaskTouchLineOut.o)*300, 36, 36) ;
-        textTouch.children[1].transform(-81, -easeInBack(MaskTouchLineOut.o)*300, 36, 36) ;
-        textTouch.children[2].transform(38, easeInBack(MaskTouchLineOut.o)*300, 36, 36) ;
-        textTouch.children[3].transform(122, -easeInBack(MaskTouchLineOut.o)*300, 36, 36) ;
-      }
+       if (MaskTouchLineIn.bang==true ) {
+          textTouch.children[0].transform(70, easeInBack(MaskTouchLineIn.oo)*300, 20, 20) ;
+          textTouch.children[1].transform(102, -easeInBack(MaskTouchLineIn.oo)*300, 20, 20) ;
+          textTouch.children[2].transform(137, easeInBack(MaskTouchLineIn.oo)*300, 20, 20) ;
+          textTouch.children[3].transform(172, -easeInBack(MaskTouchLineIn.oo)*300, 20, 20) ;
+        } else if (MaskTouchLineIn.done==true  ) {
+          textTouch.children[0].transform(70, easeInBack(MaskTouchLineOut.o)*300, 20, 20) ;
+          textTouch.children[1].transform(102, -easeInBack(MaskTouchLineOut.o)*300, 20, 20) ;
+          textTouch.children[2].transform(137, easeInBack(MaskTouchLineOut.o)*300, 20, 20) ;
+          textTouch.children[3].transform(172, -easeInBack(MaskTouchLineOut.o)*300, 20, 20) ;
+          defultCam();
+        }
 
       if (MaskTouchLineOut.bang==false) {
         MaskTouchLineIn.done=false;
@@ -110,6 +111,7 @@ void Touch(boolean theFlag) {
   if (theFlag==true) {
     showMaskTouch=false;
     thread("maskTouchSetting");
+    randomCam();
   } else {
     showMaskTouch=true;
     thread("maskTouchSetting");

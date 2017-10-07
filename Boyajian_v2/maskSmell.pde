@@ -46,19 +46,20 @@ void maskSmelldrawing() {
     //----fadeEnd
     {//文字開始
       s3d.pushMatrix();
-      s3d.translate(width/2, height/2+125, -50);
+      s3d.translate(width/2, height/2-17, -50);
       s3d.scale(3.0);
       s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
 
       {//文字動畫
         if (MaskSmellLineIn.bang==true ) {
-          textSmell.children[0].transform(-109, easeInBack(MaskSmellLineIn.oo)*300, 36, 36) ;
-          textSmell.children[1].transform(-16, -easeInBack(MaskSmellLineIn.oo)*300, 36, 36) ;
-          textSmell.children[2].transform(74, easeInBack(MaskSmellLineIn.oo)*300, 36, 36) ;
+          textSmell.children[0].transform(40, easeInBack(MaskSmellLineIn.oo)*300, 20, 20) ;
+          textSmell.children[1].transform(97, -easeInBack(MaskSmellLineIn.oo)*300, 20, 20) ;
+          textSmell.children[2].transform(156, easeInBack(MaskSmellLineIn.oo)*300, 20, 20) ;
         } else if (MaskSmellLineIn.done==true  ) {
-          textSmell.children[0].transform(-109, easeInBack(MaskSmellLineOut.o)*300, 36, 36) ;
-          textSmell.children[1].transform(-16, -easeInBack(MaskSmellLineOut.o)*300, 36, 36) ;
-          textSmell.children[2].transform(74, easeInBack(MaskSmellLineOut.o)*300, 36, 36) ;
+          textSmell.children[0].transform(40, easeInBack(MaskSmellLineOut.o)*300, 20, 20) ;
+          textSmell.children[1].transform(97, -easeInBack(MaskSmellLineOut.o)*300, 20, 20) ;
+          textSmell.children[2].transform(156, easeInBack(MaskSmellLineOut.o)*300, 20, 20) ;
+          defultCam();
         }
 
         if (MaskSmellLineOut.bang==false) {
@@ -102,6 +103,7 @@ void Smell(boolean theFlag) {
   if (theFlag==true) {
     showMaskSmell=false;
     thread("maskSmellSetting");
+    randomCam();
   } else {
     showMaskSmell=true;
     thread("maskSmellSetting");

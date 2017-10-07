@@ -13,7 +13,7 @@ PShape Faces_3;
 
 void maskFacesSetting() {
 
-  textFaces= RG.getText("氣嗅者", "wt.ttf", 72, RFont.CENTER);
+  textFaces= RG.getText("三首犬衛", "wt.ttf", 72, RFont.CENTER);
   MaskFacesLineIn=new pdLine(500, 1000);
   MaskFacesLineOut=new pdLine(3500, 1000);
 
@@ -46,19 +46,22 @@ void maskFacesdrawing() {
     //----fadeEnd
     {//文字開始
       s3d.pushMatrix();
-      s3d.translate(width/2, height/2+125, -50);
+      s3d.translate(width/2, height/2-17, -50);
       s3d.scale(3.0);
       s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
 
       {//文字動畫
-        if (MaskFacesLineIn.bang==true ) {
-          textFaces.children[0].transform(-109, easeInBack(MaskFacesLineIn.oo)*300, 36, 36) ;
-          textFaces.children[1].transform(-16, -easeInBack(MaskFacesLineIn.oo)*300, 36, 36) ;
-          textFaces.children[2].transform(74, easeInBack(MaskFacesLineIn.oo)*300, 36, 36) ;
+         if (MaskFacesLineIn.bang==true ) {
+          textFaces.children[0].transform(70, easeInBack(MaskFacesLineIn.oo)*300, 20, 20) ;
+          textFaces.children[1].transform(102, -easeInBack(MaskFacesLineIn.oo)*300, 20, 20) ;
+          textFaces.children[2].transform(137, easeInBack(MaskFacesLineIn.oo)*300, 20, 20) ;
+          textFaces.children[3].transform(172, -easeInBack(MaskFacesLineIn.oo)*300, 20, 20) ;
         } else if (MaskFacesLineIn.done==true  ) {
-          textFaces.children[0].transform(-109, easeInBack(MaskFacesLineOut.o)*300, 36, 36) ;
-          textFaces.children[1].transform(-16, -easeInBack(MaskFacesLineOut.o)*300, 36, 36) ;
-          textFaces.children[2].transform(74, easeInBack(MaskFacesLineOut.o)*300, 36, 36) ;
+          textFaces.children[0].transform(70, easeInBack(MaskFacesLineOut.o)*300, 20, 20) ;
+          textFaces.children[1].transform(102, -easeInBack(MaskFacesLineOut.o)*300, 20, 20) ;
+          textFaces.children[2].transform(137, easeInBack(MaskFacesLineOut.o)*300, 20, 20) ;
+          textFaces.children[3].transform(172, -easeInBack(MaskFacesLineOut.o)*300, 20, 20) ;
+          defultCam();
         }
 
         if (MaskFacesLineOut.bang==false) {
@@ -82,11 +85,12 @@ void maskFacesdrawing() {
     s3d.scale(0.8);
     //---------------
     s3d.pushMatrix();
-    s3d.translate(0, map(pow(sin(a2/180*6.28), 8.0), 0, 1, 0, -40));
+    s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*0.2);
     s3d.shape(Faces_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*-0.2);
     s3d.shape(Faces_2);
     s3d.popMatrix();
     //---------------
@@ -101,6 +105,7 @@ void Faces(boolean theFlag) {
   if (theFlag==true) {
     showMaskFaces=false;
     thread("maskFacesSetting");
+    randomCam();
   } else {
     showMaskFaces=true;
     thread("maskFacesSetting");

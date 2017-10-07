@@ -49,19 +49,20 @@ void maskListendrawing() {
     //----fadeEnd
     {//文字開始
       s3d.pushMatrix();
-      s3d.translate(width/2, height/2+125, -50);
+      s3d.translate(width/2, height/2-17, -50);
       s3d.scale(3.0);
       s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
 
       {//文字動畫
-        if (MaskListenLineIn.bang==true ) {
-          textListen.children[0].transform(-109, easeInBack(MaskListenLineIn.oo)*300, 36, 36) ;
-          textListen.children[1].transform(-16, -easeInBack(MaskListenLineIn.oo)*300, 36, 36) ;
-          textListen.children[2].transform(74, easeInBack(MaskListenLineIn.oo)*300, 36, 36) ;
+       if (MaskListenLineIn.bang==true ) {
+          textListen.children[0].transform(40, easeInBack(MaskListenLineIn.oo)*300, 20, 20) ;
+          textListen.children[1].transform(97, -easeInBack(MaskListenLineIn.oo)*300, 20, 20) ;
+          textListen.children[2].transform(156, easeInBack(MaskListenLineIn.oo)*300, 20, 20) ;
         } else if (MaskListenLineIn.done==true  ) {
-          textListen.children[0].transform(-109, easeInBack(MaskListenLineOut.o)*300, 36, 36) ;
-          textListen.children[1].transform(-16, -easeInBack(MaskListenLineOut.o)*300, 36, 36) ;
-          textListen.children[2].transform(74, easeInBack(MaskListenLineOut.o)*300, 36, 36) ;
+          textListen.children[0].transform(40, easeInBack(MaskListenLineOut.o)*300, 20, 20) ;
+          textListen.children[1].transform(97, -easeInBack(MaskListenLineOut.o)*300, 20, 20) ;
+          textListen.children[2].transform(156, easeInBack(MaskListenLineOut.o)*300, 20, 20) ;
+          defultCam();
         }
 
         if (MaskListenLineOut.bang==false) {
@@ -102,6 +103,7 @@ void Listen(boolean theFlag) {
   if (theFlag==true) {
     showMaskListen=false;
     thread("maskListenSetting");
+    randomCam();
   } else {
     showMaskListen=true;
     thread("maskListenSetting");

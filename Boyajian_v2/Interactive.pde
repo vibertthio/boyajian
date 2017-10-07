@@ -7,23 +7,10 @@ void keyPressed() {
   if (key == '6') thread("maskDreamSetting");
 
 
-  if (key == 'r') {
-    cam[0]=600;
-    cam[1]=200;
-    cam[2]=430;
-    cam[3]=0;
-    cam[4]=0;
-    resetCamDo=true;
-  }
-
-  if (key == 't') {
-    cam[0]=random(300, 800);
-    cam[1]=random(100, 300);
-    cam[2]=random(400, 460);
-    cam[3]=random(-1, 1);
-    cam[4]=random(-1, 1);
-    resetCamDo=true;
-  }
+  if (key == 'r') defultCam();
+  
+  if (key == 't') randomCam();
+  
 
   if (key == 'a') {
     for (int i=0; i<nb; i++) {
@@ -69,4 +56,22 @@ void mouseDragged()
     camY -= (mouseY - pmouseY)*0.5;
   }
   if (mouseButton == CENTER)camZ += (mouseY - pmouseY)*0.5;
+}
+
+void randomCam() {
+  cam[0]=random(350, 750);
+  cam[1]=random(100, 300);
+  cam[2]=random(400, 460);
+  cam[3]=random(-1, 1);
+  cam[4]=random(-1, 1);
+  resetCamDo=true;
+}
+
+void defultCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=430;
+  cam[3]=0;
+  cam[4]=0;
+  resetCamDo=true;
 }

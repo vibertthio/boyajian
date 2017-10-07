@@ -53,19 +53,20 @@ void maskTastedrawing() {
 
   {//文字開始
     s3d.pushMatrix();
-    s3d.translate(width/2, height/2+125, -50);
+    s3d.translate(width/2, height/2-17, -50);
     s3d.scale(3.0);
     s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
 
     {//文字動畫
       if (MaskTasteLineIn.bang==true ) {
-          textTaste.children[0].transform(-109, easeInBack(MaskTasteLineIn.oo)*300, 36, 36) ;
-          textTaste.children[1].transform(-16, -easeInBack(MaskTasteLineIn.oo)*300, 36, 36) ;
-          textTaste.children[2].transform(74, easeInBack(MaskTasteLineIn.oo)*300, 36, 36) ;
+          textTaste.children[0].transform(40, easeInBack(MaskTasteLineIn.oo)*300, 20, 20) ;
+          textTaste.children[1].transform(97, -easeInBack(MaskTasteLineIn.oo)*300, 20, 20) ;
+          textTaste.children[2].transform(156, easeInBack(MaskTasteLineIn.oo)*300, 20, 20) ;
         } else if (MaskTasteLineIn.done==true  ) {
-          textTaste.children[0].transform(-109, easeInBack(MaskTasteLineOut.o)*300, 36, 36) ;
-          textTaste.children[1].transform(-16, -easeInBack(MaskTasteLineOut.o)*300, 36, 36) ;
-          textTaste.children[2].transform(74, easeInBack(MaskTasteLineOut.o)*300, 36, 36) ;
+          textTaste.children[0].transform(40, easeInBack(MaskTasteLineOut.o)*300, 20, 20) ;
+          textTaste.children[1].transform(97, -easeInBack(MaskTasteLineOut.o)*300, 20, 20) ;
+          textTaste.children[2].transform(156, easeInBack(MaskTasteLineOut.o)*300, 20, 20) ;
+          defultCam();
         }
 
       if (MaskTasteLineOut.bang==false) {
@@ -120,6 +121,7 @@ void Taste(boolean theFlag) {
   if (theFlag==true) {
     showMaskTaste=false;
     thread("maskTasteSetting");
+    randomCam();
   } else {
     showMaskTaste=true;
     thread("maskTasteSetting");
