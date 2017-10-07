@@ -39,8 +39,13 @@ void s3dDrawing() {
   s3d.background(255, 155, 0, 0);
   if (showMaskEye==true) {
     if (showParticleCount<255) {
-      showParticleCount+=0.5;
+      showParticleCount+=1;
     }
+  }else{
+    if (showParticleCount>0) {
+      showParticleCount-=1;
+    }
+  
   }
 
   if (showParticleCount>1) {
