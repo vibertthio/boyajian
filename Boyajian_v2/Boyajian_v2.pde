@@ -32,6 +32,7 @@ void setup() {
   RG.init(this);
   mat_scene = getMatrix();
   logoSetting() ;
+  s3dSetting() ;
   square = createShape(RECT, 0, 0, width, height);
   tex= createGraphics(1500, 1000, P2D);
   s3d= createGraphics(width, height, P3D);

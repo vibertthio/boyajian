@@ -20,6 +20,8 @@ PShape RmaskA_3_1;
 PShape RmaskA_3_2;
 PShape RmaskA_4;
 
+float Eye_x,Eye_y;
+
 void maskEyeSetting() {
 
   textEye= RG.getText("三眼面具", "wt.ttf", 72, RFont.CENTER);
@@ -59,6 +61,8 @@ void maskEyedrawing() {
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
   s3d.pushMatrix();
   {
+    Eye_x=width/2;
+    Eye_y=height/2;
     //----fade
     if (MaskEyeIn==true)s3d.translate(0, map(easeOutBack(MaskEyeLine.o), 0, 1, 500, 0));
     else  s3d.translate(0, map(easeInBack(MaskEyeLine.o), 0, 1, 0, -500));
@@ -95,7 +99,8 @@ void maskEyedrawing() {
       s3d.popMatrix();
     }//文字結束
     //-----model
-    s3d.translate(width/2, height/2+25+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    
+    s3d.translate(Eye_x, height/2+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     s3d.scale(0.85);
