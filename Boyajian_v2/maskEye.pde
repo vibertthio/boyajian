@@ -20,7 +20,7 @@ PShape RmaskA_3_1;
 PShape RmaskA_3_2;
 PShape RmaskA_4;
 
-float Eye_x,Eye_y;
+float Eye_x, Eye_y;
 
 void maskEyeSetting() {
 
@@ -99,7 +99,7 @@ void maskEyedrawing() {
       s3d.popMatrix();
     }//文字結束
     //-----model
-    
+
     s3d.translate(Eye_x, height/2+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
@@ -108,11 +108,9 @@ void maskEyedrawing() {
     //---------------眼睛_ 左
     s3d.pushMatrix();
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_1_1);
-    } else {
-      returnVertex(RmaskA_1_1, maskA_1_1);
-    }
+    
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_1_1);
+    else returnVertex(RmaskA_1_1, maskA_1_1);
 
     s3d.shape(maskA_1_1);
     s3d.popMatrix();

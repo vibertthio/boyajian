@@ -19,12 +19,15 @@ int p_num = 100;
 PImage eyeImg;
 float showParticleCount=0;
 
+PShape globe;
+PShape Rglobe;
+
 void s3dSetting() {
-  eyeImg=loadImage("img/p_eye.png");
+  eyeImg=loadImage("img/p_smell.png");
 
   particles = new Particle[p_num];
   for (int i = 0; i < p_num; i++) {
-    PVector p = new PVector(random(500), random(500), random(500));
+    PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));
     particles[i] = new Particle(p);
   }
 }
@@ -39,7 +42,11 @@ void s3dDrawing() {
   s3d.background(255, 155, 0, 0);
   if (showMaskEye==true) {
     if (showParticleCount<255) {
-      showParticleCount+=0.5;
+      showParticleCount+=1;
+    }
+  } else {
+    if (showParticleCount>0) {
+      showParticleCount-=10;
     }
   }
 
@@ -58,7 +65,7 @@ void s3dDrawing() {
     s3d.lightFalloff(1.80, 0.001, 0.000);
     s3d.directionalLight(255, 256, 255, 0, -100, -300);
     s3d.pointLight(255, 255, 255, 300, 200, 300);
-    s3d.ambientLight(50, 50, 50);
+    s3d.ambientLight(73, 52, 20);
 
     s3d.beginCamera();
     s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
@@ -104,9 +111,13 @@ void s3dDrawing() {
   s3d.pushMatrix();
   s3d.noStroke();
   s3d.translate(width/2, height/2);
-  s3d.rotateY(radians(287));
-  s3d.shape(globe);
-  s3d.popMatrix();
+  s3d.rotateY(radians(273));
 
+  if (keyPressed==true &&key == 'k') randomVertex(globe);
+  else returnVertex(Rglobe, globe);
+  
+  s3d.shape(globe);
+
+  s3d.popMatrix();
   s3d.endDraw();
 }

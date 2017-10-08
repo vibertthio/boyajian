@@ -18,7 +18,7 @@ boolean returnState(pdLine l, boolean in) {
 
 void showFrameRate() {
   blendMode(BLEND);
-  textSize(26);
+  textSize(16);
 
   String F="F:"+int((int(frameRate/4))*4);
   String B=indexSelectBlend [blendIndex]  + ":" + blendNames[ indexSelectBlend [blendIndex]  ];
@@ -27,49 +27,11 @@ void showFrameRate() {
   //text(B, 50, 100 );
   //text(I, 50, 150 );
 
-  fill(0);
-  for (int x = -2; x < 3; x++) {
-    for (int i = 1; i <= F.length(); i++) {
-      text(F.substring(i-1, i), 50+x+i*18, 50);
-    }
-    for (int i = 1; i <= F.length(); i++) {
-      text(F.substring(i-1, i), 50+i*18, 50+x);
-    }
-  }
+
   fill(255);
-  for (int i = 1; i <= F.length(); i++) {
-    text(F.substring(i-1, i), 50+i*18, 50);
-  }
-
-
-  fill(0);
-  for (int x = -2; x < 3; x++) {
-    for (int i = 1; i <= B.length(); i++) {
-      text(B.substring(i-1, i), 50+x+i*18, 100);
-    }
-    for (int i = 1; i <= B.length(); i++) {
-      text(B.substring(i-1, i), 50+i*18, 100+x);
-    }
-  }
-  fill(255);
-  for (int i = 1; i <= B.length(); i++) {
-    text(B.substring(i-1, i), 50+i*18, 100);
-  }
-
-
-  fill(0);
-  for (int x = -2; x < 3; x++) {
-    for (int i = 1; i <= I.length(); i++) {
-      text(I.substring(i-1, i), 50+x+i*18, 150);
-    }
-    for (int i = 1; i <= I.length(); i++) {
-      text(I.substring(i-1, i), 50+i*18, 150+x);
-    }
-  }
-  fill(255);
-  for (int i = 1; i <= I.length(); i++) {
-    text(I.substring(i-1, i), 50+i*18, 150);
-  }
+  text(F, 50, 50);
+  text(B, 50, 70);
+  text(I, 50, 90);
 }
 
 
@@ -111,19 +73,28 @@ void autoChBg() {
   }
 }
 
+float randomVel=6;
 void randomVertex(PShape who) {
+
+  if (randomVel<30) {
+    randomVel=randomVel+0.1;
+  }
+  println(randomVel);
   for (int j=0; j<who.getChildCount(); j++) {
     for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
       PVector v = who.getChild(j).getVertex(i);
-      v.x += random(-6, 6);
-      v.y += random(-6, 6);
-      v.z += random(-6, 6);
+      v.x += random(-randomVel, randomVel);
+      v.y += random(-randomVel, randomVel);
+      v.z += random(-randomVel, randomVel);
       who.getChild(j).setVertex(i, v);
     }
   }
 }
 
 void returnVertex(PShape origon, PShape who) {
+  if (randomVel>6) {
+    randomVel=randomVel-0.1;
+  }
   for (int j=0; j<origon.getChildCount(); j++) {
     for (int i = 0; i < origon.getChild(j).getVertexCount(); i++) {
       PVector v = origon.getChild(j).getVertex(i);
@@ -135,4 +106,53 @@ void returnVertex(PShape origon, PShape who) {
       who.getChild(j).setVertex(i, v1);
     }
   }
+}
+
+void uiSetting() {
+  //---------------*控制開關
+  cp5 = new ControlP5(this);
+  cp5.addToggle("showPtn")
+    .setPosition(40, 300)
+    .setSize(40, 20);
+
+  Group MaskToggle = cp5.addGroup("MaskToggle")
+    .setPosition(40, 350)
+    .setBackgroundHeight(40)
+    .setWidth(400)
+    .setBackgroundColor(color(255, 50))
+    ;
+
+
+  cp5.addToggle("Eye")
+    .setPosition(10, 5)
+    .setSize(30, 20)
+    .setGroup(MaskToggle);  
+  cp5.addToggle("Smell")
+    .setPosition(60, 5)
+    .setSize(30, 20) 
+    .setGroup(MaskToggle);
+  cp5.addToggle("Listen")
+    .setPosition(110, 5)
+    .setSize(30, 20)
+    .setGroup(MaskToggle);
+  cp5.addToggle("Touch")
+    .setPosition(160, 5)
+    .setSize(30, 20)
+    .setGroup(MaskToggle);
+  cp5.addToggle("Taste")
+    .setPosition(210, 5)
+    .setSize(30, 20)
+    .setGroup(MaskToggle);
+  cp5.addToggle("Memory")
+    .setPosition(260, 5)
+    .setSize(30, 20)
+    .setGroup(MaskToggle);
+  cp5.addToggle("Dream")
+    .setPosition(310, 5)
+    .setSize(30, 20)
+    .setGroup(MaskToggle);
+  cp5.addToggle("Faces")
+    .setPosition(360, 5)
+    .setSize(30, 20) 
+    .setGroup(MaskToggle);
 }

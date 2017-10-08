@@ -264,7 +264,7 @@ void main(void)
 	vec3 s = texture2D(topLayer, sPos ).rgb;
 
 	// destination texture (lower layer) note: y axis is mirrored because of Processing's inverted coordinate system
-    vec2 dPos = vec2( gl_FragCoord.x / lowLayerResolution.x, 1.0 - (gl_FragCoord.y / lowLayerResolution.y) );
+  vec2 dPos = vec2( gl_FragCoord.x / lowLayerResolution.x, (gl_FragCoord.y / lowLayerResolution.y) );
 	vec3 d = texture2D(lowLayer, dPos ).rgb;
 
 	vec3 c = vec3(0.0);
