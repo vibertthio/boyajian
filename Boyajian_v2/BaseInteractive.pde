@@ -6,11 +6,18 @@ void keyPressed() {
   if (key == '5') thread("maskTasteSetting");
   if (key == '6') thread("maskDreamSetting");
 
-
-  if (key == 'r') defultCam();
-  
+  if (key == 'r') defultCam(); 
   if (key == 't') randomCam();
-  
+  if (key == 'e') showPtnTgl = !showPtnTgl;
+  if (key == 'b') {
+    blendIndex = int(random(10));
+    imgIndex=int(random(5));
+  }
+  if (key == 'n') {
+    blendIndex=7;
+    imgIndex=2;
+  }
+
 
   if (key == 'a') {
     for (int i=0; i<nb; i++) {
