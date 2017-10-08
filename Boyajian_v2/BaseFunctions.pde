@@ -230,4 +230,21 @@ public void controlEvent(ControlEvent theEvent) {
     effectGLSL = loadShader("glsl/glitch.glsl");
     effectGLSL.set("vol", 0.6);
   }
+
+  if (theEvent.isController()) {
+    println(
+      "## controlEvent / id:"+theEvent.controller().getId()+
+      " / name:"+theEvent.controller().getName()+
+      " / value:"+theEvent.controller().getValue()
+    );
+
+    switch(theEvent.controller().getId()) {
+      case 1:
+        logo3Rotating = !logo3Rotating;
+        break;
+      case 2:
+        logo3Changing = !logo3Changing;
+        break;
+    }
+  }
 }
