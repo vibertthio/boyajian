@@ -2,13 +2,12 @@
   precision mediump float;
 #endif
 
-
 uniform float time;
 uniform float vol;
-uniform float grid;
-uniform vec2 dimen;
-uniform sampler2D tex;
+uniform sampler2D texture;
 
+varying vec4 vertColor;
+varying vec4 vertTexCoord;
 
 float sat( float t ) {
 	return clamp( t, 0.0, 1.0 );
@@ -59,19 +58,21 @@ vec2 trunc( vec2 x, float num_levels )
 
 void main( )
 {
-	vec2 uv = gl_FragCoord.xy/ dimen;
+	vec2 uv = vertTexCoord.st;
+  float vvv;
+
+	vvv=vol*0.2;
 
 	float time = mod(time, 32.0); // + modelmat[0].x + modelmat[0].z;
-	float GLITCH = vol;
-	float v=vol;
-	float g=grid;
+	float GLITCH = vvv;
+	float v=vvv;
 	float gnm = sat( GLITCH );
 	float rnd0 = rand( trunc( vec2(time, time), 6.0 ) );
 	float r0 = sat((1.0-gnm)*0.7 + rnd0);
-	float rnd1 = rand( vec2(trunc( uv.x, grid * r0 ), time) ); //橫的個格子
+	float rnd1 = rand( vec2(trunc( uv.x, (vvv*40.0+40.0)* r0 ), time) ); //橫的格子
 	float r1 = 0.5 - 0.5 * gnm + rnd1;
 	r1 = 1.0 - max( 0.0, ((r1<1.0) ? r1 : 0.9999999) ); //note: weird ass bug on old drivers
-	float rnd2 = rand( vec2(trunc( uv.y, 40.0*r1 ), time) ); //vert
+	float rnd2 = rand( vec2(trunc( uv.y, 40.0*r1 ), time) ); //直的格子
 	float r2 = sat( rnd2 );
 
 	float rnd3 = rand( vec2(trunc( uv.y, 10.0*r0 ), time) );
@@ -84,7 +85,7 @@ void main( )
 
 	uv.y += 0.1 * r3 * GLITCH;
 
-    const int NUM_SAMPLES = 10;
+    const int NUM_SAMPLES = 8;
     const float RCP_NUM_SAMPLES_F = 1.0 / float(NUM_SAMPLES);
 
 	vec4 sum = vec4(0.0);
@@ -93,7 +94,7 @@ void main( )
 	{
 		float t = float(i) * RCP_NUM_SAMPLES_F;
 		uv.x = sat( uv.x + ofs * t );
-		vec4 samplecol = texture2D( tex, uv, -10.0 );
+		vec4 samplecol = texture2D( texture, uv, -10.0 );
 		vec3 s = spectrum_offset( t );
 		samplecol.rgb = samplecol.rgb * s;
 		sum += samplecol;
@@ -102,6 +103,6 @@ void main( )
 	sum.rgb /= wsum;
 	sum.a *= RCP_NUM_SAMPLES_F;
 
-	gl_FragColor.a = sum.a;
-	gl_FragColor.rgb = sum.rgb; // * outcol0.a;
+	gl_FragColor.a = 1.0;
+	gl_FragColor.rgb = sum.rgb*2.0; // * outcol0.a;
 }

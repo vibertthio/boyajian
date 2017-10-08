@@ -155,4 +155,66 @@ void uiSetting() {
     .setPosition(360, 5)
     .setSize(30, 20) 
     .setGroup(MaskToggle);
+
+  //------------------
+
+  cp5.addBang("no")
+    .setPosition(100, 300)
+    .setSize(40, 20)
+    .setId(1)
+    ;
+  cp5.addBang("blur")
+    .setPosition(160, 300)
+    .setSize(40, 20)
+    .setId(2)
+    ;
+  cp5.addBang("rgb1")
+    .setPosition(220, 300)
+    .setSize(40, 20)
+    .setId(3)
+    ;
+  cp5.addBang("rgb2")
+    .setPosition(280, 300)
+    .setSize(40, 20)
+    .setId(4)
+    ;
+  cp5.addBang("noisy")
+    .setPosition(340, 300)
+    .setSize(40, 20)
+    .setId(4)
+    ;
+  cp5.addBang("glitch")
+    .setPosition(400, 300)
+    .setSize(40, 20)
+    .setId(4)
+    ;
+}
+
+public void controlEvent(ControlEvent theEvent) {
+  if (theEvent.getController().getName().equals("no")) {
+    effectGLSL = loadShader("glsl/no.glsl");
+  }
+  if (theEvent.getController().getName().equals("blur")) {
+    effectGLSL = loadShader("glsl/radialBlur.glsl");
+    effectGLSL.set("vol", 1.0);
+  }
+  if (theEvent.getController().getName().equals("rgb1")) {
+    effectGLSL = loadShader("glsl/rgbGlitch_1.glsl");
+    effectGLSL.set("vol", 1.0);
+  }
+
+  if (theEvent.getController().getName().equals("rgb2")) {
+    effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
+    effectGLSL.set("vol", 1.0);
+  }
+  
+  if (theEvent.getController().getName().equals("noisy")) {
+    effectGLSL = loadShader("glsl/Noisy_Mirror.frag");
+    effectGLSL.set("vol", 0.4);
+  }
+
+  if (theEvent.getController().getName().equals("glitch")) {
+    effectGLSL = loadShader("glsl/glitch.glsl");
+    effectGLSL.set("vol", 0.6);
+  }
 }

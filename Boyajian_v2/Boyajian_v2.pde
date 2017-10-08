@@ -45,7 +45,6 @@ void setup() {
   scence= createGraphics(width, height, P2D);
   finalRender= createGraphics(width, height, P2D);
 
-
   shaderSetting();
   uiSetting();
 
@@ -77,8 +76,17 @@ void draw() {
   scence.beginDraw();
   scence.background(0);
   scence.imageMode(CENTER);
+  //---------------*過一個加強對比效果
+  effectGLSL.set("time", millis()/1000.0);
+  scence.shader(contrastGLSL);
+  //---------------*過一個加強對比效果
   scence.image(s3d, width/2, height/2, width, height);//面具畫在的buffer
   scence.endDraw();
+  
+  //---------------*過一個視覺特效
+  effectGLSL.set("time", millis()/1000.0);
+  shader(effectGLSL);
+  //---------------*過一個視覺特效
 
 
   if (showPtnTgl==true) {
@@ -101,26 +109,12 @@ void draw() {
     finalRender.rectMode(CENTER);
     finalRender.rect(width/2, height/2, tex.width*1.2f, tex.height*1.6f);  //finalGLSL 產生的東西繪製在這裡
     finalRender.endDraw();
-
-    //---------------*過一個加強對比效果
-    contrastGLSL.set("vel", 0.1, 0.5);
-    shader(contrastGLSL);
-    //---------------
-
     imageMode(CENTER);
     tint(255, 255);
-
     image(finalRender, width/2, height/2, width, height);
   } else {
-
-    //---------------*過一個加強對比效果
-    contrastGLSL.set("vel", 0.1, 0.5);
-    shader(contrastGLSL);
-    //---------------
-
     imageMode(CENTER);
     tint(255, 255);
-
     image(scence, width/2, height/2, width, height);
   }
   resetShader();

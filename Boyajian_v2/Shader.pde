@@ -56,32 +56,27 @@ String[] blendNames = {
   "Luminosity"
 };
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
-int [] indexSelectEffect={ 0, 1,2,3,4};
+int [] indexSelectEffect={ 0, 1, 2, 3, 4};
 
 //vibert
 int blendIndex=7;
 int imgIndex=2;
 
-PShader texlightGLSL;
 PShader contrastGLSL;
+PShader effectGLSL;
 
 PShader blendGLSL;
 PShader finalGLSL;
 
 void shaderSetting() {
-
-  for (int i=0; i<5; i++) {
-    bgs[i]=loadImage("img/bg_"+i+".png");
-  }
-  
-   for (int i=0; i<14; i++) {
-    ptns[i]=loadImage("img/ptns_"+i+".png");
-  }
-
-  texlightGLSL = loadShader("glsl/texlightfrag.glsl", "glsl/texlightvert.glsl");
-  contrastGLSL = loadShader("glsl/contrast.glsl");
-
   logo=loadImage("img/logo.png");
+  for (int i=0; i<5; i++) bgs[i]=loadImage("img/bg_"+i+".png");
+  for (int i=0; i<14; i++) ptns[i]=loadImage("img/ptns_"+i+".png");
+
+  contrastGLSL = loadShader("glsl/contrast.glsl");
+  contrastGLSL.set("vel", 0.1, 0.5);
+  
+  effectGLSL = loadShader("glsl/no.glsl");
 
   blendGLSL= loadShader("glsl/blendMode.glsl");
   blendGLSL.set( "lowLayer", bgs [imgIndex]);
@@ -90,7 +85,7 @@ void shaderSetting() {
   blendGLSL.set( "topLayerResolution", float( tex.width ), float( tex.height ) );
   blendGLSL.set( "lowLayerResolution", float( tex.width ), float( tex.height ) );
 
-  
+
   finalGLSL= loadShader("glsl/blendMode.glsl");
   finalGLSL.set( "lowLayer", scence);
   finalGLSL.set( "topLayer", ptnGroup);

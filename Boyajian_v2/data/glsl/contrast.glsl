@@ -4,6 +4,9 @@
 
 uniform sampler2D texture;
 uniform vec2 vel;
+uniform float vol;
+uniform float time;
+
 varying vec4 vertColor;
 varying vec4 vertTexCoord;
 
@@ -25,12 +28,10 @@ vec4 brightness(vec4 colors, float brightness){
 
 void main( )
 {
+  float t=time;
 	vec2 uv = vertTexCoord.st;
 	vec4 colors = texture2D(texture,uv);
 	float ratioBrigthness =  vel.x;
 	float ratioContrast = vel.y;
-
-    gl_FragColor = brightness(contrast(colors,ratioContrast),ratioBrigthness);
-
-
+  gl_FragColor = brightness(contrast(colors,ratioContrast),ratioBrigthness);
 }
