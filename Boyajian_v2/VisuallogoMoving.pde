@@ -91,11 +91,11 @@ void logos_1() {
 void logos_3() {
 
   if (frameCount%100==0) {
-    roro=int(random(5))*90;
+    // roro=int(random(5))*90;
   }
 
   if (frameCount%50==0) {
-    pp=int(random(3));
+    // pp=int(random(3));
   }
 
   //logoMoving.blendMode(ADD);
