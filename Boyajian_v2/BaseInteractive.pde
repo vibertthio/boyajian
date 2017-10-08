@@ -6,7 +6,7 @@ void keyPressed() {
   if (key == '5') thread("maskTasteSetting");
   if (key == '6') thread("maskDreamSetting");
 
-  if (key == 'r') defultCam(); 
+  if (key == 'r') defultCam();
   if (key == 't') randomCam();
   if (key == 'e') showPtnTgl = !showPtnTgl;
   if (key == 'b') {
@@ -25,7 +25,7 @@ void keyPressed() {
     }
   }
 
-
+  // change background and shader algorithm
   if (key == CODED) {
     if (keyCode == UP) {
       blendIndex = ( blendIndex + 1 ) % 10;

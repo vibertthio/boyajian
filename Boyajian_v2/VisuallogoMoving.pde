@@ -6,6 +6,8 @@ PGraphics logoMirror;
 PImage[] pattern = new PImage[3];
 int roro = 0;
 int pp = 0;
+boolean logo3Changing = false;
+boolean logo3Rotating = false;
 
 // Vibert's
 Animations animations;
@@ -91,11 +93,15 @@ void logos_1() {
 void logos_3() {
 
   if (frameCount%100==0) {
-    roro=int(random(5))*90;
+    if (logo3Rotating) {
+      roro=int(random(5))*90;
+    }
   }
 
   if (frameCount%50==0) {
-    pp=int(random(3));
+    if (logo3Changing) {
+      pp=int(random(3));
+    }
   }
 
   //logoMoving.blendMode(ADD);
