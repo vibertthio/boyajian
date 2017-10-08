@@ -117,12 +117,12 @@ void uiSetting() {
     .setId(0)
     ;
   cp5.addToggle("l3Rt")
-    .setPosition(90, 300)
+    .setPosition(40, 250)
     .setSize(40, 20)
     .setId(1)
     ;
   cp5.addToggle("l3Sw")
-    .setPosition(140, 300)
+    .setPosition(100, 250)
     .setSize(40, 20)
     .setId(2)
     ;
@@ -167,7 +167,7 @@ void uiSetting() {
     .setPosition(360, 5)
     .setSize(30, 20)
     .setGroup(MaskToggle);
-<<<<<<< HEAD
+
 
   //------------------
 
@@ -220,7 +220,7 @@ public void controlEvent(ControlEvent theEvent) {
     effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
     effectGLSL.set("vol", 1.0);
   }
-  
+
   if (theEvent.getController().getName().equals("noisy")) {
     effectGLSL = loadShader("glsl/Noisy_Mirror.frag");
     effectGLSL.set("vol", 0.4);
@@ -231,25 +231,3 @@ public void controlEvent(ControlEvent theEvent) {
     effectGLSL.set("vol", 0.6);
   }
 }
-=======
-}
-
-public void controlEvent(ControlEvent theEvent) {
-  if (theEvent.isController()) {
-    println(
-      "## controlEvent / id:"+theEvent.controller().getId()+
-      " / name:"+theEvent.controller().getName()+
-      " / value:"+theEvent.controller().getValue()
-    );
-
-    switch(theEvent.controller().getId()) {
-      case 1:
-        logo3Rotating = !logo3Rotating;
-        break;
-      case 2:
-        logo3Changing = !logo3Changing;
-        break;
-    }
-  }
-}
->>>>>>> origin/master
