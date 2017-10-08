@@ -113,7 +113,19 @@ void uiSetting() {
   cp5 = new ControlP5(this);
   cp5.addToggle("showPtn")
     .setPosition(40, 300)
-    .setSize(40, 20);
+    .setSize(40, 20)
+    .setId(0)
+    ;
+  cp5.addToggle("l3Rt")
+    .setPosition(90, 300)
+    .setSize(40, 20)
+    .setId(1)
+    ;
+  cp5.addToggle("l3Sw")
+    .setPosition(140, 300)
+    .setSize(40, 20)
+    .setId(2)
+    ;
 
   Group MaskToggle = cp5.addGroup("MaskToggle")
     .setPosition(40, 350)
@@ -126,10 +138,10 @@ void uiSetting() {
   cp5.addToggle("Eye")
     .setPosition(10, 5)
     .setSize(30, 20)
-    .setGroup(MaskToggle);  
+    .setGroup(MaskToggle);
   cp5.addToggle("Smell")
     .setPosition(60, 5)
-    .setSize(30, 20) 
+    .setSize(30, 20)
     .setGroup(MaskToggle);
   cp5.addToggle("Listen")
     .setPosition(110, 5)
@@ -153,6 +165,23 @@ void uiSetting() {
     .setGroup(MaskToggle);
   cp5.addToggle("Faces")
     .setPosition(360, 5)
-    .setSize(30, 20) 
+    .setSize(30, 20)
     .setGroup(MaskToggle);
+}
+
+public void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isController()) {
+    println(
+      "## controlEvent / id:"+theEvent.controller().getId()+
+      " / name:"+theEvent.controller().getName()+
+      " / value:"+theEvent.controller().getValue()
+    );
+
+    switch(theEvent.controller().getId()) {
+      case 1:
+        logo3Rotating = !logo3Rotating;
+      case 2:
+        logo3Changing = !logo3Changing;
+    }
+  }
 }
