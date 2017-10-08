@@ -180,8 +180,10 @@ public void controlEvent(ControlEvent theEvent) {
     switch(theEvent.controller().getId()) {
       case 1:
         logo3Rotating = !logo3Rotating;
+        break;
       case 2:
         logo3Changing = !logo3Changing;
+        break;
     }
   }
 }
