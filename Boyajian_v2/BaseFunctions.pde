@@ -32,11 +32,6 @@ void showFrameRate() {
   text(F, 50, 50);
   text(B, 50, 70);
   text(I, 50, 90);
-
-
-
-
-
 }
 
 
@@ -78,19 +73,28 @@ void autoChBg() {
   }
 }
 
+float randomVel=6;
 void randomVertex(PShape who) {
+
+  if (randomVel<30) {
+    randomVel=randomVel+0.1;
+  }
+  println(randomVel);
   for (int j=0; j<who.getChildCount(); j++) {
     for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
       PVector v = who.getChild(j).getVertex(i);
-      v.x += random(-6, 6);
-      v.y += random(-6, 6);
-      v.z += random(-6, 6);
+      v.x += random(-randomVel, randomVel);
+      v.y += random(-randomVel, randomVel);
+      v.z += random(-randomVel, randomVel);
       who.getChild(j).setVertex(i, v);
     }
   }
 }
 
 void returnVertex(PShape origon, PShape who) {
+  if (randomVel>6) {
+    randomVel=randomVel-0.1;
+  }
   for (int j=0; j<origon.getChildCount(); j++) {
     for (int i = 0; i < origon.getChild(j).getVertexCount(); i++) {
       PVector v = origon.getChild(j).getVertex(i);

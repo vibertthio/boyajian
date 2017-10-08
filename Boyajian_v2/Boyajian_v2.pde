@@ -14,7 +14,7 @@ PImage logo;
 PImage[] ptns=new PImage[17] ;
 
 PShape square;
-PShape globe;
+
 PGraphics tex;
 PGraphics s3d;
 PGraphics scence;
@@ -49,7 +49,8 @@ void setup() {
   shaderSetting();
   uiSetting();
 
-  globe = createShape(SPHERE, 600);
+  globe = loadShape("sphere.obj");
+  Rglobe = loadShape("sphere.obj");
   globe.setStroke(false);
   globe.setTexture(tex);
 }
