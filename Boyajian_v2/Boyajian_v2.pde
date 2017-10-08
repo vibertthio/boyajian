@@ -67,7 +67,7 @@ void draw() {
   //---------------*圖騰繪製
   logoDrawing() ;
   //---------------*底圖繪製
-  tex.beginDraw(); 
+  tex.beginDraw();
   tex.background(255);
   tex.shader(blendGLSL);
   tex.rectMode(CENTER);
@@ -95,7 +95,7 @@ void draw() {
     ptnGroup.image(ptns[indexPtns], width/2, height/2, width, height);//圖騰畫在的buffer
     ptnGroup.endDraw();
 
-    finalRender.beginDraw(); 
+    finalRender.beginDraw();
     finalRender.background(255);
     finalRender.shader(finalGLSL);
     finalRender.rectMode(CENTER);
