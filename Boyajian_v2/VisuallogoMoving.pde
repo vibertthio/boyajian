@@ -3,7 +3,7 @@ int nb = 40;
 
 PGraphics logoMoving;
 PGraphics logoMirror;
-PImage[] pattern = new PImage[3];
+
 int roro = 0;
 int pp = 0;
 boolean logo3Changing = false;
@@ -12,22 +12,21 @@ boolean logo3Rotating = false;
 // Vibert's
 Animations animations;
 PImage bgbg;
+pdLine2 logoRo;
 
 color[] colors = {
-  color(253, 148, 38),
-  color(252, 86, 44),
-  color(56, 195, 206),
-  color(124, 156, 124),
-  color(18, 99, 104),
+  color(253, 148, 38), 
+  color(252, 86, 44), 
+  color(56, 195, 206), 
+  color(124, 156, 124), 
+  color(18, 99, 104), 
 };
 
 void logoSetting() {
+  logoRo=new pdLine2(0, 100);
   logoMoving = createGraphics(1500, 1000, P2D);
   logoMirror = createGraphics(1000, 1000, P2D);
 
-  pattern[0] = loadImage("img/pp_0.png");
-  pattern[1] = loadImage("img/pp_1.png");
-  pattern[2] = loadImage("img/pp_2.png");
   bgbg= loadImage("img/bg.png");
 
   slash = new Slash[nb];
@@ -47,7 +46,7 @@ void logoSetting() {
 }
 
 void logoDrawing() {
-
+  logoRo.update();
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
@@ -94,30 +93,33 @@ void logos_3() {
 
   if (frameCount%100==0) {
     if (logo3Rotating) {
-      roro=int(random(5))*90;
+      roro=int(random(-3, 3))*180;
+      println(roro);
+      logoRo.reset(random(roro));
     }
   }
 
   if (frameCount%50==0) {
     if (logo3Changing) {
-      pp=int(random(3));
+      pp=int(random(6));
     }
   }
 
-  //logoMoving.blendMode(ADD);
+  
   logoMoving.pushMatrix();
-  logoMoving.translate(0+166, logoMirror.height/2);
+  logoMoving.translate(0+250, logoMirror.height/2);
   logoMoving.scale(1, 1);
-  logoMoving.rotate(radians(roro));
+  logoMoving.rotate(radians(logoRo.o));
   logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
   logoMoving.popMatrix();
-
+  
   logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+167, logoMirror.height/2);
+  logoMoving.translate(logoMirror.width+250, logoMirror.height/2);
   logoMoving.scale(-1, 1);
-  logoMoving.rotate(radians(roro));
+  logoMoving.rotate(radians(logoRo.o));
   logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
   logoMoving.popMatrix();
+  
 }
 
 

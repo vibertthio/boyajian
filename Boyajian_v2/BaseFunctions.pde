@@ -236,15 +236,9 @@ public void controlEvent(ControlEvent theEvent) {
       "## controlEvent / id:"+theEvent.controller().getId()+
       " / name:"+theEvent.controller().getName()+
       " / value:"+theEvent.controller().getValue()
-    );
+      );
 
-    switch(theEvent.controller().getId()) {
-      case 1:
-        logo3Rotating = !logo3Rotating;
-        break;
-      case 2:
-        logo3Changing = !logo3Changing;
-        break;
-    }
+    if (theEvent.controller().getId()==1) logo3Rotating = !logo3Rotating;
+    else if (theEvent.controller().getId()==2)  logo3Changing = !logo3Changing;
   }
 }

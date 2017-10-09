@@ -106,8 +106,8 @@ class pdLine2 {
   void update() {
     if (bang==true) {
       if (workTime>dd) {
-        if (workTime-dd<=duration+delay) {
-          o=(float(workTime-dd)/(duration+delay))*(newOne-oldOne)+oldOne;
+        if (workTime-dd<=duration) {
+          o=(float(workTime-dd)/(duration))*(newOne-oldOne)+oldOne;
         } else {
           bang=false;
           o=newOne;

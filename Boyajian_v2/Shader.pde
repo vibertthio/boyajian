@@ -70,8 +70,9 @@ PShader finalGLSL;
 
 void shaderSetting() {
   logo=loadImage("img/logo.png");
-  for (int i=0; i<5; i++) bgs[i]=loadImage("img/bg_"+i+".png");
+  for (int i=0; i<5; i++) bgs[i]=loadImage("img/bgtex_"+i+".jpg");
   for (int i=0; i<14; i++) ptns[i]=loadImage("img/ptns_"+i+".png");
+  for (int i=0; i<6; i++) pattern[i]=loadImage("img/p_"+i+".png");
 
   contrastGLSL = loadShader("glsl/contrast.glsl");
   contrastGLSL.set("vel", 0.1, 0.5);

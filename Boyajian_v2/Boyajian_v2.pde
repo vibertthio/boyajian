@@ -10,8 +10,10 @@ PMatrix mat_scene; // to store initial PMatrix
 
 float ry;
 PImage[] bgs=new PImage[5] ;
-PImage logo;
 PImage[] ptns=new PImage[17] ;
+PImage[] pattern = new PImage[6];
+PImage logo;
+
 
 PShape square;
 
@@ -26,7 +28,7 @@ int workTime;
 
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
-
+color maskNmae=color(255);
 void settings() {
   size(1200, 400, P3D);
   PJOGL.profile = 1;
@@ -119,6 +121,9 @@ void draw() {
   }
   resetShader();
   showFrameRate();
+  //stroke(255);
+  //strokeWeight(1);
+  //line(width/2,0,width/2,height);
   if (keyPressed==true &&key == 's') {
     //saveFrame(frameCount+".png");
   }

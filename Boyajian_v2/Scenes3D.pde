@@ -111,7 +111,7 @@ void s3dDrawing() {
   s3d.pushMatrix();
   s3d.noStroke();
   s3d.translate(width/2, height/2);
-  s3d.rotateY(radians(273));
+  s3d.rotateY(radians(252));
 
   if (keyPressed==true &&key == 'k') randomVertex(globe);
   else returnVertex(Rglobe, globe);

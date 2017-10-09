@@ -53,7 +53,7 @@ void maskMemorydrawing() {
     s3d.pushMatrix();
     s3d.translate(width/2, height/2-17, -50);
     s3d.scale(3.0);
-    s3d.fill(color(0.72*255, 0.53*255, 0.0*255), 155);
+    s3d.fill(maskNmae, 155);
 
     {//文字動畫
       if (MaskMemoryLineIn.bang==true ) {
