@@ -126,47 +126,52 @@ void uiSetting() {
     .setSize(40, 20)
     .setId(2)
     ;
-
-  Group MaskToggle = cp5.addGroup("MaskToggle")
-    .setPosition(40, 350)
-    .setBackgroundHeight(40)
-    .setWidth(400)
-    .setBackgroundColor(color(255, 50))
+  cp5.addToggle("autoCam")
+    .setPosition(160, 250)
+    .setSize(40, 20)
+    .setId(2)
     ;
+
+  //Group MaskToggle = cp5.addGroup("MaskToggle")
+  //  .setPosition(40, 350)
+  //  .setBackgroundHeight(40)
+  //  .setWidth(400)
+  //  .setBackgroundColor(color(255, 50))
+  //  ;
 
 
   cp5.addToggle("Eye")
-    .setPosition(10, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(10, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Smell")
-    .setPosition(60, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(60, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Listen")
-    .setPosition(110, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(110, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Touch")
-    .setPosition(160, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(160, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Taste")
-    .setPosition(210, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(210, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Memory")
-    .setPosition(260, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(260, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Dream")
-    .setPosition(310, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(310, 350)
+    .setSize(30, 20);
+
   cp5.addToggle("Faces")
-    .setPosition(360, 5)
-    .setSize(30, 20)
-    .setGroup(MaskToggle);
+    .setPosition(360, 350)
+    .setSize(30, 20);
+
 
 
   //------------------
@@ -174,31 +179,43 @@ void uiSetting() {
   cp5.addBang("no")
     .setPosition(100, 300)
     .setSize(40, 20)
+    .setColorActive(color(155))
+    .setColorForeground(color(155,0,0))
     .setId(1)
     ;
   cp5.addBang("blur")
     .setPosition(160, 300)
     .setSize(40, 20)
+    .setColorActive(color(155))
+    .setColorForeground(color(155,0,0))
     .setId(2)
     ;
   cp5.addBang("rgb1")
     .setPosition(220, 300)
     .setSize(40, 20)
+    .setColorActive(color(155))
+    .setColorForeground(color(155,0,0))
     .setId(3)
     ;
   cp5.addBang("rgb2")
     .setPosition(280, 300)
     .setSize(40, 20)
+    .setColorActive(color(155))
+    .setColorForeground(color(155,0,0))
     .setId(4)
     ;
   cp5.addBang("noisy")
     .setPosition(340, 300)
     .setSize(40, 20)
+    .setColorActive(color(155))
+    .setColorForeground(color(155,0,0))
     .setId(4)
     ;
   cp5.addBang("glitch")
     .setPosition(400, 300)
     .setSize(40, 20)
+    .setColorActive(color(155))
+    .setColorForeground(color(155,0,0))
     .setId(4)
     ;
 }
@@ -230,15 +247,22 @@ public void controlEvent(ControlEvent theEvent) {
     effectGLSL = loadShader("glsl/glitch.glsl");
     effectGLSL.set("vol", 0.6);
   }
+}
 
-  if (theEvent.isController()) {
-    println(
-      "## controlEvent / id:"+theEvent.controller().getId()+
-      " / name:"+theEvent.controller().getName()+
-      " / value:"+theEvent.controller().getValue()
-      );
+void l3Rt(boolean theFlag) {
+  if (theFlag==true) logo3Rotating=true;
+  else logo3Rotating=false;
+}
 
-    if (theEvent.controller().getId()==1) logo3Rotating = !logo3Rotating;
-    else if (theEvent.controller().getId()==2)  logo3Changing = !logo3Changing;
+void l3Sw(boolean theFlag) {
+  if (theFlag==true) logo3Changing=true;
+  else logo3Changing=false;
+}
+
+void autoCam(boolean theFlag) {
+  if (theFlag==true) autoCamMetro.tgl=true;
+  else { 
+    autoCamMetro.tgl=false;
+    defultCam();
   }
 }

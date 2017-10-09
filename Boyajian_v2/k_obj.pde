@@ -11,7 +11,6 @@ class pdMetro {
   pdMetro(int limit) {
     tgl=false;
     bang=false;
-
     this.limit=limit;
     time=0;
     test=int(random(0, 15));

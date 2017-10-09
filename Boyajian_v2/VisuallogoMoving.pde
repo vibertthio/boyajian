@@ -94,7 +94,6 @@ void logos_3() {
   if (frameCount%100==0) {
     if (logo3Rotating) {
       roro=int(random(-3, 3))*180;
-      println(roro);
       logoRo.reset(random(roro));
     }
   }

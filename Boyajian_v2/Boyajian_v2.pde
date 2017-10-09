@@ -29,6 +29,10 @@ int workTime;
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
 color maskNmae=color(255);
+
+pdMetro autoCamMetro ;
+
+
 void settings() {
   size(1200, 400, P3D);
   PJOGL.profile = 1;
@@ -54,9 +58,18 @@ void setup() {
   Rglobe = loadShape("sphere.obj");
   globe.setStroke(false);
   globe.setTexture(tex);
+
+  autoCamMetro=new pdMetro(1000);
+  autoCamMetro.reset();
+  autoCamMetro.tgl=false;
 }
 
 void draw() {
+  autoCamMetro.update();
+  if (autoCamMetro.bang==true) {
+    autoCamMetro.bang=false;
+    randomCam();
+  }
 
   background(0);
   workTime=millis();
@@ -84,7 +97,7 @@ void draw() {
   //---------------*過一個加強對比效果
   scence.image(s3d, width/2, height/2, width, height);//面具畫在的buffer
   scence.endDraw();
-  
+
   //---------------*過一個視覺特效
   effectGLSL.set("time", millis()/1000.0);
   shader(effectGLSL);
