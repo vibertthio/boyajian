@@ -172,7 +172,20 @@ void uiSetting() {
     .setPosition(360, 350)
     .setSize(30, 20);
 
+  cp5.addToggle("SwordA")
+    .setPosition(420, 350)
+    .setSize(30, 20);
 
+  cp5.addToggle("SwordB")
+    .setPosition(480, 350)
+    .setSize(30, 20);
+  cp5.addToggle("ShieldA")
+    .setPosition(540, 350)
+    .setSize(30, 20);
+
+  cp5.addToggle("ShieldB")
+    .setPosition(600, 350)
+    .setSize(30, 20);
 
   //------------------
 
@@ -180,42 +193,42 @@ void uiSetting() {
     .setPosition(100, 300)
     .setSize(40, 20)
     .setColorActive(color(155))
-    .setColorForeground(color(155,0,0))
+    .setColorForeground(color(155, 0, 0))
     .setId(1)
     ;
   cp5.addBang("blur")
     .setPosition(160, 300)
     .setSize(40, 20)
     .setColorActive(color(155))
-    .setColorForeground(color(155,0,0))
+    .setColorForeground(color(155, 0, 0))
     .setId(2)
     ;
   cp5.addBang("rgb1")
     .setPosition(220, 300)
     .setSize(40, 20)
     .setColorActive(color(155))
-    .setColorForeground(color(155,0,0))
+    .setColorForeground(color(155, 0, 0))
     .setId(3)
     ;
   cp5.addBang("rgb2")
     .setPosition(280, 300)
     .setSize(40, 20)
     .setColorActive(color(155))
-    .setColorForeground(color(155,0,0))
+    .setColorForeground(color(155, 0, 0))
     .setId(4)
     ;
   cp5.addBang("noisy")
     .setPosition(340, 300)
     .setSize(40, 20)
     .setColorActive(color(155))
-    .setColorForeground(color(155,0,0))
+    .setColorForeground(color(155, 0, 0))
     .setId(4)
     ;
   cp5.addBang("glitch")
     .setPosition(400, 300)
     .setSize(40, 20)
     .setColorActive(color(155))
-    .setColorForeground(color(155,0,0))
+    .setColorForeground(color(155, 0, 0))
     .setId(4)
     ;
 }
@@ -261,8 +274,28 @@ void l3Sw(boolean theFlag) {
 
 void autoCam(boolean theFlag) {
   if (theFlag==true) autoCamMetro.tgl=true;
-  else { 
+  else {
     autoCamMetro.tgl=false;
     defultCam();
   }
+}
+
+
+
+void countLife() {
+  int k=0;
+  int kk=0;
+  for (int i=0; i<20; i++) {
+    k=k+show[i];
+  }
+
+  for (int i=0; i<20; i++) {
+    
+    if (show[i]==1) {
+      kk++;
+      countX[i].reset(posAvg(1000,k,kk)-500);
+      println(i,k,kk);
+    }
+  }
+  
 }

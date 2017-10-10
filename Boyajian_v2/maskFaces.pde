@@ -10,6 +10,7 @@ PShape Faces_1;
 PShape Faces_2;
 PShape Faces_3;
 
+float Faces_x,Faces_y;
 
 void maskFacesSetting() {
 
@@ -18,6 +19,8 @@ void maskFacesSetting() {
   MaskFacesLineOut=new pdLine(3500, 1000);
 
   if (showMaskFaces==false) {
+    show[2]=1;
+    countLife();
     MaskFacesLine=new pdLine(0, 1000);
     MaskFacesIn=true;
     Faces_1 = loadShape("maskFaces/faces_1.obj");
@@ -26,6 +29,8 @@ void maskFacesSetting() {
     showMaskFaces =true;
   } else if (showMaskFaces==true) {
     MaskFacesIn=false;
+    show[2]=0;
+    countLife();
   }
   MaskFacesLine.reset();
   MaskFacesLineIn.reset();
@@ -40,6 +45,8 @@ void maskFacesdrawing() {
   showMaskFaces=returnState(MaskFacesLine, MaskFacesIn);
   s3d.pushMatrix();
   {
+    Faces_x=width/2+countX[2].o;
+    Faces_y=height/2+29;
     //----fade
     if (MaskFacesIn==true)s3d.translate(0, map(easeOutBack(MaskFacesLine.o), 0, 1, 500, 0));
     else  s3d.translate(0, map(easeInBack(MaskFacesLine.o), 0, 1, 0, -500));
@@ -77,12 +84,12 @@ void maskFacesdrawing() {
     }//文字結束
     //-----model
 
-    s3d.translate(width/2, height/2+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    s3d.translate(Faces_x, Faces_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-    s3d.scale(0.8);
+    s3d.scale(0.51);
     //---------------
     s3d.pushMatrix();
     s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*0.2);

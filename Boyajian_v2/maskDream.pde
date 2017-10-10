@@ -21,6 +21,8 @@ void maskDreamSetting() {
   MaskDreamLineOut=new pdLine(3500, 1000);
 
   if (showMaskDream==false) {
+    show[0]=1;
+    countLife();
     MaskDreamLine=new pdLine(0, 1000);
     MaskDreamIn=true;
     Dream_1 = loadShape("maskDream/dream_1.obj");
@@ -33,6 +35,8 @@ void maskDreamSetting() {
     showMaskDream =true;
   } else if (showMaskDream==true) {
     MaskDreamIn=false;
+    show[0]=0;
+    countLife();
   }
   MaskDreamLine.reset();
   MaskDreamLineIn.reset();
@@ -40,13 +44,15 @@ void maskDreamSetting() {
   MaskDreamLineOut.reset();
 }
 
-
+float Dream_x, Dream_y;
 void maskDreamdrawing() {
   MaskDreamLineIn.update();
   MaskDreamLineOut.update();
   showMaskDream=returnState(MaskDreamLine, MaskDreamIn);
   s3d.pushMatrix();
   {
+    Dream_x=width/2+countX[0].o;
+    Dream_y=height/2+-3;
     //----fade
     if (MaskDreamIn==true)s3d.translate(0, map(easeOutBack(MaskDreamLine.o), 0, 1, 500, 0));
     else  s3d.translate(0, map(easeInBack(MaskDreamLine.o), 0, 1, 0, -500));
@@ -85,12 +91,12 @@ void maskDreamdrawing() {
     }//文字結束
     //-----model
 
-    s3d.translate(width/2, height/2+50+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    s3d.translate(Dream_x, Dream_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-    s3d.scale(0.8);
+    s3d.scale(0.52);
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_1);

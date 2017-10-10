@@ -25,13 +25,14 @@ PGraphics ptnGroup;
 int indexPtns=0;
 
 int workTime;
+int[] show= new int[20];
 
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
 color maskNmae=color(255);
 
 pdMetro autoCamMetro ;
-
+pdLine2[] countX=new pdLine2[20];
 
 void settings() {
   size(1200, 400, P3D);
@@ -54,17 +55,25 @@ void setup() {
   shaderSetting();
   uiSetting();
 
-  globe = loadShape("sphere.obj");
-  Rglobe = loadShape("sphere.obj");
+  globe = loadShape("3d/sphere.obj");
+  Rglobe = loadShape("3d/sphere.obj");
   globe.setStroke(false);
   globe.setTexture(tex);
 
   autoCamMetro=new pdMetro(1000);
   autoCamMetro.reset();
   autoCamMetro.tgl=false;
+  for (int i=0; i<20; i++) {
+    countX[i]=new pdLine2(0, 1000);
+  }
 }
 
 void draw() {
+
+  for (int i=0; i<20; i++) {
+    countX[i].update();
+  }
+
   autoCamMetro.update();
   if (autoCamMetro.bang==true) {
     autoCamMetro.bang=false;

@@ -12,6 +12,7 @@ PShape Memory_3;
 PShape Memory_4;
 PShape Memory_5;
 
+float Memory_x, Memory_y;
 
 void maskMemorySetting() {
 
@@ -20,6 +21,8 @@ void maskMemorySetting() {
   MaskMemoryLineOut=new pdLine(3500, 1000);
 
   if (showMaskMemory==false) {
+    show[4]=1;
+    countLife();
     MaskMemoryLine=new pdLine(0, 1000);
     MaskMemoryIn=true;
     Memory_1 = loadShape("maskMemory/memory_1.obj");
@@ -30,6 +33,8 @@ void maskMemorySetting() {
     showMaskMemory =true;
   } else if (showMaskMemory==true) {
     MaskMemoryIn=false;
+    show[4]=0;
+    countLife();
   }
   MaskMemoryLine.reset();
   MaskMemoryLineIn.reset();
@@ -44,6 +49,8 @@ void maskMemorydrawing() {
   showMaskMemory=returnState(MaskMemoryLine, MaskMemoryIn);
   s3d.pushMatrix();
   {
+    Memory_x=width/2+countX[4].o;
+    Memory_y=height/2+100;
   //----fade
   if (MaskMemoryIn==true)s3d.translate(0, map(easeOutBack(MaskMemoryLine.o), 0, 1, 500, 0));
   else  s3d.translate(0, map(easeInBack(MaskMemoryLine.o), 0, 1, 0, -500));
@@ -84,12 +91,12 @@ void maskMemorydrawing() {
   }//文字結束
   //-----model
 
-  s3d.translate(width/2, height/2+100+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+  s3d.translate(Memory_x, Memory_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
   s3d.rotateZ(PI);
   s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
   //--------------抖動
   s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-  s3d.scale(0.8);
+  s3d.scale(0.61);
   //---------------
   s3d.pushMatrix();
   s3d.shape(Memory_1);

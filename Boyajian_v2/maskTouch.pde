@@ -11,6 +11,7 @@ PShape Touch_2;
 PShape Touch_3;
 PShape Touch_4;
 
+float Touch_x, Touch_y;
 
 void maskTouchSetting() {
 
@@ -19,6 +20,8 @@ void maskTouchSetting() {
   MaskTouchLineOut=new pdLine(3500, 1000);
 
   if (showMaskTouch==false) {
+    show[7]=1;
+    countLife();
     MaskTouchLine=new pdLine(0, 1000);
     MaskTouchIn=true;
     Touch_1 = loadShape("maskTouch/touch_1.obj");
@@ -28,6 +31,8 @@ void maskTouchSetting() {
     showMaskTouch =true;
   } else if (showMaskTouch==true) {
     MaskTouchIn=false;
+    show[7]=0;
+    countLife();
   }
   MaskTouchLine.reset();
   MaskTouchLineIn.reset();
@@ -42,6 +47,8 @@ void maskTouchdrawing() {
   showMaskTouch=returnState(MaskTouchLine, MaskTouchIn);
   s3d.pushMatrix();
   {
+    Touch_x=width/2+countX[7].o;
+    Touch_y=height/2+62;
   //----fade
   if (MaskTouchIn==true)s3d.translate(0, map(easeOutBack(MaskTouchLine.o), 0, 1, 500, 0));
   else  s3d.translate(0, map(easeInBack(MaskTouchLine.o), 0, 1, 0, -500));
@@ -80,12 +87,12 @@ void maskTouchdrawing() {
   }//文字結束
   //-----model
 
-  s3d.translate(width/2, height/2+100+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+  s3d.translate(Touch_x, Touch_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
   s3d.rotateZ(PI);
   s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
   //--------------抖動
   s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-  s3d.scale(0.8);
+  s3d.scale(0.50);
   //---------------
   s3d.pushMatrix();
   s3d.shape(Touch_1);

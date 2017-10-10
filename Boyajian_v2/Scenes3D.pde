@@ -5,7 +5,6 @@ float a4;
 
 float rotX=0;
 float rotY=0;
-
 float camX=600;
 float camY=200;
 float camZ=430;
@@ -22,9 +21,9 @@ float showParticleCount=0;
 PShape globe;
 PShape Rglobe;
 
+
 void s3dSetting() {
   eyeImg=loadImage("img/p_smell.png");
-
   particles = new Particle[p_num];
   for (int i = 0; i < p_num; i++) {
     PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));
@@ -41,13 +40,9 @@ void s3dDrawing() {
   //s3d.background(bgbg);
   s3d.background(255, 155, 0, 0);
   if (showMaskEye==true) {
-    if (showParticleCount<255) {
-      showParticleCount+=1;
-    }
+    if (showParticleCount<255) showParticleCount+=1;
   } else {
-    if (showParticleCount>0) {
-      showParticleCount-=10;
-    }
+    if (showParticleCount>0) showParticleCount-=10;
   }
 
   if (showParticleCount>1) {
@@ -55,10 +50,7 @@ void s3dDrawing() {
       particles[i].addForce(particles[i].attractTo(Eye_x, Eye_y));
       particles[i].run();
     }
-  }
-
-
-
+  }//--------
   {
     s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
 
@@ -66,7 +58,6 @@ void s3dDrawing() {
     s3d.directionalLight(255, 256, 255, 0, -100, -300);
     s3d.pointLight(255, 255, 255, 300, 200, 300);
     s3d.ambientLight(73, 52, 20);
-
     s3d.beginCamera();
     s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
     //println(rotX, rotY, camX, camY, camZ);
@@ -106,6 +97,10 @@ void s3dDrawing() {
   if (showMaskDream==true)maskDreamdrawing();
   if (showMaskMemory==true)maskMemorydrawing();
   if (showMaskFaces==true)maskFacesdrawing();
+  if (showtoolSwordA==true)toolSwordAdrawing();
+  if (showtoolSwordB==true)toolSwordBdrawing();
+  if (showtoolShieldA==true)toolShieldAdrawing();
+  if (showtoolShieldB==true)toolShieldBdrawing();
 
 
   s3d.pushMatrix();
@@ -115,9 +110,8 @@ void s3dDrawing() {
 
   if (keyPressed==true &&key == 'k') randomVertex(globe);
   else returnVertex(Rglobe, globe);
-  
-  s3d.shape(globe);
 
+  s3d.shape(globe);
   s3d.popMatrix();
   s3d.endDraw();
 }

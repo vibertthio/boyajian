@@ -13,6 +13,7 @@ PShape Taste_4;
 PShape Taste_5;
 PShape Taste_6;
 
+float Taste_x, Taste_y;
 
 void maskTasteSetting() {
 
@@ -21,6 +22,8 @@ void maskTasteSetting() {
   MaskTasteLineOut=new pdLine(3500, 1000);
 
   if (showMaskTaste==false) {
+    show[6]=1;
+    countLife();
     MaskTasteLine=new pdLine(0, 1000);
     MaskTasteIn=true;
     Taste_1 = loadShape("maskTaste/taste_1.obj");
@@ -32,6 +35,8 @@ void maskTasteSetting() {
     showMaskTaste =true;
   } else if (showMaskTaste==true) {
     MaskTasteIn=false;
+    show[6]=0;
+    countLife();
   }
   MaskTasteLine.reset();
   MaskTasteLineIn.reset();
@@ -46,6 +51,8 @@ void maskTastedrawing() {
   showMaskTaste=returnState(MaskTasteLine, MaskTasteIn);
   s3d.pushMatrix();
   {
+    Taste_x=width/2+countX[6].o;
+    Taste_y=height/2+-30;
   //----fade
   if (MaskTasteIn==true)s3d.translate(0, map(easeOutBack(MaskTasteLine.o), 0, 1, 500, 0));
   else  s3d.translate(0, map(easeInBack(MaskTasteLine.o), 0, 1, 0, -500));
@@ -82,12 +89,12 @@ void maskTastedrawing() {
   }//文字結束
   //-----model
 
-  s3d.translate(width/2, height/2-30+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+  s3d.translate(Taste_x, Taste_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
   s3d.rotateZ(PI);
   s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
   //--------------抖動
   s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-  s3d.scale(0.8);
+  s3d.scale(0.60);
   //---------------
   s3d.pushMatrix();
   s3d.shape(Taste_1);

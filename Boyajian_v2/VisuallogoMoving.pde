@@ -23,7 +23,7 @@ color[] colors = {
 };
 
 void logoSetting() {
-  logoRo=new pdLine2(0, 100);
+  logoRo=new pdLine2(0, 0);
   logoMoving = createGraphics(1500, 1000, P2D);
   logoMirror = createGraphics(1000, 1000, P2D);
 
