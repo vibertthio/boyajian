@@ -65,7 +65,7 @@ void maskDreamdrawing() {
       s3d.fill(maskNmae, 155);
 
       {//文字動畫
-         if (MaskDreamLineIn.bang==true ) {
+        if (MaskDreamLineIn.bang==true ) {
           textDream.children[0].transform(70, easeInBack(MaskDreamLineIn.oo)*300, 20, 20) ;
           textDream.children[1].transform(102, -easeInBack(MaskDreamLineIn.oo)*300, 20, 20) ;
           textDream.children[2].transform(137, easeInBack(MaskDreamLineIn.oo)*300, 20, 20) ;
@@ -117,8 +117,13 @@ void maskDreamdrawing() {
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    Dream_5.disableStyle();//鼻子
+    s3d.colorMode(HSB, 100);
+    s3d.tint( color(anim(20, 0, 100, 4), 100, 100));
     s3d.shape(Dream_5);
+    Dream_5.enableStyle();
     s3d.popMatrix();
+    s3d.colorMode(RGB);
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_6);

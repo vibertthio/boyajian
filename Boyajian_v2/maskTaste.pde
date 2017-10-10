@@ -53,19 +53,19 @@ void maskTastedrawing() {
   {
     Taste_x=width/2+countX[6].o;
     Taste_y=height/2+-30;
-  //----fade
-  if (MaskTasteIn==true)s3d.translate(0, map(easeOutBack(MaskTasteLine.o), 0, 1, 500, 0));
-  else  s3d.translate(0, map(easeInBack(MaskTasteLine.o), 0, 1, 0, -500));
-  //----fadeEnd
+    //----fade
+    if (MaskTasteIn==true)s3d.translate(0, map(easeOutBack(MaskTasteLine.o), 0, 1, 500, 0));
+    else  s3d.translate(0, map(easeInBack(MaskTasteLine.o), 0, 1, 0, -500));
+    //----fadeEnd
 
-  {//文字開始
-    s3d.pushMatrix();
-    s3d.translate(width/2, height/2-17, -50);
-    s3d.scale(3.0);
-    s3d.fill(maskNmae, 155);
+    {//文字開始
+      s3d.pushMatrix();
+      s3d.translate(width/2, height/2-17, -50);
+      s3d.scale(3.0);
+      s3d.fill(maskNmae, 155);
 
-    {//文字動畫
-      if (MaskTasteLineIn.bang==true ) {
+      {//文字動畫
+        if (MaskTasteLineIn.bang==true ) {
           textTaste.children[0].transform(40, easeInBack(MaskTasteLineIn.oo)*300, 20, 20) ;
           textTaste.children[1].transform(97, -easeInBack(MaskTasteLineIn.oo)*300, 20, 20) ;
           textTaste.children[2].transform(156, easeInBack(MaskTasteLineIn.oo)*300, 20, 20) ;
@@ -76,50 +76,54 @@ void maskTastedrawing() {
           defultCam();
         }
 
-      if (MaskTasteLineOut.bang==false) {
-        MaskTasteLineIn.done=false;
-      }
-    }//文字動畫結束
+        if (MaskTasteLineOut.bang==false) {
+          MaskTasteLineIn.done=false;
+        }
+      }//文字動畫結束
 
-    s3d.strokeWeight(1);
-    s3d.noStroke();
-    if (MaskTasteLineOut.o>0.001 || MaskTasteLineIn.o>0.001 )
-      if ( MaskTasteIn==true )textTaste.draw(s3d);
+      s3d.strokeWeight(1);
+      s3d.noStroke();
+      if (MaskTasteLineOut.o>0.001 || MaskTasteLineIn.o>0.001 )
+        if ( MaskTasteIn==true )textTaste.draw(s3d);
+      s3d.popMatrix();
+    }//文字結束
+    //-----model
+
+    s3d.translate(Taste_x, Taste_y+anim(300, 0, -50, 2), -50);
+    s3d.rotateZ(PI);
+    s3d.rotateY(radians(anim(600, -30, 30, 2)));
+    //--------------抖動
+    s3d.scale(0.60);
+    //---------------
+    s3d.pushMatrix();
+    s3d.shape(Taste_1);
     s3d.popMatrix();
-  }//文字結束
-  //-----model
-
-  s3d.translate(Taste_x, Taste_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
-  s3d.rotateZ(PI);
-  s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
-  //--------------抖動
-  s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-  s3d.scale(0.60);
-  //---------------
-  s3d.pushMatrix();
-  s3d.shape(Taste_1);
-  s3d.popMatrix();
-  //---------------
-  s3d.pushMatrix();
-  s3d.shape(Taste_2);
-  s3d.popMatrix();
-  //---------------
-  s3d.pushMatrix();
-  s3d.shape(Taste_3);
-  s3d.popMatrix();
-   //---------------
-  s3d.pushMatrix();
-  s3d.shape(Taste_4);
-  s3d.popMatrix();
-  //---------------
-  s3d.pushMatrix();
-  s3d.shape(Taste_5);
-  s3d.popMatrix();
-   //---------------
-  s3d.pushMatrix();
-  s3d.shape(Taste_6);
-  s3d.popMatrix();
-  //---------------
+    //---------------
+    s3d.pushMatrix();
+    s3d.rotateY(radians(anim(180, 0, 180, 2)));
+    s3d.shape(Taste_2);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.rotateY(radians(anim(150, 20, 200, 2)));
+    s3d.shape(Taste_3);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.rotateY(radians(anim(200, 20, 120, 2)));
+    s3d.shape(Taste_4);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.rotateY(radians(anim(100, 50, 160, 2)));
+    s3d.shape(Taste_5);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.rotateY(radians(anim(160, 0, 130, 2)));
+    s3d.shape(Taste_6);
+    s3d.popMatrix();
+    //---------------
   }
   s3d.popMatrix();
 }

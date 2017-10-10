@@ -107,14 +107,17 @@ void maskMemorydrawing() {
   s3d.popMatrix();
   //---------------
   s3d.pushMatrix();
+  s3d.rotateX(radians(anim(10,2,0,2)));
   s3d.shape(Memory_3);
   s3d.popMatrix();
    //---------------
   s3d.pushMatrix();
+  s3d.rotateZ(radians(anim(180,10,-40,2)));
   s3d.shape(Memory_4);
   s3d.popMatrix();
   //---------------
   s3d.pushMatrix();
+  s3d.rotateZ(radians(anim(180,10,-40,2)*-1));
   s3d.shape(Memory_5);
   s3d.popMatrix();
   //---------------

@@ -98,9 +98,15 @@ void maskSmelldrawing() {
     s3d.shape(Smell_2);
     s3d.popMatrix();
     //---------------
-    s3d.pushMatrix();
-    s3d.shape(Smell_3);
-    s3d.popMatrix();
+    Smell_3.disableStyle();//鼻子
+    {
+      s3d.pushMatrix();
+      s3d.tint( color(map(pow(sin((float(frameCount)%200)/200*6.28), 4.0), 0, 1, 0, 255), 255, 255));
+      s3d.shape(Smell_3);
+      s3d.popMatrix();
+    }
+    Smell_3.enableStyle();
+
     //---------------
   }
   s3d.popMatrix();

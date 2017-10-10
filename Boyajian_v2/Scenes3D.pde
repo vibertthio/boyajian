@@ -23,7 +23,7 @@ PShape Rglobe;
 
 
 void s3dSetting() {
-  eyeImg=loadImage("img/p_smell.png");
+  eyeImg=loadImage("img/p_eye.png");
   particles = new Particle[p_num];
   for (int i = 0; i < p_num; i++) {
     PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));

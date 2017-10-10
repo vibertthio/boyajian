@@ -7,6 +7,7 @@ pdLine  toolSwordALineIn;
 pdLine  toolSwordALineOut;
 
 PShape SwordA_1;
+float SwordA_x,SwordA_y;
 
 void toolSwordASetting() {
 
@@ -40,6 +41,8 @@ void toolSwordAdrawing() {
   showtoolSwordA=returnState(toolSwordALine, toolSwordAIn);
   s3d.pushMatrix();
   {
+    SwordA_x=width/2+countX[10].o;
+    SwordA_y=height/2+68;
     //----fade
     if (toolSwordAIn==true)s3d.translate(0, map(easeOutBack(toolSwordALine.o), 0, 1, 500, 0));
     else  s3d.translate(0, map(easeInBack(toolSwordALine.o), 0, 1, 0, -500));
@@ -77,15 +80,15 @@ void toolSwordAdrawing() {
     }//文字結束
     //-----model
 
-    s3d.translate(width/2, height/2+110+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    s3d.translate(SwordA_x, SwordA_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-    s3d.scale(0.8);
+    s3d.scale(0.57);
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*0.2);
+    s3d.rotateZ(pow(sin((a2+70)/90*6.28), 4.0)*0.2);
     s3d.shape(SwordA_1);
     s3d.popMatrix();
 

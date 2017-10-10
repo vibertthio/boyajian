@@ -84,11 +84,11 @@ void maskFacesdrawing() {
     }//文字結束
     //-----model
 
-    s3d.translate(Faces_x, Faces_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    s3d.translate(Faces_x, Faces_y+anim(300,0,-50,2), -50);
     s3d.rotateZ(PI);
-    s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
+    s3d.rotateY(radians(anim(600,-30,30,2)));
     //--------------抖動
-    s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
+    s3d.rotateZ(anim(10,0,PI*-0.01,8));  
     s3d.scale(0.51);
     //---------------
     s3d.pushMatrix();

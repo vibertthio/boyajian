@@ -280,22 +280,18 @@ void autoCam(boolean theFlag) {
   }
 }
 
-
-
 void countLife() {
   int k=0;
   int kk=0;
-  for (int i=0; i<20; i++) {
-    k=k+show[i];
-  }
+  for (int i=0; i<20; i++) k=k+show[i];
 
-  for (int i=0; i<20; i++) {
-    
-    if (show[i]==1) {
+  for (int i=0; i<20; i++) if (show[i]==1) {
       kk++;
       countX[i].reset(posAvg(1000,k,kk)-500);
-      println(i,k,kk);
     }
-  }
-  
+
+}
+
+float anim(int num,float start,float end,float pp) {
+  return map(pow(sin((float(frameCount)%num)/num*6.28), pp), 0, 1, start, end);
 }

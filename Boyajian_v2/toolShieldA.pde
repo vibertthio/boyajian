@@ -9,6 +9,8 @@ pdLine  toolShieldALineOut;
 PShape ShieldA_1;
 PShape ShieldA_2;
 
+float ShieldA_x, ShieldA_y;
+
 void toolShieldASetting() {
 
   textShieldA= RG.getText("弭戰之盾", "wt.ttf", 72, RFont.CENTER);
@@ -42,6 +44,8 @@ void toolShieldAdrawing() {
   showtoolShieldA=returnState(toolShieldALine, toolShieldAIn);
   s3d.pushMatrix();
   {
+    ShieldA_x=width/2+countX[9].o;
+    ShieldA_y=height/2+54;
     //----fade
     if (toolShieldAIn==true)s3d.translate(0, map(easeOutBack(toolShieldALine.o), 0, 1, 500, 0));
     else  s3d.translate(0, map(easeInBack(toolShieldALine.o), 0, 1, 0, -500));
@@ -79,15 +83,15 @@ void toolShieldAdrawing() {
     }//文字結束
     //-----model
 
-    s3d.translate(width/2, height/2+110+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    s3d.translate(ShieldA_x, ShieldA_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
-    s3d.scale(0.8);
+    s3d.scale(0.50);
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*0.2);
+    s3d.rotateZ(pow(sin((a2+30)/90*6.28), 4.0)*0.2);
     s3d.shape(ShieldA_1);
     s3d.popMatrix();
     //---------------
