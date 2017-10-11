@@ -23,15 +23,14 @@ void showFrameRate() {
   String F="F:"+int((int(frameRate/4))*4);
   String B=indexSelectBlend [blendIndex]  + ":" + blendNames[ indexSelectBlend [blendIndex]  ];
   String I="bgs:" +imgIndex;
-  //text(F, 50, 50);
-  //text(B, 50, 100 );
-  //text(I, 50, 150 );
-
-
   fill(255);
   text(F, 50, 50);
   text(B, 50, 70);
   text(I, 50, 90);
+  text("CtlIn:"+nr, 50, 110);
+  text("Value:"+vl, 50, 130);
+  text("NoteIn:"+pi, 50, 150);
+  text("Vel:"+vel, 50, 170);
 }
 
 
@@ -111,11 +110,11 @@ void returnVertex(PShape origon, PShape who) {
 void uiSetting() {
   //---------------*控制開關
   cp5 = new ControlP5(this);
-  cp5.addToggle("showPtn")
-    .setPosition(40, 300)
-    .setSize(40, 20)
-    .setId(0)
-    ;
+  //cp5.addToggle("showPtn")
+  //  .setPosition(40, 300)
+  //  .setSize(40, 20)
+  //  .setId(0)
+  //  ;
   cp5.addToggle("l3Rt")
     .setPosition(40, 250)
     .setSize(40, 20)
@@ -126,11 +125,11 @@ void uiSetting() {
     .setSize(40, 20)
     .setId(2)
     ;
-  cp5.addToggle("autoCam")
-    .setPosition(160, 250)
-    .setSize(40, 20)
-    .setId(2)
-    ;
+  //cp5.addToggle("autoCam")
+  //  .setPosition(160, 250)
+  //  .setSize(40, 20)
+  //  .setId(2)
+  //  ;
 
   //Group MaskToggle = cp5.addGroup("MaskToggle")
   //  .setPosition(40, 350)
@@ -140,97 +139,97 @@ void uiSetting() {
   //  ;
 
 
-  cp5.addToggle("Eye")
-    .setPosition(10, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Eye")
+  //  .setPosition(10, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Smell")
-    .setPosition(60, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Smell")
+  //  .setPosition(60, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Listen")
-    .setPosition(110, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Listen")
+  //  .setPosition(110, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Touch")
-    .setPosition(160, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Touch")
+  //  .setPosition(160, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Taste")
-    .setPosition(210, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Taste")
+  //  .setPosition(210, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Memory")
-    .setPosition(260, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Memory")
+  //  .setPosition(260, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Dream")
-    .setPosition(310, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Dream")
+  //  .setPosition(310, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("Faces")
-    .setPosition(360, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("Faces")
+  //  .setPosition(360, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("SwordA")
-    .setPosition(420, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("SwordA")
+  //  .setPosition(420, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("SwordB")
-    .setPosition(480, 350)
-    .setSize(30, 20);
-  cp5.addToggle("ShieldA")
-    .setPosition(540, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("SwordB")
+  //  .setPosition(480, 350)
+  //  .setSize(30, 20);
+  //cp5.addToggle("ShieldA")
+  //  .setPosition(540, 350)
+  //  .setSize(30, 20);
 
-  cp5.addToggle("ShieldB")
-    .setPosition(600, 350)
-    .setSize(30, 20);
+  //cp5.addToggle("ShieldB")
+  //  .setPosition(600, 350)
+  //  .setSize(30, 20);
 
   //------------------
 
-  cp5.addBang("no")
-    .setPosition(100, 300)
-    .setSize(40, 20)
-    .setColorActive(color(155))
-    .setColorForeground(color(155, 0, 0))
-    .setId(1)
-    ;
-  cp5.addBang("blur")
-    .setPosition(160, 300)
-    .setSize(40, 20)
-    .setColorActive(color(155))
-    .setColorForeground(color(155, 0, 0))
-    .setId(2)
-    ;
-  cp5.addBang("rgb1")
-    .setPosition(220, 300)
-    .setSize(40, 20)
-    .setColorActive(color(155))
-    .setColorForeground(color(155, 0, 0))
-    .setId(3)
-    ;
-  cp5.addBang("rgb2")
-    .setPosition(280, 300)
-    .setSize(40, 20)
-    .setColorActive(color(155))
-    .setColorForeground(color(155, 0, 0))
-    .setId(4)
-    ;
-  cp5.addBang("noisy")
-    .setPosition(340, 300)
-    .setSize(40, 20)
-    .setColorActive(color(155))
-    .setColorForeground(color(155, 0, 0))
-    .setId(4)
-    ;
-  cp5.addBang("glitch")
-    .setPosition(400, 300)
-    .setSize(40, 20)
-    .setColorActive(color(155))
-    .setColorForeground(color(155, 0, 0))
-    .setId(4)
-    ;
+  //cp5.addBang("no")
+  //  .setPosition(100, 300)
+  //  .setSize(40, 20)
+  //  .setColorActive(color(155))
+  //  .setColorForeground(color(155, 0, 0))
+  //  .setId(1)
+  //  ;
+  //cp5.addBang("blur")
+  //  .setPosition(160, 300)
+  //  .setSize(40, 20)
+  //  .setColorActive(color(155))
+  //  .setColorForeground(color(155, 0, 0))
+  //  .setId(2)
+  //  ;
+  //cp5.addBang("rgb1")
+  //  .setPosition(220, 300)
+  //  .setSize(40, 20)
+  //  .setColorActive(color(155))
+  //  .setColorForeground(color(155, 0, 0))
+  //  .setId(3)
+  //  ;
+  //cp5.addBang("rgb2")
+  //  .setPosition(280, 300)
+  //  .setSize(40, 20)
+  //  .setColorActive(color(155))
+  //  .setColorForeground(color(155, 0, 0))
+  //  .setId(4)
+  //  ;
+  //cp5.addBang("noisy")
+  //  .setPosition(340, 300)
+  //  .setSize(40, 20)
+  //  .setColorActive(color(155))
+  //  .setColorForeground(color(155, 0, 0))
+  //  .setId(4)
+  //  ;
+  //cp5.addBang("glitch")
+  //  .setPosition(400, 300)
+  //  .setSize(40, 20)
+  //  .setColorActive(color(155))
+  //  .setColorForeground(color(155, 0, 0))
+  //  .setId(4)
+  //  ;
 }
 
 public void controlEvent(ControlEvent theEvent) {
@@ -279,6 +278,20 @@ void autoCam(boolean theFlag) {
     defultCam();
   }
 }
+void showPtn(boolean theFlag) {
+  if (theFlag==true) showPtnTgl=true;
+  else showPtnTgl=false;
+}
+
+void autoBlend(boolean theFlag) {
+  if (theFlag==true) bgChanging=true;
+  else bgChanging=false;
+}
+
+void autoBg(boolean theFlag) {
+  if (theFlag==true) bgBlending=true;
+  else bgBlending=false;
+}
 
 void countLife() {
   int k=0;
@@ -286,12 +299,11 @@ void countLife() {
   for (int i=0; i<20; i++) k=k+show[i];
 
   for (int i=0; i<20; i++) if (show[i]==1) {
-      kk++;
-      countX[i].reset(posAvg(1000,k,kk)-500);
-    }
-
+    kk++;
+    countX[i].reset(posAvg(1000, k, kk)-500);
+  }
 }
 
-float anim(int num,float start,float end,float pp) {
+float anim(int num, float start, float end, float pp) {
   return map(pow(sin((float(frameCount)%num)/num*6.28), pp), 0, 1, start, end);
 }

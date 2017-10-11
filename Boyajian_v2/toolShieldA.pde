@@ -14,13 +14,12 @@ float ShieldA_x, ShieldA_y;
 void toolShieldASetting() {
 
   textShieldA= RG.getText("弭戰之盾", "wt.ttf", 72, RFont.CENTER);
-  toolShieldALineIn=new pdLine(500, 1000);
-  toolShieldALineOut=new pdLine(3500, 1000);
+
 
   if (showtoolShieldA==false) {
     show[9]=1;
     countLife();
-    toolShieldALine=new pdLine(0, 1000);
+
     toolShieldAIn=true;
     ShieldA_1 = loadShape("toolShieldA/shielda_1.obj");
     ShieldA_2 = loadShape("toolShieldA/shielda_2.obj");
@@ -31,6 +30,10 @@ void toolShieldASetting() {
     show[9]=0;
     countLife();
   }
+
+  toolShieldALineIn=new pdLine(500, 1000);
+  toolShieldALineOut=new pdLine(3500, 1000);
+  toolShieldALine=new pdLine(0, 1000);
   toolShieldALine.reset();
   toolShieldALineIn.reset();
   toolShieldALineIn.done=false;
@@ -57,7 +60,7 @@ void toolShieldAdrawing() {
       s3d.fill(maskNmae, 155);
 
       {//文字動畫
-         if (toolShieldALineIn.bang==true ) {
+        if (toolShieldALineIn.bang==true ) {
           textShieldA.children[0].transform(70, easeInBack(toolShieldALineIn.oo)*300, 20, 20) ;
           textShieldA.children[1].transform(102, -easeInBack(toolShieldALineIn.oo)*300, 20, 20) ;
           textShieldA.children[2].transform(137, easeInBack(toolShieldALineIn.oo)*300, 20, 20) ;
@@ -99,7 +102,6 @@ void toolShieldAdrawing() {
     s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*0.2);
     s3d.shape(ShieldA_2);
     s3d.popMatrix();
-
   }
   s3d.popMatrix();
 }

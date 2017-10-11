@@ -32,11 +32,11 @@ class Particle {
     s3d.translate(pos.x, pos.y, pos.z);
 
     s3d.rotate(degrees(ang));
-    
-    s3d.tint(c,230);
+
+    s3d.tint(c, 230);
     s3d.scale(showParticleCount/255);
     s3d.image(eyeImg, 0, 0, mass*20, mass*20);
-    
+
     s3d.popMatrix();
   }
 

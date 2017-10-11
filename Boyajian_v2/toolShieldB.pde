@@ -12,13 +12,12 @@ float ShieldB_x, ShieldB_y;
 void toolShieldBSetting() {
 
   textShieldB= RG.getText("迴靈盾", "wt.ttf", 72, RFont.CENTER);
-  toolShieldBLineIn=new pdLine(500, 1000);
-  toolShieldBLineOut=new pdLine(3500, 1000);
+
 
   if (showtoolShieldB==false) {
     show[8]=1;
     countLife();
-    toolShieldBLine=new pdLine(0, 1000);
+
     toolShieldBIn=true;
     ShieldB_1 = loadShape("toolShieldB/shieldb.obj");
 
@@ -28,6 +27,11 @@ void toolShieldBSetting() {
     show[8]=0;
     countLife();
   }
+
+
+  toolShieldBLineIn=new pdLine(500, 1000);
+  toolShieldBLineOut=new pdLine(3500, 1000);
+  toolShieldBLine=new pdLine(0, 1000);
   toolShieldBLine.reset();
   toolShieldBLineIn.reset();
   toolShieldBLineIn.done=false;
@@ -55,15 +59,15 @@ void toolShieldBdrawing() {
 
       {//文字動畫
         if (toolShieldBLineIn.bang==true ) {
-           textShieldB.children[0].transform(40, easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
-           textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
-           textShieldB.children[2].transform(156, easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
-         } else if (toolShieldBLineIn.done==true  ) {
-           textShieldB.children[0].transform(40, easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
-           textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
-           textShieldB.children[2].transform(156, easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
-           defultCam();
-         }
+          textShieldB.children[0].transform(40, easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
+          textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
+          textShieldB.children[2].transform(156, easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
+        } else if (toolShieldBLineIn.done==true  ) {
+          textShieldB.children[0].transform(40, easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
+          textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
+          textShieldB.children[2].transform(156, easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
+          defultCam();
+        }
 
         if (toolShieldBLineOut.bang==false) {
           toolShieldBLineIn.done=false;
@@ -89,7 +93,6 @@ void toolShieldBdrawing() {
     s3d.rotateZ(pow(sin((a2+60)/90*6.28), 4.0)*0.2);
     s3d.shape(ShieldB_1);
     s3d.popMatrix();
-
   }
   s3d.popMatrix();
 }

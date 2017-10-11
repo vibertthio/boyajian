@@ -31,7 +31,7 @@ class GrowGrid {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         boolean v = ((j % 2) == 0);
-          renderRect(i * unit, j * unit);
+        renderRect(i * unit, j * unit);
       }
     }
   }
@@ -47,5 +47,4 @@ class GrowGrid {
     canvas.rect(0, 0, length, length);
     canvas.popMatrix();
   }
-
 }

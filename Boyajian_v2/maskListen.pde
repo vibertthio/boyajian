@@ -16,13 +16,12 @@ float Listen_x, Listen_y;
 void maskListenSetting() {
 
   textListen= RG.getText("音納耳", "wt.ttf", 72, RFont.CENTER);
-  MaskListenLineIn=new pdLine(500, 1000);
-  MaskListenLineOut=new pdLine(3500, 1000);
+
 
   if (showMaskListen==false) {
     show[3]=1;
     countLife();
-    MaskListenLine=new pdLine(0, 1000);
+
     MaskListenIn=true;
     listen_1 = loadShape("maskListen/listen_1.obj");
     listen_2=  loadShape("maskListen/listen_2.obj");
@@ -35,6 +34,9 @@ void maskListenSetting() {
     show[3]=0;
     countLife();
   }
+  MaskListenLineIn=new pdLine(500, 1000);
+  MaskListenLineOut=new pdLine(3500, 1000);
+  MaskListenLine=new pdLine(0, 1000);
   MaskListenLine.reset();
   MaskListenLineIn.reset();
   MaskListenLineIn.done=false;

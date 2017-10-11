@@ -15,13 +15,12 @@ float Smell_x, Smell_y;
 void maskSmellSetting() {
 
   textSmell= RG.getText("氣嗅者", "wt.ttf", 72, RFont.CENTER);
-  MaskSmellLineIn=new pdLine(500, 1000);
-  MaskSmellLineOut=new pdLine(3500, 1000);
+
 
   if (showMaskSmell==false) {
     show[5]=1;
     countLife();
-    MaskSmellLine=new pdLine(0, 1000);
+
     MaskSmellIn=true;
     Smell_1 = loadShape("maskSmell/smell_1.obj");
     Smell_2=  loadShape("maskSmell/smell_2.obj");
@@ -32,6 +31,11 @@ void maskSmellSetting() {
     show[5]=0;
     countLife();
   }
+
+  MaskSmellLineIn=new pdLine(500, 1000);
+  MaskSmellLineOut=new pdLine(3500, 1000);
+  MaskSmellLine=new pdLine(0, 1000);
+
   MaskSmellLine.reset();
   MaskSmellLineIn.reset();
   MaskSmellLineIn.done=false;

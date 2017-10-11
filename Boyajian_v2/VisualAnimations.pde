@@ -42,4 +42,5 @@ class Circle {
   }
 }
 
-class Mountain {}
+class Mountain {
+}

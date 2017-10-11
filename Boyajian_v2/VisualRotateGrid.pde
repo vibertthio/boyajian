@@ -51,7 +51,7 @@ class RotateGrid {
 
   void render() {
     for (int i = 0; i < n * n; i++) {
-        recs[i].draw();
+      recs[i].draw();
     }
   }
 }
@@ -99,7 +99,6 @@ class Rectangle {
     angle = grid.angle;
     w = grid.w;
     h = grid.h;
-
   }
 
   void render() {
@@ -113,5 +112,4 @@ class Rectangle {
     canvas.rect(0, 0, w, h);
     canvas.popMatrix();
   }
-
 }

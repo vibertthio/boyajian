@@ -2,6 +2,10 @@ import com.jogamp.opengl.GL2;
 import geomerative.*;
 
 //---------------
+import themidibus.*; 
+MidiBus myBus; 
+
+//---------------
 import controlP5.*;
 ControlP5 cp5;
 CheckBox checkbox;
@@ -42,15 +46,14 @@ void settings() {
 void setup() {
   RG.init(this);
   mat_scene = getMatrix();
-  logoSetting() ;
-  s3dSetting() ;
-  square = createShape(RECT, 0, 0, width, height);
-  tex= createGraphics(1500, 1000, P2D);
-  s3d= createGraphics(width, height, P3D);
 
-  ptnGroup= createGraphics(width, height, P2D);
-  scence= createGraphics(width, height, P2D);
-  finalRender= createGraphics(width, height, P2D);
+
+  MidiBus.list();
+  myBus = new MidiBus(this, 0, 1);
+
+  defultSetting() ;
+  s3dSetting() ;
+
 
   shaderSetting();
   uiSetting();
@@ -143,16 +146,8 @@ void draw() {
   }
   resetShader();
   showFrameRate();
-  //stroke(255);
-  //strokeWeight(1);
-  //line(width/2,0,width/2,height);
+
   if (keyPressed==true &&key == 's') {
     //saveFrame(frameCount+".png");
   }
-}
-
-
-void showPtn(boolean theFlag) {
-  if (theFlag==true) showPtnTgl=true;
-  else showPtnTgl=false;
 }

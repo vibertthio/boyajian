@@ -18,13 +18,12 @@ float Taste_x, Taste_y;
 void maskTasteSetting() {
 
   textTaste= RG.getText("百味獸", "wt.ttf", 72, RFont.CENTER);
-  MaskTasteLineIn=new pdLine(500, 1000);
-  MaskTasteLineOut=new pdLine(3500, 1000);
+
 
   if (showMaskTaste==false) {
     show[6]=1;
     countLife();
-    MaskTasteLine=new pdLine(0, 1000);
+
     MaskTasteIn=true;
     Taste_1 = loadShape("maskTaste/taste_1.obj");
     Taste_2=  loadShape("maskTaste/taste_2.obj");
@@ -38,6 +37,11 @@ void maskTasteSetting() {
     show[6]=0;
     countLife();
   }
+
+    MaskTasteLineIn=new pdLine(500, 1000);
+    MaskTasteLineOut=new pdLine(3500, 1000);
+    MaskTasteLine=new pdLine(0, 1000);
+
   MaskTasteLine.reset();
   MaskTasteLineIn.reset();
   MaskTasteLineIn.done=false;

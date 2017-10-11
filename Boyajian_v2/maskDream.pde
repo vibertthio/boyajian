@@ -17,13 +17,12 @@ PShape Dream_6;
 void maskDreamSetting() {
 
   textDream= RG.getText("食夢術士", "wt.ttf", 72, RFont.CENTER);
-  MaskDreamLineIn=new pdLine(500, 1000);
-  MaskDreamLineOut=new pdLine(3500, 1000);
+
 
   if (showMaskDream==false) {
     show[0]=1;
     countLife();
-    MaskDreamLine=new pdLine(0, 1000);
+
     MaskDreamIn=true;
     Dream_1 = loadShape("maskDream/dream_1.obj");
     Dream_2=  loadShape("maskDream/dream_2.obj");
@@ -38,6 +37,9 @@ void maskDreamSetting() {
     show[0]=0;
     countLife();
   }
+  MaskDreamLineIn=new pdLine(500, 1000);
+  MaskDreamLineOut=new pdLine(3500, 1000);
+  MaskDreamLine=new pdLine(0, 1000);
   MaskDreamLine.reset();
   MaskDreamLineIn.reset();
   MaskDreamLineIn.done=false;
@@ -107,17 +109,23 @@ void maskDreamdrawing() {
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.scale((pow(sin(a2/45*6.28), 4.0))*0.1+1);
+    s3d.translate(0, 0, 0);
+    s3d.rotateZ(radians(float(frameCount%50)/50*360));
+    s3d.translate(0, 20, 0);
     s3d.shape(Dream_3);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.translate(0, map(pow(sin(a2/180*6.28), 8.0), 0, 1, 0, 80));
+    s3d.translate(0, 188, -44);
+    if ((frameCount%400)>200) {
+      s3d.rotateX(radians(anim(400, 0, -40, 8)));
+    }
+    s3d.translate(0, 0, 0);
     s3d.shape(Dream_4);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    Dream_5.disableStyle();//鼻子
+    Dream_5.disableStyle();//寶石
     s3d.colorMode(HSB, 100);
     s3d.tint( color(anim(20, 0, 100, 4), 100, 100));
     s3d.shape(Dream_5);

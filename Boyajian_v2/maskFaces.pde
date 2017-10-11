@@ -15,13 +15,11 @@ float Faces_x,Faces_y;
 void maskFacesSetting() {
 
   textFaces= RG.getText("三首犬衛", "wt.ttf", 72, RFont.CENTER);
-  MaskFacesLineIn=new pdLine(500, 1000);
-  MaskFacesLineOut=new pdLine(3500, 1000);
 
   if (showMaskFaces==false) {
     show[2]=1;
     countLife();
-    MaskFacesLine=new pdLine(0, 1000);
+
     MaskFacesIn=true;
     Faces_1 = loadShape("maskFaces/faces_1.obj");
     Faces_2=  loadShape("maskFaces/faces_2.obj");
@@ -32,6 +30,9 @@ void maskFacesSetting() {
     show[2]=0;
     countLife();
   }
+  MaskFacesLineIn=new pdLine(500, 1000);
+  MaskFacesLineOut=new pdLine(3500, 1000);
+  MaskFacesLine=new pdLine(0, 1000);
   MaskFacesLine.reset();
   MaskFacesLineIn.reset();
   MaskFacesLineIn.done=false;
@@ -88,7 +89,7 @@ void maskFacesdrawing() {
     s3d.rotateZ(PI);
     s3d.rotateY(radians(anim(600,-30,30,2)));
     //--------------抖動
-    s3d.rotateZ(anim(10,0,PI*-0.01,8));  
+    s3d.rotateZ(anim(10,0,PI*-0.01,8));
     s3d.scale(0.51);
     //---------------
     s3d.pushMatrix();

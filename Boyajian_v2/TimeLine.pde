@@ -24,11 +24,10 @@ class TimeLine {
       elapsedTime = currentTime() - localtime;
 
       if (elapsedTime>int(limit)) {
-        if( !loop ) {
+        if ( !loop ) {
           elapsedTime = int(limit);
           state=false;
-        }
-        else {
+        } else {
           startTimer();
         }
       }
@@ -59,8 +58,7 @@ class TimeLine {
     float ret;
     if ((t*=2)<1) {
       ret = 0.5 * pow(t, pow);
-    }
-    else {
+    } else {
       ret = 1 - 0.5 * abs(pow(2-t, pow));
     }
 
@@ -96,8 +94,7 @@ class TimeLine {
     float t = float(elapsedTime)/limit;
     if ((t*=2)<1) {
       return 0.5*(t*t*((amount+1)*t-amount));
-    }
-    else {
+    } else {
       return 0.5*((t-=2)*t*((amount+1)*t+amount)+2);
     }
   }
@@ -116,8 +113,7 @@ class TimeLine {
     float t = float(elapsedTime)/limit;
     if ((t*=2) < 1) {
       return -0.5*(sqrt(1-t*t)-1);
-    }
-    else {
+    } else {
       return 0.5*(sqrt(1-(t-=2)*t)+1);
     }
   }
@@ -136,21 +132,20 @@ class TimeLine {
     float t = float(elapsedTime)/limit;
     if (t<0.5) {
       return (1-bo(1-t*2))*0.5;
-    }
-    else {
+    } else {
       return bo(t*2-1)*0.5+0.5;
     }
   }
   float bo(float t) {
     if (t < 1/2.75) {
-			return (7.5625*t*t);
-		} else if (t < 2/2.75) {
-			return (7.5625*(t-=1.5/2.75)*t+0.75);
-		} else if (t < 2.5/2.75) {
-			return (7.5625*(t-=2.25/2.75)*t+0.9375);
-		} else {
-			return (7.5625*(t-=2.625/2.75)*t +0.984375);
-		}
+      return (7.5625*t*t);
+    } else if (t < 2/2.75) {
+      return (7.5625*(t-=1.5/2.75)*t+0.75);
+    } else if (t < 2.5/2.75) {
+      return (7.5625*(t-=2.25/2.75)*t+0.9375);
+    } else {
+      return (7.5625*(t-=2.625/2.75)*t +0.984375);
+    }
   }
   float elasticIn() {
     update();
@@ -225,8 +220,8 @@ class TimeLine {
   //     return t;
   //   }
   //   float s = period/(PI*2*asin(1/amp));
-	// 	if ((t*=2)<1) return -0.5*(amp*pow(2,10*(t-=1))*sin( (t-s)*PI*2/period ));
-	// 	return amp*pow(2,-10*(t-=1))*sin((t-s)*PI*2/period)*0.5+1;
+  // 	if ((t*=2)<1) return -0.5*(amp*pow(2,10*(t-=1))*sin( (t-s)*PI*2/period ));
+  // 	return amp*pow(2,-10*(t-=1))*sin((t-s)*PI*2/period)*0.5+1;
   // }
 
   float repeatBreathMovement() {
@@ -235,10 +230,10 @@ class TimeLine {
       elapsedTime = currentTime() - localtime;
       if (elapsedTime>int(limit)) {
         elapsedTime = int(limit);
-        if(repeatTime < 2 && breathState) {
-          state = false; }
-        else {
-          if(breathState == true) {
+        if (repeatTime < 2 && breathState) {
+          state = false;
+        } else {
+          if (breathState == true) {
             repeatTime-- ;
           }
           breathState = !breathState;
@@ -248,10 +243,11 @@ class TimeLine {
     }
 
     float t = float(elapsedTime)/limit;
-    if(!breathState) {
-      return pow(t, linerRate); }
-    else {
-      return pow((1-t), linerRate); }
+    if (!breathState) {
+      return pow(t, linerRate);
+    } else {
+      return pow((1-t), linerRate);
+    }
   }
   float repeatBreathMovementEndless() {
     if (state == true) {
@@ -259,9 +255,9 @@ class TimeLine {
       elapsedTime = currentTime() - localtime;
       if (elapsedTime>int(limit)) {
         elapsedTime = int(limit);
-        if(repeatTime < 1 && breathState) {
-          state = false; }
-        else {
+        if (repeatTime < 1 && breathState) {
+          state = false;
+        } else {
           breathState = !breathState;
           startTimer();
         }
@@ -269,20 +265,24 @@ class TimeLine {
     }
 
     float t = float(elapsedTime)/limit;
-    if(!breathState) {
-      return pow(t, linerRate); }
-    else {
-      return pow((1-t), linerRate); }
+    if (!breathState) {
+      return pow(t, linerRate);
+    } else {
+      return pow((1-t), linerRate);
+    }
   }
-  void setLinerRate(float r) { linerRate = r; }
-  void setRepeatTime(int t) { repeatTime = t; }
+  void setLinerRate(float r) { 
+    linerRate = r;
+  }
+  void setRepeatTime(int t) { 
+    repeatTime = t;
+  }
   boolean startTimer() {
     if (state == true) {
       localtime = currentTime();
       elapsedTime = 0;
       return false;
-    }
-    else {
+    } else {
       localtime = currentTime();
       state=true;
       elapsedTime = 0;
@@ -297,6 +297,10 @@ class TimeLine {
   int currentTime() {
     return millis();
   }
-  void setLoop() { loop = true; }
-  void set1() { elapsedTime = limit; }
+  void setLoop() { 
+    loop = true;
+  }
+  void set1() { 
+    elapsedTime = limit;
+  }
 }

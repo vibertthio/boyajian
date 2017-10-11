@@ -12,13 +12,12 @@ float SwordB_x, SwordB_y;
 void toolSwordBSetting() {
 
   textSwordB= RG.getText("召喚鈴刀", "wt.ttf", 72, RFont.CENTER);
-  toolSwordBLineIn=new pdLine(500, 1000);
-  toolSwordBLineOut=new pdLine(3500, 1000);
+
 
   if (showtoolSwordB==false) {
     show[11]=1;
     countLife();
-    toolSwordBLine=new pdLine(0, 1000);
+
     toolSwordBIn=true;
     SwordB_1 = loadShape("toolSwordB/swordb.obj");
 
@@ -28,6 +27,9 @@ void toolSwordBSetting() {
     show[11]=0;
     countLife();
   }
+  toolSwordBLineIn=new pdLine(500, 1000);
+  toolSwordBLineOut=new pdLine(3500, 1000);
+  toolSwordBLine=new pdLine(0, 1000);
   toolSwordBLine.reset();
   toolSwordBLineIn.reset();
   toolSwordBLineIn.done=false;
@@ -54,7 +56,7 @@ void toolSwordBdrawing() {
       s3d.fill(maskNmae, 155);
 
       {//文字動畫
-         if (toolSwordBLineIn.bang==true ) {
+        if (toolSwordBLineIn.bang==true ) {
           textSwordB.children[0].transform(70, easeInBack(toolSwordBLineIn.oo)*300, 20, 20) ;
           textSwordB.children[1].transform(102, -easeInBack(toolSwordBLineIn.oo)*300, 20, 20) ;
           textSwordB.children[2].transform(137, easeInBack(toolSwordBLineIn.oo)*300, 20, 20) ;
@@ -91,7 +93,6 @@ void toolSwordBdrawing() {
     s3d.rotateZ(pow(sin(a2/90*6.28), 4.0)*0.2);
     s3d.shape(SwordB_1);
     s3d.popMatrix();
-
   }
   s3d.popMatrix();
 }

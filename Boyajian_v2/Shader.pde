@@ -76,7 +76,7 @@ void shaderSetting() {
 
   contrastGLSL = loadShader("glsl/contrast.glsl");
   contrastGLSL.set("vel", 0.1, 0.5);
-  
+
   effectGLSL = loadShader("glsl/no.glsl");
 
   blendGLSL= loadShader("glsl/blendMode.glsl");

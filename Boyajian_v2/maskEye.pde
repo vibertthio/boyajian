@@ -27,13 +27,12 @@ float Eye_x, Eye_y;
 void maskEyeSetting() {
 
   textEye= RG.getText("三眼面具", "wt.ttf", 72, RFont.CENTER);
-  MaskEyeLineIn=new pdLine(500, 1000);
-  MaskEyeLineOut=new pdLine(3500, 1000);
+
 
   if (showMaskEye==false) {
     show[1]=1;
     countLife();
-    MaskEyeLine=new pdLine(0, 1000);
+
     MaskEyeIn=true;
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
@@ -56,6 +55,9 @@ void maskEyeSetting() {
     countLife();
     MaskEyeIn=false;
   }
+  MaskEyeLineIn=new pdLine(500, 1000);
+  MaskEyeLineOut=new pdLine(3500, 1000);
+  MaskEyeLine=new pdLine(0, 1000);
   MaskEyeLine.reset();
   MaskEyeLineIn.reset();
   MaskEyeLineIn.done=false;
@@ -108,16 +110,16 @@ void maskEyedrawing() {
     }//文字結束
     //-----model
 
-    s3d.translate(Eye_x, Eye_y+anim(300,0,-50,2), -50);
+    s3d.translate(Eye_x, Eye_y+anim(300, 0, -50, 2), -50);
 
     s3d.rotateZ(PI);
-      //--------------抖動
-    s3d.rotateY(radians(anim(600,-30,30,2)));
+    //--------------抖動
+    s3d.rotateY(radians(anim(600, -30, 30, 2)));
     s3d.scale(0.73);
 
     //---------------眼睛_ 左
     s3d.pushMatrix();
-    s3d.rotateZ(anim(10,0,PI*-0.01,8));
+    s3d.rotateZ(anim(10, 0, PI*-0.01, 8));
 
     if (keyPressed==true &&key == 'k') randomVertex(maskA_1_1);
     else returnVertex(RmaskA_1_1, maskA_1_1);
@@ -128,67 +130,59 @@ void maskEyedrawing() {
 
     //---------------眼睛_右
     s3d.pushMatrix();
-    s3d.rotateZ(anim(10,0,PI*0.01,8));
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_1_2);
-    } else {
-      returnVertex(RmaskA_1_2, maskA_1_2);
-    }
+    s3d.rotateZ(anim(10, 0, PI*0.01, 8));
+
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_1_2);
+    else returnVertex(RmaskA_1_2, maskA_1_2);
+
     s3d.shape(maskA_1_2);
     s3d.popMatrix();
     //---------------臉
     s3d.pushMatrix();
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_2);
-    } else {
-      returnVertex(RmaskA_2, maskA_2);
-    }
+
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_2);
+    else returnVertex(RmaskA_2, maskA_2);
+
     s3d.shape(maskA_2);
     s3d.popMatrix();
     //---------------左
     s3d.pushMatrix();
-    s3d.translate(anim(180,0,-40,8), 0);
+    s3d.translate(anim(180, 0, -40, 8), 0);
 
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_3_1);
-    } else {
-      returnVertex(RmaskA_3_1, maskA_3_1);
-    }
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_3_1);
+    else returnVertex(RmaskA_3_1, maskA_3_1);
+
     s3d.shape(maskA_3_1);
     s3d.popMatrix();
     //---------------右
     s3d.pushMatrix();
-    s3d.translate(anim(180,0,40,2), 0);
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_3_2);
-    } else {
-      returnVertex(RmaskA_3_2, maskA_3_2);
-    }
+    s3d.translate(anim(180, 0, 40, 2), 0);
+
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_3_2);
+    else returnVertex(RmaskA_3_2, maskA_3_2);
+
     s3d.shape(maskA_3_2);
     s3d.popMatrix();
     //---------------背板
     s3d.pushMatrix();
     s3d.rotate((easeInBack(a1/360))*6.28);
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_4);
-    } else {
-      returnVertex(RmaskA_4, maskA_4);
-    }
+
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_4);
+    else returnVertex(RmaskA_4, maskA_4);
+
     s3d.shape(maskA_4);
     s3d.popMatrix();
     //---------------眼睛
     s3d.pushMatrix();
-    if (keyPressed==true &&key == 'k') {
-      randomVertex(maskA_5);
-    } else {
-      returnVertex(RmaskA_5, maskA_4);
-    }
-    maskA_5.disableStyle();//鼻子
-    {
-      s3d.tint( color(255, anim(200,100,255,2), anim(200,100,255,4)));
-      s3d.shape(maskA_5);
-    }
+
+    if (keyPressed==true &&key == 'k') randomVertex(maskA_5);
+    else returnVertex(RmaskA_5, maskA_5);
+
+    maskA_5.disableStyle();
+    s3d.tint( color(255, anim(200, 100, 255, 2), anim(200, 100, 255, 4)));
+    s3d.shape(maskA_5);
     maskA_5.enableStyle();
+
     s3d.popMatrix();
     //---------------
   }

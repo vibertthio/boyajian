@@ -7,18 +7,17 @@ pdLine  toolSwordALineIn;
 pdLine  toolSwordALineOut;
 
 PShape SwordA_1;
-float SwordA_x,SwordA_y;
+float SwordA_x, SwordA_y;
 
 void toolSwordASetting() {
 
   textSwordA= RG.getText("鎏金鈍刀", "wt.ttf", 72, RFont.CENTER);
-  toolSwordALineIn=new pdLine(500, 1000);
-  toolSwordALineOut=new pdLine(3500, 1000);
+
 
   if (showtoolSwordA==false) {
     show[10]=1;
     countLife();
-    toolSwordALine=new pdLine(0, 1000);
+
     toolSwordAIn=true;
     SwordA_1 = loadShape("toolSwordA/sworda.obj");
 
@@ -28,6 +27,9 @@ void toolSwordASetting() {
     show[10]=0;
     countLife();
   }
+  toolSwordALineIn=new pdLine(500, 1000);
+  toolSwordALineOut=new pdLine(3500, 1000);
+  toolSwordALine=new pdLine(0, 1000);
   toolSwordALine.reset();
   toolSwordALineIn.reset();
   toolSwordALineIn.done=false;
@@ -54,7 +56,7 @@ void toolSwordAdrawing() {
       s3d.fill(maskNmae, 155);
 
       {//文字動畫
-         if (toolSwordALineIn.bang==true ) {
+        if (toolSwordALineIn.bang==true ) {
           textSwordA.children[0].transform(70, easeInBack(toolSwordALineIn.oo)*300, 20, 20) ;
           textSwordA.children[1].transform(102, -easeInBack(toolSwordALineIn.oo)*300, 20, 20) ;
           textSwordA.children[2].transform(137, easeInBack(toolSwordALineIn.oo)*300, 20, 20) ;
@@ -91,7 +93,6 @@ void toolSwordAdrawing() {
     s3d.rotateZ(pow(sin((a2+70)/90*6.28), 4.0)*0.2);
     s3d.shape(SwordA_1);
     s3d.popMatrix();
-
   }
   s3d.popMatrix();
 }

@@ -9,6 +9,9 @@ int pp = 0;
 boolean logo3Changing = false;
 boolean logo3Rotating = false;
 
+boolean bgChanging = false;
+boolean bgBlending = false;
+
 // Vibert's
 Animations animations;
 PImage bgbg;
@@ -22,10 +25,21 @@ color[] colors = {
   color(18, 99, 104), 
 };
 
-void logoSetting() {
+void defultSetting() {
+  textSize(64);
   logoRo=new pdLine2(0, 0);
   logoMoving = createGraphics(1500, 1000, P2D);
   logoMirror = createGraphics(1000, 1000, P2D);
+
+  square = createShape(RECT, 0, 0, width, height);
+  tex= createGraphics(1500, 1000, P2D);
+  s3d= createGraphics(width, height, P3D);
+
+  ptnGroup= createGraphics(width, height, P2D);
+  scence= createGraphics(width, height, P2D);
+  finalRender= createGraphics(width, height, P2D);
+
+
 
   bgbg= loadImage("img/bg.png");
 
@@ -43,9 +57,33 @@ void logoSetting() {
 
   // Vibert's
   animations = new Animations(logoMirror);
+
+  myBus.sendNoteOff(0, 41, 0);
+  myBus.sendNoteOff(0, 42, 0);
+  myBus.sendNoteOff(0, 43, 0);
+  myBus.sendNoteOff(0, 44, 0);
+  myBus.sendNoteOff(0, 57, 0);
+  myBus.sendNoteOff(0, 58, 0);
+  myBus.sendNoteOff(0, 59, 0);
+  myBus.sendNoteOff(0, 60, 0);
+
+  myBus.sendNoteOff(0, 73, 0);
+  myBus.sendNoteOff(0, 74, 0);
+  myBus.sendNoteOff(0, 75, 0);
+  myBus.sendNoteOff(0, 76, 0);
+  myBus.sendNoteOff(0, 89, 0);
+  myBus.sendNoteOff(0, 90, 0);
+  myBus.sendNoteOff(0, 91, 0);
+  myBus.sendNoteOff(0, 92, 0);
 }
 
 void logoDrawing() {
+  if (frameCount%100==0) if (bgChanging) {
+    imgIndex=int(random(5));
+    blendGLSL.set( "lowLayer", bgs [imgIndex]);
+  }
+  if (frameCount%100==0) if (bgBlending) blendIndex = int(random(10));
+
   logoRo.update();
   logoMirror.beginDraw();
   logoMirror.background(125);
@@ -104,21 +142,20 @@ void logos_3() {
     }
   }
 
-  
+
   logoMoving.pushMatrix();
   logoMoving.translate(0+250, logoMirror.height/2);
   logoMoving.scale(1, 1);
   logoMoving.rotate(radians(logoRo.o));
   logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
   logoMoving.popMatrix();
-  
+
   logoMoving.pushMatrix();
   logoMoving.translate(logoMirror.width+250, logoMirror.height/2);
   logoMoving.scale(-1, 1);
   logoMoving.rotate(radians(logoRo.o));
   logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
   logoMoving.popMatrix();
-  
 }
 
 
