@@ -27,8 +27,6 @@ void maskListenSetting() {
     listen_2=  loadShape("maskListen/listen_2.obj");
     listen_3 = loadShape("maskListen/listen_3.obj");
     showMaskListen =true;
-
-
   } else if (showMaskListen==true) {
     MaskListenIn=false;
     show[3]=0;
@@ -51,42 +49,34 @@ void maskListendrawing() {
   s3d.pushMatrix();
   {
     Listen_x=width/2+countX[3].o;
-    Listen_y=height/2+27;
-    //----fade
-    if (MaskListenIn==true)s3d.translate(0, map(easeOutBack(MaskListenLine.o), 0, 1, 500, 0));
-    else  s3d.translate(0, map(easeInBack(MaskListenLine.o), 0, 1, 0, -500));
-    //----fadeEnd
-    {//文字開始
-      s3d.pushMatrix();
-      s3d.translate(width/2, height/2-17, -50);
-      s3d.scale(3.0);
-      s3d.fill(maskNmae, 155);
 
-      {//文字動畫
-       if (MaskListenLineIn.bang==true ) {
-          textListen.children[0].transform(40, easeInBack(MaskListenLineIn.oo)*300, 20, 20) ;
-          textListen.children[1].transform(97, -easeInBack(MaskListenLineIn.oo)*300, 20, 20) ;
-          textListen.children[2].transform(156, easeInBack(MaskListenLineIn.oo)*300, 20, 20) ;
-        } else if (MaskListenLineIn.done==true  ) {
-          textListen.children[0].transform(40, easeInBack(MaskListenLineOut.o)*300, 20, 20) ;
-          textListen.children[1].transform(97, -easeInBack(MaskListenLineOut.o)*300, 20, 20) ;
-          textListen.children[2].transform(156, easeInBack(MaskListenLineOut.o)*300, 20, 20) ;
-          defultCam();
-        }
+    if (MaskListenIn==true)Listen_y=height/2+27+ map(easeOutBack(MaskListenLine.o), 0, 1, 500, 0);
+    else  Listen_y=height/2+27+map(easeInBack(MaskListenLine.o), 0, 1, 0, -500);
 
-        if (MaskListenLineOut.bang==false) {
-          MaskListenLineIn.done=false;
-        }
-      }//文字動畫結束
+    s3d.translate(Listen_x, Listen_y+anim(300, 0, -50, 2), -50);
 
-      s3d.strokeWeight(1);
-      s3d.noStroke();
-      if (MaskListenLineOut.o>0.001 || MaskListenLineIn.o>0.001 )
-        if ( MaskListenIn==true )textListen.draw(s3d);
-      s3d.popMatrix();
-    }//文字結束
-    //-----model
-    s3d.translate(Listen_x, Listen_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    s3d.pushMatrix();//文字動畫
+    s3d.translate(40, 0, 0);
+    s3d.fill(maskNmae, 155);
+
+
+    if (MaskListenLineIn.bang==true ) {
+      textListen.children[0].transform(40, easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
+      textListen.children[1].transform(97, -easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
+      textListen.children[2].transform(156, easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
+    } else if (MaskListenLineIn.done==true  ) {
+      textListen.children[0].transform(40, easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
+      textListen.children[1].transform(97, -easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
+      textListen.children[2].transform(156, easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
+      defultCam();
+    }
+
+    if (MaskListenLineOut.bang==false) MaskListenLineIn.done=false;
+    if (MaskListenLineOut.o<0.99 &&MaskListenLineIn.o>0.01 && MaskListenIn==true)textListen.draw(s3d);
+    
+    s3d.popMatrix();//文字結束
+
+
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動

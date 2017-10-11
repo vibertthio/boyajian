@@ -300,7 +300,7 @@ void countLife() {
 
   for (int i=0; i<20; i++) if (show[i]==1) {
     kk++;
-    countX[i].reset(posAvg(1000, k, kk)-500);
+    countX[i].reset(posAvg(1400, k, kk)-700);
   }
 }
 

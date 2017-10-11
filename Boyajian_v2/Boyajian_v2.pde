@@ -10,7 +10,10 @@ import controlP5.*;
 ControlP5 cp5;
 CheckBox checkbox;
 
-PMatrix mat_scene; // to store initial PMatrix
+//---------------
+import oscP5.*;
+import netP5.*;
+OscP5  receiveCeiling;
 
 float ry;
 PImage[] bgs=new PImage[5] ;
@@ -30,6 +33,8 @@ int indexPtns=0;
 
 int workTime;
 int[] show= new int[20];
+float ptnScale=1;
+float ptnRo=0;
 
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
@@ -45,23 +50,16 @@ void settings() {
 
 void setup() {
   RG.init(this);
-  mat_scene = getMatrix();
-
 
   MidiBus.list();
   myBus = new MidiBus(this, 0, 1);
 
   defultSetting() ;
   s3dSetting() ;
-
-
   shaderSetting();
   uiSetting();
 
-  globe = loadShape("3d/sphere.obj");
-  Rglobe = loadShape("3d/sphere.obj");
-  globe.setStroke(false);
-  globe.setTexture(tex);
+
 
   autoCamMetro=new pdMetro(1000);
   autoCamMetro.reset();
@@ -104,7 +102,6 @@ void draw() {
   scence.background(0);
   scence.imageMode(CENTER);
   //---------------*過一個加強對比效果
-  effectGLSL.set("time", millis()/1000.0);
   scence.shader(contrastGLSL);
   //---------------*過一個加強對比效果
   scence.image(s3d, width/2, height/2, width, height);//面具畫在的buffer
@@ -120,15 +117,26 @@ void draw() {
     ptnGroup.beginDraw();
     ptnGroup.background(0);
     ptnGroup.imageMode(CENTER);
+
     if (frameCount%10==0) {
+
       indexPtns =int(random(14));
       int index =int(random(5));
       finalGLSL.set( "blendAlpha", 1.0f );
       finalGLSL.set( "blendMode", indexSelectBlend [index]);
     }
-
-    ptnGroup.image(ptns[indexPtns], width/2, height/2, width, height);//圖騰畫在的buffer
+    if (frameCount%30==0) { 
+      ptnScale=random(0.5, 1.5);
+      int k=int(random(4));
+      if (k==0) ptnRo=90;
+      else ptnRo=0;
+    }
+    ptnGroup.translate(width/2,height/2);
+    ptnGroup.rotate(radians(ptnRo));
+    ptnGroup.image(ptns[indexPtns], 0, 0, width*ptnScale, height*ptnScale);//圖騰畫在的buffer
     ptnGroup.endDraw();
+
+
 
     finalRender.beginDraw();
     finalRender.background(255);

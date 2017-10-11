@@ -53,48 +53,37 @@ void maskMemorydrawing() {
   s3d.pushMatrix();
   {
     Memory_x=width/2+countX[4].o;
-    Memory_y=height/2+100;
-    //----fade
-    if (MaskMemoryIn==true)s3d.translate(0, map(easeOutBack(MaskMemoryLine.o), 0, 1, 500, 0));
-    else  s3d.translate(0, map(easeInBack(MaskMemoryLine.o), 0, 1, 0, -500));
-    //----fadeEnd
 
-    {//文字開始
-      s3d.pushMatrix();
-      s3d.translate(width/2, height/2-17, -50);
-      s3d.scale(3.0);
-      s3d.fill(maskNmae, 155);
+    if (MaskMemoryIn==true) Memory_y=height/2+100+map(easeOutBack(MaskMemoryLine.o), 0, 1, 500, 0);
+    else   Memory_y=height/2+100+map(easeInBack(MaskMemoryLine.o), 0, 1, 0, -500);
 
-      {//文字動畫
-        if (MaskMemoryLineIn.bang==true ) {
-          textMemory.children[0].transform(36, easeInBack(MaskMemoryLineIn.oo)*300, 20, 20) ;
-          textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineIn.oo)*300, 20, 20) ;
-          textMemory.children[2].transform(105, easeInBack(MaskMemoryLineIn.oo)*300, 20, 20) ;
-          textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineIn.oo)*300, 20, 20) ;
-          textMemory.children[4].transform(171, -easeInBack(MaskMemoryLineOut.o)*300, 20, 20) ;
-        } else if (MaskMemoryLineIn.done==true  ) {
-          textMemory.children[0].transform(36, easeInBack(MaskMemoryLineOut.o)*300, 20, 20) ;
-          textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineOut.o)*300, 20, 20) ;
-          textMemory.children[2].transform(105, easeInBack(MaskMemoryLineOut.o)*300, 20, 20) ;
-          textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineOut.o)*300, 20, 20) ;
-          textMemory.children[4].transform(171, -easeInBack(MaskMemoryLineOut.o)*300, 20, 20) ;
-          defultCam();
-        }
+    s3d.translate(Memory_x, Memory_y+anim(300, 0, -50, 2), -50);
+    
+    s3d.pushMatrix();
+    s3d.translate(40, 0, 0);
+    s3d.fill(maskNmae, 155);
 
-        if (MaskMemoryLineOut.bang==false) {
-          MaskMemoryLineIn.done=false;
-        }
-      }//文字動畫結束
 
-      s3d.strokeWeight(1);
-      s3d.noStroke();
-      if (MaskMemoryLineOut.o>0.001 || MaskMemoryLineIn.o>0.001 )
-        if ( MaskMemoryIn==true )textMemory.draw(s3d);
-      s3d.popMatrix();
-    }//文字結束
-    //-----model
+    if (MaskMemoryLineIn.bang==true ) {
+      textMemory.children[0].transform(36, easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+      textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+      textMemory.children[2].transform(105, easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+      textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+      textMemory.children[4].transform(171, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    } else if (MaskMemoryLineIn.done==true  ) {
+      textMemory.children[0].transform(36, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+      textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+      textMemory.children[2].transform(105, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+      textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+      textMemory.children[4].transform(171, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+      defultCam();
+    }
 
-    s3d.translate(Memory_x, Memory_y+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    if (MaskMemoryLineOut.bang==false) MaskMemoryLineIn.done=false;
+    if (MaskMemoryLineOut.o<0.99 && MaskMemoryLineIn.o>0.001 && MaskMemoryIn==true)textMemory.draw(s3d);
+
+    s3d.popMatrix();
+
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動

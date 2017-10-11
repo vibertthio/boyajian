@@ -29,48 +29,10 @@ void s3dSetting() {
     PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));
     particles[i] = new Particle(p);
   }
-
-
-
-
-
-
-
-  MaskListenLineIn=new pdLine(500, 1000);
-  MaskListenLineOut=new pdLine(3500, 1000);
-  MaskListenLine=new pdLine(0, 1000);
-
-  MaskMemoryLineIn=new pdLine(500, 1000);
-  MaskMemoryLineOut=new pdLine(3500, 1000);
-  MaskMemoryLine=new pdLine(0, 1000);
-
-  MaskSmellLineIn=new pdLine(500, 1000);
-  MaskSmellLineOut=new pdLine(3500, 1000);
-  MaskSmellLine=new pdLine(0, 1000);
-
-  MaskTasteLineIn=new pdLine(500, 1000);
-  MaskTasteLineOut=new pdLine(3500, 1000);
-  MaskTasteLine=new pdLine(0, 1000);
-
-  MaskTouchLineIn=new pdLine(500, 1000);
-  MaskTouchLineOut=new pdLine(3500, 1000);
-  MaskTouchLine=new pdLine(0, 1000);
-
-  toolShieldALineIn=new pdLine(500, 1000);
-  toolShieldALineOut=new pdLine(3500, 1000);
-  toolShieldALine=new pdLine(0, 1000);
-
-  toolShieldBLineIn=new pdLine(500, 1000);
-  toolShieldBLineOut=new pdLine(3500, 1000);
-  toolShieldBLine=new pdLine(0, 1000);
-
-  toolSwordALineIn=new pdLine(500, 1000);
-  toolSwordALineOut=new pdLine(3500, 1000);
-  toolSwordALine=new pdLine(0, 1000);
-
-  toolSwordBLineIn=new pdLine(500, 1000);
-  toolSwordBLineOut=new pdLine(3500, 1000);
-  toolSwordBLine=new pdLine(0, 1000);
+  globe = loadShape("3d/sphere.obj");
+  Rglobe = loadShape("3d/sphere.obj");
+  globe.setStroke(false);
+  globe.setTexture(tex);
 }
 
 void s3dDrawing() {

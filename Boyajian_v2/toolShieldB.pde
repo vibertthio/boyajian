@@ -46,43 +46,34 @@ void toolShieldBdrawing() {
   s3d.pushMatrix();
   {
     ShieldB_x=width/2+countX[8].o;
-    ShieldB_y=height/2+-54;
+
     //----fade
-    if (toolShieldBIn==true)s3d.translate(0, map(easeOutBack(toolShieldBLine.o), 0, 1, 500, 0));
-    else  s3d.translate(0, map(easeInBack(toolShieldBLine.o), 0, 1, 0, -500));
-    //----fadeEnd
-    {//文字開始
-      s3d.pushMatrix();
-      s3d.translate(width/2, height/2-17, -50);
-      s3d.scale(3.0);
-      s3d.fill(maskNmae, 155);
+    if (toolShieldBIn==true)ShieldB_y=height/2+56+map(easeOutBack(toolShieldBLine.o), 0, 1, 500, 0);
+    else  ShieldB_y=height/2+56+map(easeInBack(toolShieldBLine.o), 0, 1, 0, -500);
 
-      {//文字動畫
-        if (toolShieldBLineIn.bang==true ) {
-          textShieldB.children[0].transform(40, easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
-          textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
-          textShieldB.children[2].transform(156, easeInBack(toolShieldBLineIn.oo)*300, 20, 20) ;
-        } else if (toolShieldBLineIn.done==true  ) {
-          textShieldB.children[0].transform(40, easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
-          textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
-          textShieldB.children[2].transform(156, easeInBack(toolShieldBLineOut.o)*300, 20, 20) ;
-          defultCam();
-        }
+    s3d.translate(ShieldB_x, ShieldB_y+anim(300, 0, -50, 2), -50);
 
-        if (toolShieldBLineOut.bang==false) {
-          toolShieldBLineIn.done=false;
-        }
-      }//文字動畫結束
+    s3d.pushMatrix();
+    s3d.translate(40,0, -50);
+    s3d.fill(maskNmae, 155);
 
-      s3d.strokeWeight(1);
-      s3d.noStroke();
-      if (toolShieldBLineOut.o>0.001 || toolShieldBLineIn.o>0.001 )
-        if ( toolShieldBIn==true )textShieldB.draw(s3d);
-      s3d.popMatrix();
-    }//文字結束
-    //-----model
 
-    s3d.translate(ShieldB_x, ShieldB_y+110+map(sin(float(frameCount%300)/300*6.28), -1, 1, 0, -50), -50);
+    if (toolShieldBLineIn.bang==true ) {
+      textShieldB.children[0].transform(40, easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
+      textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
+      textShieldB.children[2].transform(156, easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
+    } else if (toolShieldBLineIn.done==true  ) {
+      textShieldB.children[0].transform(40, easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
+      textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
+      textShieldB.children[2].transform(156, easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
+      defultCam();
+    }
+
+    if (toolShieldBLineOut.bang==false)  toolShieldBLineIn.done=false;
+    if (toolShieldBLineOut.o<0.99 && toolShieldBLineIn.o>0.001 &&toolShieldBIn==true )textShieldB.draw(s3d);
+
+    s3d.popMatrix();
+
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
     //--------------抖動
@@ -90,7 +81,6 @@ void toolShieldBdrawing() {
     s3d.scale(0.47);
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(pow(sin((a2+60)/90*6.28), 4.0)*0.2);
     s3d.shape(ShieldB_1);
     s3d.popMatrix();
   }
