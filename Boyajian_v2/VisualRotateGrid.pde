@@ -106,7 +106,7 @@ class Rectangle {
     canvas.pushMatrix();
     canvas.translate(300, 300);
     canvas.noStroke();
-    canvas.fill(grid.col, 100);
+    canvas.fill(grid.col,map(layer[6],135,255,0,255));
     canvas.rectMode(CENTER);
     canvas.translate(xpos, ypos);
     canvas.rotate(vr ? angle : (angle + (PI * .5)));

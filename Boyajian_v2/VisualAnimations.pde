@@ -22,8 +22,13 @@ class Animations {
      strips.draw();
     }
 
-    growGrid.draw();
-    rotateGrid.draw();
+    if (layer[6]<115) {
+      growGrid.draw();
+    }
+
+    if (layer[6]>135) {
+      rotateGrid.draw();
+    }
 
     if (layer[2]>10) {
       slashes.draw();

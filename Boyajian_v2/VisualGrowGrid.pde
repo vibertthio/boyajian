@@ -41,7 +41,7 @@ class GrowGrid {
     canvas.pushMatrix();
     canvas.translate(300, 300);
     canvas.noStroke();
-    canvas.fill(col, 100);
+    canvas.fill(col, map(layer[6],115,0,0,255));
     canvas.rectMode(CENTER);
     canvas.translate(x, y);
     canvas.rotate(PI * .25);

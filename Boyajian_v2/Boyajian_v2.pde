@@ -59,7 +59,9 @@ void settings() {
 
 void setup() {
   layer[1]=255;
-  layer[2]=255;
+  layer[2]=0;
+  layer[3]=0;
+  layer[6]=125;//0-115 for growGrid,135~255 for rotateGrid
   RG.init(this);
 
   randomSeed(1000);
