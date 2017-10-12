@@ -32,18 +32,16 @@ PGraphics finalRender;
 PGraphics ptnGroup;
 PGraphics columnImg;
 
-
 int indexPtns=0;
-
 int workTime;
 int[] show= new int[20];
+
 float ptnScale=1;
 float ptnRo=0;
 float[] layer=new  float[9];
 
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
-
 boolean oscCtl=true;
 
 color maskNmae=color(255);
