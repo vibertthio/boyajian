@@ -1,6 +1,3 @@
-// Aluan
-/////dsfsdfsdfs
-
 //Boyajian_v2.pde
 import com.jogamp.opengl.GL2;
 import geomerative.*;
@@ -46,6 +43,7 @@ float[] layer=new  float[9];
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
 boolean oscCtl=true;
+boolean wireFrameCtl=false;
 
 color maskNmae=color(255);
 
@@ -81,6 +79,7 @@ void setup() {
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
   }
+  //hint(DISABLE_DEPTH_MASK);
 }
 
 void draw() {

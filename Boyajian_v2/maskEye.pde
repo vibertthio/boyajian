@@ -21,6 +21,7 @@ PShape RmaskA_3_1;
 PShape RmaskA_3_2;
 PShape RmaskA_4;
 PShape RmaskA_5;
+PImage EyeImg;
 
 float Eye_x, Eye_y;
 
@@ -34,6 +35,7 @@ void maskEyeSetting() {
     countLife();
 
     MaskEyeIn=true;
+    EyeImg=loadImage("maskEye/tex_eye.png");
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
     maskA_2 = loadShape("maskEye/maskA_2.obj");
@@ -174,14 +176,35 @@ void maskEyedrawing() {
 
     if (keyPressed==true &&key == 'k') randomVertex(maskA_5);
     else returnVertex(RmaskA_5, maskA_5);
-
-    maskA_5.disableStyle();
-    s3d.tint( color(255, anim(200, 100, 255, 2), anim(200, 100, 255, 4)));
-    s3d.shape(maskA_5);
-    maskA_5.enableStyle();
+    if (wireFrameCtl==false) {
+      maskA_5.disableStyle();
+      s3d.tint( color(255, anim(200, 100, 255, 2), anim(200, 100, 255, 4)));
+      s3d.shape(maskA_5);
+      maskA_5.enableStyle();
+    } else {
+      s3d.tint( color(255, anim(200, 100, 255, 2), anim(200, 100, 255, 4)));
+      s3d.shape(maskA_5);
+    }
 
     s3d.popMatrix();
     //---------------
+    if (wireFrameCtl==true) {
+      noWireFrame( maskA_1_1);
+      noWireFrame( maskA_1_2);
+      noWireFrame( maskA_2);
+      noWireFrame( maskA_3_1);
+      noWireFrame( maskA_3_2);
+      noWireFrame( maskA_4);
+      noWireFrame( maskA_5);
+    } else {
+      setTexture( maskA_1_1, EyeImg);
+      setTexture( maskA_1_2, EyeImg);
+      setTexture(maskA_2, EyeImg);
+      setTexture( maskA_3_1, EyeImg);
+      setTexture( maskA_3_2, EyeImg);
+      setTexture( maskA_4, EyeImg);
+      setTexture( maskA_5, EyeImg);
+    }
   }
   s3d.popMatrix();
 }

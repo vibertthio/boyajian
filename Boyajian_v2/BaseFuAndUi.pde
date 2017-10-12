@@ -77,7 +77,7 @@ float randomVel=6;
 void randomVertex(PShape who) {
 
   if (randomVel<30) {
-    randomVel=randomVel+0.1;
+    randomVel=randomVel+(randomVel/50);
   }
   for (int j=0; j<who.getChildCount(); j++) {
     for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
@@ -306,4 +306,19 @@ void countLife() {
 
 float anim(int num, float start, float end, float pp) {
   return map(pow(sin((float(frameCount)%num)/num*6.28), pp), 0, 1, start, end);
+}
+
+void noWireFrame(PShape who) {
+  who.setStroke(true);
+  who.setTexture(null);
+  who.setFill(false);
+  who.setStroke(color(255,120));
+  who.setStrokeWeight(2.0f);
+}
+
+void setTexture(PShape who, PImage target) {
+  who.setStroke(false);
+  who.setFill(true);
+  who.setTexture(target);
+  who.setFill(color(255,80));
 }

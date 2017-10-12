@@ -17,14 +17,18 @@ float[] cam={600, 200, 430, 0, 0};
 Particle[] particles;
 int p_num = 100;
 PImage eyeImg;
+PImage black;
+
 float showParticleCount=0;
 
 PShape globe;
 PShape Rglobe;
-
+PMatrix mat_scene;
 
 void s3dSetting() {
+  mat_scene = getMatrix();
   eyeImg=loadImage("img/p_eye.png");
+  black=loadImage("img/black.png");
   particles = new Particle[p_num];
   for (int i = 0; i < p_num; i++) {
     PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));
@@ -45,8 +49,16 @@ void s3dDrawing() {
   a3=(a1+1)%150;
 
   s3d.beginDraw();
-  //s3d.background(bgbg);
-  s3d.background(255, 155, 0, 0);
+
+  s3d.background(0, 2);
+
+  //s3d.rectMode(CORNER);
+  if (wireFrameCtl==true && frameCount%20==0 ){
+    //setMatrix(mat_scene);
+    //s3d.fill(0,15);
+    //s3d.rect(0,0,width*3,height*3);
+  }
+
   if (showMaskEye==true) {
     if (showParticleCount<255) showParticleCount+=1;
   } else {
@@ -97,6 +109,8 @@ void s3dDrawing() {
   gl.glAlphaFunc(GL2.GL_GREATER, 0.1);
   endPGL();
 
+
+
   if (showMaskEye==true) maskEyedrawing();
   if (showMaskListen==true)maskListendrawing();
   if (showMaskSmell==true) maskSmelldrawing();
@@ -118,6 +132,10 @@ void s3dDrawing() {
 
   if (keyPressed==true &&key == 'k') randomVertex(globe);
   else returnVertex(Rglobe, globe);
+
+  if (wireFrameCtl==true) noWireFrame(globe);
+  else setTexture( globe, tex);
+
 
   s3d.shape(globe);
   s3d.popMatrix();

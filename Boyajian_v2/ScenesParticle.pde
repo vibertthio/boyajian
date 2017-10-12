@@ -23,7 +23,7 @@ class Particle {
     vel.add(acc);
     vel.limit(5);
     pos.add(vel);
-    acc.mult(0);
+    acc.mult(map(randomVel,6,30,0,1));
   }
 
   void render() {
@@ -36,7 +36,14 @@ class Particle {
 
     s3d.tint(c, 230);
     s3d.scale(showParticleCount/255);
-    s3d.image(eyeImg, 0, 0, mass*20, mass*20);
+
+    if (wireFrameCtl==true) {
+      s3d.noFill();
+      s3d.stroke(255, 50);
+      s3d.strokeWeight(2);
+      s3d.ellipse( 0, 0, mass*20, mass*20);
+    } else  s3d.image(eyeImg, 0, 0, mass*20, mass*20);
+
 
     s3d.popMatrix();
   }

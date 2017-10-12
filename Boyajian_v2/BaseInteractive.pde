@@ -35,6 +35,9 @@ void keyPressed() {
     imgIndex=2;
   }
 
+  if (key == 'w') wireFrameCtl =!wireFrameCtl;
+
+
   // change background and shader algorithm
   if (key == CODED) {
     if (keyCode == UP) {
