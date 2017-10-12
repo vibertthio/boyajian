@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 // Aluan
 /////dsfsdfsdfs
-=======
-// Vibert
->>>>>>> origin/master
 
 //Boyajian_v2.pde
 import com.jogamp.opengl.GL2;
