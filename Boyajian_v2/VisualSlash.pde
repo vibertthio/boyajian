@@ -1,3 +1,4 @@
+//VisualSlash.pde
 class Slash {
   float x1;
   float x2;
@@ -58,7 +59,7 @@ class Slash {
     }
 
      who.noStroke();
-     who.fill(c, 200);
+     who.fill(c, layer[2]);
     if (vertical) {
       who.quad(x1, y1-taille, x1, y1+taille, x2, y2+taille, x2, y2-taille);
     } else {

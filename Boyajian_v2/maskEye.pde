@@ -86,25 +86,25 @@ void maskEyedrawing() {
     s3d.translate(Eye_x, Eye_y+anim(300, 0, -50, 2), -50);//升降
 
     s3d.pushMatrix();//文字開始
-    
-      s3d.translate(40, 0, 0);
-      s3d.fill(maskNmae, 155);
-        if (MaskEyeLineIn.bang==true ) {
-          textEye.children[0].transform(70, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-          textEye.children[1].transform(102, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-          textEye.children[2].transform(137, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-          textEye.children[3].transform(172, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-        } else if (MaskEyeLineIn.done==true  ) {
-          textEye.children[0].transform(70, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-          textEye.children[1].transform(102, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-          textEye.children[2].transform(137, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-          textEye.children[3].transform(172, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-          defultCam();
-        }
 
-        if (MaskEyeLineOut.bang==false) MaskEyeLineIn.done=false;
-        if (MaskEyeLineOut.o<0.99 && MaskEyeLineIn.o>0.01 && MaskEyeIn==true)textEye.draw(s3d);
-        println(MaskEyeLineOut.o,MaskEyeLineIn.o);
+    s3d.translate(40, 0, 0);
+    s3d.fill(maskNmae, 155);
+    if (MaskEyeLineIn.bang==true ) {
+      textEye.children[0].transform(70, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+      textEye.children[1].transform(102, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+      textEye.children[2].transform(137, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+      textEye.children[3].transform(172, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+    } else if (MaskEyeLineIn.done==true  ) {
+      textEye.children[0].transform(70, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+      textEye.children[1].transform(102, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+      textEye.children[2].transform(137, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+      textEye.children[3].transform(172, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+      defultCam();
+    }
+
+    if (MaskEyeLineOut.bang==false) MaskEyeLineIn.done=false;
+    if (MaskEyeLineOut.o<0.99 && MaskEyeLineIn.o>0.01 && MaskEyeIn==true)textEye.draw(s3d);
+
 
 
     s3d.popMatrix();//文字結束

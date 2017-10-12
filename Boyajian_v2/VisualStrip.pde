@@ -1,3 +1,4 @@
+//VisualStrip.pde
 class Strips {
   Strip[] strips;
   int nOfStrips = 30;
@@ -117,7 +118,7 @@ class Strip {
   void render() {
     pushMatrix();
     canvas.noStroke();
-    canvas.fill(col);
+    canvas.fill(col,layer[3]);
     // canvas.translate(xpos, ypos);
     // canvas.rotate(PI / 2);
     // canvas.rect(0, 0, widthOfStrip, heightOfStrip);

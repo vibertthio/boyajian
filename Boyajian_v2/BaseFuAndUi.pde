@@ -1,4 +1,4 @@
-
+//BaseFuAndUi.pde
 boolean returnState(pdLine l, boolean in) {
   l.update();
   boolean temp=true;
@@ -31,6 +31,7 @@ void showFrameRate() {
   text("Value:"+vl, 50, 130);
   text("NoteIn:"+pi, 50, 150);
   text("Vel:"+vel, 50, 170);
+  text("ch:"+ch, 50, 190);
 }
 
 
@@ -78,7 +79,6 @@ void randomVertex(PShape who) {
   if (randomVel<30) {
     randomVel=randomVel+0.1;
   }
-  println(randomVel);
   for (int j=0; j<who.getChildCount(); j++) {
     for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
       PVector v = who.getChild(j).getVertex(i);
@@ -109,22 +109,22 @@ void returnVertex(PShape origon, PShape who) {
 
 void uiSetting() {
   //---------------*控制開關
-  cp5 = new ControlP5(this);
+  //cp5 = new ControlP5(this);
   //cp5.addToggle("showPtn")
   //  .setPosition(40, 300)
   //  .setSize(40, 20)
   //  .setId(0)
   //  ;
-  cp5.addToggle("l3Rt")
-    .setPosition(40, 250)
-    .setSize(40, 20)
-    .setId(1)
-    ;
-  cp5.addToggle("l3Sw")
-    .setPosition(100, 250)
-    .setSize(40, 20)
-    .setId(2)
-    ;
+  //cp5.addToggle("l3Rt")
+  //  .setPosition(40, 250)
+  //  .setSize(40, 20)
+  //  .setId(1)
+  //  ;
+  //cp5.addToggle("l3Sw")
+  //  .setPosition(100, 250)
+  //  .setSize(40, 20)
+  //  .setId(2)
+  //  ;
   //cp5.addToggle("autoCam")
   //  .setPosition(160, 250)
   //  .setSize(40, 20)

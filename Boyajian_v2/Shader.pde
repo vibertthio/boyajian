@@ -1,3 +1,4 @@
+//Shader.pde
 static final int BL_DARKEN        =  0;
 static final int BL_MULTIPLY      =  1;
 
@@ -29,30 +30,30 @@ static final int BL_COLOR         = 22;
 static final int BL_SATURATION    = 23;
 static final int BL_LUMINOSITY    = 24;
 String[] blendNames = {
-  "Darken", 
-  "Multiply", 
-  "Color burn", 
-  "Linear burn", 
-  "Darker color", 
-  "Lighten", 
-  "Screen", 
-  "Color dodge", 
-  "Linear dodge", 
-  "Lighter color", 
-  "Overlay", 
-  "Soft light", 
-  "Hard light", 
-  "Vivid light", 
-  "Linear light", 
-  "Pin light", 
-  "Hard mix", 
-  "Difference", 
-  "Exclusion", 
-  "Substract", 
-  "Divide", 
-  "Hue", 
-  "Color", 
-  "Saturation", 
+  "Darken",
+  "Multiply",
+  "Color burn",
+  "Linear burn",
+  "Darker color",
+  "Lighten",
+  "Screen",
+  "Color dodge",
+  "Linear dodge",
+  "Lighter color",
+  "Overlay",
+  "Soft light",
+  "Hard light",
+  "Vivid light",
+  "Linear light",
+  "Pin light",
+  "Hard mix",
+  "Difference",
+  "Exclusion",
+  "Substract",
+  "Divide",
+  "Hue",
+  "Color",
+  "Saturation",
   "Luminosity"
 };
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
@@ -68,14 +69,17 @@ PShader effectGLSL;
 PShader blendGLSL;
 PShader finalGLSL;
 
+float contrastA=0.1;
+float contrastB=0.5;
+
 void shaderSetting() {
   logo=loadImage("img/logo.png");
   for (int i=0; i<5; i++) bgs[i]=loadImage("img/bgtex_"+i+".jpg");
   for (int i=0; i<14; i++) ptns[i]=loadImage("img/ptns_"+i+".png");
-  for (int i=0; i<6; i++) pattern[i]=loadImage("img/p_"+i+".png");
+  for (int i=0; i<15; i++) pattern[i]=loadImage("img/p_"+i+".png");
 
   contrastGLSL = loadShader("glsl/contrast.glsl");
-  contrastGLSL.set("vel", 0.1, 0.5);
+  contrastGLSL.set("vel", contrastA, contrastB);
 
   effectGLSL = loadShader("glsl/no.glsl");
 
@@ -85,6 +89,7 @@ void shaderSetting() {
   blendGLSL.set( "sketchSize", float(width), float(height) );
   blendGLSL.set( "topLayerResolution", float( tex.width ), float( tex.height ) );
   blendGLSL.set( "lowLayerResolution", float( tex.width ), float( tex.height ) );
+  blendGLSL.set( "allAlpha", 1.0f );
 
 
   finalGLSL= loadShader("glsl/blendMode.glsl");
@@ -93,6 +98,7 @@ void shaderSetting() {
   finalGLSL.set( "sketchSize", float(width), float(height) );
   finalGLSL.set( "topLayerResolution", float( scence.width ), float( scence.height ) );
   finalGLSL.set( "lowLayerResolution", float( scence.width ), float( scence.height ) );
+  finalGLSL.set( "allAlpha", 1.0f );
 
 
   square.setTexture(tex);

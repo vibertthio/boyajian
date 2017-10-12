@@ -1,4 +1,4 @@
-/*
+/* Easing.pde
  * Easing.pde - brings Robert Penner's easing functions into Processing
  * (c) 2015 cocopon.
  *
@@ -123,7 +123,7 @@ public class EasingInElastic implements Easing {
 public class EasingInExpo implements Easing {
   public float get(float t) {
     return (t == 0)
-      ? 0 
+      ? 0
       : pow(2, 10 * (t - 1));
   }
 }

@@ -1,3 +1,4 @@
+//Scenes3D.pde
 float a1;
 float a2;
 float a3;
@@ -35,6 +36,9 @@ void s3dSetting() {
   globe.setTexture(tex);
 }
 
+float  Falloff=1.8;
+
+
 void s3dDrawing() {
   a1=(a1+1)%360;
   a2=(a1+1)%180;
@@ -58,7 +62,7 @@ void s3dDrawing() {
   {
     s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
 
-    s3d.lightFalloff(1.80, 0.001, 0.000);
+    s3d.lightFalloff(Falloff, 0.001, 0.000);
     s3d.directionalLight(255, 256, 255, 0, -100, -300);
     s3d.pointLight(255, 255, 255, 300, 200, 300);
     s3d.ambientLight(73, 52, 20);

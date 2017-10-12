@@ -305,5 +305,6 @@ void main(void)
 
 	// apply opacity
     vec3 pixelColor = mix( d.rgb, c.rgb, max( 0.0, blendAlpha ) );
-	gl_FragColor = vec4( pixelColor.rgb, allAlpha);
+		vec3 black=mix( vec3(0.0,0.0,0.0), c.rgb,  max( 0.0, allAlpha )   );
+	gl_FragColor = vec4( black.rgb, 1.0);
 }

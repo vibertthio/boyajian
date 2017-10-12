@@ -1,3 +1,4 @@
+//VisualRotateGrid.pde
 class RotateGrid {
   PGraphics canvas;
   Rectangle[] recs;

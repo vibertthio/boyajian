@@ -1,3 +1,5 @@
+//VisuallogoMoving.pde
+
 Slash[] slash;
 int nb = 40;
 
@@ -14,6 +16,7 @@ boolean bgBlending = false;
 
 // Vibert's
 Animations animations;
+
 PImage bgbg;
 pdLine2 logoRo;
 
@@ -36,8 +39,27 @@ void defultSetting() {
   s3d= createGraphics(width, height, P3D);
 
   ptnGroup= createGraphics(width, height, P2D);
+  columnImg= createGraphics(width, height, P2D);
   scence= createGraphics(width, height, P2D);
   finalRender= createGraphics(width, height, P2D);
+
+  myBus.sendNoteOff(0, 24, 0);
+  myBus.sendNoteOff(0, 25, 0);
+  myBus.sendNoteOff(0, 26, 0);
+  myBus.sendNoteOff(0, 27, 0);
+  myBus.sendNoteOff(0, 28, 0);
+  myBus.sendNoteOff(0, 29, 0);
+  myBus.sendNoteOff(0, 30, 0);
+  myBus.sendNoteOff(0, 31, 0);
+
+  myBus.sendNoteOff(0, 36, 0);
+  myBus.sendNoteOff(0, 37, 0);
+  myBus.sendNoteOff(0, 38, 0);
+  myBus.sendNoteOff(0, 39, 0);
+  myBus.sendNoteOff(0, 40, 0);
+  myBus.sendNoteOff(0, 41, 0);
+  myBus.sendNoteOff(0, 42, 0);
+  myBus.sendNoteOff(0, 43, 0);
 
 
 
@@ -57,24 +79,6 @@ void defultSetting() {
 
   // Vibert's
   animations = new Animations(logoMirror);
-
-  myBus.sendNoteOff(0, 41, 0);
-  myBus.sendNoteOff(0, 42, 0);
-  myBus.sendNoteOff(0, 43, 0);
-  myBus.sendNoteOff(0, 44, 0);
-  myBus.sendNoteOff(0, 57, 0);
-  myBus.sendNoteOff(0, 58, 0);
-  myBus.sendNoteOff(0, 59, 0);
-  myBus.sendNoteOff(0, 60, 0);
-
-  myBus.sendNoteOff(0, 73, 0);
-  myBus.sendNoteOff(0, 74, 0);
-  myBus.sendNoteOff(0, 75, 0);
-  myBus.sendNoteOff(0, 76, 0);
-  myBus.sendNoteOff(0, 89, 0);
-  myBus.sendNoteOff(0, 90, 0);
-  myBus.sendNoteOff(0, 91, 0);
-  myBus.sendNoteOff(0, 92, 0);
 }
 
 void logoDrawing() {
@@ -88,7 +92,10 @@ void logoDrawing() {
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
-  //logosMirrorDraw();//打開slash 開關
+
+  if (layer[2]>10) {
+    logosMirrorDraw();//打開slash 開關
+  }
   logos_vibert();
   logoMirror.endDraw();
 
@@ -97,8 +104,13 @@ void logoDrawing() {
   logoMoving.imageMode(CENTER);
   logoMoving.blendMode(BLEND);
 
-  logos_3();//旋轉靜態圖
-  //logos_1();//鏡射
+
+  logos_1();//鏡射
+
+
+
+  //logos_3();//旋轉靜態圖
+
   // logos_2();//repeat logo
   logoMoving.endDraw();
 }
@@ -115,13 +127,13 @@ void logos_vibert() {
 
 void logos_1() {
   logoMoving.pushMatrix();
-  logoMoving.translate(0+63, logoMirror.height/2);
+  logoMoving.translate(0+151, logoMirror.height/2);
   logoMoving.scale(1, 1);
   logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
   logoMoving.popMatrix();
 
   logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+263, logoMirror.height/2);
+  logoMoving.translate(logoMirror.width+351, logoMirror.height/2);
   logoMoving.scale(-1, 1);
   logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
   logoMoving.popMatrix();
@@ -138,10 +150,9 @@ void logos_3() {
 
   if (frameCount%50==0) {
     if (logo3Changing) {
-      pp=int(random(6));
+      pp=int(random(15));
     }
   }
-
 
   logoMoving.pushMatrix();
   logoMoving.translate(0+250, logoMirror.height/2);

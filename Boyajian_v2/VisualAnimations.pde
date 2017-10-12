@@ -1,3 +1,4 @@
+//VisualAnimations.pde
 class Animations {
   PGraphics canvas;
   Strips strips;
@@ -14,7 +15,10 @@ class Animations {
   }
 
   void draw() {
-    //strips.draw();
+    if(layer[3]>10){
+     strips.draw();
+    }
+   
     //growGrid.draw();
     rotateGrid.draw();
   }

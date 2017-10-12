@@ -1,3 +1,4 @@
+//TimeLine.pde
 class TimeLine {
   boolean state;
   int localtime;
@@ -271,10 +272,10 @@ class TimeLine {
       return pow((1-t), linerRate);
     }
   }
-  void setLinerRate(float r) { 
+  void setLinerRate(float r) {
     linerRate = r;
   }
-  void setRepeatTime(int t) { 
+  void setRepeatTime(int t) {
     repeatTime = t;
   }
   boolean startTimer() {
@@ -297,10 +298,10 @@ class TimeLine {
   int currentTime() {
     return millis();
   }
-  void setLoop() { 
+  void setLoop() {
     loop = true;
   }
-  void set1() { 
+  void set1() {
     elapsedTime = limit;
   }
 }

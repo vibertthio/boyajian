@@ -1,3 +1,4 @@
+//VisualGrowGrid.pde
 class GrowGrid {
   PGraphics canvas;
   int time;
