@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 // Aluan
 /////dsfsdfsdfs
+=======
+// Vibert
+>>>>>>> origin/master
 
 //Boyajian_v2.pde
 import com.jogamp.opengl.GL2;
@@ -182,7 +186,6 @@ void draw() {
 
   showFrameRate();
   //stroke(255);
-  //line(width/2, 0, width/2, height);
 
   if (keyPressed==true &&key == 's') {
     //saveFrame(frameCount+".png");
