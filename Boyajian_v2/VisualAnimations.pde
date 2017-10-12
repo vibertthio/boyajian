@@ -14,7 +14,7 @@ class Animations {
     // rotateGrid = new RotateGrid(_c, colors[1]);
     rotateGrid = new RotateGrid(_c, color(255, 255, 255));
 
-    slashes = new Slash(50);
+    slashes = new Slashes(50);
   }
 
   void draw() {

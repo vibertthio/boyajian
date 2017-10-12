@@ -80,9 +80,6 @@ void logoDrawing() {
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
 
-  if (layer[2]>10) {
-    logosMirrorDraw();//打開slash 開關
-  }
   logos_vibert();
   logoMirror.endDraw();
 

@@ -13,15 +13,15 @@ void keyPressed() {
   if (key == '4') {
     effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
     effectGLSL.set("vol", 1.0);
-  } 
+  }
   if (key == '5') {
     effectGLSL = loadShader("glsl/Noisy_Mirror.frag");
     effectGLSL.set("vol", 0.4);
-  } 
+  }
   if (key == '6') {
     effectGLSL = loadShader("glsl/glitch.glsl");
     effectGLSL.set("vol", 0.6);
-  } 
+  }
 
   if (key == 'r') defultCam();
   if (key == 't') randomCam();
@@ -33,12 +33,6 @@ void keyPressed() {
   if (key == 'n') {
     blendIndex=7;
     imgIndex=2;
-  }
-
-  if (key == 'a') {
-    for (int i=0; i<nb; i++) {
-      slash[i].initSlash();
-    }
   }
 
   // change background and shader algorithm
@@ -177,8 +171,8 @@ void sendNote2p5() {
   if (nn==112)if (vv==127)autoBlend(true);
   else autoBlend(false);
 
-  if (nn==113)if (vv==127)l3Sw(true); 
-  else l3Sw(false); 
+  if (nn==113)if (vv==127)l3Sw(true);
+  else l3Sw(false);
 
   if (nn==115)if (vv==127)l3Rt(true);
   else l3Rt(false);

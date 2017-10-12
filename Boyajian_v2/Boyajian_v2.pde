@@ -59,6 +59,7 @@ void settings() {
 
 void setup() {
   layer[1]=255;
+  layer[2]=255;
   RG.init(this);
 
   randomSeed(1000);

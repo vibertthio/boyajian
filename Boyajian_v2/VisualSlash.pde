@@ -13,7 +13,6 @@ class Slashes {
 
   void init() {
     slash = new Slash[numberOfSlashes];
-    numberOfSlashes
     for (int i = 0; i < numberOfSlashes; i++) {
       int cc = int(random(10));
       if (cc == 0) {
