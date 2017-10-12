@@ -1,7 +1,5 @@
 //VisuallogoMoving.pde
 
-Slash[] slash;
-int nb = 40;
 
 PGraphics logoMoving;
 PGraphics logoMirror;
@@ -21,11 +19,11 @@ PImage bgbg;
 pdLine2 logoRo;
 
 color[] colors = {
-  color(253, 148, 38), 
-  color(252, 86, 44), 
-  color(56, 195, 206), 
-  color(124, 156, 124), 
-  color(18, 99, 104), 
+  color(253, 148, 38),
+  color(252, 86, 44),
+  color(56, 195, 206),
+  color(124, 156, 124),
+  color(18, 99, 104),
 };
 
 void defultSetting() {
@@ -65,17 +63,6 @@ void defultSetting() {
 
   bgbg= loadImage("img/bg.png");
 
-  slash = new Slash[nb];
-  for (int i = 0; i < nb; i++) {
-    int cc = int(random(10));
-    if (cc == 0) {
-      slash[i] = new Slash(colors[0]);
-    } else if (cc == 1) {
-      slash[i] = new Slash(colors[1]);
-    } else {
-      slash[i] = new Slash(colors[int(random(2, 4))]);
-    }
-  }
 
   // Vibert's
   animations = new Animations(logoMirror);
@@ -115,11 +102,6 @@ void logoDrawing() {
   logoMoving.endDraw();
 }
 
-void logosMirrorDraw() {
-  for (int i=0; i<nb; i++) {
-    slash[i].draw(logoMirror);
-  }
-}
 
 void logos_vibert() {
   animations.draw();

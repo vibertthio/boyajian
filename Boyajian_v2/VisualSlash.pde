@@ -1,4 +1,38 @@
-//VisualSlash.pde
+class Slashes {
+  Slash[] slash;
+  int numberOfSlashes = 40;
+
+  Slashes() {
+    init();
+  }
+
+  Slashes(int _n) {
+    numberOfSlashes = _n;
+    init();
+  }
+
+  void init() {
+    slash = new Slash[numberOfSlashes];
+    numberOfSlashes
+    for (int i = 0; i < numberOfSlashes; i++) {
+      int cc = int(random(10));
+      if (cc == 0) {
+        slash[i] = new Slash(colors[0]);
+      } else if (cc == 1) {
+        slash[i] = new Slash(colors[1]);
+      } else {
+        slash[i] = new Slash(colors[int(random(2, 4))]);
+      }
+    }
+  }
+
+  void draw() {
+    for (int i=0; i<numberOfSlashes; i++) {
+      slash[i].draw(logoMirror);
+    }
+  }
+}
+
 class Slash {
   float x1;
   float x2;
