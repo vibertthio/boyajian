@@ -25,7 +25,7 @@ void keyPressed() {
 
   if (key == 'r') defultCam();
   if (key == 't') randomCam();
-  if (key == 'e') showPtnTgl = !showPtnTgl;
+  if (key == 's') record = !record;
   if (key == 'b') {
     blendIndex = int(random(10));
     imgIndex=int(random(5));
@@ -36,7 +36,7 @@ void keyPressed() {
   }
 
   if (key == 'w') wireFrameCtl =!wireFrameCtl;
-
+  if (key == 'k') vertexNoise =!vertexNoise;
 
   // change background and shader algorithm
   if (key == CODED) {

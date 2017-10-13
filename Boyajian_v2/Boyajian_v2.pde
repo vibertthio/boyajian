@@ -44,6 +44,8 @@ boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
 boolean oscCtl=true;
 boolean wireFrameCtl=false;
+boolean vertexNoise=false;
+boolean record=false;
 
 color maskNmae=color(255);
 
@@ -185,7 +187,7 @@ void draw() {
   showFrameRate();
   //stroke(255);
 
-  if (keyPressed==true &&key == 's') {
-    //saveFrame(frameCount+".png");
-  }
+  if(record==true)saveFrame("data/record/"+frameCount+".png");
+  
+  
 }

@@ -120,7 +120,7 @@ void maskEyedrawing() {
     s3d.pushMatrix();
     s3d.rotateZ(anim(10, 0, PI*-0.01, 8));
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_1_1);
+    if (vertexNoise==true) randomVertex(maskA_1_1);
     else returnVertex(RmaskA_1_1, maskA_1_1);
 
     s3d.shape(maskA_1_1);
@@ -131,7 +131,7 @@ void maskEyedrawing() {
     s3d.pushMatrix();
     s3d.rotateZ(anim(10, 0, PI*0.01, 8));
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_1_2);
+    if (vertexNoise==true) randomVertex(maskA_1_2);
     else returnVertex(RmaskA_1_2, maskA_1_2);
 
     s3d.shape(maskA_1_2);
@@ -139,7 +139,7 @@ void maskEyedrawing() {
     //---------------臉
     s3d.pushMatrix();
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_2);
+    if (vertexNoise==true) randomVertex(maskA_2);
     else returnVertex(RmaskA_2, maskA_2);
 
     s3d.shape(maskA_2);
@@ -148,7 +148,7 @@ void maskEyedrawing() {
     s3d.pushMatrix();
     s3d.translate(anim(180, 0, -40, 8), 0);
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_3_1);
+    if (vertexNoise==true) randomVertex(maskA_3_1);
     else returnVertex(RmaskA_3_1, maskA_3_1);
 
     s3d.shape(maskA_3_1);
@@ -157,7 +157,7 @@ void maskEyedrawing() {
     s3d.pushMatrix();
     s3d.translate(anim(180, 0, 40, 2), 0);
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_3_2);
+    if (vertexNoise==true) randomVertex(maskA_3_2);
     else returnVertex(RmaskA_3_2, maskA_3_2);
 
     s3d.shape(maskA_3_2);
@@ -166,7 +166,7 @@ void maskEyedrawing() {
     s3d.pushMatrix();
     s3d.rotate((easeInBack(a1/360))*6.28);
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_4);
+    if (vertexNoise==true) randomVertex(maskA_4);
     else returnVertex(RmaskA_4, maskA_4);
 
     s3d.shape(maskA_4);
@@ -174,7 +174,7 @@ void maskEyedrawing() {
     //---------------眼睛
     s3d.pushMatrix();
 
-    if (keyPressed==true &&key == 'k') randomVertex(maskA_5);
+    if (vertexNoise==true) randomVertex(maskA_5);
     else returnVertex(RmaskA_5, maskA_5);
     if (wireFrameCtl==false) {
       maskA_5.disableStyle();

@@ -130,7 +130,7 @@ void s3dDrawing() {
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(252));
 
-  if (keyPressed==true &&key == 'k') randomVertex(globe);
+  if (vertexNoise==true ) randomVertex(globe);
   else returnVertex(Rglobe, globe);
 
   if (wireFrameCtl==true) noWireFrame(globe);
