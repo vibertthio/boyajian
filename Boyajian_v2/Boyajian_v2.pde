@@ -31,6 +31,7 @@ PGraphics scence;
 PGraphics finalRender;
 PGraphics ptnGroup;
 PGraphics columnImg;
+PGraphics crop2;
 
 int indexPtns=0;
 int workTime;
@@ -46,7 +47,8 @@ boolean oscCtl=true;
 boolean wireFrameCtl=false;
 boolean vertexNoise=false;
 boolean record=false;
-
+int splitNum=1; 
+boolean splitScreen=false;
 color maskNmae=color(255);
 
 pdMetro autoCamMetro ;
@@ -131,8 +133,6 @@ void draw() {
   shader(effectGLSL);
   //---------------*過一個視覺特效
 
-
-
   ptnGroup.beginDraw();
   ptnGroup.background(0);
   ptnGroup.imageMode(CENTER);
@@ -162,12 +162,19 @@ void draw() {
   finalRender.rectMode(CENTER);
   finalRender.rect(width/2, height/2, tex.width*1.2f, tex.height*1.6f);  //finalGLSL 產生的東西繪製在這裡
   finalRender.endDraw();
-  imageMode(CENTER);
+
   tint(255, 255);
-  image(finalRender, width/2, height/2, width, height);
+  {//split screen final render
+    if (splitNum==1) {
+      blendMode(BLEND);
+      imageMode(CENTER);
+      image(finalRender, width/2, height/2, width, height);
+    }
+    if (splitNum==2) draw2Split() ;
+    if (splitNum==4) draw4Split() ;      
+  }
 
   resetShader();
-
 
   if (layer[4]>10) {//分割圖騰
     visualColumnDrawing();
@@ -177,17 +184,13 @@ void draw() {
     image(columnImg, width/2, height/2, width, height);
   }
 
-  pushStyle();
+  pushStyle();//黑色fadeOut遮罩
   blendMode(BLEND);
   fill(0, 0, 0, 255-layer[1]);
   noStroke();
   rect(0, 0, width, height);
   popStyle();
 
-  showFrameRate();
-  //stroke(255);
-
-  if(record==true)saveFrame("data/record/"+frameCount+".png");
-  
-  
+  showFrameRate();//訊息
+  //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }

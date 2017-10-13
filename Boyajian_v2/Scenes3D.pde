@@ -10,7 +10,7 @@ float camX=600;
 float camY=200;
 float camZ=430;
 
-float easing = 0.05;
+float easing = 0.02;
 boolean resetCamDo=false;
 float[] cam={600, 200, 430, 0, 0};
 
@@ -22,8 +22,10 @@ PImage black;
 float showParticleCount=0;
 
 PShape globe;
+PShape globe2;
 PShape Rglobe;
 PMatrix mat_scene;
+float randomVel=2;
 
 void s3dSetting() {
   mat_scene = getMatrix();
@@ -34,8 +36,8 @@ void s3dSetting() {
     PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));
     particles[i] = new Particle(p);
   }
-  globe = loadShape("3d/sphere.obj");
-  Rglobe = loadShape("3d/sphere.obj");
+  globe = loadShape("3d/sphere2.obj");
+  Rglobe = loadShape("3d/sphere2.obj");
   globe.setStroke(false);
   globe.setTexture(tex);
 }
@@ -53,10 +55,16 @@ void s3dDrawing() {
   s3d.background(0, 2);
 
   //s3d.rectMode(CORNER);
-  if (wireFrameCtl==true && frameCount%20==0 ){
+  if (wireFrameCtl==true && frameCount%20==0 ) {
     //setMatrix(mat_scene);
     //s3d.fill(0,15);
     //s3d.rect(0,0,width*3,height*3);
+  }
+
+  if (vertexNoise==true) {
+    if (randomVel<50) randomVel=(randomVel+(randomVel/200));
+  } else {
+    if (randomVel>2) randomVel=(randomVel-0.1);
   }
 
   if (showMaskEye==true) {
@@ -126,18 +134,27 @@ void s3dDrawing() {
 
 
   s3d.pushMatrix();
-  s3d.noStroke();
-  s3d.translate(width/2, height/2);
-  s3d.rotateY(radians(252));
+  {
+    s3d.noStroke();
+    s3d.translate(width/2, height/2);
+    s3d.rotateY(radians(252));
 
-  if (vertexNoise==true ) randomVertex(globe);
-  else returnVertex(Rglobe, globe);
+    if (vertexNoise==true ) randomVertex(globe);
+    else returnVertex(Rglobe, globe);
 
-  if (wireFrameCtl==true) noWireFrame(globe);
-  else setTexture( globe, tex);
+    if (wireFrameCtl==true) {
+      s3d.rotateY((float(frameCount)/100)%360);
+      noWireFrame(globe, 2.0f, color(255, 60));
+      s3d.blendMode(ADD);
+    } else { 
+      setTexture( globe, tex);
+      s3d.blendMode(BLEND);
+    }
+    if (vertexNoise==true) {
+    }
 
-
-  s3d.shape(globe);
+    s3d.shape(globe);
+  }
   s3d.popMatrix();
   s3d.endDraw();
 }

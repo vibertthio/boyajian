@@ -44,8 +44,7 @@ void maskSmellSetting() {
 
 
 void maskSmelldrawing() {
-  MaskSmellLineIn.update();
-  MaskSmellLineOut.update();
+
   showMaskSmell=returnState(MaskSmellLine, MaskSmellIn);
   s3d.pushMatrix();
   {
@@ -57,24 +56,25 @@ void maskSmelldrawing() {
 
     s3d.translate(Smell_x, Smell_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();
-    s3d.translate(40,0, -50);
-    s3d.fill(maskNmae, 155);
-
-    if (MaskSmellLineIn.bang==true ) {
-      textSmell.children[0].transform(40, easeInBack(MaskSmellLineIn.oo)*300, 30, 30) ;
-      textSmell.children[1].transform(97, -easeInBack(MaskSmellLineIn.oo)*300, 30, 30) ;
-      textSmell.children[2].transform(156, easeInBack(MaskSmellLineIn.oo)*300, 30, 30) ;
-    } else if (MaskSmellLineIn.done==true  ) {
-      textSmell.children[0].transform(40, easeInBack(MaskSmellLineOut.o)*300, 30, 30) ;
-      textSmell.children[1].transform(97, -easeInBack(MaskSmellLineOut.o)*300, 30, 30) ;
-      textSmell.children[2].transform(156, easeInBack(MaskSmellLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskSmellLineOut.bang==false)  MaskSmellLineIn.done=false;
-    if (MaskSmellLineOut.o<0.99 && MaskSmellLineIn.o>0.001 && MaskSmellIn==true )textSmell.draw(s3d);
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40,0, 0);
+    // s3d.fill(maskNmae, 155);
+    // MaskSmellLineIn.update();
+    // MaskSmellLineOut.update();
+    // if (MaskSmellLineIn.bang==true ) {
+    //   textSmell.children[0].transform(40, easeInBack(MaskSmellLineIn.oo)*300, 30, 30) ;
+    //   textSmell.children[1].transform(97, -easeInBack(MaskSmellLineIn.oo)*300, 30, 30) ;
+    //   textSmell.children[2].transform(156, easeInBack(MaskSmellLineIn.oo)*300, 30, 30) ;
+    // } else if (MaskSmellLineIn.done==true  ) {
+    //   textSmell.children[0].transform(40, easeInBack(MaskSmellLineOut.o)*300, 30, 30) ;
+    //   textSmell.children[1].transform(97, -easeInBack(MaskSmellLineOut.o)*300, 30, 30) ;
+    //   textSmell.children[2].transform(156, easeInBack(MaskSmellLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (MaskSmellLineOut.bang==false)  MaskSmellLineIn.done=false;
+    // if (MaskSmellLineOut.o<0.99 && MaskSmellLineIn.o>0.001 && MaskSmellIn==true )textSmell.draw(s3d);
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));

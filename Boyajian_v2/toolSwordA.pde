@@ -38,8 +38,7 @@ void toolSwordASetting() {
 
 
 void toolSwordAdrawing() {
-  toolSwordALineIn.update();
-  toolSwordALineOut.update();
+
   showtoolSwordA=returnState(toolSwordALine, toolSwordAIn);
   s3d.pushMatrix();
   {
@@ -50,27 +49,27 @@ void toolSwordAdrawing() {
 
     s3d.translate(SwordA_x, SwordA_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();
-    s3d.translate(40, 0, 0);
-    s3d.fill(maskNmae, 155);
-
-    if (toolSwordALineIn.bang==true ) {
-      textSwordA.children[0].transform(70, easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
-      textSwordA.children[1].transform(102, -easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
-      textSwordA.children[2].transform(137, easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
-      textSwordA.children[3].transform(172, -easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
-    } else if (toolSwordALineIn.done==true  ) {
-      textSwordA.children[0].transform(70, easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
-      textSwordA.children[1].transform(102, -easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
-      textSwordA.children[2].transform(137, easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
-      textSwordA.children[3].transform(172, -easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (toolSwordALineOut.bang==false) toolSwordALineIn.done=false;
-    if (toolSwordALineOut.o<0.98 && toolSwordALineIn.o>0.01 && toolSwordAIn==true )textSwordA.draw(s3d);
-
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40, 0, 0);
+    // s3d.fill(maskNmae, 155);
+    // toolSwordALineIn.update();
+    // toolSwordALineOut.update();
+    // if (toolSwordALineIn.bang==true ) {
+    //   textSwordA.children[0].transform(70, easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
+    //   textSwordA.children[1].transform(102, -easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
+    //   textSwordA.children[2].transform(137, easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
+    //   textSwordA.children[3].transform(172, -easeInBack(toolSwordALineIn.oo)*300, 30, 30) ;
+    // } else if (toolSwordALineIn.done==true  ) {
+    //   textSwordA.children[0].transform(70, easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
+    //   textSwordA.children[1].transform(102, -easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
+    //   textSwordA.children[2].transform(137, easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
+    //   textSwordA.children[3].transform(172, -easeInBack(toolSwordALineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (toolSwordALineOut.bang==false) toolSwordALineIn.done=false;
+    // if (toolSwordALineOut.o<0.98 && toolSwordALineIn.o>0.01 && toolSwordAIn==true )textSwordA.draw(s3d);
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));

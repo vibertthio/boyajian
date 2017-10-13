@@ -46,8 +46,7 @@ void maskTouchSetting() {
 
 
 void maskTouchdrawing() {
-  MaskTouchLineIn.update();
-  MaskTouchLineOut.update();
+
   showMaskTouch=returnState(MaskTouchLine, MaskTouchIn);
   s3d.pushMatrix();
   {
@@ -58,27 +57,27 @@ void maskTouchdrawing() {
 
     s3d.translate(Touch_x, Touch_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();
-    s3d.translate(40, 0, 0);
-    s3d.fill(maskNmae, 155);
-
-    if (MaskTouchLineIn.bang==true ) {
-      textTouch.children[0].transform(70, easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
-      textTouch.children[1].transform(102, -easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
-      textTouch.children[2].transform(137, easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
-      textTouch.children[3].transform(172, -easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
-    } else if (MaskTouchLineIn.done==true  ) {
-      textTouch.children[0].transform(70, easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
-      textTouch.children[1].transform(102, -easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
-      textTouch.children[2].transform(137, easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
-      textTouch.children[3].transform(172, -easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskTouchLineOut.bang==false) MaskTouchLineIn.done=false;
-    if (MaskTouchLineOut.o<0.99 && MaskTouchLineIn.o>0.001 && MaskTouchIn==true )textTouch.draw(s3d);
-
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40, 0, 0);
+    // s3d.fill(maskNmae, 155);
+    // MaskTouchLineIn.update();
+    // MaskTouchLineOut.update();
+    // if (MaskTouchLineIn.bang==true ) {
+    //   textTouch.children[0].transform(70, easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
+    //   textTouch.children[1].transform(102, -easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
+    //   textTouch.children[2].transform(137, easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
+    //   textTouch.children[3].transform(172, -easeInBack(MaskTouchLineIn.oo)*300, 30, 30) ;
+    // } else if (MaskTouchLineIn.done==true  ) {
+    //   textTouch.children[0].transform(70, easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
+    //   textTouch.children[1].transform(102, -easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
+    //   textTouch.children[2].transform(137, easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
+    //   textTouch.children[3].transform(172, -easeInBack(MaskTouchLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (MaskTouchLineOut.bang==false) MaskTouchLineIn.done=false;
+    // if (MaskTouchLineOut.o<0.99 && MaskTouchLineIn.o>0.001 && MaskTouchIn==true )textTouch.draw(s3d);
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));

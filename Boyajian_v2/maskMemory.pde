@@ -47,8 +47,7 @@ void maskMemorySetting() {
 
 
 void maskMemorydrawing() {
-  MaskMemoryLineIn.update();
-  MaskMemoryLineOut.update();
+
   showMaskMemory=returnState(MaskMemoryLine, MaskMemoryIn);
   s3d.pushMatrix();
   {
@@ -58,31 +57,30 @@ void maskMemorydrawing() {
     else   Memory_y=height/2+100+map(easeInBack(MaskMemoryLine.o), 0, 1, 0, -500);
 
     s3d.translate(Memory_x, Memory_y+anim(300, 0, -50, 2), -50);
-    
-    s3d.pushMatrix();
-    s3d.translate(40, 0, 0);
-    s3d.fill(maskNmae, 155);
 
-
-    if (MaskMemoryLineIn.bang==true ) {
-      textMemory.children[0].transform(36, easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
-      textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
-      textMemory.children[2].transform(105, easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
-      textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
-      textMemory.children[4].transform(171, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
-    } else if (MaskMemoryLineIn.done==true  ) {
-      textMemory.children[0].transform(36, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
-      textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
-      textMemory.children[2].transform(105, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
-      textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
-      textMemory.children[4].transform(171, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskMemoryLineOut.bang==false) MaskMemoryLineIn.done=false;
-    if (MaskMemoryLineOut.o<0.99 && MaskMemoryLineIn.o>0.001 && MaskMemoryIn==true)textMemory.draw(s3d);
-
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40, 0, 0);
+    // s3d.fill(maskNmae, 155);
+    // MaskMemoryLineIn.update();
+    // MaskMemoryLineOut.update();
+    // if (MaskMemoryLineIn.bang==true ) {
+    //   textMemory.children[0].transform(36, easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+    //   textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+    //   textMemory.children[2].transform(105, easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+    //   textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineIn.oo)*300, 30, 30) ;
+    //   textMemory.children[4].transform(171, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    // } else if (MaskMemoryLineIn.done==true  ) {
+    //   textMemory.children[0].transform(36, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    //   textMemory.children[1].transform(71, -easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    //   textMemory.children[2].transform(105, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    //   textMemory.children[3].transform(138, -easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    //   textMemory.children[4].transform(171, easeInBack(MaskMemoryLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (MaskMemoryLineOut.bang==false) MaskMemoryLineIn.done=false;
+    // if (MaskMemoryLineOut.o<0.99 && MaskMemoryLineIn.o>0.001 && MaskMemoryIn==true)textMemory.draw(s3d);
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));

@@ -43,8 +43,7 @@ void maskListenSetting() {
 
 
 void maskListendrawing() {
-  MaskListenLineIn.update();
-  MaskListenLineOut.update();
+
   showMaskListen=returnState(MaskListenLine, MaskListenIn);
   s3d.pushMatrix();
   {
@@ -55,26 +54,27 @@ void maskListendrawing() {
 
     s3d.translate(Listen_x, Listen_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();//文字動畫
-    s3d.translate(40, 0, 0);
-    s3d.fill(maskNmae, 155);
-
-
-    if (MaskListenLineIn.bang==true ) {
-      textListen.children[0].transform(40, easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
-      textListen.children[1].transform(97, -easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
-      textListen.children[2].transform(156, easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
-    } else if (MaskListenLineIn.done==true  ) {
-      textListen.children[0].transform(40, easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
-      textListen.children[1].transform(97, -easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
-      textListen.children[2].transform(156, easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskListenLineOut.bang==false) MaskListenLineIn.done=false;
-    if (MaskListenLineOut.o<0.99 &&MaskListenLineIn.o>0.01 && MaskListenIn==true)textListen.draw(s3d);
-    
-    s3d.popMatrix();//文字結束
+    // s3d.pushMatrix();//文字動畫
+    // s3d.translate(40, 0, 0);
+    // s3d.fill(maskNmae, 155);
+    // 
+    // MaskListenLineIn.update();
+    // MaskListenLineOut.update();
+    // if (MaskListenLineIn.bang==true ) {
+    //   textListen.children[0].transform(40, easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
+    //   textListen.children[1].transform(97, -easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
+    //   textListen.children[2].transform(156, easeInBack(MaskListenLineIn.oo)*300, 30, 30) ;
+    // } else if (MaskListenLineIn.done==true  ) {
+    //   textListen.children[0].transform(40, easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
+    //   textListen.children[1].transform(97, -easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
+    //   textListen.children[2].transform(156, easeInBack(MaskListenLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (MaskListenLineOut.bang==false) MaskListenLineIn.done=false;
+    // if (MaskListenLineOut.o<0.99 &&MaskListenLineIn.o>0.01 && MaskListenIn==true)textListen.draw(s3d);
+    //
+    // s3d.popMatrix();//文字結束
 
 
     s3d.rotateZ(PI);

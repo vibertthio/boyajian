@@ -35,6 +35,7 @@ void defultSetting() {
   square = createShape(RECT, 0, 0, width, height);
   tex= createGraphics(1500, 1000, P2D);
   s3d= createGraphics(width, height, P3D);
+  crop2= createGraphics(width, height, P3D);
 
   ptnGroup= createGraphics(width, height, P2D);
   columnImg= createGraphics(width, height, P2D);

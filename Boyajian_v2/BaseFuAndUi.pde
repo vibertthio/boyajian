@@ -73,35 +73,35 @@ void autoChBg() {
   }
 }
 
-float randomVel=6;
-void randomVertex(PShape who) {
 
-  if (randomVel<30) {
-    randomVel=randomVel+(randomVel/50);
-  }
+
+
+void randomVertex(PShape who) {
+  float ss=map(middle, 0, 1, 1, 1.3);
+
   for (int j=0; j<who.getChildCount(); j++) {
     for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
       PVector v = who.getChild(j).getVertex(i);
-      v.x += random(-randomVel, randomVel);
-      v.y += random(-randomVel, randomVel);
-      v.z += random(-randomVel, randomVel);
+      v.x += random(-randomVel*ss, randomVel*ss);
+      v.y += random(-randomVel*ss, randomVel*ss);
+      v.z += random(-randomVel*ss, randomVel*ss);
       who.getChild(j).setVertex(i, v);
     }
   }
 }
 
 void returnVertex(PShape origon, PShape who) {
-  if (randomVel>6) {
-    randomVel=randomVel-0.1;
-  }
+  float ss=map(middle, 0, 1, 0, 0.002);
+
+
   for (int j=0; j<origon.getChildCount(); j++) {
     for (int i = 0; i < origon.getChild(j).getVertexCount(); i++) {
       PVector v = origon.getChild(j).getVertex(i);
       PVector v1 = who.getChild(j).getVertex(i);
 
-      v1.x =(v.x-v1.x)*0.05 +v1.x;
-      v1.y =(v.y-v1.y)*0.05 +v1.y;
-      v1.z =(v.z-v1.z)*0.05 +v1.z;
+      v1.x =(v.x-v1.x)*(0.05+ss) +v1.x;
+      v1.y =(v.y-v1.y)*(0.05+ss) +v1.y;
+      v1.z =(v.z-v1.z)*(0.05+ss) +v1.z;
       who.getChild(j).setVertex(i, v1);
     }
   }
@@ -308,17 +308,17 @@ float anim(int num, float start, float end, float pp) {
   return map(pow(sin((float(frameCount)%num)/num*6.28), pp), 0, 1, start, end);
 }
 
-void noWireFrame(PShape who) {
+void noWireFrame(PShape who, float sw, color cc) {
   who.setStroke(true);
   who.setTexture(null);
   who.setFill(false);
-  who.setStroke(color(255,120));
-  who.setStrokeWeight(2.0f);
+  who.setStroke(cc);
+  who.setStrokeWeight(sw);
 }
 
 void setTexture(PShape who, PImage target) {
   who.setStroke(false);
   who.setFill(true);
   who.setTexture(target);
-  who.setFill(color(255,80));
+  who.setFill(color(255, 80));
 }

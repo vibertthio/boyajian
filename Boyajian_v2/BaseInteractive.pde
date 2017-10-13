@@ -22,7 +22,12 @@ void keyPressed() {
     effectGLSL = loadShader("glsl/glitch.glsl");
     effectGLSL.set("vol", 0.6);
   }
+  
+  if (key == 'q') splitNum =1; 
+  if (key == 'a') splitNum =2;
+  if (key == 'z') splitNum =4;
 
+  if (key == 'e') zoonCam();
   if (key == 'r') defultCam();
   if (key == 't') randomCam();
   if (key == 's') record = !record;
@@ -91,6 +96,15 @@ void defultCam() {
   cam[0]=600;
   cam[1]=200;
   cam[2]=430;
+  cam[3]=0;
+  cam[4]=0;
+  resetCamDo=true;
+}
+
+void zoonCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=-2000;
   cam[3]=0;
   cam[4]=0;
   resetCamDo=true;

@@ -42,8 +42,7 @@ void toolShieldASetting() {
 
 
 void toolShieldAdrawing() {
-  toolShieldALineIn.update();
-  toolShieldALineOut.update();
+
   showtoolShieldA=returnState(toolShieldALine, toolShieldAIn);
   s3d.pushMatrix();
   {
@@ -55,27 +54,27 @@ void toolShieldAdrawing() {
 
     s3d.translate(ShieldA_x, ShieldA_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();
-    s3d.translate(40, 0, -50);
-    s3d.fill(maskNmae, 155);
-
-    if (toolShieldALineIn.bang==true ) {
-      textShieldA.children[0].transform(70, easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
-      textShieldA.children[1].transform(102, -easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
-      textShieldA.children[2].transform(137, easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
-      textShieldA.children[3].transform(172, -easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
-    } else if (toolShieldALineIn.done==true  ) {
-      textShieldA.children[0].transform(70, easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
-      textShieldA.children[1].transform(102, -easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
-      textShieldA.children[2].transform(137, easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
-      textShieldA.children[3].transform(172, -easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (toolShieldALineOut.bang==false)  toolShieldALineIn.done=false;
-    if (toolShieldALineOut.o<0.99 && toolShieldALineIn.o>0.001 &&toolShieldAIn==true)textShieldA.draw(s3d);
-
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40, 0, -50);
+    // s3d.fill(maskNmae, 155);
+    // toolShieldALineIn.update();
+    // toolShieldALineOut.update();
+    // if (toolShieldALineIn.bang==true ) {
+    //   textShieldA.children[0].transform(70, easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
+    //   textShieldA.children[1].transform(102, -easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
+    //   textShieldA.children[2].transform(137, easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
+    //   textShieldA.children[3].transform(172, -easeInBack(toolShieldALineIn.oo)*300, 30, 30) ;
+    // } else if (toolShieldALineIn.done==true  ) {
+    //   textShieldA.children[0].transform(70, easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
+    //   textShieldA.children[1].transform(102, -easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
+    //   textShieldA.children[2].transform(137, easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
+    //   textShieldA.children[3].transform(172, -easeInBack(toolShieldALineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (toolShieldALineOut.bang==false)  toolShieldALineIn.done=false;
+    // if (toolShieldALineOut.o<0.99 && toolShieldALineIn.o>0.001 &&toolShieldAIn==true)textShieldA.draw(s3d);
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));

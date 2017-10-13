@@ -40,8 +40,7 @@ void toolShieldBSetting() {
 
 
 void toolShieldBdrawing() {
-  toolShieldBLineIn.update();
-  toolShieldBLineOut.update();
+
   showtoolShieldB=returnState(toolShieldBLine, toolShieldBIn);
   s3d.pushMatrix();
   {
@@ -53,26 +52,26 @@ void toolShieldBdrawing() {
 
     s3d.translate(ShieldB_x, ShieldB_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();
-    s3d.translate(40,0, -50);
-    s3d.fill(maskNmae, 155);
-
-
-    if (toolShieldBLineIn.bang==true ) {
-      textShieldB.children[0].transform(40, easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
-      textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
-      textShieldB.children[2].transform(156, easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
-    } else if (toolShieldBLineIn.done==true  ) {
-      textShieldB.children[0].transform(40, easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
-      textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
-      textShieldB.children[2].transform(156, easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (toolShieldBLineOut.bang==false)  toolShieldBLineIn.done=false;
-    if (toolShieldBLineOut.o<0.99 && toolShieldBLineIn.o>0.001 &&toolShieldBIn==true )textShieldB.draw(s3d);
-
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40,0, 0);
+    // s3d.fill(maskNmae, 155);
+    // toolShieldBLineIn.update();
+    // toolShieldBLineOut.update();
+    // if (toolShieldBLineIn.bang==true ) {
+    //   textShieldB.children[0].transform(40, easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
+    //   textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
+    //   textShieldB.children[2].transform(156, easeInBack(toolShieldBLineIn.oo)*300, 30, 30) ;
+    // } else if (toolShieldBLineIn.done==true  ) {
+    //   textShieldB.children[0].transform(40, easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
+    //   textShieldB.children[1].transform(97, -easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
+    //   textShieldB.children[2].transform(156, easeInBack(toolShieldBLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (toolShieldBLineOut.bang==false)  toolShieldBLineIn.done=false;
+    // if (toolShieldBLineOut.o<0.99 && toolShieldBLineIn.o>0.001 &&toolShieldBIn==true )textShieldB.draw(s3d);
+    //
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));

@@ -39,8 +39,8 @@ class Particle {
 
     if (wireFrameCtl==true) {
       s3d.noFill();
-      s3d.stroke(255, 50);
-      s3d.strokeWeight(2);
+      s3d.stroke(0,160,255,120);
+      s3d.strokeWeight(2.0f);
       s3d.ellipse( 0, 0, mass*20, mass*20);
     } else  s3d.image(eyeImg, 0, 0, mass*20, mass*20);
 

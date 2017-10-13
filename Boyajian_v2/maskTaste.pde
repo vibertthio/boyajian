@@ -50,8 +50,7 @@ void maskTasteSetting() {
 
 
 void maskTastedrawing() {
-  MaskTasteLineIn.update();
-  MaskTasteLineOut.update();
+
   showMaskTaste=returnState(MaskTasteLine, MaskTasteIn);
   s3d.pushMatrix();
   {
@@ -63,25 +62,24 @@ void maskTastedrawing() {
     //----fadeEnd
     s3d.translate(Taste_x, Taste_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix();
-    s3d.translate(40, 0, -50);
-    s3d.fill(maskNmae, 155);
-
-    if (MaskTasteLineIn.bang==true ) {
-      textTaste.children[0].transform(40, easeInBack(MaskTasteLineIn.oo)*300, 30, 30) ;
-      textTaste.children[1].transform(97, -easeInBack(MaskTasteLineIn.oo)*300, 30, 30) ;
-      textTaste.children[2].transform(156, easeInBack(MaskTasteLineIn.oo)*300, 30, 30) ;
-    } else if (MaskTasteLineIn.done==true  ) {
-      textTaste.children[0].transform(40, easeInBack(MaskTasteLineOut.o)*300, 30, 30) ;
-      textTaste.children[1].transform(97, -easeInBack(MaskTasteLineOut.o)*300, 30, 30) ;
-      textTaste.children[2].transform(156, easeInBack(MaskTasteLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskTasteLineOut.bang==false) MaskTasteLineIn.done=false;
-    if (MaskTasteLineOut.o<0.99 && MaskTasteLineIn.o>0.001 &&MaskTasteIn==true)textTaste.draw(s3d);
-
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.translate(40, 0, -50);
+    // s3d.fill(maskNmae, 155);
+    // MaskTasteLineIn.update();
+    // MaskTasteLineOut.update();
+    // if (MaskTasteLineIn.bang==true ) {
+    //   textTaste.children[0].transform(40, easeInBack(MaskTasteLineIn.oo)*300, 30, 30) ;
+    //   textTaste.children[1].transform(97, -easeInBack(MaskTasteLineIn.oo)*300, 30, 30) ;
+    //   textTaste.children[2].transform(156, easeInBack(MaskTasteLineIn.oo)*300, 30, 30) ;
+    // } else if (MaskTasteLineIn.done==true  ) {
+    //   textTaste.children[0].transform(40, easeInBack(MaskTasteLineOut.o)*300, 30, 30) ;
+    //   textTaste.children[1].transform(97, -easeInBack(MaskTasteLineOut.o)*300, 30, 30) ;
+    //   textTaste.children[2].transform(156, easeInBack(MaskTasteLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    // if (MaskTasteLineOut.bang==false) MaskTasteLineIn.done=false;
+    // if (MaskTasteLineOut.o<0.99 && MaskTasteLineIn.o>0.001 &&MaskTasteIn==true)textTaste.draw(s3d);
+    // s3d.popMatrix();
 
     s3d.rotateZ(PI);
     s3d.rotateY(radians(anim(600, -30, 30, 2)));

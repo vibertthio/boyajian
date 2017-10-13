@@ -30,30 +30,30 @@ static final int BL_COLOR         = 22;
 static final int BL_SATURATION    = 23;
 static final int BL_LUMINOSITY    = 24;
 String[] blendNames = {
-  "Darken",
-  "Multiply",
-  "Color burn",
-  "Linear burn",
-  "Darker color",
-  "Lighten",
-  "Screen",
-  "Color dodge",
-  "Linear dodge",
-  "Lighter color",
-  "Overlay",
-  "Soft light",
-  "Hard light",
-  "Vivid light",
-  "Linear light",
-  "Pin light",
-  "Hard mix",
-  "Difference",
-  "Exclusion",
-  "Substract",
-  "Divide",
-  "Hue",
-  "Color",
-  "Saturation",
+  "Darken", 
+  "Multiply", 
+  "Color burn", 
+  "Linear burn", 
+  "Darker color", 
+  "Lighten", 
+  "Screen", 
+  "Color dodge", 
+  "Linear dodge", 
+  "Lighter color", 
+  "Overlay", 
+  "Soft light", 
+  "Hard light", 
+  "Vivid light", 
+  "Linear light", 
+  "Pin light", 
+  "Hard mix", 
+  "Difference", 
+  "Exclusion", 
+  "Substract", 
+  "Divide", 
+  "Hue", 
+  "Color", 
+  "Saturation", 
   "Luminosity"
 };
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
@@ -103,4 +103,62 @@ void shaderSetting() {
 
   square.setTexture(tex);
   square.setStroke(false);
+}
+
+void draw2Split() {
+  imageMode(CENTER);
+  blendMode(ADD);
+  crop2.beginDraw();
+  crop2.imageMode(CENTER);
+  crop2.image(finalRender, width/2, height/2, width, height);
+  crop2.fill(0);
+  crop2.rect(0, 0, float(width)/4, height);
+  crop2.rect(float(width)/4*3, 0, width, height);
+  crop2.endDraw();
+
+  pushMatrix();
+  image(crop2, width/4, height/2, width, height);
+  popMatrix();
+
+  pushMatrix();
+  translate(float(width)/4*3, height/2);
+
+  image(crop2, 0, 0, width, height);
+  popMatrix();
+
+  stroke(255);
+  line(width/2, 0, width/2, height);
+}
+
+void draw4Split() {
+  imageMode(CENTER);
+  blendMode(ADD);
+  crop2.beginDraw();
+  crop2.imageMode(CENTER);
+  crop2.image(finalRender, width/2, height/2, width, height);
+  crop2.fill(0);
+  float www=width/8;
+  crop2.rect(0, 0, www*3, height);
+  crop2.rect(www*5, 0, width, height);
+  crop2.endDraw();
+  image(crop2, www*1, height/2, width, height);
+
+  pushMatrix();
+  translate(www*3, height/2);
+  scale(-1, 1);
+  image(crop2, 0, 0, width, height);
+  popMatrix();
+
+  image(crop2, www*5, height/2, width, height);
+
+  pushMatrix();
+  translate(www*7, height/2);
+  scale(-1, 1);
+  image(crop2, 0, 0, width, height); 
+  popMatrix();
+  stroke(255);
+  float ww=width/4;
+  line(ww*1, 0, ww*1, height);
+  line(ww*2, 0, ww*2, height);
+  line(ww*3, 0, ww*3, height);
 }

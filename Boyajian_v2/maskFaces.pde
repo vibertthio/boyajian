@@ -41,8 +41,7 @@ void maskFacesSetting() {
 
 
 void maskFacesdrawing() {
-  MaskFacesLineIn.update();
-  MaskFacesLineOut.update();
+
   showMaskFaces=returnState(MaskFacesLine, MaskFacesIn);
   s3d.pushMatrix();
   {
@@ -54,28 +53,29 @@ void maskFacesdrawing() {
     //----fadeEnd
     s3d.translate(Faces_x, Faces_y+anim(300, 0, -50, 2), -50);
 
-    s3d.pushMatrix(); //-------文字開始
-    s3d.translate(40, 0, 0);
-    s3d.fill(maskNmae, 155);
-
-
-    if (MaskFacesLineIn.bang==true ) {
-      textFaces.children[0].transform(70, easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
-      textFaces.children[1].transform(102, -easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
-      textFaces.children[2].transform(137, easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
-      textFaces.children[3].transform(172, -easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
-    } else if (MaskFacesLineIn.done==true  ) {
-      textFaces.children[0].transform(70, easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
-      textFaces.children[1].transform(102, -easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
-      textFaces.children[2].transform(137, easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
-      textFaces.children[3].transform(172, -easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskFacesLineOut.bang==false) MaskFacesLineIn.done=false;
-    if (MaskFacesLineOut.o<0.99 && MaskFacesLineIn.o>0.01 && MaskFacesIn==true)  textFaces.draw(s3d);  
-
-    s3d.popMatrix();//-------文字end
+    // s3d.pushMatrix(); //-------文字開始
+    // s3d.translate(40, 0, 0);
+    // s3d.fill(maskNmae, 155);
+    // MaskFacesLineIn.update();
+    // MaskFacesLineOut.update();
+    //
+    // if (MaskFacesLineIn.bang==true ) {
+    //   textFaces.children[0].transform(70, easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
+    //   textFaces.children[1].transform(102, -easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
+    //   textFaces.children[2].transform(137, easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
+    //   textFaces.children[3].transform(172, -easeInBack(MaskFacesLineIn.oo)*300, 30, 30) ;
+    // } else if (MaskFacesLineIn.done==true  ) {
+    //   textFaces.children[0].transform(70, easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
+    //   textFaces.children[1].transform(102, -easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
+    //   textFaces.children[2].transform(137, easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
+    //   textFaces.children[3].transform(172, -easeInBack(MaskFacesLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (MaskFacesLineOut.bang==false) MaskFacesLineIn.done=false;
+    // if (MaskFacesLineOut.o<0.99 && MaskFacesLineIn.o>0.01 && MaskFacesIn==true)  textFaces.draw(s3d);
+    //
+    // s3d.popMatrix();//-------文字end
 
 
     s3d.rotateZ(PI);

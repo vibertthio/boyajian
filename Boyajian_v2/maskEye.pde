@@ -68,8 +68,7 @@ void maskEyeSetting() {
 
 
 void maskEyedrawing() {
-  MaskEyeLineIn.update();
-  MaskEyeLineOut.update();
+
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
 
   //----fade
@@ -89,25 +88,25 @@ void maskEyedrawing() {
 
     s3d.pushMatrix();//文字開始
 
-    s3d.translate(40, 0, 0);
-    s3d.fill(maskNmae, 155);
-    if (MaskEyeLineIn.bang==true ) {
-      textEye.children[0].transform(70, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-      textEye.children[1].transform(102, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-      textEye.children[2].transform(137, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-      textEye.children[3].transform(172, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
-    } else if (MaskEyeLineIn.done==true  ) {
-      textEye.children[0].transform(70, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-      textEye.children[1].transform(102, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-      textEye.children[2].transform(137, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-      textEye.children[3].transform(172, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
-      defultCam();
-    }
-
-    if (MaskEyeLineOut.bang==false) MaskEyeLineIn.done=false;
-    if (MaskEyeLineOut.o<0.99 && MaskEyeLineIn.o>0.01 && MaskEyeIn==true)textEye.draw(s3d);
-
-
+    // s3d.translate(40, 0, 0);
+    // s3d.fill(maskNmae, 155);
+    // MaskEyeLineIn.update();
+    // MaskEyeLineOut.update();
+    // if (MaskEyeLineIn.bang==true ) {
+    //   textEye.children[0].transform(70, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+    //   textEye.children[1].transform(102, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+    //   textEye.children[2].transform(137, easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+    //   textEye.children[3].transform(172, -easeInBack(MaskEyeLineIn.oo)*300, 30, 30) ;
+    // } else if (MaskEyeLineIn.done==true  ) {
+    //   textEye.children[0].transform(70, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+    //   textEye.children[1].transform(102, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+    //   textEye.children[2].transform(137, easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+    //   textEye.children[3].transform(172, -easeInBack(MaskEyeLineOut.o)*300, 30, 30) ;
+    //   defultCam();
+    // }
+    //
+    // if (MaskEyeLineOut.bang==false) MaskEyeLineIn.done=false;
+    // if (MaskEyeLineOut.o<0.99 && MaskEyeLineIn.o>0.01 && MaskEyeIn==true)textEye.draw(s3d);
 
     s3d.popMatrix();//文字結束
 
@@ -189,13 +188,13 @@ void maskEyedrawing() {
     s3d.popMatrix();
     //---------------
     if (wireFrameCtl==true) {
-      noWireFrame( maskA_1_1);
-      noWireFrame( maskA_1_2);
-      noWireFrame( maskA_2);
-      noWireFrame( maskA_3_1);
-      noWireFrame( maskA_3_2);
-      noWireFrame( maskA_4);
-      noWireFrame( maskA_5);
+      noWireFrame( maskA_1_1,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_1_2,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_2,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_3_1,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_3_2,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_4,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_5,random(1.80,2.40),color(0,165,250,120));
     } else {
       setTexture( maskA_1_1, EyeImg);
       setTexture( maskA_1_2, EyeImg);
