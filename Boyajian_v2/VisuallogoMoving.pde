@@ -8,7 +8,6 @@ int roro = 0;
 int pp = 0;
 boolean logo3Changing = false;
 boolean logo3Rotating = false;
-
 boolean bgChanging = false;
 boolean bgBlending = false;
 
@@ -17,6 +16,8 @@ Animations animations;
 
 PImage bgbg;
 pdLine2 logoRo;
+
+float logoScale=1;
 
 color[] colors = {
   color(253, 148, 38), 
@@ -136,7 +137,7 @@ class  LogoDraw {
     }
     canvas.pushMatrix();
     canvas.translate(0+250, logoMirror.height/2);
-    canvas.scale(1, 1);
+    canvas.scale(1*logoScale, 1*logoScale);
     canvas.rotate(radians(logoRo.o));
     canvas.tint(255, layer[8]);
     canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
@@ -144,7 +145,7 @@ class  LogoDraw {
 
     canvas.pushMatrix();
     canvas.translate(logoMirror.width+250, logoMirror.height/2);
-    canvas.scale(-1, 1);
+    canvas.scale(-1*logoScale, 1*logoScale);
     canvas.rotate(radians(logoRo.o));
     canvas.tint(255, layer[8]);
     canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);

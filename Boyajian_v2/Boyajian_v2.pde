@@ -16,7 +16,7 @@ import oscP5.*;
 import netP5.*;
 OscP5  receiveCeiling;
 
-PImage[] bgs=new PImage[5] ;
+PImage[] bgs=new PImage[7] ;
 PImage[] ptns=new PImage[17] ;
 PImage[] pattern = new PImage[15];
 

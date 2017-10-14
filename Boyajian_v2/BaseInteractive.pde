@@ -22,7 +22,7 @@ void keyPressed() {
     effectGLSL = loadShader("glsl/glitch.glsl");
     effectGLSL.set("vol", 0.6);
   }
-  
+
   if (key == 'q') splitNum =1; 
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;
@@ -209,8 +209,22 @@ void sendCtl2p5() {
 
   if (nr==50) layer[5]=vl;
   if (nr==60) layer[6]=vl;
+
   if (nr==70) layer[7]=vl;
+  if (nr==71) blendIndex=int(map(vl, 0, 255, 0, 10));
+  if (nr==72) {
+    imgIndex=int(map(vl, 0, 255, 0, 7));
+    blendGLSL.set( "lowLayer", bgs [imgIndex]);
+  }
+
+  //------------logo
   if (nr==80) layer[8]=vl;
+  if (nr==81) pp=int(map(vl, 0, 255, 0, 14));
+  if (nr==82) {
+    logoRo.o=(map(vl, 0, 255, -3, 3))*90;
+  };
+  if (nr==83)logoScale=map(vl, 0, 255, 1, 2);
+  //------------
 
   if (nr==11) contrastA=vl/255;
   if (nr==12) contrastB=vl/255;
