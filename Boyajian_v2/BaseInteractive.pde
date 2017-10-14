@@ -217,6 +217,8 @@ void sendCtl2p5() {
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
   }
 
+  if (nr==73) { countWhiteAdd=int(map(vl, 0, 255, 0, 50));
+  }
   //------------logo
   if (nr==80) layer[8]=vl;
   if (nr==81) pp=int(map(vl, 0, 255, 0, 14));

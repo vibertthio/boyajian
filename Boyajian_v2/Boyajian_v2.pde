@@ -33,6 +33,8 @@ int indexPtns=0;
 int workTime;
 int[] show= new int[20];
 int splitNum=1;
+float countWhite=0;
+float countWhiteAdd=0;
 
 //ptnGroup
 float ptnScale=1;
@@ -176,6 +178,18 @@ void draw() {
   if (layer[4]>10) {//分割圖騰
     visualColumnDrawing();
   }
+
+  if (countWhiteAdd>0) {
+    countWhite=(countWhite+countWhiteAdd)%400;
+    float countWhiteAlpha=0;
+    if (countWhite<255) {
+      countWhiteAlpha=countWhite;
+
+      fill(255, 255-countWhiteAlpha);
+      rect(0, 0, width, height);
+    }
+  }
+
 
   pushStyle();//黑色fadeOut遮罩
   blendMode(BLEND);
