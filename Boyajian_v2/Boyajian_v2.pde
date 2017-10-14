@@ -76,7 +76,7 @@ void setup() {
   autoCamMetro=new pdMetro(1000);
   autoCamMetro.reset();
   autoCamMetro.tgl=false;
-  
+
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
   }
