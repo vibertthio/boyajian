@@ -23,7 +23,7 @@ void keyPressed() {
     effectGLSL.set("vol", 0.6);
   }
 
-  if (key == 'q') splitNum =1; 
+  if (key == 'q') splitNum =1;
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;
 
@@ -161,17 +161,17 @@ void sendNote2p5() {
     if (nn==39)if (vv==127)ShieldB(true);
     else ShieldB(false);
 
-    if (nn==40)if (vv==127);
-    else ;
+    if (nn==40)if (vv==127)Door(true);
+    else Door(false);
 
-    if (nn==41)if (vv==127);
-    else ;
+    if (nn==41)if (vv==127)Cloth(true);
+    else Cloth(false);
 
-    if (nn==42)if (vv==127);
-    else ;
+    if (nn==42)if (vv==127)Goat(true);
+    else Goat(false);
 
-    if (nn==43)if (vv==127);
-    else ;
+    if (nn==43)if (vv==127)Wind(true);
+    else Wind(false);
   }
   //---------------------------------------------ch0
 

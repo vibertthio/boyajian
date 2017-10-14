@@ -1,0 +1,10 @@
+newmtl dream_3:Material_001
+
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 94.12
+illum 2
+map_Kd tex_dream_01.png

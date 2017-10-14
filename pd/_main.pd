@@ -1,5 +1,5 @@
 #N canvas 718 378 222 203 10;
-#N canvas 592 125 676 573 ui 1;
+#N canvas 592 125 676 573 ui 0;
 #X obj 228 290 pack f f f;
 #X obj 207 339 list;
 #X obj 207 403 packOSC;
@@ -108,7 +108,7 @@
 #X connect 22 0 20 0;
 #X restore 330 57 pd keyPoint;
 #X floatatom 330 82 5 0 0 0 - - -, f 5;
-#N canvas 655 102 430 711 keyPoint 1;
+#N canvas 655 102 430 711 keyPoint 0;
 #X obj 25 39 env~;
 #X floatatom 25 61 5 0 0 0 - - -, f 5;
 #X obj 25 126 / 100;
@@ -181,7 +181,7 @@
 #X msg 289 338 0 0 0;
 #X obj 536 292 * 1;
 #X obj 106 99 hsl 50 15 0 2 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2500 1;
+-1 -1 2450 1;
 #X floatatom 581 273 5 0 0 0 - - -, f 5;
 #X msg 165 70 1;
 #X obj 169 46 loadbang;
@@ -194,19 +194,19 @@
 #X obj 387 185 line;
 #X obj 450 461 s allOsc;
 #X obj 207 429 s allOsc;
-#X obj 5 15 tgl 30 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 5 15 tgl 30 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 26 80 k_vol~;
 #X obj -56 289 spigot;
 #X obj 6 269 udpsend;
 #X msg 6 244 disconnect;
-#X obj -24 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj -24 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 6 194 sel 0 1;
 #X obj -56 239 r allOsc;
 #X obj 100 167 loadbang;
 #X msg 100 189 \; pd dsp 1;
-#X obj 53 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 53 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 91 393 s \$0-bbb;
 #X obj 53 340 t b b b;
@@ -232,6 +232,7 @@
 #X obj -72 131 t b b;
 #X msg -44 153 0;
 #X msg -68 177 1;
+#X obj 137 302 loadbang;
 #X connect 0 0 1 1;
 #X connect 1 0 64 0;
 #X connect 2 0 37 0;
@@ -308,5 +309,6 @@
 #X connect 69 0 48 0;
 #X connect 70 0 44 0;
 #X connect 70 0 48 0;
+#X connect 71 0 38 0;
 #X coords 0 -1 1 1 170 150 1 0 0;
 #X restore 20 30 pd ui;

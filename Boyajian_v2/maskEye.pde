@@ -114,7 +114,7 @@ void maskEyedrawing() {
     s3d.rotateZ(PI);
     //--------------抖動
     s3d.rotateY(radians(anim(600, -30, 30, 2)));
-    s3d.scale(0.73);
+    s3d.scale(0.63);
 
     //---------------眼睛_ 左
     s3d.pushMatrix();

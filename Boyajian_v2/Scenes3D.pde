@@ -121,10 +121,16 @@ void s3dDrawing() {
   if (showMaskDream==true)maskDreamdrawing();
   if (showMaskMemory==true)maskMemorydrawing();
   if (showMaskFaces==true)maskFacesdrawing();
+
   if (showtoolSwordA==true)toolSwordAdrawing();
   if (showtoolSwordB==true)toolSwordBdrawing();
   if (showtoolShieldA==true)toolShieldAdrawing();
   if (showtoolShieldB==true)toolShieldBdrawing();
+
+  if (showtoolCloth==true)toolClothdrawing();
+  if (showtoolDoor==true)toolDoordrawing();
+  if (showtoolGoat==true)toolGoatdrawing();
+  if (showtoolWind==true)toolWinddrawing();
 
 
   s3d.pushMatrix();
@@ -140,7 +146,7 @@ void s3dDrawing() {
       s3d.rotateY((float(frameCount)/100)%360);
       noWireFrame(globe, 2.0f, color(255, 60));
       s3d.blendMode(ADD);
-    } else { 
+    } else {
       setTexture( globe, tex);
       s3d.blendMode(BLEND);
     }
