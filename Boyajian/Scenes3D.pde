@@ -11,7 +11,7 @@ float[] cam={600, 200, 430, 0, 0};
 float showParticleCount=0;
 
 Particle[] particles;
-int p_num = 100;
+int particlesNum = 50;
 PImage eyeImg;
 PImage black;
 
@@ -29,8 +29,8 @@ void s3dSetting() {
   mat_scene = getMatrix();
   eyeImg=loadImage("img/p_eye.png");
   black=loadImage("img/black.png");
-  particles = new Particle[p_num];
-  for (int i = 0; i < p_num; i++) {
+  particles = new Particle[particlesNum];
+  for (int i = 0; i < particlesNum; i++) {
     PVector p = new PVector(random(-300, 300)+width/2, random(-300, 300)+height/2, random(-200, 200));
     particles[i] = new Particle(p);
   }
@@ -68,7 +68,7 @@ void s3dDrawing() {
   }
 
   if (showParticleCount>1) {
-    for (int i = 0; i < p_num; i++) {
+    for (int i = 0; i < particlesNum; i++) {
       particles[i].addForce(particles[i].attractTo(Eye_x, Eye_y));
       particles[i].run();
     }

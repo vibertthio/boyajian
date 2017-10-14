@@ -73,13 +73,10 @@ void toolDoordrawing() {
 
 
     s3d.rotateZ(PI);
-    s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
-    //--------------抖動
-    s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
+    s3d.rotateY(radians(anim(550,-30,30,8)));
     s3d.scale(0.36);
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(anim(90,0,0.2,4));
     s3d.shape(Door_1);
     s3d.popMatrix();
   }

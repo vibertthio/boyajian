@@ -30,30 +30,30 @@ static final int BL_COLOR         = 22;
 static final int BL_SATURATION    = 23;
 static final int BL_LUMINOSITY    = 24;
 String[] blendNames = {
-  "Darken", 
-  "Multiply", 
-  "Color burn", 
-  "Linear burn", 
-  "Darker color", 
-  "Lighten", 
-  "Screen", 
-  "Color dodge", 
-  "Linear dodge", 
-  "Lighter color", 
-  "Overlay", 
-  "Soft light", 
-  "Hard light", 
-  "Vivid light", 
-  "Linear light", 
-  "Pin light", 
-  "Hard mix", 
-  "Difference", 
-  "Exclusion", 
-  "Substract", 
-  "Divide", 
-  "Hue", 
-  "Color", 
-  "Saturation", 
+  "Darken",
+  "Multiply",
+  "Color burn",
+  "Linear burn",
+  "Darker color",
+  "Lighten",
+  "Screen",
+  "Color dodge",
+  "Linear dodge",
+  "Lighter color",
+  "Overlay",
+  "Soft light",
+  "Hard light",
+  "Vivid light",
+  "Linear light",
+  "Pin light",
+  "Hard mix",
+  "Difference",
+  "Exclusion",
+  "Substract",
+  "Divide",
+  "Hue",
+  "Color",
+  "Saturation",
   "Luminosity"
 };
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
@@ -122,7 +122,7 @@ void draw2Split() {
 
   pushMatrix();
   translate(float(width)/4*3, height/2);
-
+  scale(-1, 1);
   image(crop2, 0, 0, width, height);
   popMatrix();
 
@@ -154,7 +154,7 @@ void draw4Split() {
   pushMatrix();
   translate(www*7, height/2);
   scale(-1, 1);
-  image(crop2, 0, 0, width, height); 
+  image(crop2, 0, 0, width, height);
   popMatrix();
   stroke(255);
   float ww=width/4;

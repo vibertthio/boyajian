@@ -73,9 +73,8 @@ void toolGoatdrawing() {
 
 
     s3d.rotateZ(PI);
-    s3d.rotateY(radians(map(sin(float(frameCount%600)/600*6.28), -1, 1, -30, 30)));
+    s3d.rotateY(radians(anim(570,-30,30,8)));
     //--------------抖動
-    s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
     s3d.scale(0.73);
     //---------------
     s3d.pushMatrix();
