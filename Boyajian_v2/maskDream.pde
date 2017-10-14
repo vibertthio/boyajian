@@ -61,27 +61,27 @@ void maskDreamdrawing() {
     //----fadeEnd
 
     s3d.translate(Dream_x, Dream_y+anim(300, 0, -50, 2), -50);
-    s3d.pushMatrix();//文字開始
-    {
-      s3d.translate(40, 0, 0);
-      s3d.fill(maskNmae, 155);
-      if (MaskDreamLineIn.bang==true ) {
-        textDream.children[0].transform(70, easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
-        textDream.children[1].transform(102, -easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
-        textDream.children[2].transform(137, easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
-        textDream.children[3].transform(172, -easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
-      } else if (MaskDreamLineIn.done==true  ) {
-        textDream.children[0].transform(70, easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
-        textDream.children[1].transform(102, -easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
-        textDream.children[2].transform(137, easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
-        textDream.children[3].transform(172, -easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
-        defultCam();
-      }
+    //s3d.pushMatrix();//文字開始
+    //{
+    //  s3d.translate(40, 0, 0);
+    //  s3d.fill(maskNmae, 155);
+    //  if (MaskDreamLineIn.bang==true ) {
+    //    textDream.children[0].transform(70, easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
+    //    textDream.children[1].transform(102, -easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
+    //    textDream.children[2].transform(137, easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
+    //    textDream.children[3].transform(172, -easeInBack(MaskDreamLineIn.oo)*300, 30, 30) ;
+    //  } else if (MaskDreamLineIn.done==true  ) {
+    //    textDream.children[0].transform(70, easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
+    //    textDream.children[1].transform(102, -easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
+    //    textDream.children[2].transform(137, easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
+    //    textDream.children[3].transform(172, -easeInBack(MaskDreamLineOut.o)*300, 30, 30) ;
+    //    defultCam();
+    //  }
 
-      if (MaskDreamLineOut.bang==false) MaskDreamLineIn.done=false;
-      if (MaskDreamLineOut.o<0.99 && MaskDreamLineIn.o>0.001 && MaskDreamIn==true )textDream.draw(s3d);
-    }
-    s3d.popMatrix();//文字結束
+    //  if (MaskDreamLineOut.bang==false) MaskDreamLineIn.done=false;
+    //  if (MaskDreamLineOut.o<0.99 && MaskDreamLineIn.o>0.001 && MaskDreamIn==true )textDream.draw(s3d);
+    //}
+    //s3d.popMatrix();//文字結束
 
 
     s3d.rotateZ(PI);

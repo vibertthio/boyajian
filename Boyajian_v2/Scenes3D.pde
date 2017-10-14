@@ -23,6 +23,7 @@ float randomVel=2;
 boolean wireFrameCtl=false;
 boolean vertexNoise=false;
 boolean resetCamDo=false;
+color maskNmae=color(255);
 
 void s3dSetting() {
   mat_scene = getMatrix();

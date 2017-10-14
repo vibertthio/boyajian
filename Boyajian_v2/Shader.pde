@@ -73,7 +73,7 @@ float contrastA=0.1;
 float contrastB=0.5;
 
 void shaderSetting() {
-  logo=loadImage("img/logo.png");
+
   for (int i=0; i<5; i++) bgs[i]=loadImage("img/bgtex_"+i+".jpg");
   for (int i=0; i<14; i++) ptns[i]=loadImage("img/ptns_"+i+".png");
   for (int i=0; i<15; i++) pattern[i]=loadImage("img/p_"+i+".png");

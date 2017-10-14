@@ -19,7 +19,6 @@ OscP5  receiveCeiling;
 PImage[] bgs=new PImage[5] ;
 PImage[] ptns=new PImage[17] ;
 PImage[] pattern = new PImage[15];
-PImage logo;
 
 PShape square;
 PGraphics tex;
@@ -46,7 +45,6 @@ boolean showbgTgl=false ;
 boolean oscCtl=true;
 boolean record=false;
 boolean splitScreen=false;
-color maskNmae=color(255);
 
 pdMetro autoCamMetro ;
 pdLine2[] countX=new pdLine2[20];
@@ -60,6 +58,7 @@ void setup() {
   layer[1]=255;//整體alpha
   layer[2]=0;//slash
   layer[3]=0;//strip
+  layer[4]=0;//blackColumn
   layer[5]=0;//幾何剪影
   layer[6]=125;//0-115 for growGrid,135~255 for rotateGrid
   layer[8]=255;//logoDraw
@@ -74,11 +73,10 @@ void setup() {
   shaderSetting();
   uiSetting();
 
-
-
   autoCamMetro=new pdMetro(1000);
   autoCamMetro.reset();
   autoCamMetro.tgl=false;
+  
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
   }
@@ -177,10 +175,6 @@ void draw() {
 
   if (layer[4]>10) {//分割圖騰
     visualColumnDrawing();
-    imageMode(CENTER);
-    blendMode(ADD);
-    tint(255, layer[4]);
-    image(columnImg, width/2, height/2, width, height);
   }
 
   pushStyle();//黑色fadeOut遮罩
@@ -190,8 +184,8 @@ void draw() {
   rect(0, 0, width, height);
   popStyle();
 
-  stroke(255);
-  line(width/2,0,width/2,height);
+  //stroke(255);
+  //line(width/2,0,width/2,height);
   showFrameRate();//訊息
   //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }

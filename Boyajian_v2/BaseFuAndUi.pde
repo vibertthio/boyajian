@@ -32,6 +32,7 @@ void showFrameRate() {
   text("NoteIn:"+pi, 50, 150);
   text("Vel:"+vel, 50, 170);
   text("ch:"+ch, 50, 190);
+  text("pattern:"+pp, 50, 210);
 }
 
 

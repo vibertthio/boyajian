@@ -1,12 +1,10 @@
 //VisualColumn.pde
 int ColumnNum=600;
 int settingColumnNum=ColumnNum;
-
-float[] ColumnShow=new float[ColumnNum];
 int chColumnImg=0;
-
 int chColumnSpeed=20;
 
+float[] ColumnShow=new float[ColumnNum];
 float chColumnThreshold=5;
 float ColumnWidth;
 
@@ -20,7 +18,7 @@ void visualColumnDrawing() {
 
 
   columnImg.beginDraw();
-  columnImg.background(bgbg);
+  columnImg.background(255,0);
   columnImg.rectMode(CENTER);
 
 
@@ -40,17 +38,17 @@ void visualColumnDrawing() {
   columnImg.translate(width/2+(width/4), height/2);
   columnImg.rotate(radians(ptnRo));
   columnImg.imageMode(CENTER);
-  columnImg.image(pattern[chColumnImg], 0, 0, width/2, width/2);
+  //columnImg.image(pattern[chColumnImg], 0, 0, width/2, width/2);
   columnImg.popMatrix();
 
   columnImg.pushMatrix();
   columnImg.translate(width/2-(width/4), height/2);
   columnImg.rotate(-1*radians(ptnRo));
   columnImg.imageMode(CENTER);
-  columnImg.image(pattern[chColumnImg], 0, 0, width/2, width/2);
+  //columnImg.image(pattern[chColumnImg], 0, 0, width/2, width/2);
   columnImg.popMatrix();
 
- columnImg.blendMode(BLEND);
+  columnImg.blendMode(BLEND);
   for (int i=0; i<settingColumnNum; i++) {
     if (ColumnShow[i]>chColumnThreshold) {
       columnImg.fill(0, 255);
@@ -59,4 +57,9 @@ void visualColumnDrawing() {
   }
 
   columnImg.endDraw();
+  
+  imageMode(CENTER);
+  blendMode(BLEND);
+  tint(255, layer[4]);
+  image(columnImg, width/2, height/2, width, height);
 }
