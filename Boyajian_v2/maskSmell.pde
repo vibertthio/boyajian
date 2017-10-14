@@ -83,7 +83,7 @@ void maskSmelldrawing() {
     s3d.scale(0.70);
     //---------------
     s3d.pushMatrix();
-    s3d.translate(0, map(pow(sin(a2/180*6.28), 8.0), 0, 1, 0, -40));
+    s3d.translate(0, anim(180,0,-40,8));
     s3d.shape(Smell_1);
     s3d.popMatrix();
     //---------------

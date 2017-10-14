@@ -278,10 +278,7 @@ void autoCam(boolean theFlag) {
     defultCam();
   }
 }
-void showPtn(boolean theFlag) {
-  if (theFlag==true) showPtnTgl=true;
-  else showPtnTgl=false;
-}
+
 
 void autoBlend(boolean theFlag) {
   if (theFlag==true) bgChanging=true;

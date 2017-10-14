@@ -1,31 +1,28 @@
 //Scenes3D.pde
-float a1;
-float a2;
-float a3;
-float a4;
 
 float rotX=0;
 float rotY=0;
 float camX=600;
 float camY=200;
 float camZ=430;
-
 float easing = 0.02;
-boolean resetCamDo=false;
+
 float[] cam={600, 200, 430, 0, 0};
+float showParticleCount=0;
 
 Particle[] particles;
 int p_num = 100;
 PImage eyeImg;
 PImage black;
 
-float showParticleCount=0;
-
 PShape globe;
-PShape globe2;
 PShape Rglobe;
 PMatrix mat_scene;
 float randomVel=2;
+
+boolean wireFrameCtl=false;
+boolean vertexNoise=false;
+boolean resetCamDo=false;
 
 void s3dSetting() {
   mat_scene = getMatrix();
@@ -46,12 +43,8 @@ float  Falloff=1.8;
 
 
 void s3dDrawing() {
-  a1=(a1+1)%360;
-  a2=(a1+1)%180;
-  a3=(a1+1)%150;
 
   s3d.beginDraw();
-
   s3d.background(0, 2);
 
   //s3d.rectMode(CORNER);

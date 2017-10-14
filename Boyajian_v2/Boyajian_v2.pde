@@ -1,30 +1,27 @@
 //Boyajian_v2.pde
+//*按鈕1-6各種posteffect效果
+//*按鈕q分割畫面一，按鈕q分割畫面二，按鈕z分割畫面4。
+//*按鈕t旋轉鏡頭，按鈕r回復鏡頭，按鈕w拉遠鏡頭。
 import com.jogamp.opengl.GL2;
 import geomerative.*;
-
 //---------------
 import themidibus.*;
 MidiBus myBus;
-
 //---------------
 import controlP5.*;
 ControlP5 cp5;
 CheckBox checkbox;
-
 //---------------
 import oscP5.*;
 import netP5.*;
 OscP5  receiveCeiling;
 
-float ry;
 PImage[] bgs=new PImage[5] ;
 PImage[] ptns=new PImage[17] ;
 PImage[] pattern = new PImage[15];
 PImage logo;
-float ratio;
 
 PShape square;
-
 PGraphics tex;
 PGraphics s3d;
 PGraphics scence;
@@ -36,18 +33,18 @@ PGraphics crop2;
 int indexPtns=0;
 int workTime;
 int[] show= new int[20];
+int splitNum=1;
 
+//ptnGroup
 float ptnScale=1;
 float ptnRo=0;
+//ptnGroup
+
 float[] layer=new  float[15];
 
-boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
 boolean oscCtl=true;
-boolean wireFrameCtl=false;
-boolean vertexNoise=false;
 boolean record=false;
-int splitNum=1;
 boolean splitScreen=false;
 color maskNmae=color(255);
 
@@ -60,10 +57,12 @@ void settings() {
 }
 
 void setup() {
-  layer[1]=255;
-  layer[2]=0;
-  layer[3]=0;
+  layer[1]=255;//整體alpha
+  layer[2]=0;//slash
+  layer[3]=0;//strip
+  layer[5]=0;//幾何剪影
   layer[6]=125;//0-115 for growGrid,135~255 for rotateGrid
+  layer[8]=255;//logoDraw
   RG.init(this);
 
   randomSeed(1000);
@@ -75,7 +74,7 @@ void setup() {
   shaderSetting();
   uiSetting();
 
-  ratio=float(width)/1000;
+
 
   autoCamMetro=new pdMetro(1000);
   autoCamMetro.reset();

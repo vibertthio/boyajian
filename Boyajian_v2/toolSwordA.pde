@@ -78,7 +78,7 @@ void toolSwordAdrawing() {
     s3d.scale(0.57);
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(pow(sin((a2+70)/90*6.28), 4.0)*0.2);
+    s3d.rotateZ(anim(90,0,0.2,8));
     s3d.shape(SwordA_1);
     s3d.popMatrix();
   }
