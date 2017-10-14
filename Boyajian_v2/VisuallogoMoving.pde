@@ -19,11 +19,11 @@ PImage bgbg;
 pdLine2 logoRo;
 
 color[] colors = {
-  color(253, 148, 38),
-  color(252, 86, 44),
-  color(56, 195, 206),
-  color(124, 156, 124),
-  color(18, 99, 104),
+  color(253, 148, 38), 
+  color(252, 86, 44), 
+  color(56, 195, 206), 
+  color(124, 156, 124), 
+  color(18, 99, 104), 
 };
 
 void defultSetting() {
@@ -77,26 +77,19 @@ void logoDrawing() {
   if (frameCount%100==0) if (bgBlending) blendIndex = int(random(10));
 
   logoRo.update();
+  //---------------
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
-
   logos_vibert();
   logoMirror.endDraw();
 
+  //---------------
   logoMoving.beginDraw();
   logoMoving.background(125);
   logoMoving.imageMode(CENTER);
   logoMoving.blendMode(BLEND);
-
-
-  logos_1();//鏡射
-
-
-
-  //logos_3();//旋轉靜態圖
-
-  // logos_2();//repeat logo
+  logos();//鏡射
   logoMoving.endDraw();
 }
 
@@ -105,68 +98,56 @@ void logos_vibert() {
   animations.draw();
 }
 
-void logos_1() {
+void logos() {
   logoMoving.pushMatrix();
-  logoMoving.translate(0+151, logoMirror.height/2);
+  logoMoving.translate(0+-150, logoMirror.height/2);
   logoMoving.scale(1, 1);
   logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
   logoMoving.popMatrix();
 
   logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+351, logoMirror.height/2);
+  logoMoving.translate(logoMirror.width+48, logoMirror.height/2);
   logoMoving.scale(-1, 1);
   logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
   logoMoving.popMatrix();
 }
 
-void logos_3() {
-
-  if (frameCount%100==0) {
-    if (logo3Rotating) {
-      roro=int(random(-3, 3))*180;
-      logoRo.reset(random(roro));
-    }
+class  LogoDraw {
+  PGraphics canvas;
+  LogoDraw(PGraphics _c) {
+    canvas = _c;
   }
 
-  if (frameCount%50==0) {
-    if (logo3Changing) {
-      pp=int(random(15));
-    }
+  void init() {
   }
 
-  logoMoving.pushMatrix();
-  logoMoving.translate(0+250, logoMirror.height/2);
-  logoMoving.scale(1, 1);
-  logoMoving.rotate(radians(logoRo.o));
-  logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
-  logoMoving.popMatrix();
-
-  logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+250, logoMirror.height/2);
-  logoMoving.scale(-1, 1);
-  logoMoving.rotate(radians(logoRo.o));
-  logoMoving.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
-  logoMoving.popMatrix();
-}
-
-
-
-
-void logos_2() {
-  for (int i=0; i<15; i++) {
-    for (int j=0; j<10; j++) {
-      logoMoving.pushMatrix();
-      logoMoving.scale(1.01);
-      if (j%2==0) {
-        logoMoving.translate(i*100, j*100+(20*abs(sin(frameCount*0.01))));
-        logoMoving.scale(1, 1);
-        logoMoving.image(logo, 0, 0, 80, 80);
-      } else {
-        logoMoving.translate((i*100)+50, j*100-(20*abs(sin(frameCount*0.01))));
-        logoMoving.scale(1, -1);
-        logoMoving.image(logo, 0, 0, 80, 80);
+  void draw() {
+    if (frameCount%100==0) {
+      if (logo3Rotating) {
+        roro=int(random(-3, 3))*180;
+        logoRo.reset(random(roro));
       }
-      logoMoving. popMatrix();
     }
+
+    if (frameCount%50==0) {
+      if (logo3Changing) {
+        pp=int(random(15));
+      }
+    }
+    canvas.pushMatrix();
+    canvas.translate(0+250, logoMirror.height/2);
+    canvas.scale(1, 1);
+    canvas.rotate(radians(logoRo.o));
+    canvas.tint(255, layer[8]);
+    canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
+    canvas.popMatrix();
+
+    canvas.pushMatrix();
+    canvas.translate(logoMirror.width+250, logoMirror.height/2);
+    canvas.scale(-1, 1);
+    canvas.rotate(radians(logoRo.o));
+    canvas.tint(255, layer[8]);
+    canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
+    canvas.popMatrix();
   }
 }

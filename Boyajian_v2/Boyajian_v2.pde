@@ -39,7 +39,7 @@ int[] show= new int[20];
 
 float ptnScale=1;
 float ptnRo=0;
-float[] layer=new  float[9];
+float[] layer=new  float[15];
 
 boolean showPtnTgl=false ;
 boolean showbgTgl=false ;
@@ -47,7 +47,7 @@ boolean oscCtl=true;
 boolean wireFrameCtl=false;
 boolean vertexNoise=false;
 boolean record=false;
-int splitNum=1; 
+int splitNum=1;
 boolean splitScreen=false;
 color maskNmae=color(255);
 
@@ -171,7 +171,7 @@ void draw() {
       image(finalRender, width/2, height/2, width, height);
     }
     if (splitNum==2) draw2Split() ;
-    if (splitNum==4) draw4Split() ;      
+    if (splitNum==4) draw4Split() ;
   }
 
   resetShader();
@@ -191,6 +191,8 @@ void draw() {
   rect(0, 0, width, height);
   popStyle();
 
+  stroke(255);
+  line(width/2,0,width/2,height);
   showFrameRate();//訊息
   //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }

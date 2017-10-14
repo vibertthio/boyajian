@@ -5,6 +5,7 @@ class Animations {
   GrowGrid growGrid;
   RotateGrid rotateGrid;
   Slashes slashes;
+  LogoDraw logodraws;
 
   Animations(PGraphics _c) {
     canvas = _c;
@@ -15,11 +16,15 @@ class Animations {
     rotateGrid = new RotateGrid(_c, color(255, 255, 255));
 
     slashes = new Slashes(50);
+    logodraws=new LogoDraw(_c);
   }
 
   void draw() {
-    if(layer[3]>10){
-     strips.draw();
+    if (layer[8]>10) {
+      logodraws.draw();
+    }
+    if (layer[3]>10) {
+      strips.draw();
     }
 
     if (layer[6]<115) {
