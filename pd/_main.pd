@@ -1,5 +1,5 @@
 #N canvas 718 378 222 203 10;
-#N canvas 666 91 676 573 ui 1;
+#N canvas 592 125 676 573 ui 1;
 #X obj 228 290 pack f f f;
 #X obj 207 339 list;
 #X obj 207 403 packOSC;
@@ -21,13 +21,15 @@
 #X obj 25 80 t f f;
 #X obj 26 296 spigot;
 #X obj 26 274 > 0.04;
-#X obj 127 372 packOSC;
-#X obj 127 398 s allOsc;
-#X obj 116 283 f;
-#X obj 121 247 r \$0-b;
+#X obj 132 406 packOSC;
+#X obj 132 432 s allOsc;
+#X obj 130 265 f;
+#X obj 131 229 r \$0-b;
 #X obj 26 171 t f f f;
-#X msg 127 342 send /low \$1;
-#X obj 120 316 expr int($f1*100)/100;
+#X msg 132 376 send /low \$1;
+#X obj 130 346 expr int($f1*100)/100;
+#X obj 130 289 expr ($f1-0.4)/0.6;
+#X obj 130 311 expr pow($f1 \, 2);
 #X connect 0 0 1 0;
 #X connect 1 0 14 0;
 #X connect 2 0 3 0;
@@ -46,13 +48,15 @@
 #X connect 15 0 4 0;
 #X connect 16 0 15 0;
 #X connect 17 0 18 0;
-#X connect 19 0 23 0;
+#X connect 19 0 24 0;
 #X connect 20 0 19 0;
 #X connect 21 0 8 1;
 #X connect 21 1 8 0;
 #X connect 21 2 19 1;
 #X connect 22 0 17 0;
 #X connect 23 0 22 0;
+#X connect 24 0 25 0;
+#X connect 25 0 23 0;
 #X restore 228 89 pd keyPoint;
 #X floatatom 228 114 5 0 0 0 - - -, f 5;
 #N canvas 415 50 430 711 keyPoint 0;
@@ -70,13 +74,15 @@
 #X obj 25 10 inlet~;
 #X obj 25 360 outlet;
 #X obj 25 235 > 0.02;
-#X obj 112 332 packOSC;
-#X obj 112 358 s allOsc;
-#X msg 112 302 send /middle \$1;
+#X obj 118 414 packOSC;
+#X obj 118 440 s allOsc;
+#X msg 118 384 send /middle \$1;
 #X obj 110 229 f;
 #X obj 115 193 r \$0-b;
 #X obj 25 132 t f f f;
-#X obj 110 266 expr int($f1*100)/100;
+#X obj 114 343 expr int($f1*100)/100;
+#X obj 111 264 expr ($f1-0.4)/0.6;
+#X obj 130 311 expr pow($f1 \, 2);
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
@@ -92,15 +98,17 @@
 #X connect 13 0 4 0;
 #X connect 14 0 15 0;
 #X connect 16 0 14 0;
-#X connect 17 0 20 0;
+#X connect 17 0 21 0;
 #X connect 18 0 17 0;
 #X connect 19 0 8 1;
 #X connect 19 1 8 0;
 #X connect 19 2 17 1;
 #X connect 20 0 16 0;
+#X connect 21 0 22 0;
+#X connect 22 0 20 0;
 #X restore 330 57 pd keyPoint;
 #X floatatom 330 82 5 0 0 0 - - -, f 5;
-#N canvas 0 50 430 711 keyPoint 0;
+#N canvas 655 102 430 711 keyPoint 1;
 #X obj 25 39 env~;
 #X floatatom 25 61 5 0 0 0 - - -, f 5;
 #X obj 25 126 / 100;
@@ -118,13 +126,15 @@
 #X obj 25 81 t f f;
 #X obj 26 304 spigot;
 #X obj 112 137 > 70;
-#X obj 155 362 packOSC;
-#X obj 155 388 s allOsc;
-#X obj 151 307 f;
-#X obj 156 271 r \$0-b;
+#X obj 156 399 packOSC;
+#X obj 156 425 s allOsc;
+#X obj 148 234 f;
+#X obj 153 198 r \$0-b;
 #X obj 25 170 t f f f;
-#X msg 155 332 send /high \$1;
-#X obj 254 278 expr int($f1*100)/100;
+#X msg 156 369 send /high \$1;
+#X obj 156 337 expr int($f1*100)/100;
+#X obj 153 265 expr ($f1-0.4)/0.6;
+#X obj 159 290 expr pow($f1 \, 2);
 #X connect 0 0 1 0;
 #X connect 1 0 14 0;
 #X connect 2 0 3 0;
@@ -143,13 +153,15 @@
 #X connect 15 0 4 0;
 #X connect 16 0 15 1;
 #X connect 17 0 18 0;
-#X connect 19 0 23 0;
+#X connect 19 0 24 0;
 #X connect 20 0 19 0;
 #X connect 21 0 8 1;
 #X connect 21 1 8 0;
 #X connect 21 2 19 1;
 #X connect 22 0 17 0;
 #X connect 23 0 22 0;
+#X connect 24 0 25 0;
+#X connect 25 0 23 0;
 #X restore 414 34 pd keyPoint;
 #X floatatom 414 59 5 0 0 0 - - -, f 5;
 #X obj 330 104 t b f;
@@ -169,7 +181,7 @@
 #X msg 289 338 0 0 0;
 #X obj 536 292 * 1;
 #X obj 106 99 hsl 50 15 0 2 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2450 1;
+-1 -1 2500 1;
 #X floatatom 581 273 5 0 0 0 - - -, f 5;
 #X msg 165 70 1;
 #X obj 169 46 loadbang;
@@ -182,19 +194,19 @@
 #X obj 387 185 line;
 #X obj 450 461 s allOsc;
 #X obj 207 429 s allOsc;
-#X obj 5 15 tgl 30 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 5 15 tgl 30 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X obj 26 80 k_vol~;
 #X obj -56 289 spigot;
 #X obj 6 269 udpsend;
 #X msg 6 244 disconnect;
-#X obj -24 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj -24 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 6 194 sel 0 1;
 #X obj -56 239 r allOsc;
 #X obj 100 167 loadbang;
 #X msg 100 189 \; pd dsp 1;
-#X obj 53 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 53 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 91 393 s \$0-bbb;
 #X obj 53 340 t b b b;

@@ -24,6 +24,7 @@ PShape RmaskA_5;
 PImage EyeImg;
 
 float Eye_x, Eye_y;
+float step=0;
 
 void maskEyeSetting() {
 
@@ -162,8 +163,11 @@ void maskEyedrawing() {
     s3d.shape(maskA_3_2);
     s3d.popMatrix();
     //---------------背板
+    
+    float soundVol=map(middle,0,1,0.5,4);
+    step=(step+soundVol)%360;
     s3d.pushMatrix();
-    s3d.rotate((easeInBack(a1/360))*6.28);
+    s3d.rotate(radians(step));
 
     if (vertexNoise==true) randomVertex(maskA_4);
     else returnVertex(RmaskA_4, maskA_4);
