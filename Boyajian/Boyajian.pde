@@ -130,6 +130,7 @@ void draw() {
   //---------------*過一個視覺特效
   effectGLSL.set("time", millis()/1000.0);
   shader(effectGLSL);
+  //effectGLSL.set("pos", 2.00,1.06,1.01);
   //---------------*過一個視覺特效
 
   ptnGroup.beginDraw();

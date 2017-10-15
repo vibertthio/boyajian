@@ -23,6 +23,11 @@ void keyPressed() {
     effectGLSL.set("vol", 0.6);
   }
 
+  if (key == '7') {
+    effectGLSL = loadShader("glsl/zoomBlur.glsl");
+    effectGLSL.set("vol", 0.6);
+  }
+
   if (key == 'q') splitNum =1;
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;
