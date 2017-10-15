@@ -1,7 +1,9 @@
 //Boyajian_v2.pde
-//*按鈕1-6各種posteffect效果
+//*按鈕1-9各種posteffect效果
 //*按鈕q分割畫面一，按鈕q分割畫面二，按鈕z分割畫面4。
-//*按鈕t旋轉鏡頭，按鈕r回復鏡頭，按鈕w拉遠鏡頭。
+//*按鈕t旋轉鏡頭，按鈕r回復鏡頭，按鈕e拉遠鏡頭。
+//*按鈕w切換wireframe
+//*按鈕k切換變形
 import com.jogamp.opengl.GL2;
 import geomerative.*;
 //---------------
