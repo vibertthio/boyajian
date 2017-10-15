@@ -46,6 +46,7 @@ uniform int blendMode;
 
 // Opacity of the source layer
 uniform float blendAlpha;
+uniform float texAlpha;
 uniform float allAlpha;
 
 
@@ -267,7 +268,6 @@ void main(void)
 	// destination texture (lower layer) note: y axis is mirrored because of Processing's inverted coordinate system
   vec2 dPos = vec2( gl_FragCoord.x / lowLayerResolution.x, (gl_FragCoord.y / lowLayerResolution.y) );
 	vec3 d = texture2D(lowLayer, dPos ).rgb;
-
 	vec3 c = vec3(0.0);
 
 		 if(blendMode==0)	c = darken(       s,d);

@@ -28,6 +28,16 @@ void keyPressed() {
     effectGLSL.set("vol", 0.6);
   }
 
+  if (key == '8') {
+      effectGLSL = loadShader("glsl/bloom.glsl");
+      effectGLSL.set("vol", 0.6);
+  }
+  if (key == '9') {
+      effectGLSL = loadShader("glsl/sobel_2.glsl");
+      effectGLSL.set("vol", 1.0);
+      effectGLSL.set("resolution", width,height);
+  }
+
   if (key == 'q') splitNum =1;
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;

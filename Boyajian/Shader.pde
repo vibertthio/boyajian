@@ -126,8 +126,8 @@ void draw2Split() {
   image(crop2, 0, 0, width, height);
   popMatrix();
 
-  stroke(255);
-  line(width/2, 0, width/2, height);
+  //stroke(255);
+  //line(width/2, 0, width/2, height);
 }
 
 void draw4Split() {
@@ -158,7 +158,7 @@ void draw4Split() {
   popMatrix();
   stroke(255);
   float ww=width/4;
-  line(ww*1, 0, ww*1, height);
-  line(ww*2, 0, ww*2, height);
-  line(ww*3, 0, ww*3, height);
+  //line(ww*1, 0, ww*1, height);
+  //line(ww*2, 0, ww*2, height);
+  //line(ww*3, 0, ww*3, height);
 }

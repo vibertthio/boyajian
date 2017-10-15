@@ -18,6 +18,8 @@ PImage bgbg;
 pdLine2 logoRo;
 
 float logoScale=1;
+float logoMovingStep=0;
+float logoMovingSpeed=0.1;
 
 color[] colors = {
   color(253, 148, 38), 
@@ -135,10 +137,12 @@ class  LogoDraw {
         pp=int(random(15));
       }
     }
+    
+    logoMovingStep=(logoMovingStep+logoMovingSpeed)%360;
     canvas.pushMatrix();
     canvas.translate(0+250, logoMirror.height/2);
     canvas.scale(1*logoScale, 1*logoScale);
-    canvas.rotate(radians(logoRo.o));
+    canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, layer[8]);
     canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
     canvas.popMatrix();
@@ -146,7 +150,7 @@ class  LogoDraw {
     canvas.pushMatrix();
     canvas.translate(logoMirror.width+250, logoMirror.height/2);
     canvas.scale(-1*logoScale, 1*logoScale);
-    canvas.rotate(radians(logoRo.o));
+    canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, layer[8]);
     canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
     canvas.popMatrix();

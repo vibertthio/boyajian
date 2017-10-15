@@ -150,8 +150,6 @@ void s3dDrawing() {
       setTexture( globe, tex);
       s3d.blendMode(BLEND);
     }
-    if (vertexNoise==true) {
-    }
 
     s3d.shape(globe);
   }
