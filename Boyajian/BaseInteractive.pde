@@ -120,7 +120,7 @@ void defultCam() {
 void zoonCam() {
   cam[0]=600;
   cam[1]=200;
-  cam[2]=-2000;
+  cam[2]=2000;
   cam[3]=0;
   cam[4]=0;
   resetCamDo=true;
@@ -218,7 +218,7 @@ void sendCtl2p5() {
   if (nr==42) chColumnSpeed =int(map(vl, 0, 255, 40, 2));
   if (nr==43) ColumnNum =int(map(vl, 0, 255, 2, 580));
 
-  if (nr==10) layer[1]=vl;
+
   if (nr==20) layer[2]=vl;
   if (nr==30) layer[3]=vl;
   if (nr==40) layer[4]=vl;
@@ -243,10 +243,13 @@ void sendCtl2p5() {
   };
   if (nr==83)logoScale=map(vl, 0, 255, 1, 2);
   //------------
-
+  if (nr==10) layer[1]=vl;
   if (nr==11) contrastA=vl/255;
   if (nr==12) contrastB=vl/255;
   if (nr==13) Falloff=map(vl, 0, 255, 1, 3);
+    //------------
+  if (nr==23) showEyeParticle=int(vl);
+  if (nr==22) showEarParticle=int(vl);
 }
 
 void controllerChange(ControlChange change) {

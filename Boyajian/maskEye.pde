@@ -23,6 +23,7 @@ PShape RmaskA_4;
 PShape RmaskA_5;
 PImage EyeImg;
 
+
 float Eye_x, Eye_y;
 float step=0;
 
@@ -37,6 +38,7 @@ void maskEyeSetting() {
 
     MaskEyeIn=true;
     EyeImg=loadImage("maskEye/tex_eye.png");
+    
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
     maskA_2 = loadShape("maskEye/maskA_2.obj");
@@ -163,7 +165,7 @@ void maskEyedrawing() {
     s3d.shape(maskA_3_2);
     s3d.popMatrix();
     //---------------背板
-    
+
     float soundVol=map(middle,0,1,0.5,4);
     step=(step+soundVol)%360;
     s3d.pushMatrix();
