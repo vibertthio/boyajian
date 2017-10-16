@@ -32,9 +32,6 @@ class RotateGrid {
   }
 
   void draw() {
-    // low = map(mouseY, 0, height, 10, 50);
-    // high = low * 8;
-    // unit = floor(high - low);
     update();
     render();
   }
@@ -43,10 +40,6 @@ class RotateGrid {
     angle = 2 * PI * (time / 960);
     w =  (high - low) * sin(angle) * sin(angle) + low;
     h =  (high - low) * cos(angle) * cos(angle) + low;
-
-    // w =  (high - low) * (sin(a * 2 + PI * 0.5) + 1) * 0.5 + low;
-    // h =  high + low - w;
-
     time++;
   }
 
