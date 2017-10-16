@@ -108,8 +108,8 @@ void draw() {
   s3dDrawing() ;
   //---------------*blendGLSL即時參數
   blendGLSL.set( "blendAlpha", 0.7f );
-  if(frameCount%30==0){
-  //blendGLSL.set( "allAlpha", 1.0f+random(-0.1,0.0) );
+  if (frameCount%30==0) {
+    //blendGLSL.set( "allAlpha", 1.0f+random(-0.1,0.0) );
   }
   blendGLSL.set( "blendMode", indexSelectBlend [blendIndex] );
   //---------------*圖騰繪製
