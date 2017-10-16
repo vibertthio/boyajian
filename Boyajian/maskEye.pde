@@ -38,7 +38,7 @@ void maskEyeSetting() {
 
     MaskEyeIn=true;
     EyeImg=loadImage("maskEye/tex_eye.png");
-    
+
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
     maskA_2 = loadShape("maskEye/maskA_2.obj");
@@ -71,7 +71,8 @@ void maskEyeSetting() {
 
 
 void maskEyedrawing() {
-
+  float soundVol=float(int(map(middle, 0, 1, 2, 10)));
+  step=(step+soundVol)%360;
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
 
   //----fade
@@ -148,7 +149,8 @@ void maskEyedrawing() {
     s3d.popMatrix();
     //---------------左
     s3d.pushMatrix();
-    s3d.translate(anim(180, 0, -40, 8), 0);
+    s3d.translate(map(sin((step/360*2)*6.28), -1, 1, 0, -40), 0);
+
 
     if (vertexNoise==true) randomVertex(maskA_3_1);
     else returnVertex(RmaskA_3_1, maskA_3_1);
@@ -157,7 +159,7 @@ void maskEyedrawing() {
     s3d.popMatrix();
     //---------------右
     s3d.pushMatrix();
-    s3d.translate(anim(180, 0, 40, 2), 0);
+    s3d.translate(map(sin((step/360*2)*6.28), -1, 1, 0, 40), 0);
 
     if (vertexNoise==true) randomVertex(maskA_3_2);
     else returnVertex(RmaskA_3_2, maskA_3_2);
@@ -166,8 +168,8 @@ void maskEyedrawing() {
     s3d.popMatrix();
     //---------------背板
 
-    float soundVol=map(middle,0,1,0.5,4);
-    step=(step+soundVol)%360;
+
+
     s3d.pushMatrix();
     s3d.rotate(radians(step));
 
@@ -194,13 +196,13 @@ void maskEyedrawing() {
     s3d.popMatrix();
     //---------------
     if (wireFrameCtl==true) {
-      noWireFrame( maskA_1_1,random(1.80,2.40),color(0,165,250,120));
-      noWireFrame( maskA_1_2,random(1.80,2.40),color(0,165,250,120));
-      noWireFrame( maskA_2,random(1.80,2.40),color(0,165,250,120));
-      noWireFrame( maskA_3_1,random(1.80,2.40),color(0,165,250,120));
-      noWireFrame( maskA_3_2,random(1.80,2.40),color(0,165,250,120));
-      noWireFrame( maskA_4,random(1.80,2.40),color(0,165,250,120));
-      noWireFrame( maskA_5,random(1.80,2.40),color(0,165,250,120));
+      noWireFrame( maskA_1_1, random(1.80, 2.40), color(0, 165, 250, 120));
+      noWireFrame( maskA_1_2, random(1.80, 2.40), color(0, 165, 250, 120));
+      noWireFrame( maskA_2, random(1.80, 2.40), color(0, 165, 250, 120));
+      noWireFrame( maskA_3_1, random(1.80, 2.40), color(0, 165, 250, 120));
+      noWireFrame( maskA_3_2, random(1.80, 2.40), color(0, 165, 250, 120));
+      noWireFrame( maskA_4, random(1.80, 2.40), color(0, 165, 250, 120));
+      noWireFrame( maskA_5, random(1.80, 2.40), color(0, 165, 250, 120));
     } else {
       setTexture( maskA_1_1, EyeImg);
       setTexture( maskA_1_2, EyeImg);

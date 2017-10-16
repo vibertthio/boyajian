@@ -9,22 +9,22 @@ class EyeGroup extends Particle {
   EyeGroup(PVector p){
     pos = p.get();
     c=color(255, random(150, 255), random(150, 255));
-    id=int(random(3));
+    id=int(random(2));
   }
 
   void run(){
-    //update() ;
+    update() ;
     render();
   }
 
   void render() {
-    if(id==0) soundVol=map(low,0,1,-5,40);
+    if(id==0) soundVol=10;
     if(id==1) soundVol=map(middle,0,1,-5,40);
-    if(id==2) soundVol=map(high,0,1,-5,40);
 
     s3d.pushMatrix();
     s3d.translate(pos.x, pos.y, pos.z);
-    s3d.tint(c, 230);
+    //s3d.tint(c, 230);
+    s3d.tint(255, 230);
     PVector rtVc = pos.copy().sub(parentPos).setMag(1.0);//unit vector
     float dst = dist(pos.x, pos.z, pos.y, parentPos.x, parentPos.z, parentPos.y);
 
@@ -75,6 +75,7 @@ class EarGroup extends Particle {
     if(id==2) soundVol=high*defultSize;
     s3d.pushMatrix();
     s3d.translate(pos.x,pos.y,pos.z);
+    s3d.tint(255, 230);
     s3d.translate(0,anim(animCount,-10,10,8),0);
     s3d.scale(showEarParticle/255);
     if (wireFrameCtl==true) {
