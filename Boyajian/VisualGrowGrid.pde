@@ -14,7 +14,7 @@ class GrowGrid {
   float highValue = 0;
   float lowValue = 0;
   int lowBufferCount = 0;
-  int lowBufferLimit = 10;
+  int lowBufferLimit = 30;
 
   GrowGrid(PGraphics _c, color _col) {
     canvas = _c;
@@ -56,6 +56,10 @@ class GrowGrid {
         allSizeBang();
       }
     }
+
+    if (random(1) < 0.1) {
+      randomBlinkBang();
+    }
   }
 
   void render() {
@@ -86,6 +90,23 @@ class GrowGrid {
       }
     }
   }
+  void rowSizeBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].sizeBang();
+    }
+  }
+  void colAngleBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].angleBang();
+    }
+  }
+
+  void randomBlinkBang() {
+    int x = floor(random(n));
+    int y = floor(random(n));
+    recs[x * n + y].blinkBang();
+  }
+
   void randomSizeBang() {
     int x = floor(random(n));
     int y = floor(random(n));
@@ -98,7 +119,6 @@ class GrowGrid {
     recs[x * n + y].vibrateBang();
   }
 
-
 }
 
 class GrowRectangle {
@@ -107,6 +127,8 @@ class GrowRectangle {
   float xpos;
   float ypos;
   float length;
+  float targetAngle = PI * .25;
+  float angle = PI * .25;
 
   color col;
 
@@ -124,10 +146,25 @@ class GrowRectangle {
   }
 
   void update() {
+    vibrateUpdate();
+    blinkUpdate();
+    lengthUpdate();
+    angleUpdate();
+  }
+
+  void lengthUpdate() {
     if (abs(length - grid.length) < 1) {
       length = grid.length;
     } else {
-      length = length + (grid.length - length) * 0.2;
+      length = length + (grid.length - length) * 0.1;
+    }
+  }
+
+  void angleUpdate() {
+    if (abs(targetAngle - angle) < 0.05) {
+      angle = targetAngle;
+    } else {
+      angle = angle + (targetAngle - angle) * 0.1;
     }
   }
 
@@ -139,22 +176,45 @@ class GrowRectangle {
     canvas.rectMode(CENTER);
     canvas.translate(xpos, ypos);
     if (vibrateCount > 0) {
-      vibrateCount--;
       canvas.translate(random(-5, 5), random(-5, 5));
     }
-    canvas.rotate(PI * .25);
+    canvas.rotate(angle);
     canvas.rect(0, 0, length, length);
     canvas.popMatrix();
   }
 
   void sizeBang() {
+    length = grid.length * random(1.5, 1.7);
+  }
+
+  void angleBang() {
     // length *= random(1.5, 2.5);
-    length = grid.length * random(1, 1.5);
+    angle = targetAngle * 2;
   }
 
   int vibrateCount = 0;
   void vibrateBang() {
     vibrateCount = 15;
+  }
+  void vibrateUpdate() {
+    if (vibrateCount > 0) {
+      vibrateCount--;
+    }
+  }
+
+  boolean blinking = false;
+  int blinkCount = 0;
+  void blinkBang() {
+    blinking = true;
+    blinkCount = floor(random(10, 60));
+  }
+  void blinkUpdate() {
+    if (blinking) {
+      blinkCount--;
+      if (blinkCount <= 0) {
+        blinking = false;
+      }
+    }
   }
 
 }
