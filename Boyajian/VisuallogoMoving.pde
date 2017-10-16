@@ -22,11 +22,11 @@ float logoMovingStep=0;
 float logoMovingSpeed=0.1;
 
 color[] colors = {
-  color(253, 148, 38), 
-  color(252, 86, 44), 
-  color(56, 195, 206), 
-  color(124, 156, 124), 
-  color(18, 99, 104), 
+  color(253, 148, 38),
+  color(252, 86, 44),
+  color(56, 195, 206),
+  color(124, 156, 124),
+  color(18, 99, 104),
 };
 
 void defultSetting() {
@@ -137,7 +137,7 @@ class  LogoDraw {
         pp=int(random(15));
       }
     }
-    
+
     logoMovingStep=(logoMovingStep+logoMovingSpeed)%360;
     canvas.pushMatrix();
     canvas.translate(0+250, logoMirror.height/2);
