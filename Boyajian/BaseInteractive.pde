@@ -59,6 +59,12 @@ void keyPressed() {
   if (key == 'w') wireFrameCtl =!wireFrameCtl;
   if (key == 'k') vertexNoise =!vertexNoise;
 
+  if (key == 'm') {
+    animations.growGrid.rowSizeBang(2);
+    animations.growGrid.colAngleBang(5);
+  }
+
+
   // change background and shader algorithm
   if (key == CODED) {
     if (keyCode == UP) {

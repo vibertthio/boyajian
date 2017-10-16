@@ -17,6 +17,7 @@ void oscEvent(OscMessage m) {
         chlow=m.get(0).floatValue();
         chmiddle=m.get(1).floatValue();
         chhigh=m.get(2).floatValue();
+        // println("chlow:" + chlow+",   chmiddle:"+chmiddle+",   chhigh:"+chhigh );
       }
     }
 
@@ -24,7 +25,11 @@ void oscEvent(OscMessage m) {
     if (m.checkAddrPattern("/middle")==true) if (m.checkTypetag("f"))middle=m.get(0).floatValue();
     if (m.checkAddrPattern("/high")==true) if (m.checkTypetag("f"))high=m.get(0).floatValue();
 
+<<<<<<< HEAD
     println("low:"+low+",   middle:"+middle+",   high:"+high );
+=======
+    // println("low:"+low+",   middle:"+middle+",   high:"+high );
+>>>>>>> origin/master
     chColumnThreshold=int(map(low, 0.4, 1, 0, 10));
     chColumnSpeed =int(map(high, 0.4, 1, 40, 2));
     ColumnNum =int(map(middle, 0.4, 1, 2, 580));

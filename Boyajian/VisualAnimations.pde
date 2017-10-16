@@ -41,8 +41,8 @@ class Animations {
   }
 }
 
-// X : 400 - 1000
-// Y : 500 - 1000
+// X : 700 - 1000
+// Y : 300 - 650
 
 class Circle {
   PGraphics canvas;

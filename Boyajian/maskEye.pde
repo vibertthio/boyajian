@@ -150,7 +150,7 @@ void maskEyedrawing() {
     //---------------左
     s3d.pushMatrix();
     s3d.translate(map(sin((step/360*2)*6.28), -1, 1, 0, -40), 0);
-     
+
 
     if (vertexNoise==true) randomVertex(maskA_3_1);
     else returnVertex(RmaskA_3_1, maskA_3_1);
