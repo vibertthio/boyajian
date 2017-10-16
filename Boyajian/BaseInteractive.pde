@@ -42,6 +42,7 @@ void keyPressed() {
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;
 
+  if (key == 'y') closeCam();
   if (key == 'e') zoonCam();
   if (key == 'r') defultCam();
   if (key == 't') randomCam();
@@ -120,6 +121,15 @@ void zoonCam() {
   cam[0]=600;
   cam[1]=200;
   cam[2]=2000;
+  cam[3]=0;
+  cam[4]=0;
+  resetCamDo=true;
+}
+
+void closeCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=200;
   cam[3]=0;
   cam[4]=0;
   resetCamDo=true;

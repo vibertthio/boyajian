@@ -24,7 +24,7 @@ void oscEvent(OscMessage m) {
     if (m.checkAddrPattern("/middle")==true) if (m.checkTypetag("f"))middle=m.get(0).floatValue();
     if (m.checkAddrPattern("/high")==true) if (m.checkTypetag("f"))high=m.get(0).floatValue();
 
-    //println("low:"+low+",   middle:"+middle+",   high:"+high );
+    println("low:"+low+",   middle:"+middle+",   high:"+high );
     chColumnThreshold=int(map(low, 0.4, 1, 0, 10));
     chColumnSpeed =int(map(high, 0.4, 1, 40, 2));
     ColumnNum =int(map(middle, 0.4, 1, 2, 580));

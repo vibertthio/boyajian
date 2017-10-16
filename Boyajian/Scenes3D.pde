@@ -43,7 +43,7 @@ void s3dSetting() {
   earGroups = new EarGroup[earNum];
 
   for (int i = 0; i < eyeNum; i++) {
-    PVector p = new PVector(random(-600, 600)+width/2, random(-300, 300)+height/2, random(-200, 200));
+    PVector p = new PVector(random(-600, 600)+width/2, random(-300, 300)+height/2, random(-400, 400));
     eyeGroups[i] = new EyeGroup(p);
   }
 
