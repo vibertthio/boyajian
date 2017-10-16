@@ -1,5 +1,5 @@
-#N canvas 718 378 222 203 10;
-#N canvas 592 125 676 573 ui 0;
+#N canvas 1626 223 222 203 10;
+#N canvas 577 248 765 572 ui 0;
 #X obj 228 290 pack f f f;
 #X obj 207 339 list;
 #X obj 207 403 packOSC;
@@ -194,7 +194,7 @@
 #X obj 387 185 line;
 #X obj 450 461 s allOsc;
 #X obj 207 429 s allOsc;
-#X obj 5 15 tgl 30 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 5 15 tgl 30 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X obj 26 80 k_vol~;
 #X obj -56 289 spigot;
@@ -206,7 +206,7 @@
 #X obj -56 239 r allOsc;
 #X obj 100 167 loadbang;
 #X msg 100 189 \; pd dsp 1;
-#X obj 53 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 53 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 91 393 s \$0-bbb;
 #X obj 53 340 t b b b;

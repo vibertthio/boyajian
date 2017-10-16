@@ -1,7 +1,7 @@
 //VisualRotateGrid.pde
 class RotateGrid {
   PGraphics canvas;
-  Rectangle[] recs;
+  RotateRectangle[] recs;
   boolean playing;
   int n = 20;
   float low = 10;
@@ -18,14 +18,14 @@ class RotateGrid {
   RotateGrid(PGraphics _c, color _col) {
     canvas = _c;
     col = _col;
-    recs = new Rectangle[n * n];
+    recs = new RotateRectangle[n * n];
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         boolean v = ((j % 2) == 0);
         if (v) {
-          recs[i * n + j] = new Rectangle(_c, this, i * unit, j * unit * 0.5, true);
+          recs[i * n + j] = new RotateRectangle(_c, this, i * unit, j * unit * 0.5, true);
         } else {
-          recs[i * n + j] = new Rectangle(_c, this, i * unit + 0.5 * unit, j * unit * 0.5, false);
+          recs[i * n + j] = new RotateRectangle(_c, this, i * unit + 0.5 * unit, j * unit * 0.5, false);
         }
       }
     }
@@ -57,7 +57,7 @@ class RotateGrid {
   }
 }
 
-class Rectangle {
+class RotateRectangle {
   PGraphics canvas;
   RotateGrid grid;
   float xpos;
@@ -71,11 +71,11 @@ class Rectangle {
 
   boolean vr = true;
 
-  Rectangle(PGraphics _c, RotateGrid _g, float _x, float _y) {
+  RotateRectangle(PGraphics _c, RotateGrid _g, float _x, float _y) {
     init(_c, _g, _x, _y);
   }
 
-  Rectangle(PGraphics _c, RotateGrid _g, float _x, float _y, boolean _v) {
+  RotateRectangle(PGraphics _c, RotateGrid _g, float _x, float _y, boolean _v) {
     init(_c, _g, _x, _y);
     vr = _v;
   }

@@ -58,6 +58,7 @@ void keyPressed() {
   if (key == 'w') wireFrameCtl =!wireFrameCtl;
   if (key == 'k') vertexNoise =!vertexNoise;
 
+
   // change background and shader algorithm
   if (key == CODED) {
     if (keyCode == UP) {

@@ -64,8 +64,8 @@ void setup() {
   layer[3]=0;//strip
   layer[4]=0;//blackColumn
   layer[5]=0;//幾何剪影
-  layer[6]=125;//0-115 for growGrid,135~255 for rotateGrid
-  layer[8]=255;//logoDraw
+  layer[6]=80;//0-115 for growGrid,135~255 for rotateGrid
+  layer[8]=0;//logoDraw
   RG.init(this);
 
   randomSeed(1000);
