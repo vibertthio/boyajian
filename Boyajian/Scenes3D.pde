@@ -29,6 +29,7 @@ EyeGroup[] eyeGroups;
 EarGroup[] earGroups;
 int eyeNum = 200;
 int earNum = 40;
+PVector parentPos;
 
 
 void s3dSetting() {
@@ -90,6 +91,7 @@ void s3dDrawing() {
   s3d.beginCamera();
   s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
   //println(rotX, rotY, camX, camY, camZ);
+  parentPos=new PVector(camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX));
   s3d.endCamera();
   if (resetCamDo==true)resetCam(cam[0], cam[1], cam[2], cam[3], cam[4]);
   // if (mousePressed) {
