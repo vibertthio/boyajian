@@ -59,10 +59,8 @@ void keyPressed() {
   if (key == 'w') wireFrameCtl =!wireFrameCtl;
   if (key == 'k') vertexNoise =!vertexNoise;
 
-  if (key == 'm') {
-    animations.growGrid.rowSizeBang(2);
-    animations.growGrid.colAngleBang(5);
-  }
+
+
   if (key == 'f') {
     autoCamMetroUpDown.tgl= !autoCamMetroUpDown.tgl;
     if(autoCamMetroUpDown.tgl==false){
@@ -70,6 +68,16 @@ void keyPressed() {
     }
   }
 
+  // Vibert's Functions
+  if (key == 'v') {
+    // animations.growGrid.allSizeBang();
+    // animations.growGrid.allRotateBang();
+    // animations.growGrid.allRotateBang(4);
+    // animations.growGrid.allBlinkBang();
+    // animations.growGrid.rowSizeBang(2);
+    // animations.growGrid.colAngleShiftBang(5);
+    // animations.growGrid.allCordTrigger();
+  }
 
   // change background and shader algorithm
   if (key == CODED) {

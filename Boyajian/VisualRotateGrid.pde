@@ -12,7 +12,6 @@ class RotateGrid {
   float w;
   float h;
   float angle;
-
   color col;
 
   RotateGrid(PGraphics _c, color _col) {
@@ -35,14 +34,12 @@ class RotateGrid {
     update();
     render();
   }
-
   void update() {
     angle = 2 * PI * (time / 960);
     w =  (high - low) * sin(angle) * sin(angle) + low;
     h =  (high - low) * cos(angle) * cos(angle) + low;
     time++;
   }
-
   void render() {
     for (int i = 0; i < n * n; i++) {
       recs[i].draw();
@@ -60,19 +57,15 @@ class RotateRectangle {
   float w;
   float h;
   float angle;
-
-
   boolean vr = true;
 
   RotateRectangle(PGraphics _c, RotateGrid _g, float _x, float _y) {
     init(_c, _g, _x, _y);
   }
-
   RotateRectangle(PGraphics _c, RotateGrid _g, float _x, float _y, boolean _v) {
     init(_c, _g, _x, _y);
     vr = _v;
   }
-
   void init(PGraphics _c, RotateGrid _g, float _x, float _y) {
     canvas = _c;
     grid = _g;
@@ -88,13 +81,11 @@ class RotateRectangle {
     update();
     render();
   }
-
   void update() {
     angle = grid.angle;
     w = grid.w;
     h = grid.h;
   }
-
   void render() {
     canvas.pushMatrix();
     canvas.translate(300, 300);

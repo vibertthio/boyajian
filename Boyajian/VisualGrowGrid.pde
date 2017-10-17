@@ -34,8 +34,6 @@ class GrowGrid {
     update();
     render();
   }
-
-
   void update() {
     time++;
     lowBufferCount++;
@@ -56,12 +54,10 @@ class GrowGrid {
         allSizeBang();
       }
     }
-
     if (random(1) < 0.1) {
       randomBlinkBang();
     }
   }
-
   void render() {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -70,23 +66,45 @@ class GrowGrid {
     }
   }
 
-  void renderRect(float x, float y) {
-    canvas.pushMatrix();
-    canvas.translate(300, 300);
-    canvas.noStroke();
-    canvas.fill(col, map(layer[6],115,0,0,255));
-    canvas.rectMode(CENTER);
-    canvas.translate(x, y);
-    canvas.rotate(PI * .25);
-    canvas.rect(0, 0, length, length);
-    canvas.popMatrix();
-  }
-
-
   void allSizeBang() {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         recs[i * n + j].sizeBang();
+      }
+    }
+  }
+  void allAngleShiftBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].angleShiftBang();
+      }
+    }
+  }
+  void allRotateBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].rotateBang();
+      }
+    }
+  }
+  void allRotateBang(int amt) {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].rotateBang(amt);
+      }
+    }
+  }
+  void allBlinkBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].blinkBang();
+      }
+    }
+  }
+  void allCordTrigger() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].cordTrigger();
       }
     }
   }
@@ -95,9 +113,31 @@ class GrowGrid {
       recs[i * n + r].sizeBang();
     }
   }
-  void colAngleBang(int c) {
+  void rowAngleShiftBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].angleShiftBang();
+      }
+    }
+  }
+  void rowRotateBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].rotateBang();
+    }
+  }
+  void rowRotateBang(int r, int amt) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].rotateBang(amt);
+    }
+  }
+  void rowBlinkBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].blinkBang();
+    }
+  }
+  void colAngleShiftBang(int c) {
     for (int j = 0; j < n; j++) {
-      recs[c * n + j].angleBang();
+      recs[c * n + j].angleShiftBang();
     }
   }
 
@@ -106,13 +146,11 @@ class GrowGrid {
     int y = floor(random(n));
     recs[x * n + y].blinkBang();
   }
-
   void randomSizeBang() {
     int x = floor(random(n));
     int y = floor(random(n));
     recs[x * n + y].sizeBang();
   }
-
   void randomVibrateBang() {
     int x = floor(random(n));
     int y = floor(random(n));
@@ -144,30 +182,13 @@ class GrowRectangle {
     update();
     render();
   }
-
   void update() {
     vibrateUpdate();
     blinkUpdate();
     lengthUpdate();
     angleUpdate();
+    cordUpdate();
   }
-
-  void lengthUpdate() {
-    if (abs(length - grid.length) < 1) {
-      length = grid.length;
-    } else {
-      length = length + (grid.length - length) * 0.1;
-    }
-  }
-
-  void angleUpdate() {
-    if (abs(targetAngle - angle) < 0.05) {
-      angle = targetAngle;
-    } else {
-      angle = angle + (targetAngle - angle) * 0.1;
-    }
-  }
-
   void render() {
     canvas.pushMatrix();
     canvas.translate(300, 300);
@@ -180,16 +201,44 @@ class GrowRectangle {
     }
     canvas.rotate(angle);
     canvas.rect(0, 0, length, length);
+    cordRender();
     canvas.popMatrix();
+  }
+
+  void lengthUpdate() {
+    if (abs(length - grid.length) < 1) {
+      length = grid.length;
+    } else {
+      length = length + (grid.length - length) * 0.1;
+    }
+  }
+  void angleUpdate() {
+    if (abs(targetAngle - angle) < 0.05) {
+      angle = targetAngle;
+    } else {
+      angle = angle + (targetAngle - angle) * 0.1;
+    }
   }
 
   void sizeBang() {
     length = grid.length * random(1.5, 1.7);
   }
-
-  void angleBang() {
-    // length *= random(1.5, 2.5);
+  void angleShiftBang() {
     angle = targetAngle * 2;
+  }
+  void rotateBang() {
+    if (targetAngle < PI) {
+      targetAngle += PI;
+    } else {
+      targetAngle -= PI;
+    }
+  }
+  void rotateBang(int amt) {
+    if (targetAngle < PI) {
+      targetAngle += amt * PI;
+    } else {
+      targetAngle -= amt * PI;
+    }
   }
 
   int vibrateCount = 0;
@@ -210,11 +259,36 @@ class GrowRectangle {
   }
   void blinkUpdate() {
     if (blinking) {
+      col = colors[floor(random(colors.length))];
+      length = grid.length * random(0.5, 1.5);
       blinkCount--;
       if (blinkCount <= 0) {
         blinking = false;
+        col = grid.col;
       }
     }
   }
 
+  boolean cording = false;
+  float cordLength = 0;
+  void cordTrigger() {
+    cording = !cording;
+  }
+  void cordUpdate() {
+    if (cording) {
+      cordLength = grid.high - grid.length;
+    }
+  }
+  void cordRender() {
+    if (cording) {
+      canvas.strokeWeight(4);
+      canvas.stroke(col, map(layer[6],115,0,0,255));
+      canvas.line(0, 0, cordLength, 0);
+      canvas.rotate(PI * 0.5);
+      canvas.line(0, 0, cordLength, 0);
+      canvas.noStroke();
+      canvas.fill(col, map(layer[6],115,0,0,255));
+      canvas.rect(cordLength, 0, cordLength * 0.5, cordLength * 0.5);
+    }
+  }
 }
