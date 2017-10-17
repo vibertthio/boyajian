@@ -26,7 +26,7 @@ void oscEvent(OscMessage m) {
     if (m.checkAddrPattern("/high")==true) if (m.checkTypetag("f"))high=m.get(0).floatValue();
 
     if (m.checkAddrPattern("/beat")==true)if (m.checkTypetag("i")) {
-      println("beat");
+      //println("beat");
     }
 
 

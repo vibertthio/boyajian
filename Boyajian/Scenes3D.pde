@@ -21,6 +21,7 @@ PShape Rglobe;
 PMatrix mat_scene;
 float randomVel=2;
 
+boolean holdVertex=true;
 boolean wireFrameCtl=false;
 boolean vertexNoise=false;
 boolean resetCamDo=false;
@@ -48,7 +49,7 @@ void s3dSetting() {
   }
 
   for (int i = 0; i < earNum; i++) {
-    PVector p = new PVector(width/2+posAvg(1200,earNum,i)-600, height/2, -90);
+    PVector p = new PVector(width/2+posAvg(1200, earNum, i)-600, height/2, -90);
     earGroups[i] = new EarGroup(p);
   }
 
@@ -65,7 +66,7 @@ void s3dDrawing() {
 
   s3d.beginDraw();
   s3d.background(0, 2);
-  if (vertexNoise==true) {
+  if (vertexNoise==true && holdVertex==false) {
     if (randomVel<50) randomVel=(randomVel+(randomVel/200));
   } else if (vertexNoise==false) {
     if (randomVel>2) randomVel=(randomVel-0.1);
@@ -141,6 +142,7 @@ void s3dDrawing() {
   s3d.noStroke();
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(252));
+
 
   if (vertexNoise==true ) randomVertex(globe);
   else returnVertex(Rglobe, globe);
