@@ -16,6 +16,17 @@ class GrowGrid {
   int lowBufferCount = 0;
   int lowBufferLimit = 30;
 
+  int[][] rotateSequenceSet = {
+    {0, 1, 2, 3, 4, 5, 6, 7},
+    {7, 6, 5, 4, 3, 2, 1, 0},
+  };
+  int[][] sizeSequenceSet = {
+    {0, 1, 2, 3, 4, 5, 6, 7},
+    {7, 6, 5, 4, 3, 2, 1, 0},
+  };
+  Sequence rotateSequence = new Sequence(rotateSequenceSet, 8);
+  Sequence sizeSequence = new Sequence(sizeSequenceSet, 8);
+
   GrowGrid(PGraphics _c, color _col) {
     canvas = _c;
     time = 0;
@@ -35,11 +46,31 @@ class GrowGrid {
     render();
   }
   void update() {
+    updateLength();
+    updateAudioSignal();
+    updateRotateSequence();
+    updateSizeSequence();
+
+    // random behavior
+    if (random(1) < 0.1) {
+      randomBlinkBang();
+    }
+  }
+  void render() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].draw();
+      }
+    }
+  }
+
+  void updateLength() {
     time++;
-    lowBufferCount++;
     float rate = sin(0.005 * PI * time) * sin(0.005 * PI * time);
     length = low + (high - low) * rate;
-
+  }
+  void updateAudioSignal() {
+    lowBufferCount++;
     if (highValue != chhigh) {
       highValue = chhigh;
       println("high trigger!");
@@ -54,15 +85,19 @@ class GrowGrid {
         allSizeBang();
       }
     }
-    if (random(1) < 0.1) {
-      randomBlinkBang();
+  }
+  void updateRotateSequence() {
+    rotateSequence.update();
+    if (rotateSequence.getBang()) {
+      int index = rotateSequence.getSignal();
+      colRotateBang(index);
     }
   }
-  void render() {
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        recs[i * n + j].draw();
-      }
+  void updateSizeSequence() {
+    sizeSequence.update();
+    if (sizeSequence.getBang()) {
+      int index = sizeSequence.getSignal();
+      rowSizeBang(index);
     }
   }
 
@@ -176,6 +211,16 @@ class GrowGrid {
       recs[c * n + j].angleShiftBang();
     }
   }
+  void colRotateBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].rotateBang();
+    }
+  }
+  void colRotateBang(int c, int amt) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].rotateBang(amt);
+    }
+  }
 
   void randomBlinkBang() {
     int x = floor(random(n));
@@ -193,6 +238,81 @@ class GrowGrid {
     recs[x * n + y].vibrateBang();
   }
 
+
+
+}
+
+class Sequence {
+  boolean turnSequenceActivate = false;
+  int sequenceTriggerIndex = 0;
+  boolean bangSequence = false;
+  int turnSequenceIndex = 0;
+  int turnSequenceCount = 0;
+  int turnSequenceCountLimit = 5;
+  int[][] sequenceSet;
+  int[] sequence;
+  int signal = 0;
+  boolean bang = false;
+
+  Sequence(int[][] _ss) {
+    init(_ss);
+  }
+  Sequence(int[][] _ss, int _l) {
+    init(_ss);
+    turnSequenceCountLimit = _l;
+  }
+  void init(int[][] _ss) {
+    sequenceSet = _ss;
+  }
+
+
+  void trigger() {
+    trigger(sequenceTriggerIndex);
+  }
+  void trigger(int index) {
+    if (index == sequenceTriggerIndex) {
+      turnSequenceActivate = !turnSequenceActivate;
+    } else {
+      turnSequenceActivate = true;
+    }
+
+    sequenceTriggerIndex = index;
+    sequence = sequenceSet[index%sequenceSet.length];
+    turnSequenceIndex = 0;
+    turnSequenceCount = 0;
+  }
+  void bang(int index) {
+    trigger(index);
+    bangSequence = true;
+  }
+  void update() {
+    if (turnSequenceActivate) {
+      turnSequenceCount++;
+      if (turnSequenceCount > turnSequenceCountLimit) {
+
+
+        bang = true;
+        signal = sequence[turnSequenceIndex];
+        turnSequenceIndex = (turnSequenceIndex + 1) % sequence.length;
+        turnSequenceCount = 0;
+
+        if (bangSequence && turnSequenceIndex == 0) {
+          trigger();
+          bangSequence = false;
+        }
+      } else {
+        bang = false;
+      }
+    } else {
+      bang = false;
+    }
+  }
+  boolean getBang() {
+    return bang;
+  }
+  int getSignal() {
+    return signal;
+  }
 }
 
 class GrowRectangle {
