@@ -63,6 +63,13 @@ class RotateGrid {
       allHeightBang();
     }
   }
+  void allStretchBang(float amt) {
+    if (w > h) {
+      allWidthBang(amt);
+    } else {
+      allHeightBang(amt);
+    }
+  }
   void allWidthBang() {
     for (int i = 0, m = n * n; i < m; i++) {
       recs[i].widthBang();
@@ -101,6 +108,11 @@ class RotateGrid {
   void allVibrateBang() {
     for (int i = 0, m = n * n; i < m; i++) {
       recs[i].vibrateBang();
+    }
+  }
+  void allBlinkBang() {
+    for (int i = 0, m = n * n; i < m; i++) {
+      recs[i].blinkBang();
     }
   }
 }
@@ -162,6 +174,7 @@ class RotateRectangle {
     sizeUpdate();
     colorUpdate();
     vibrateUpdate();
+    blinkUpdate();
   }
   void render() {
     canvas.pushMatrix();
@@ -291,4 +304,22 @@ class RotateRectangle {
     }
   }
 
+  boolean blinking = false;
+  int blinkCount = 0;
+  void blinkBang() {
+    blinking = true;
+    blinkCount = floor(random(10, 60));
+  }
+  void blinkUpdate() {
+    if (blinking) {
+      col = colors[floor(random(colors.length))];
+      w = worg * random(1, 2);
+      blinkCount--;
+      if (blinkCount <= 0) {
+        h = horg * random(1, 2);
+        blinking = false;
+        col = originalColor;
+      }
+    }
+  }
 }
