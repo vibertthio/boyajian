@@ -70,8 +70,8 @@ void setup() {
   layer[3]=0;//strip
   layer[4]=0;//blackColumn
   layer[5]=0;//幾何剪影
-  // layer[6]=220;//0-115 for growGrid,135~255 for rotateGrid
-  layer[6]=30;//0-115 for growGrid,135~255 for rotateGrid
+  layer[6]=220;//0-115 for growGrid,135~255 for rotateGrid
+  // layer[6]=30;//0-115 for growGrid,135~255 for rotateGrid
   layer[8]=0;//logoDraw
   RG.init(this);
 
@@ -91,7 +91,7 @@ void setup() {
   autoCamMetroUpDown=new pdMetro(1500);
   autoCamMetroUpDown.reset();
   autoCamMetroUpDown.tgl=false;
-  
+
   smooth=new pdLine2(0,100);
 
   for (int i=0; i<20; i++) {

@@ -84,6 +84,11 @@ void keyPressed() {
     // animations.growGrid.allCordTrigger();
     // animations.growGrid.rotateSequence.bang(floor(random(2)));
     // animations.growGrid.sizeSequence.bang(floor(random(2)));
+
+    // animations.rotateGrid.allAngleShiftBang();
+    animations.rotateGrid.allStretchBang();
+    // animations.rotateGrid.allWidthBang();
+    animations.rotateGrid.allColorBang();
   }
 
   // change background and shader algorithm
