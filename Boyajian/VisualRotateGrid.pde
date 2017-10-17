@@ -57,6 +57,7 @@ class RotateRectangle {
   float w;
   float h;
   float angle;
+  float alpha;
   boolean vr = true;
 
   RotateRectangle(PGraphics _c, RotateGrid _g, float _x, float _y) {
@@ -82,6 +83,7 @@ class RotateRectangle {
     render();
   }
   void update() {
+    alpha = map(layer[6],135,255,0,255);
     angle = grid.angle;
     w = grid.w;
     h = grid.h;
@@ -90,11 +92,13 @@ class RotateRectangle {
     canvas.pushMatrix();
     canvas.translate(300, 300);
     canvas.noStroke();
-    canvas.fill(grid.col,map(layer[6],135,255,0,255));
+    canvas.fill(grid.col, alpha);
     canvas.rectMode(CENTER);
     canvas.translate(xpos, ypos);
     canvas.rotate(vr ? angle : (angle + (PI * .5)));
     canvas.rect(0, 0, w, h);
+    // canvas.rotate(PI * .5);
+    // canvas.rect(0, 0, w, h);
     canvas.popMatrix();
   }
 }
