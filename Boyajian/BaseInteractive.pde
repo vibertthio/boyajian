@@ -63,6 +63,12 @@ void keyPressed() {
     animations.growGrid.rowSizeBang(2);
     animations.growGrid.colAngleBang(5);
   }
+  if (key == 'f') {
+    autoCamMetroUpDown.tgl= !autoCamMetroUpDown.tgl;
+    if(autoCamMetroUpDown.tgl==false){
+      defultCam();
+    }
+  }
 
 
   // change background and shader algorithm

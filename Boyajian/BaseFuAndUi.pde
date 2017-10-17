@@ -280,6 +280,14 @@ void autoCam(boolean theFlag) {
   }
 }
 
+void autoCamUpDown(boolean theFlag) {
+  if (theFlag==true) autoCamMetroUpDown.tgl=true;
+  else {
+    autoCamMetroUpDown.tgl=false;
+    defultCam();
+  }
+}
+
 
 void autoBlend(boolean theFlag) {
   if (theFlag==true) bgChanging=true;
@@ -319,4 +327,37 @@ void setTexture(PShape who, PImage target) {
   who.setFill(true);
   who.setTexture(target);
   who.setFill(color(255, 80));
+}
+
+void cameraMoving(){
+  if (frameCount==50) {
+    defultCam();
+  }
+  autoCamMetro.update();
+  autoCamMetroUpDown.update();
+
+  if (autoCamMetro.bang==true) {
+    autoCamMetro.bang=false;
+    randomCam();
+  }
+
+  if (autoCamMetroUpDown.bang==true) {
+    autoCamMetroUpDown.bang=false;
+    autoCamMetroUpDownCount=  (autoCamMetroUpDownCount+1)%2;
+    if(autoCamMetroUpDownCount==0){
+      cam[0]=600;
+      cam[1]=200;
+      cam[2]=430;
+      cam[3]=0;
+      cam[4]=0.2;
+      resetCamDo=true;
+      }else{
+        cam[0]=600;
+        cam[1]=200;
+        cam[2]=430;
+        cam[3]=0;
+        cam[4]=0.4;
+        resetCamDo=true;
+      }
+    }
 }

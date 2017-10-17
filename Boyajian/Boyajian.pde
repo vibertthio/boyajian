@@ -51,6 +51,8 @@ boolean record=false;
 boolean splitScreen=false;
 
 pdMetro autoCamMetro ;
+pdMetro autoCamMetroUpDown ;
+int autoCamMetroUpDownCount=0;
 pdLine2[] countX=new pdLine2[20];
 
 void settings() {
@@ -81,6 +83,10 @@ void setup() {
   autoCamMetro.reset();
   autoCamMetro.tgl=false;
 
+  autoCamMetroUpDown=new pdMetro(1500);
+  autoCamMetroUpDown.reset();
+  autoCamMetroUpDown.tgl=false;
+
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
   }
@@ -88,23 +94,14 @@ void setup() {
 }
 
 void draw() {
-  if (frameCount==50) {
-    defultCam();
-  }
+  background(0);
+  workTime=millis();
   blendMode(NORMAL);
+  cameraMoving();
+
   for (int i=0; i<20; i++) {
     countX[i].update();
   }
-
-  autoCamMetro.update();
-  if (autoCamMetro.bang==true) {
-    autoCamMetro.bang=false;
-    randomCam();
-  }
-
-  background(0);
-  workTime=millis();
-  ////autoChBg();
   s3dDrawing() ;
   //---------------*blendGLSL即時參數
   blendGLSL.set( "blendAlpha", 0.7f );
