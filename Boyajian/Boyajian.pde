@@ -17,6 +17,7 @@ CheckBox checkbox;
 import oscP5.*;
 import netP5.*;
 OscP5  receiveCeiling;
+//---------------
 
 PImage[] bgs=new PImage[7] ;
 PImage[] ptns=new PImage[17] ;
@@ -50,10 +51,13 @@ boolean oscCtl=true;
 boolean record=false;
 boolean splitScreen=false;
 
+
+
 pdMetro autoCamMetro ;
 pdMetro autoCamMetroUpDown ;
 int autoCamMetroUpDownCount=0;
 pdLine2[] countX=new pdLine2[20];
+pdLine2 smooth;
 
 void settings() {
   size(1200, 400, P3D);
@@ -86,6 +90,8 @@ void setup() {
   autoCamMetroUpDown=new pdMetro(1500);
   autoCamMetroUpDown.reset();
   autoCamMetroUpDown.tgl=false;
+  
+  smooth=new pdLine2(0,100);
 
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
@@ -94,6 +100,7 @@ void setup() {
 }
 
 void draw() {
+  smooth.update();
   background(0);
   workTime=millis();
   blendMode(NORMAL);

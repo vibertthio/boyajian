@@ -83,16 +83,18 @@ void randomVertex(PShape who) {
   for (int j=0; j<who.getChildCount(); j++) {
     for (int i = 0; i < who.getChild(j).getVertexCount(); i++) {
       PVector v = who.getChild(j).getVertex(i);
+
       v.x += random(-randomVel*ss, randomVel*ss);
       v.y += random(-randomVel*ss, randomVel*ss);
       v.z += random(-randomVel*ss, randomVel*ss);
+
       who.getChild(j).setVertex(i, v);
     }
   }
 }
 
 void returnVertex(PShape origon, PShape who) {
-  float ss=map(middle, 0, 1, 0, 0.002);
+  float ss=map(middle, 0, 1, 0, 0.02);
 
 
   for (int j=0; j<origon.getChildCount(); j++) {
@@ -100,9 +102,9 @@ void returnVertex(PShape origon, PShape who) {
       PVector v = origon.getChild(j).getVertex(i);
       PVector v1 = who.getChild(j).getVertex(i);
 
-      v1.x =(v.x-v1.x)*(0.05+ss) +v1.x;
-      v1.y =(v.y-v1.y)*(0.05+ss) +v1.y;
-      v1.z =(v.z-v1.z)*(0.05+ss) +v1.z;
+      v1.x =(v.x-v1.x)*(0.02+ss) +v1.x;
+      v1.y =(v.y-v1.y)*(0.02+ss) +v1.y;
+      v1.z =(v.z-v1.z)*(0.02+ss) +v1.z;
       who.getChild(j).setVertex(i, v1);
     }
   }
@@ -329,7 +331,7 @@ void setTexture(PShape who, PImage target) {
   who.setFill(color(255, 80));
 }
 
-void cameraMoving(){
+void cameraMoving() {
   if (frameCount==50) {
     defultCam();
   }
@@ -344,20 +346,20 @@ void cameraMoving(){
   if (autoCamMetroUpDown.bang==true) {
     autoCamMetroUpDown.bang=false;
     autoCamMetroUpDownCount=  (autoCamMetroUpDownCount+1)%2;
-    if(autoCamMetroUpDownCount==0){
+    if (autoCamMetroUpDownCount==0) {
       cam[0]=600;
       cam[1]=200;
       cam[2]=430;
       cam[3]=0;
       cam[4]=0.2;
       resetCamDo=true;
-      }else{
-        cam[0]=600;
-        cam[1]=200;
-        cam[2]=430;
-        cam[3]=0;
-        cam[4]=0.4;
-        resetCamDo=true;
-      }
+    } else {
+      cam[0]=600;
+      cam[1]=200;
+      cam[2]=430;
+      cam[3]=0;
+      cam[4]=0.4;
+      resetCamDo=true;
     }
+  }
 }

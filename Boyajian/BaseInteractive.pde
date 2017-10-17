@@ -29,13 +29,13 @@ void keyPressed() {
   }
 
   if (key == '8') {
-      effectGLSL = loadShader("glsl/bloom.glsl");
-      effectGLSL.set("vol", 0.6);
+    effectGLSL = loadShader("glsl/bloom.glsl");
+    effectGLSL.set("vol", 0.6);
   }
   if (key == '9') {
-      effectGLSL = loadShader("glsl/sobel_2.glsl");
-      effectGLSL.set("vol", 1.0);
-      effectGLSL.set("resolution", width,height);
+    effectGLSL = loadShader("glsl/sobel_2.glsl");
+    effectGLSL.set("vol", 1.0);
+    effectGLSL.set("resolution", width, height);
   }
 
   if (key == 'q') splitNum =1;
@@ -58,12 +58,13 @@ void keyPressed() {
 
   if (key == 'w') wireFrameCtl =!wireFrameCtl;
   if (key == 'k') vertexNoise =!vertexNoise;
+  if (key == 'h') holdVertex =!holdVertex;
 
 
 
   if (key == 'f') {
     autoCamMetroUpDown.tgl= !autoCamMetroUpDown.tgl;
-    if(autoCamMetroUpDown.tgl==false){
+    if (autoCamMetroUpDown.tgl==false) {
       defultCam();
     }
   }
@@ -266,21 +267,23 @@ void sendCtl2p5() {
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
   }
 
-  if (nr==73) { countWhiteAdd=int(map(vl, 0, 255, 0, 50));
+  if (nr==73) {
+    countWhiteAdd=int(map(vl, 0, 255, 0, 50));
   }
   //------------logo
   if (nr==80) layer[8]=vl;
   if (nr==81) pp=int(map(vl, 0, 255, 0, 14));
-  if (nr==82) {
-    logoRo.o=(map(vl, 0, 255, -3, 3))*90;
-  };
-  if (nr==83)logoScale=map(vl, 0, 255, 1, 2);
+  if (nr==82) ctl82=(map(vl, 0, 255, 0.1, 4));
+
+  if (nr==83) {
+    logoScale=map(vl,0,255,0.4,2);
+  }
   //------------
   if (nr==10) layer[1]=vl;
   if (nr==11) contrastA=vl/255;
   if (nr==12) contrastB=vl/255;
   if (nr==13) Falloff=map(vl, 0, 255, 1, 3);
-    //------------
+  //------------
   if (nr==23) showEyeParticle=int(vl);
   if (nr==22) showEarParticle=int(vl);
 }

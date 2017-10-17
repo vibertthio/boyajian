@@ -18,15 +18,18 @@ PImage bgbg;
 pdLine2 logoRo;
 
 float logoScale=1;
+float logoScaleStep=1;
+
 float logoMovingStep=0;
-float logoMovingSpeed=0.1;
+float logoMovingSpeed=0.5;
+float ctl82;
 
 color[] colors = {
-  color(253, 148, 38),
-  color(252, 86, 44),
-  color(56, 195, 206),
-  color(124, 156, 124),
-  color(18, 99, 104),
+  color(253, 148, 38), 
+  color(252, 86, 44), 
+  color(56, 195, 206), 
+  color(124, 156, 124), 
+  color(18, 99, 104), 
 };
 
 void defultSetting() {
@@ -138,10 +141,17 @@ class  LogoDraw {
       }
     }
 
-    logoMovingStep=(logoMovingStep+logoMovingSpeed)%360;
+
+    
+    float soundVol=map(middle, 0, 1, 0.3, 2.0);
+    if (ctl82>0.1) {
+      logoMovingStep=(logoMovingStep+(logoMovingSpeed*ctl82))%360;
+    } else {
+      logoMovingStep=(logoMovingStep+(logoMovingSpeed*soundVol))%360;
+    }
     canvas.pushMatrix();
     canvas.translate(0+250, logoMirror.height/2);
-    canvas.scale(1*logoScale, 1*logoScale);
+    canvas.scale(logoScale, logoScale);
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, layer[8]);
     canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
@@ -149,7 +159,7 @@ class  LogoDraw {
 
     canvas.pushMatrix();
     canvas.translate(logoMirror.width+250, logoMirror.height/2);
-    canvas.scale(-1*logoScale, 1*logoScale);
+    canvas.scale(-logoScale, -logoScale);
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, layer[8]);
     canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
