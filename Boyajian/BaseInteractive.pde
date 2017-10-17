@@ -23,30 +23,40 @@ void keyPressed() {
       imgIndex=3;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=0;
+      layer[8]=255;
+      layer[6]=125;
     }
     if (key == '2') {
       blendIndex=7;
       imgIndex=5;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=6;
+      layer[8]=255;
+      layer[6]=125;
     }
     if (key == '3') {
       blendIndex=8;
       imgIndex=5;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=10;
+      layer[8]=255;
+      layer[6]=125;
     }
     if (key == '4') {
       blendIndex=5;
       imgIndex=6;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=3;
+      layer[8]=255;
+      layer[6]=125;
     }
     if (key == '5') {
       blendIndex=7;
       imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=5;
+      layer[8]=255;
+      layer[6]=125;
     }
   }
 
