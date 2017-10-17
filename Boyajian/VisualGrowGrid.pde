@@ -73,6 +73,13 @@ class GrowGrid {
       }
     }
   }
+  void allVibrateBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].vibrateBang();
+      }
+    }
+  }
   void allAngleShiftBang() {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -101,6 +108,20 @@ class GrowGrid {
       }
     }
   }
+  void allXShiftBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].xShiftBang();
+      }
+    }
+  }
+  void allYShiftBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].yShiftBang();
+      }
+    }
+  }
   void allCordTrigger() {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -111,6 +132,11 @@ class GrowGrid {
   void rowSizeBang(int r) {
     for (int i = 0; i < n; i++) {
       recs[i * n + r].sizeBang();
+    }
+  }
+  void rowVibrateBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].vibrateBang();
     }
   }
   void rowAngleShiftBang() {
@@ -133,6 +159,16 @@ class GrowGrid {
   void rowBlinkBang(int r) {
     for (int i = 0; i < n; i++) {
       recs[i * n + r].blinkBang();
+    }
+  }
+  void rowXShiftBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].xShiftBang();
+    }
+  }
+  void rowYShiftBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].yShiftBang();
     }
   }
   void colAngleShiftBang(int c) {
@@ -164,6 +200,8 @@ class GrowRectangle {
   PGraphics canvas;
   float xpos;
   float ypos;
+  float xorg;
+  float yorg;
   float length;
   float targetAngle = PI * .25;
   float angle = PI * .25;
@@ -174,7 +212,9 @@ class GrowRectangle {
     grid = _g;
     canvas = _c;
     xpos = _x;
+    xorg = _x;
     ypos = _y;
+    yorg = _y;
     col = _g.col;
   }
 
@@ -183,6 +223,7 @@ class GrowRectangle {
     render();
   }
   void update() {
+    posUpdate();
     vibrateUpdate();
     blinkUpdate();
     lengthUpdate();
@@ -205,6 +246,15 @@ class GrowRectangle {
     canvas.popMatrix();
   }
 
+  void posUpdate() {
+    if (sq(xpos - xorg) + sq(ypos - yorg) > 5) {
+      xpos = xpos + (xorg - xpos) * 0.1;
+      ypos = ypos + (yorg - ypos) * 0.1;
+    } else {
+      xpos = xorg;
+      ypos = yorg;
+    }
+  }
   void lengthUpdate() {
     if (abs(length - grid.length) < 1) {
       length = grid.length;
@@ -239,6 +289,25 @@ class GrowRectangle {
     } else {
       targetAngle -= amt * PI;
     }
+  }
+
+  boolean xShifted = false;
+  boolean yShifted = false;
+  void xShiftBang() {
+    if (xShifted) {
+      xorg += grid.unit;
+    } else {
+      xorg -= grid.unit;
+    }
+    xShifted = !xShifted;
+  }
+  void yShiftBang() {
+    if (yShifted) {
+      yorg += grid.unit;
+    } else {
+      yorg -= grid.unit;
+    }
+    yShifted = !yShifted;
   }
 
   int vibrateCount = 0;
