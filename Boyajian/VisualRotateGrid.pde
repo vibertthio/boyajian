@@ -115,6 +115,149 @@ class RotateGrid {
       recs[i].blinkBang();
     }
   }
+
+  // visible rows: 2 - 10
+  void rowAngleShiftBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].angleShiftBang();
+    }
+  }
+  void rowAngleShiftBang(int r, int amt) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].angleShiftBang(amt);
+    }
+  }
+  void rowStretchBang(int r) {
+    if (w > h) {
+      allWidthBang(r);
+    } else {
+      allHeightBang(r);
+    }
+  }
+  void rowStretchBang(int r, float amt) {
+    if (w > h) {
+      rowWidthBang(r, amt);
+    } else {
+      rowHeightBang(r, amt);
+    }
+  }
+  void rowWidthBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].widthBang();
+    }
+  }
+  void rowWidthBang(int r, float amt) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].widthBang(amt);
+    }
+  }
+  void rowHeightBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].heightBang();
+    }
+  }
+  void rowHeightBang(float amt) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].heightBang(amt);
+    }
+  }
+  void rowColorBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].colorBang();
+    }
+  }
+  void rowXShiftBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].xShiftBang();
+    }
+  }
+  void rowYShiftBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].yShiftBang();
+    }
+  }
+  void rowVibrateBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].vibrateBang();
+    }
+  }
+  void rowBlinkBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].blinkBang();
+    }
+  }
+
+  // visible columns: 6 - 8
+  void colAngleShiftBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].angleShiftBang();
+    }
+  }
+  void colAngleShiftBang(int c, int amt) {
+    for (int j = 0; j < n; j++) {
+      recs[i].angleShiftBang(amt);
+    }
+  }
+  void colStretchBang(int c) {
+    if (w > h) {
+      colWidthBang(c);
+    } else {
+      colHeightBang(c);
+    }
+  }
+  void colStretchBang(int c, float amt) {
+    if (w > h) {
+      colWidthBang(amt);
+    } else {
+      colHeightBang(amt);
+    }
+  }
+  void colWidthBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].widthBang();
+    }
+  }
+  void colWidthBang(int c, float amt) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].widthBang(amt);
+    }
+  }
+  void colHeightBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].heightBang();
+    }
+  }
+  void colHeightBang(int c, float amt) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].heightBang(amt);
+    }
+  }
+  void colColorBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].colorBang();
+    }
+  }
+  void colXShiftBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].xShiftBang();
+    }
+  }
+  void colYShiftBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].yShiftBang();
+    }
+  }
+  void colVibrateBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].vibrateBang();
+    }
+  }
+  void colBlinkBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].blinkBang();
+    }
+  }
+
 }
 
 class RotateRectangle {
