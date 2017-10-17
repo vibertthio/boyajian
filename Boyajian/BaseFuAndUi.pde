@@ -21,7 +21,7 @@ void showFrameRate() {
   textSize(16);
 
   String F="F:"+int((int(frameRate/4))*4);
-  String B=indexSelectBlend [blendIndex]  + ":" + blendNames[ indexSelectBlend [blendIndex]  ];
+  String B=indexSelectBlend [blendIndex]  + ":" + blendIndex +":"+blendNames[ indexSelectBlend [blendIndex]  ];
   String I="bgs:" +imgIndex;
   fill(255);
   text(F, 50, 50);
