@@ -88,6 +88,21 @@ class RotateGrid {
       recs[i].colorBang();
     }
   }
+  void allXShiftBang() {
+    for (int i = 0, m = n * n; i < m; i++) {
+      recs[i].xShiftBang();
+    }
+  }
+  void allYShiftBang() {
+    for (int i = 0, m = n * n; i < m; i++) {
+      recs[i].yShiftBang();
+    }
+  }
+  void allVibrateBang() {
+    for (int i = 0, m = n * n; i < m; i++) {
+      recs[i].vibrateBang();
+    }
+  }
 }
 
 class RotateRectangle {
@@ -141,10 +156,12 @@ class RotateRectangle {
     render();
   }
   void update() {
+    posUpdate();
     angleUpdate();
     alphaUpdate();
     sizeUpdate();
     colorUpdate();
+    vibrateUpdate();
   }
   void render() {
     canvas.pushMatrix();
@@ -153,12 +170,24 @@ class RotateRectangle {
     canvas.fill(col, alpha);
     canvas.rectMode(CENTER);
     canvas.translate(xpos, ypos);
+    if (vibrateCount > 0) {
+      canvas.translate(random(-10, 10), random(-10, 10));
+    }
     canvas.rotate(vr ? angle : (angle + (PI * .5)));
     canvas.rect(0, 0, w, h);
     // canvas.rect(0, 0, h, w);
     canvas.popMatrix();
   }
 
+  void posUpdate() {
+    if (sq(xpos - xorg) + sq(ypos - yorg) > 3) {
+      xpos = xpos + (xorg - xpos) * 0.1;
+      ypos = ypos + (yorg - ypos) * 0.1;
+    } else {
+      xpos = xorg;
+      ypos = yorg;
+    }
+  }
   void angleUpdate() {
     targetAngle = grid.angle;
     if (abs(targetAngle - angle) < 0.05) {
@@ -232,4 +261,34 @@ class RotateRectangle {
     targetColor = colors[id];
     colorRatio = 1;
   }
+
+  boolean xShifted = false;
+  boolean yShifted = false;
+  void xShiftBang() {
+    if (xShifted) {
+      xorg += grid.unit;
+    } else {
+      xorg -= grid.unit;
+    }
+    xShifted = !xShifted;
+  }
+  void yShiftBang() {
+    if (yShifted) {
+      yorg += grid.unit;
+    } else {
+      yorg -= grid.unit;
+    }
+    yShifted = !yShifted;
+  }
+
+  int vibrateCount = 0;
+  void vibrateBang() {
+    vibrateCount = 15;
+  }
+  void vibrateUpdate() {
+    if (vibrateCount > 0) {
+      vibrateCount--;
+    }
+  }
+
 }

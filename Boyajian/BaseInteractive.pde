@@ -85,10 +85,14 @@ void keyPressed() {
     // animations.growGrid.rotateSequence.bang(floor(random(2)));
     // animations.growGrid.sizeSequence.bang(floor(random(2)));
 
-    // animations.rotateGrid.allAngleShiftBang();
-    animations.rotateGrid.allStretchBang();
+    animations.rotateGrid.allAngleShiftBang();
+    // animations.rotateGrid.allStretchBang();
     // animations.rotateGrid.allWidthBang();
-    animations.rotateGrid.allColorBang();
+    // animations.rotateGrid.allHeightBang(5);
+    // animations.rotateGrid.allColorBang();
+    // animations.rotateGrid.allXShiftBang();
+    animations.rotateGrid.allYShiftBang();
+    animations.rotateGrid.allVibrateBang();
   }
 
   // change background and shader algorithm
