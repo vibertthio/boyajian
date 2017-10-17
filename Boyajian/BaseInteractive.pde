@@ -71,7 +71,10 @@ void keyPressed() {
 
   // Vibert's Functions
   if (key == 'v') {
-    animationTrigger();
+    animationRotateGridTrigger();
+  }
+  if (key == 'c') {
+    animationGrowGridTrigger();
   }
 
   // change background and shader algorithm

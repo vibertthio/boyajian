@@ -156,7 +156,7 @@ class RotateGrid {
       recs[i * n + r].heightBang();
     }
   }
-  void rowHeightBang(float amt) {
+  void rowHeightBang(int r, float amt) {
     for (int i = 0; i < n; i++) {
       recs[i * n + r].heightBang(amt);
     }
@@ -195,7 +195,7 @@ class RotateGrid {
   }
   void colAngleShiftBang(int c, int amt) {
     for (int j = 0; j < n; j++) {
-      recs[i].angleShiftBang(amt);
+      recs[c * n + j].angleShiftBang(amt);
     }
   }
   void colStretchBang(int c) {
@@ -207,9 +207,9 @@ class RotateGrid {
   }
   void colStretchBang(int c, float amt) {
     if (w > h) {
-      colWidthBang(amt);
+      colWidthBang(c, amt);
     } else {
-      colHeightBang(amt);
+      colHeightBang(c, amt);
     }
   }
   void colWidthBang(int c) {
