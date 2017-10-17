@@ -37,6 +37,11 @@ void keyPressed() {
     effectGLSL.set("vol", 1.0);
     effectGLSL.set("resolution", width, height);
   }
+  if (key == '0') {
+    effectGLSL = loadShader("glsl/sobel_1.glsl");
+    effectGLSL.set("vol", 1.0);
+    effectGLSL.set("resolution", width, height);
+  }
 
   if (key == 'q') splitNum =1;
   if (key == 'a') splitNum =2;
@@ -222,11 +227,11 @@ void sendNote2p5() {
   //---------------------------------------------ch0
 
 
-  if (nn==105)if (vv==127)autoCam(true);
-  else autoCam(false);
+  if (nn==105)if (vv==127)holdVertex=true;
+  else holdVertex=false;
 
-  if (nn==106)if (vv==127)oscCtl=true;
-  else oscCtl=false;
+  if (nn==106)if (vv==127)autoCam(true);
+  else autoCam(false);
 
   if (nn==110)if (vv==127)autoBg(true);
   else autoBg(false);
@@ -269,7 +274,7 @@ void sendCtl2p5() {
   //------------logo
   if (nr==80) layer[8]=vl;
   if (nr==81) pp=int(map(vl, 0, 255, 0, 14));
-  if (nr==82) ctl82=(map(vl, 0, 255, 0.1, 4));
+  if (nr==82) ctl82=(map(vl, 0, 255, 0.3, 4));
 
   if (nr==83) {
     logoScale=map(vl,0,255,0.4,2);
