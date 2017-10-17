@@ -224,11 +224,11 @@ void sendNote2p5() {
   //---------------------------------------------ch0
 
 
-  if (nn==105)if (vv==127)autoCam(true);
-  else autoCam(false);
+  if (nn==105)if (vv==127)holdVertex=true;
+  else holdVertex=false;
 
-  if (nn==106)if (vv==127)oscCtl=true;
-  else oscCtl=false;
+  if (nn==106)if (vv==127)autoCam(true);
+  else autoCam(false);
 
   if (nn==110)if (vv==127)autoBg(true);
   else autoBg(false);

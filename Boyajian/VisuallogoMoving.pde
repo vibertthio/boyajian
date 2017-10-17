@@ -66,6 +66,12 @@ void defultSetting() {
   myBus.sendNoteOff(0, 42, 0);
   myBus.sendNoteOff(0, 43, 0);
 
+  myBus.sendNoteOff(0, 105, 0);
+  myBus.sendNoteOff(0, 106, 0);
+  myBus.sendNoteOff(0, 110, 0);
+  myBus.sendNoteOff(0, 112, 0);
+  myBus.sendNoteOff(0, 113, 0);
+
 
 
   bgbg= loadImage("img/bg.png");
@@ -142,7 +148,7 @@ class  LogoDraw {
     }
 
 
-    
+
     float soundVol=map(middle, 0, 1, 0.3, 2.0);
     if (ctl82>0.1) {
       logoMovingStep=(logoMovingStep+(logoMovingSpeed*ctl82))%360;
