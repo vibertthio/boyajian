@@ -60,7 +60,7 @@ pdLine2[] countX=new pdLine2[20];
 pdLine2 smooth;
 
 void settings() {
-  size(1200, 400, P3D);
+  size(1200, 342, P3D);
   PJOGL.profile = 1;
 }
 

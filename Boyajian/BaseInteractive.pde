@@ -4,7 +4,6 @@ void keyReleased() {
   if ( key==CODED) {
     if (keyCode == ALT) {
       keyz[0] = false;
-      println("release");
     }
   }
 }
@@ -14,7 +13,6 @@ void keyPressed() {
   if ( key==CODED) {
     if (keyCode == ALT) {
       keyz[0] = true;
-      println("done");
     }
   }
   if (keyz[0]==true) {
@@ -114,6 +112,7 @@ void keyPressed() {
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;
 
+  if (key == 'u') superCloseCam();
   if (key == 'y') closeCam();
   if (key == 'e') zoonCam();
   if (key == 'r') defultCam();
@@ -186,43 +185,6 @@ void mouseDragged()
   if (mouseButton == CENTER)camZ += (mouseY - pmouseY)*0.5;
 }
 
-void randomCam() {
-  cam[0]=random(350, 750);
-  cam[1]=random(100, 300);
-  cam[2]=random(400, 460);
-  cam[3]=random(-1, 1);
-  cam[4]=random(-1, 1);
-  resetCamDo=true;
-}
-
-void defultCam() {
-  cam[0]=600;
-  cam[1]=200;
-  cam[2]=430;
-  cam[3]=0;
-  cam[4]=0;
-  resetCamDo=true;
-}
-
-void zoonCam() {
-  cam[0]=600;
-  cam[1]=200;
-  cam[2]=2000;
-  cam[3]=0;
-  cam[4]=0;
-  resetCamDo=true;
-}
-
-void closeCam() {
-  cam[0]=600;
-  cam[1]=200;
-  cam[2]=200;
-  cam[3]=0;
-  cam[4]=0;
-  resetCamDo=true;
-}
-
-
 float nr;
 float vl;
 float pi;
@@ -233,7 +195,7 @@ int notes[]=new int[300];
 void sendNote2p5() {
   float nn=pi;
   float vv=vel;
-  //---------------------------------------------ch0
+  //---------------------------------------------ch1
   if (ch==1) {
     if (nn==24)if (vv==127)Eye(true);
     else Eye(false);
@@ -285,7 +247,93 @@ void sendNote2p5() {
     if (nn==43)if (vv==127)Wind(true);
     else Wind(false);
   }
-  //---------------------------------------------ch0
+  //---------------------------------------------ch1
+  //---------------------------------------------ch2
+  if (ch==2) {
+    if (nn==24)if (vv==127){
+      animationRotateGridTriggerIndex =0;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==25)if (vv==127){
+      animationRotateGridTriggerIndex =10;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==26)if (vv==127)
+    {
+      animationRotateGridTriggerIndex =2;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==27)if (vv==127){
+      animationRotateGridTriggerIndex =12;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==28)if (vv==127){
+      animationRotateGridTriggerIndex =4;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==29)if (vv==127){
+      animationRotateGridTriggerIndex =5;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==30)if (vv==127){
+      animationRotateGridTriggerIndex =6;
+      animationRotateGridTrigger() ;
+    }
+
+    if (nn==31)if (vv==127){
+      animationRotateGridTriggerIndex =7;
+      animationRotateGridTrigger() ;
+    }
+
+//-----------------------------------------------
+    if (nn==36)if (vv==127){
+      animationGrowGridTriggerIndex=0;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==37)if (vv==127){
+      animationGrowGridTriggerIndex=12;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==38)if (vv==127){
+      animationGrowGridTriggerIndex=2;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==39)if (vv==127){
+      animationGrowGridTriggerIndex=3;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==40)if (vv==127){
+      animationGrowGridTriggerIndex=4;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==41)if (vv==127){
+      animationGrowGridTriggerIndex=9;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==42)if (vv==127){
+      animationGrowGridTriggerIndex=6;
+      animationGrowGridTrigger() ;
+    }
+
+    if (nn==43)if (vv==127){
+      animationGrowGridTriggerIndex=5;
+      animationGrowGridTrigger() ;
+    }
+
+  }
+  //---------------------------------------------ch2
 
 
   if (nn==105)if (vv==127)holdVertex=true;
