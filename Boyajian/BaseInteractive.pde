@@ -76,6 +76,9 @@ void keyPressed() {
   if (key == 'c') {
     animationGrowGridTrigger();
   }
+  if (key == 'x') {
+    testAnimation();
+  }
 
   // change background and shader algorithm
   if (key == CODED) {

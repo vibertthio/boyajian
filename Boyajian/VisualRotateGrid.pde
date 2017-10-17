@@ -35,15 +35,22 @@ class RotateGrid {
     render();
   }
   void update() {
-    angle = 2 * PI * (time / 960);
-    w =  (high - low) * sin(angle) * sin(angle) + low;
-    h =  (high - low) * cos(angle) * cos(angle) + low;
-    time++;
+    motionUpdate();
+    rowRotateSequenceUpdate();
+    colRotateSequenceUpdate();
+    rowBlinkSequenceUpdate();
+    colBlinkSequenceUpdate();
   }
   void render() {
     for (int i = 0, m = n * n; i < m; i++) {
       recs[i].draw();
     }
+  }
+  void motionUpdate() {
+    angle = 2 * PI * (time / 960);
+    w =  (high - low) * sin(angle) * sin(angle) + low;
+    h =  (high - low) * cos(angle) * cos(angle) + low;
+    time++;
   }
 
   void allAngleShiftBang() {
@@ -258,6 +265,53 @@ class RotateGrid {
     }
   }
 
+  int[][] rowSequenceSet = {
+    {3, 5, 7, 9},
+    {3, 5, 7, 9},
+    {2, 3, 4, 5, 6, 7, 8, 9, 10},
+    {10, 9, 8, 7, 6, 5, 4, 3, 2},
+    {5, 6, 4, 7, 3, 8, 2, 9, 1, 10},
+    {10, 2, 9, 3, 8, 4, 7, 5, 6},
+  };
+  int[][] colSequenceSet = {
+    {6, 7, 8, 9},
+    {9, 8, 7, 6},
+    {6, 9, 7, 8},
+    {7, 8, 6, 9},
+  };
+
+  Sequence rowRotateSequence = new Sequence(rowSequenceSet, 8);
+  Sequence colRotateSequence = new Sequence(colSequenceSet, 8);
+  Sequence rowBlinkSequence = new Sequence(rowSequenceSet, 8);
+  Sequence colBlinkSequence = new Sequence(colSequenceSet, 8);
+  void rowRotateSequenceUpdate() {
+    rowRotateSequence.update();
+    if (rowRotateSequence.getBang()) {
+      int index = rowRotateSequence.getSignal();
+      rowAngleShiftBang(index, 3);
+    }
+  }
+  void colRotateSequenceUpdate() {
+    colRotateSequence.update();
+    if (colRotateSequence.getBang()) {
+      int index = colRotateSequence.getSignal();
+      colAngleShiftBang(index, 3);
+    }
+  }
+  void rowBlinkSequenceUpdate() {
+    rowBlinkSequence.update();
+    if (rowBlinkSequence.getBang()) {
+      int index = rowBlinkSequence.getSignal();
+      rowBlinkBang(index);
+    }
+  }
+  void colBlinkSequenceUpdate() {
+    colBlinkSequence.update();
+    if (colBlinkSequence.getBang()) {
+      int index = colBlinkSequence.getSignal();
+      colBlinkBang(index);
+    }
+  }
 }
 
 class RotateRectangle {

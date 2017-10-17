@@ -63,9 +63,6 @@ void animationRotateGridTrigger() {
       animations.rotateGrid.colAngleShiftBang(7);
       break;
   }
-
-
-
   animationRotateGridTriggerIndex ++;
   animationRotateGridTriggerIndex %= 13;
 }
@@ -134,4 +131,9 @@ void animationGrowGridTrigger() {
   }
   animationGrowGridTriggerIndex++;
   animationGrowGridTriggerIndex %= 13;
+}
+
+void testAnimation() {
+  // animations.rotateGrid.rowRotateSequence.bang(2);
+  animations.rotateGrid.rowBlinkSequence.bang(3);
 }
