@@ -9,13 +9,19 @@ class Strips {
       strips[i] = new Strip(_c);
     }
   }
-
   void draw() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].draw();
     }
   }
 }
+
+// horizontal:
+//   x -> 700 ~ 1000
+//   y -> 350 ~ 650
+// vertical:
+//   x ->  400 ~  600
+//   y -> -700 ~ -1000
 
 class Strip {
   PGraphics canvas;
@@ -31,52 +37,73 @@ class Strip {
   color endColor;
   color col;
 
-  TimeLine timer;
   /******
     state:
-    0 for growing
-    1 for changing color
-    2 for shrinking
+    0 for resting,
+    1 for growing,
+    2 for changing color,
+    3 for shrinking,
   ******/
   int state;
-
   boolean hr;
+  boolean cross = false;
+  boolean drift = false;
+  TimeLine timer;
 
   Strip(PGraphics _c) {
+    cross = true;
+    init(_c);
+  }
+  Strip(PGraphics _c, int _spd) {
+    init(_c, _spd);
+  }
+  Strip(PGraphics _c, boolean _hr) {
+    cross = false;
+    hr = _hr;
+    init(_c);
+  }
+  Strip(PGraphics _c, boolean _hr, int _spd) {
+    cross = false;
+    hr = _hr;
+    init(_c, _spd);
+  }
+  void init(PGraphics _c) {
     canvas = _c;
     timer = new TimeLine(2000);
     xdes = 1000;
     ydes = 400;
     reset();
   }
-
-  void draw() {
-    if (hr) {
-      drawHorizontal();
-    } else {
-      drawVertical();
-    }
-    render();
+  void init(PGraphics _c, int spd) {
+    canvas = _c;
+    timer = new TimeLine(spd);
+    xdes = 1000;
+    ydes = 400;
+    reset();
   }
 
-  void drawHorizontal() {
-    if (state == 0) {
+  void draw() {
+    update();
+    render();
+  }
+  void update() {
+    if (state == 1) {
       float ratio = timer.getPowOut(3);
       widthOfStrip = (xdes - xpos) * ratio;
 
       if (!timer.state) {
-        state = 1;
+        state = 2;
         timer.startTimer();
       }
-    } else if (state == 1) {
+    } else if (state == 2) {
       col = lerpColor(startColor, endColor, timer.getPowOut(3));
 
       if (!timer.state) {
-        state = 2;
+        state = 3;
         timer.startTimer();
         col = endColor;
       }
-    } else {
+    } else if (state == 3) {
       float ratio = 1 - timer.getPowOut(3);
       widthOfStrip = (xdes - xstr) * ratio;
       xpos = xdes - widthOfStrip;
@@ -86,49 +113,24 @@ class Strip {
       }
     }
   }
-
-  void drawVertical() {
-    if (state == 0) {
-      float ratio = timer.getPowOut(3);
-      heightOfStrip = (ydes - ypos) * ratio;
-
-      if (!timer.state) {
-        state = 1;
-        timer.startTimer();
-      }
-    } else if (state == 1) {
-      col = lerpColor(startColor, endColor, timer.getPowOut(3));
-
-      if (!timer.state) {
-        state = 2;
-        timer.startTimer();
-        col = endColor;
-      }
-    } else {
-      float ratio = 1 - timer.getPowOut(3);
-      heightOfStrip = (ydes - ystr) * ratio;
-      ypos = ydes - heightOfStrip;
-
-      if (!timer.state) {
-        reset();
-      }
-    }
-  }
-
   void render() {
-    pushMatrix();
+    canvas.pushMatrix();
     canvas.noStroke();
-    canvas.fill(col,layer[3]);
-    // canvas.translate(xpos, ypos);
-    // canvas.rotate(PI / 2);
-    // canvas.rect(0, 0, widthOfStrip, heightOfStrip);
-    canvas.rect(xpos, ypos, widthOfStrip, heightOfStrip);
-    popMatrix();
+    canvas.fill(col, layer[3]);
+    if (!hr) { canvas.rotate(PI / 2); }
+    canvas.translate(xpos, ypos);
+    if (drift) { canvas.rectMode(CENTER); }
+    else { canvas.rectMode(CORNER); }
+    canvas.rect(0, 0, widthOfStrip, heightOfStrip);
+    canvas.popMatrix();
   }
-
   void reset() {
-    state = 0;
-    hr = (random(1) > 0.5);
+    state = 1;
+    // hr = true;
+    // hr = false;
+    if (cross) {
+      hr = (random(1) > 0.5);
+    }
     startColor = colors[floor(random(5))];
     heightOfStrip = 15;
     widthOfStrip = 15;
@@ -137,18 +139,38 @@ class Strip {
       endColor = colors[floor(random(5))];
     } while(startColor == endColor);
 
-    xpos = floor(random(20, 50)) * 20;
-    ypos = floor(random(15, 50)) * 20;
     if (hr) {
-      xdes = floor(random(20, 50)) * 20;
+      xpos = floor(random(70, 100)) * 10;
+      ypos = floor(random(35, 65)) * 10;
+      xdes = floor(random(50, 120)) * 10;
     } else {
-      ydes = floor(random(15, 50)) * 20;
+      xpos = floor(random(40, 60)) * 10;
+      ypos = floor(random(-100, -70)) * 10;
+      xdes = floor(random(20, 80)) * 10;
     }
-    // ypos = map(mouseY, 0, height, 0, 1000);
+
+    // test
+    // testControl();
+
     xstr = xpos;
     ystr = ypos;
     col = startColor;
     timer.limit = floor(random(600, 2000));
     timer.startTimer();
+  }
+  void triggerCross() {
+    cross = !cross;
+  }
+  void triggerDrift() {
+    drift = !drift;
+  }
+
+  // testing
+  void testControl() {
+    xpos = map(mouseX, 0, width, 0, 1000);
+    xdes = xpos + 50;
+    println("xpos: " + xpos);
+    ypos = -1 * map(mouseY, 0, height, 0, 1000);
+    println("ypos: " + ypos);
   }
 }

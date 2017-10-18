@@ -1,4 +1,5 @@
 int animationRotateGridTriggerIndex = 0;
+int animationGrowGridTriggerIndex = 0;
 void animationRotateGridTrigger() {
   // animations.rotateGrid.allAngleShiftBang();
   // animations.rotateGrid.allAngleShiftBang(8);
@@ -65,8 +66,6 @@ void animationRotateGridTrigger() {
   animationRotateGridTriggerIndex ++;
   animationRotateGridTriggerIndex %= 13;
 }
-
-int animationGrowGridTriggerIndex = 0;
 void animationGrowGridTrigger() {
   // animations.growGrid.allSizeBang();
   // animations.growGrid.allVibrateBang();
@@ -132,9 +131,10 @@ void animationGrowGridTrigger() {
   animationGrowGridTriggerIndex++;
   animationGrowGridTriggerIndex %= 13;
 }
-
 void testAnimation() {
-  animations.rotateGrid.rowRotateSequence.bang(4);
-  animations.rotateGrid.rowXShiftSequence.bang(4);
+  // animations.rotateGrid.rowRotateSequence.bang(4);
+  // animations.rotateGrid.rowXShiftSequence.bang(4);
   // animations.rotateGrid.rowBlinkSequence.bang(4);
+  layer[6] = 120;
+  layer[3] = 200;
 }

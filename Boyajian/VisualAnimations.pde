@@ -62,6 +62,3 @@ class Circle {
     canvas.ellipse(xpos, ypos, radius, radius);
   }
 }
-
-class Mountain {
-}
