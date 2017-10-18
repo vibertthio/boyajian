@@ -60,7 +60,8 @@ pdLine2[] countX=new pdLine2[20];
 pdLine2 smooth;
 
 void settings() {
-  size(1200, 342, P3D);
+  //size(1200, 342, P3D);
+  size(1920, 548, P3D);
   PJOGL.profile = 1;
 }
 
@@ -123,7 +124,7 @@ void draw() {
   tex.background(255);
   tex.shader(blendGLSL);
   tex.rectMode(CENTER);
-  tex.rect(width/2, height/2, tex.width*1.2f, tex.height*1.6f);  //blendGLSL 產生的東西繪製在這裡
+  tex.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //blendGLSL 產生的東西繪製在這裡
   tex.endDraw();
 
   scence.beginDraw();
@@ -169,7 +170,7 @@ void draw() {
   finalRender.background(255);
   finalRender.shader(finalGLSL);
   finalRender.rectMode(CENTER);
-  finalRender.rect(width/2, height/2, tex.width*1.2f, tex.height*1.6f);  //finalGLSL 產生的東西繪製在這裡
+  finalRender.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //finalGLSL 產生的東西繪製在這裡
   finalRender.endDraw();
 
   tint(255, 255);
@@ -208,8 +209,10 @@ void draw() {
   rect(0, 0, width, height);
   popStyle();
 
-  //stroke(255);
+  //stroke(255,0,0);
   //line(width/2,0,width/2,height);
+  //noFill();
+  //rect(0,0,width,height);
   showFrameRate();//訊息
   //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }

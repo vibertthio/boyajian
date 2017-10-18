@@ -7,7 +7,7 @@ float camY=200;
 float camZ=430;
 float easing = 0.02;
 
-float[] cam={600, 200, 430, 0, 0};
+float[] cam={960, 200, 430, 0, 0};
 float showEyeParticle=0;
 float showEarParticle=0;
 
@@ -141,7 +141,7 @@ void s3dDrawing() {
   s3d.pushMatrix();//--------------------
   s3d.noStroke();
   s3d.translate(width/2, height/2);
-  s3d.rotateY(radians(252));
+  s3d.rotateY(radians(186));
 
 
   if (vertexNoise==true ) randomVertex(globe);
@@ -156,7 +156,9 @@ void s3dDrawing() {
     s3d.blendMode(BLEND);
   }
   s3d.shape(globe);
-  s3d.popMatrix();//--------------------
 
+
+  s3d.popMatrix();//--------------------
+  //s3d.ellipse(width/2, height/2, 100, 100);
   s3d.endDraw();
 }
