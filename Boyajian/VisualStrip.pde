@@ -32,6 +32,8 @@ class StripsSystem {
 
     hrStrips.setColors();
     vtStrips.setColors();
+    hrStrips.stop();
+    vtStrips.stop();
   }
 
   void draw() {
@@ -202,9 +204,19 @@ class Strips {
       strips[i].widthScaleBang();
     }
   }
+  void widthScaleBang(float amt) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].widthScaleBang(amt);
+    }
+  }
   void heightScaleBang() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].heightScaleBang();
+    }
+  }
+  void heightScaleBang(float amt) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].heightScaleBang(amt);
     }
   }
   void yShiftBang() {

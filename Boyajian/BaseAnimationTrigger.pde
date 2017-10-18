@@ -161,10 +161,10 @@ void animationStripTrigger() {
       animations.stripsSystem.crStrips.angleShiftBang();
       break;
     case 1:
-      animations.stripsSystem.crStrips.widthScaleBang();
+      animations.stripsSystem.crStrips.widthScaleBang(8);
       break;
     case 2:
-      animations.stripsSystem.crStrips.heightScaleBang();
+      animations.stripsSystem.crStrips.heightScaleBang(4);
       break;
     case 3:
       animations.stripsSystem.crStrips.yShiftBang();
@@ -180,8 +180,8 @@ void animationStripTrigger() {
       break;
     case 7:
       animations.stripsSystem.crStrips.angleShiftBang();
-      animations.stripsSystem.crStrips.widthScaleBang();
-      animations.stripsSystem.crStrips.heightScaleBang();
+      animations.stripsSystem.crStrips.widthScaleBang(4);
+      animations.stripsSystem.crStrips.heightScaleBang(8);
       break;
     case 8:
       animations.stripsSystem.crStrips.vibrateBang();
@@ -191,14 +191,15 @@ void animationStripTrigger() {
       animations.stripsSystem.crStrips.setColors(color(255, 255, 255));
       animations.stripsSystem.crStrips.angleShiftBang();
       animations.stripsSystem.crStrips.yShiftBang();
-      animations.stripsSystem.crStrips.vibrateBang();
+      animations.stripsSystem.crStrips.widthScaleBang(4);
+      animations.stripsSystem.crStrips.heightScaleBang(8);
       break;
     case 10:
       animations.stripsSystem.hrStart(0.8, -200);
       break;
     case 11:
       animations.stripsSystem.hrStart(0.8, -200);
-      animations.stripsSystem.vtStart(0.9);
+      animations.stripsSystem.vtStart(0.7, 200);
       break;
     case 12:
       animations.stripsSystem.hrStartStep(-200);
