@@ -138,5 +138,10 @@ void testAnimation() {
   layer[6] = 120;
   layer[3] = 200;
 
-  animations.strips.allCrossStripsAngleShiftBang();
+  animations.strips.angleShiftBang();
+  // animations.strips.widthScaleBang();
+  animations.strips.heightScaleBang();
+  // animations.strips.yShiftBang();
+  animations.strips.vibrateBang();
+  animations.strips.blinkBang();
 }
