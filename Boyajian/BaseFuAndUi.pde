@@ -393,7 +393,7 @@ void zoonCam() {
 
 void closeCam() {
   cam[0]=width/2;
-  cam[1]=200;
+  cam[1]=240;
   cam[2]=200;
   cam[3]=0;
   cam[4]=0;

@@ -13,6 +13,15 @@ PShape Dream_4;
 PShape Dream_5;
 PShape Dream_6;
 
+PShape RDream_1;
+PShape RDream_2;
+PShape RDream_3;
+PShape RDream_4;
+PShape RDream_5;
+PShape RDream_6;
+
+PImage DreamImg;
+float Dream_x, Dream_y;
 
 void maskDreamSetting() {
 
@@ -22,8 +31,9 @@ void maskDreamSetting() {
   if (showMaskDream==false) {
     show[0]=1;
     countLife();
-
+    DreamImg=loadImage("maskDream/tex_dream_01.png");
     MaskDreamIn=true;
+
     Dream_1 = loadShape("maskDream/dream_1.obj");
     Dream_2=  loadShape("maskDream/dream_2.obj");
     Dream_3 = loadShape("maskDream/dream_3.obj");
@@ -31,6 +41,12 @@ void maskDreamSetting() {
     Dream_5 = loadShape("maskDream/dream_5.obj");
     Dream_6 = loadShape("maskDream/dream_6.obj");
 
+    RDream_1 = loadShape("maskDream/dream_1.obj");
+    RDream_2=  loadShape("maskDream/dream_2.obj");
+    RDream_3 = loadShape("maskDream/dream_3.obj");
+    RDream_4 = loadShape("maskDream/dream_4.obj");
+    RDream_5 = loadShape("maskDream/dream_5.obj");
+    RDream_6 = loadShape("maskDream/dream_6.obj");
     showMaskDream =true;
   } else if (showMaskDream==true) {
     MaskDreamIn=false;
@@ -46,10 +62,10 @@ void maskDreamSetting() {
   MaskDreamLineOut.reset();
 }
 
-float Dream_x, Dream_y;
+
 void maskDreamdrawing() {
-  MaskDreamLineIn.update();
-  MaskDreamLineOut.update();
+  //MaskDreamLineIn.update();
+  //MaskDreamLineOut.update();
   showMaskDream=returnState(MaskDreamLine, MaskDreamIn);
   s3d.pushMatrix();
   {
@@ -92,10 +108,14 @@ void maskDreamdrawing() {
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_1);
+    if (vertexNoise==true) randomVertex(Dream_1);
+    else returnVertex(RDream_1, Dream_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_2);
+    if (vertexNoise==true) randomVertex(Dream_2);
+    else returnVertex(RDream_2, Dream_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
@@ -103,6 +123,8 @@ void maskDreamdrawing() {
     s3d.rotateZ(radians(float(frameCount%50)/50*360));
     s3d.translate(0, 30, 0);
     s3d.shape(Dream_3);
+    if (vertexNoise==true) randomVertex(Dream_3);
+    else returnVertex(RDream_3, Dream_3);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
@@ -112,6 +134,8 @@ void maskDreamdrawing() {
     }
     s3d.translate(0, 0, 0);
     s3d.shape(Dream_4);
+    if (vertexNoise==true) randomVertex(Dream_4);
+    else returnVertex(RDream_4, Dream_4);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
@@ -119,16 +143,36 @@ void maskDreamdrawing() {
     s3d.colorMode(HSB, 100);
     s3d.tint( color(anim(30, 0, 100, 4), 100, 100));
     s3d.shape(Dream_5);
+    if (vertexNoise==true) randomVertex(Dream_5);
+    else returnVertex(RDream_5, Dream_5);
     Dream_5.enableStyle();
     s3d.popMatrix();
     s3d.colorMode(RGB);
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_6);
+    if (vertexNoise==true) randomVertex(Dream_6);
+    else returnVertex(RDream_6, Dream_6);
     s3d.popMatrix();
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame( Dream_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Dream_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Dream_3, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Dream_4, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Dream_5, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Dream_6, random(1.80, 2.40), color(0, 165, 250, 120));
+
+  } else {
+    setTexture( Dream_1, DreamImg);
+    setTexture( Dream_2, DreamImg);
+    setTexture( Dream_3, DreamImg);
+    setTexture( Dream_4, DreamImg);
+    setTexture( Dream_5, DreamImg);
+    setTexture( Dream_6, DreamImg);
+  }
 }
 
 void Dream(boolean theFlag) {

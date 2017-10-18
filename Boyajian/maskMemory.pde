@@ -12,6 +12,8 @@ PShape Memory_3;
 PShape Memory_4;
 PShape Memory_5;
 
+PImage MemoryImg;
+
 float Memory_x, Memory_y;
 
 void maskMemorySetting() {
@@ -22,7 +24,7 @@ void maskMemorySetting() {
   if (showMaskMemory==false) {
     show[4]=1;
     countLife();
-
+    MemoryImg=loadImage("maskMemory/tex_memory_02.png");
     MaskMemoryIn=true;
     Memory_1 = loadShape("maskMemory/memory_1.obj");
     Memory_2=  loadShape("maskMemory/memory_2.obj");
@@ -53,8 +55,8 @@ void maskMemorydrawing() {
   {
     Memory_x=width/2+countX[4].o;
 
-    if (MaskMemoryIn==true) Memory_y=height/2+100+map(easeOutBack(MaskMemoryLine.o), 0, 1, 500, 0);
-    else   Memory_y=height/2+100+map(easeInBack(MaskMemoryLine.o), 0, 1, 0, -500);
+    if (MaskMemoryIn==true) Memory_y=height/2+60+map(easeOutBack(MaskMemoryLine.o), 0, 1, 500, 0);
+    else   Memory_y=height/2+60+map(easeInBack(MaskMemoryLine.o), 0, 1, 0, -500);
 
     s3d.translate(Memory_x, Memory_y+anim(300, 0, -50, 2), -50);
 
@@ -113,6 +115,19 @@ void maskMemorydrawing() {
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Memory_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Memory_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Memory_3, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Memory_4, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Memory_5, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Memory_1, MemoryImg);
+    setTexture(Memory_2, MemoryImg);
+    setTexture(Memory_3, MemoryImg);
+    setTexture(Memory_4, MemoryImg);
+    setTexture(Memory_5, MemoryImg);
+  }
 }
 
 void Memory(boolean theFlag) {

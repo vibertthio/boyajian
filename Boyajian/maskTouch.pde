@@ -11,6 +11,8 @@ PShape Touch_2;
 PShape Touch_3;
 PShape Touch_4;
 
+PImage TouchImg;
+
 float Touch_x, Touch_y;
 
 void maskTouchSetting() {
@@ -21,7 +23,7 @@ void maskTouchSetting() {
   if (showMaskTouch==false) {
     show[7]=1;
     countLife();
-
+    TouchImg=loadImage("maskTouch/tex_touch.png");
     MaskTouchIn=true;
     Touch_1 = loadShape("maskTouch/touch_1.obj");
     Touch_2=  loadShape("maskTouch/touch_2.obj");
@@ -103,6 +105,17 @@ void maskTouchdrawing() {
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame( Touch_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Touch_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Touch_3, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Touch_4, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture( Touch_1, TouchImg);
+    setTexture( Touch_2, TouchImg);
+    setTexture(Touch_3, TouchImg);
+    setTexture(Touch_4, TouchImg);
+  }
 }
 
 void Touch(boolean theFlag) {

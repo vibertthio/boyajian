@@ -8,6 +8,7 @@ pdLine  toolShieldALineOut;
 
 PShape ShieldA_1;
 PShape ShieldA_2;
+PImage ShieldAImg;
 
 float ShieldA_x, ShieldA_y;
 
@@ -19,7 +20,7 @@ void toolShieldASetting() {
   if (showtoolShieldA==false) {
     show[9]=1;
     countLife();
-
+    ShieldAImg=loadImage("toolShieldA/tex_shielda.png");
     toolShieldAIn=true;
     ShieldA_1 = loadShape("toolShieldA/shielda_1.obj");
     ShieldA_2 = loadShape("toolShieldA/shielda_2.obj");
@@ -91,6 +92,13 @@ void toolShieldAdrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(ShieldA_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(ShieldA_2, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(ShieldA_1, ShieldAImg);
+    setTexture(ShieldA_2, ShieldAImg);
+  }
 }
 void ShieldA(boolean theFlag) {
   if (theFlag==true) {

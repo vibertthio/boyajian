@@ -7,17 +7,17 @@ pdLine  toolWindLineIn;
 pdLine  toolWindLineOut;
 
 PShape Wind_1;
+PImage WindImg;
 float Wind_x, Wind_y;
 
 void toolWindSetting() {
 
   textWind= RG.getText("召喚鈴刀", "wt.ttf", 72, RFont.CENTER);
 
-
   if (showtoolWind==false) {
     show[15]=1;
     countLife();
-
+    WindImg=loadImage("toolWind/tex_wind.png");
     toolWindIn=true;
     Wind_1 = loadShape("toolWind/wind.obj");
 
@@ -83,6 +83,11 @@ void toolWinddrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Wind_1, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Wind_1, WindImg);
+  }
 }
 void Wind(boolean theFlag) {
   if (theFlag==true) {

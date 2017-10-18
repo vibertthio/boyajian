@@ -10,6 +10,8 @@ PShape Smell_1;
 PShape Smell_2;
 PShape Smell_3;
 
+PImage SmellImg;
+
 float Smell_x, Smell_y;
 
 void maskSmellSetting() {
@@ -20,7 +22,7 @@ void maskSmellSetting() {
   if (showMaskSmell==false) {
     show[5]=1;
     countLife();
-
+    SmellImg=loadImage("maskSmell/tex_smell.png");
     MaskSmellIn=true;
     Smell_1 = loadShape("maskSmell/smell_1.obj");
     Smell_2=  loadShape("maskSmell/smell_2.obj");
@@ -103,6 +105,15 @@ void maskSmelldrawing() {
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Smell_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Smell_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Smell_3, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Smell_1, SmellImg);
+    setTexture(Smell_2, SmellImg);
+    setTexture(Smell_3, SmellImg);
+  }
 }
 
 void Smell(boolean theFlag) {

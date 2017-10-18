@@ -7,6 +7,7 @@ pdLine  toolDoorLineIn;
 pdLine  toolDoorLineOut;
 
 PShape Door_1;
+PImage DoorImg;
 float Door_x, Door_y;
 
 void toolDoorSetting() {
@@ -17,7 +18,7 @@ void toolDoorSetting() {
   if (showtoolDoor==false) {
     show[12]=1;
     countLife();
-
+    DoorImg=loadImage("toolDoor/tex_door.png");
     toolDoorIn=true;
     Door_1 = loadShape("toolDoor/door.obj");
 
@@ -81,6 +82,11 @@ void toolDoordrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Door_1, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Door_1, DoorImg);
+  }
 }
 void Door(boolean theFlag) {
   if (theFlag==true) {

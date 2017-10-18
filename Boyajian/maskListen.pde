@@ -7,9 +7,11 @@ pdLine  MaskListenLine;
 pdLine  MaskListenLineIn;
 pdLine  MaskListenLineOut;
 
-PShape listen_1;
-PShape listen_2;
-PShape listen_3;
+PShape Listen_1;
+PShape Listen_2;
+PShape Listen_3;
+
+PImage ListenImg;
 
 float Listen_x, Listen_y;
 
@@ -17,15 +19,14 @@ void maskListenSetting() {
 
   textListen= RG.getText("音納耳", "wt.ttf", 72, RFont.CENTER);
 
-
   if (showMaskListen==false) {
     show[3]=1;
     countLife();
-
+    ListenImg=loadImage("maskListen/tex_listen.png");
     MaskListenIn=true;
-    listen_1 = loadShape("maskListen/listen_1.obj");
-    listen_2=  loadShape("maskListen/listen_2.obj");
-    listen_3 = loadShape("maskListen/listen_3.obj");
+    Listen_1 = loadShape("maskListen/listen_1.obj");
+    Listen_2=  loadShape("maskListen/listen_2.obj");
+    Listen_3 = loadShape("maskListen/listen_3.obj");
     showMaskListen =true;
   } else if (showMaskListen==true) {
     MaskListenIn=false;
@@ -57,7 +58,7 @@ void maskListendrawing() {
     // s3d.pushMatrix();//文字動畫
     // s3d.translate(40, 0, 0);
     // s3d.fill(maskNmae, 155);
-    // 
+    //
     // MaskListenLineIn.update();
     // MaskListenLineOut.update();
     // if (MaskListenLineIn.bang==true ) {
@@ -84,19 +85,28 @@ void maskListendrawing() {
     s3d.scale(0.35);
     //---------------
     s3d.pushMatrix();
-    s3d.shape(listen_1);
+    s3d.shape(Listen_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.shape(listen_2);
+    s3d.shape(Listen_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.shape(listen_3);
+    s3d.shape(Listen_3);
     s3d.popMatrix();
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Listen_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Listen_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Listen_3, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Listen_1, ListenImg);
+    setTexture(Listen_2, ListenImg);
+    setTexture(Listen_3, ListenImg);
+  }
 }
 void Listen(boolean theFlag) {
   if (theFlag==true) {
