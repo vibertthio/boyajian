@@ -1,20 +1,88 @@
-class StripsSystem {}
+class StripsSystem {
+  Strips crStrips;
+  Strips hrStrips;
+  Strips vtStrips;
+  int nOfCrStrips = 15;
+  int nOfHrStrips = 15;
+  int nOfVtStrips = 15;
+
+  StripsSystem(PGraphics _c) {
+    init(_c);
+  }
+  void init(PGraphics _c) {
+    crStrips = new Strips(_c, nOfCrStrips);
+    hrStrips = new Strips(_c, nOfHrStrips, true, true);
+    vtStrips = new Strips(_c, nOfVtStrips, false, true);
+
+    hrStrips.setColors();
+    vtStrips.setColors();
+  }
+
+  void draw() {
+    update();
+    render();
+  }
+  void update() {}
+  void render() {
+    crStrips.draw();
+    hrStrips.draw();
+    vtStrips.draw();
+  }
+
+  void hrStart() {
+    hrStrips.setDrift(false);
+    hrStrips.start();
+    hrStrips.setTime(floor(random(200, 300)));
+  }
+  void hrStart(float pos) {
+    hrStrips.setDrift(false);
+    hrStrips.start(pos);
+    hrStrips.setTime(floor(random(200, 300)));
+  }
+  void vtStart() {
+    vtStrips.setDrift(false);
+    vtStrips.start();
+    vtStrips.setTime(floor(random(200, 300)));
+  }
+  void vtStart(float pos) {
+    vtStrips.setDrift(false);
+    vtStrips.start(pos);
+    vtStrips.setTime(floor(random(200, 300)));
+  }
+}
 
 //VisualStrip.pde
 class Strips {
   Strip[] strips;
   int nOfStrips = 10;
 
+  // Initialization
   Strips(PGraphics _c) {
-    init(_c);
+    initCross(_c);
   }
-  void init(PGraphics _c) {
+  Strips(PGraphics _c, int _n) {
+    nOfStrips = _n;
+    initCross(_c);
+  }
+  Strips(PGraphics _c, int _n, boolean _hr, boolean _b) {
+    nOfStrips = _n;
+    init(_c, _hr, _b);
+  }
+  void init(PGraphics _c, boolean _hr, boolean _b) {
+    strips = new Strip[nOfStrips];
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i] = new Strip(_c, _hr, _b);
+    }
+  }
+  void initCross(PGraphics _c) {
     strips = new Strip[nOfStrips];
     for (int i = 0; i < nOfStrips; i++) {
       strips[i] = new Strip(_c);
-      strips[i].drift = true;
+      strips[i].cross = true;
     }
   }
+
+  // Basic
   void draw() {
     update();
     render();
@@ -27,9 +95,39 @@ class Strips {
   }
 
   // Utilities
-  void setColorful() {
+  void start() {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].start();
+    }
+  }
+  void start(float pos) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].start(pos);
+    }
+  }
+  void stop() {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].stop();
+    }
+  }
+  void setTime(int ll) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].setTime(ll);
+    }
+  }
+  void setColors() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].setColors();
+    }
+  }
+  void setDrift() {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].drift = !strips[i].drift;
+    }
+  }
+  void setDrift(boolean d) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].drift = d;
     }
   }
 
@@ -102,7 +200,7 @@ class Strip {
   boolean hr;
   boolean bang = false;
   boolean cross = false;
-  boolean drift = false;
+  boolean drift = true;
   boolean colorful = false;
   TimeLine timer;
 
@@ -242,6 +340,9 @@ class Strip {
     endColor = c;
     col = c;
   }
+  void setTime(int ll) {
+    timer.limit = ll;
+  }
 
   // Updates
   void basicUpdate() {
@@ -309,7 +410,11 @@ class Strip {
   // Bang
   void angleShiftBang() {
     // angle = targetAngle - PI;
-    targetAngle += PI;
+    if (random(1) > 0.5) {
+      targetAngle += PI;
+    } else {
+      targetAngle -= PI;
+    }
   }
   void angleShiftBang(int amt) {
     // angle = targetAngle - amt * PI;

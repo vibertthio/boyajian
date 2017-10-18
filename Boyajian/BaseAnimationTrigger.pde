@@ -18,6 +18,9 @@ void animationRotateGridTrigger() {
   // animations.rotateGrid.rowAngleShiftBang(5);
   // animations.rotateGrid.colAngleShiftBang(5);
   // animations.rotateGrid.colAngleShiftBang(4);
+  // animations.rotateGrid.rowRotateSequence.bang(4);
+  // animations.rotateGrid.rowXShiftSequence.bang(4);
+  // animations.rotateGrid.rowBlinkSequence.bang(4);
 
   layer[6] = 220;
   println("Rotate Grid Animation ## " + animationRotateGridTriggerIndex);
@@ -132,16 +135,24 @@ void animationGrowGridTrigger() {
   animationGrowGridTriggerIndex %= 13;
 }
 void testAnimation() {
-  // animations.rotateGrid.rowRotateSequence.bang(4);
-  // animations.rotateGrid.rowXShiftSequence.bang(4);
-  // animations.rotateGrid.rowBlinkSequence.bang(4);
   layer[6] = 120;
   layer[3] = 200;
 
-  animations.strips.angleShiftBang();
-  // animations.strips.widthScaleBang();
-  animations.strips.heightScaleBang();
-  // animations.strips.yShiftBang();
-  animations.strips.vibrateBang();
-  animations.strips.blinkBang();
+  // animations.stripsSystem.crStrips.angleShiftBang();
+  // animations.stripsSystem.crStrips.widthScaleBang();
+  // animations.stripsSystem.crStrips.heightScaleBang();
+  // animations.stripsSystem.crStrips.yShiftBang();
+  // animations.stripsSystem.crStrips.vibrateBang();
+  // animations.stripsSystem.crStrips.blinkBang();
+  // animations.stripsSystem.hrStart();
+  // animations.stripsSystem.hrStart(0.8);
+  // animations.stripsSystem.vtStart();
+  // animations.stripsSystem.vtStart(0.9);
+
+
+  if (random(1) > 0.5) {
+    animations.stripsSystem.hrStart(0.8);
+  } else {
+    animations.stripsSystem.vtStart(0.9);
+  }
 }

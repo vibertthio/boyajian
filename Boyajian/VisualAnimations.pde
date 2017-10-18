@@ -1,7 +1,7 @@
 //VisualAnimations.pde
 class Animations {
   PGraphics canvas;
-  Strips strips;
+  StripsSystem stripsSystem;
   GrowGrid growGrid;
   RotateGrid rotateGrid;
   Slashes slashes;
@@ -9,7 +9,7 @@ class Animations {
 
   Animations(PGraphics _c) {
     canvas = _c;
-    strips = new Strips(_c);
+    stripsSystem = new StripsSystem(_c);
     growGrid = new GrowGrid(_c, color(255, 255, 255));
     rotateGrid = new RotateGrid(_c, color(255, 255, 255));
     slashes = new Slashes(50);
@@ -22,7 +22,7 @@ class Animations {
     }
 
     if (layer[3]>10) {
-      strips.draw();
+      stripsSystem.draw();
     }
 
     if (layer[6]<115) {
