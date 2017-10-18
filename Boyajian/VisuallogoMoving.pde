@@ -35,11 +35,11 @@ color[] colors = {
 void defultSetting() {
   textSize(64);
   logoRo=new pdLine2(0, 0);
-  logoMoving = createGraphics(1500, 1000, P2D);
+  logoMoving = createGraphics(1920, 1280, P2D);
   logoMirror = createGraphics(1000, 1000, P2D);
 
   square = createShape(RECT, 0, 0, width, height);
-  tex= createGraphics(1500, 1000, P2D);
+  tex= createGraphics(1920, 1280, P2D);
   s3d= createGraphics(width, height, P3D);
   crop2= createGraphics(width, height, P3D);
 
@@ -112,15 +112,15 @@ void logos_vibert() {
 
 void logos() {
   logoMoving.pushMatrix();
-  logoMoving.translate(0+-150, logoMirror.height/2);
+  logoMoving.translate(0+228, logoMirror.height/2);
   logoMoving.scale(1, 1);
-  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
+  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.4, logoMirror.height*1.6);
   logoMoving.popMatrix();
 
   logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+48, logoMirror.height/2);
+  logoMoving.translate(logoMirror.width+628, logoMirror.height/2);
   logoMoving.scale(-1, 1);
-  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.2, logoMirror.height*1.6);
+  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.4, logoMirror.height*1.6);
   logoMoving.popMatrix();
 }
 

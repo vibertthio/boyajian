@@ -347,14 +347,14 @@ void cameraMoving() {
     autoCamMetroUpDown.bang=false;
     autoCamMetroUpDownCount=  (autoCamMetroUpDownCount+1)%2;
     if (autoCamMetroUpDownCount==0) {
-      cam[0]=600;
+      cam[0]=width/2;
       cam[1]=200;
       cam[2]=430;
       cam[3]=0;
       cam[4]=0.2;
       resetCamDo=true;
     } else {
-      cam[0]=600;
+      cam[0]=width/2;
       cam[1]=200;
       cam[2]=430;
       cam[3]=0;
@@ -365,7 +365,7 @@ void cameraMoving() {
 }
 
 void randomCam() {
-  cam[0]=random(350, 750);
+  cam[0]=random(width/2-150,width/2+150);
   cam[1]=random(100, 300);
   cam[2]=random(400, 460);
   cam[3]=random(-1, 1);
@@ -374,7 +374,7 @@ void randomCam() {
 }
 
 void defultCam() {
-  cam[0]=600;
+  cam[0]=width/2;
   cam[1]=200;
   cam[2]=430;
   cam[3]=0;
@@ -383,7 +383,7 @@ void defultCam() {
 }
 
 void zoonCam() {
-  cam[0]=600;
+  cam[0]=width/2;
   cam[1]=200;
   cam[2]=2000;
   cam[3]=0;
@@ -392,7 +392,7 @@ void zoonCam() {
 }
 
 void closeCam() {
-  cam[0]=600;
+  cam[0]=width/2;
   cam[1]=200;
   cam[2]=200;
   cam[3]=0;
@@ -400,7 +400,7 @@ void closeCam() {
   resetCamDo=true;
 }
 void superCloseCam() {
-  cam[0]=600;
+  cam[0]=width/2;
   cam[1]=200;
   cam[2]=0;
   cam[3]=0;
