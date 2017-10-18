@@ -36,9 +36,14 @@ class RotateGrid {
   }
   void update() {
     motionUpdate();
+
+    // rows
     rowRotateSequenceUpdate();
-    colRotateSequenceUpdate();
+    rowXShiftSequenceUpdate();
     rowBlinkSequenceUpdate();
+
+    // cols
+    colRotateSequenceUpdate();
     colBlinkSequenceUpdate();
   }
   void render() {
@@ -178,9 +183,19 @@ class RotateGrid {
       recs[i * n + r].xShiftBang();
     }
   }
+  void rowXShiftBang(int r, int amt) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].xShiftBang(amt);
+    }
+  }
   void rowYShiftBang(int r) {
     for (int i = 0; i < n; i++) {
       recs[i * n + r].yShiftBang();
+    }
+  }
+  void rowYShiftBang(int r, int amt) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].yShiftBang(amt);
     }
   }
   void rowVibrateBang(int r) {
@@ -280,10 +295,13 @@ class RotateGrid {
     {7, 8, 6, 9},
   };
 
-  Sequence rowRotateSequence = new Sequence(rowSequenceSet, 8);
-  Sequence colRotateSequence = new Sequence(colSequenceSet, 8);
+  Sequence rowRotateSequence = new Sequence(rowSequenceSet, 2);
+  Sequence rowXShiftSequence = new Sequence(rowSequenceSet, 2);
   Sequence rowBlinkSequence = new Sequence(rowSequenceSet, 8);
+
+  Sequence colRotateSequence = new Sequence(colSequenceSet, 8);
   Sequence colBlinkSequence = new Sequence(colSequenceSet, 8);
+
   void rowRotateSequenceUpdate() {
     rowRotateSequence.update();
     if (rowRotateSequence.getBang()) {
@@ -291,11 +309,11 @@ class RotateGrid {
       rowAngleShiftBang(index, 3);
     }
   }
-  void colRotateSequenceUpdate() {
-    colRotateSequence.update();
-    if (colRotateSequence.getBang()) {
-      int index = colRotateSequence.getSignal();
-      colAngleShiftBang(index, 3);
+  void rowXShiftSequenceUpdate() {
+    rowXShiftSequence.update();
+    if (rowXShiftSequence.getBang()) {
+      int index = rowXShiftSequence.getSignal();
+      rowXShiftBang(index, 2);
     }
   }
   void rowBlinkSequenceUpdate() {
@@ -303,6 +321,14 @@ class RotateGrid {
     if (rowBlinkSequence.getBang()) {
       int index = rowBlinkSequence.getSignal();
       rowBlinkBang(index);
+    }
+  }
+
+  void colRotateSequenceUpdate() {
+    colRotateSequence.update();
+    if (colRotateSequence.getBang()) {
+      int index = colRotateSequence.getSignal();
+      colAngleShiftBang(index, 3);
     }
   }
   void colBlinkSequenceUpdate() {
@@ -328,6 +354,8 @@ class RotateRectangle {
   color col;
 
   // logic
+  float xi;
+  float yi;
   float xorg;
   float yorg;
   float worg;
@@ -349,6 +377,8 @@ class RotateRectangle {
   void init(PGraphics _c, RotateGrid _g, float _x, float _y) {
     canvas = _c;
     grid = _g;
+    xi = _x;
+    yi = _y;
     xpos = _x;
     xorg = _x;
     ypos = _y;
@@ -481,6 +511,19 @@ class RotateRectangle {
       xorg -= grid.unit;
     }
     xShifted = !xShifted;
+    xShiftLimitCheck();
+  }
+  void xShiftBang(int amt) {
+    xorg += (amt * grid.unit);
+    xShiftLimitCheck();
+  }
+  void xShiftReset() {
+    xorg = xi;
+  }
+  void xShiftLimitCheck() {
+    if (abs(xorg - xi) > grid.unit * 8) {
+      xShiftReset();
+    }
   }
   void yShiftBang() {
     if (yShifted) {
@@ -489,6 +532,19 @@ class RotateRectangle {
       yorg -= grid.unit;
     }
     yShifted = !yShifted;
+    yShiftLimitCheck();
+  }
+  void yShiftBang(int amt) {
+    yorg += (amt * grid.unit);
+    yShiftLimitCheck();
+  }
+  void yShiftReset() {
+    yorg = yi;
+  }
+  void yShiftLimitCheck() {
+    if (abs(yorg - yi) > grid.unit * 8) {
+      yShiftReset();
+    }
   }
 
   int vibrateCount = 0;

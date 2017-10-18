@@ -21,7 +21,6 @@ class Sequence {
     sequenceSet = _ss;
   }
 
-
   void trigger() {
     trigger(sequenceTriggerIndex);
   }

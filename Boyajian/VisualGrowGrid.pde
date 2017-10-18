@@ -16,17 +16,6 @@ class GrowGrid {
   int lowBufferCount = 0;
   int lowBufferLimit = 30;
 
-  int[][] rotateSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7},
-    {7, 6, 5, 4, 3, 2, 1, 0},
-  };
-  int[][] sizeSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7},
-    {7, 6, 5, 4, 3, 2, 1, 0},
-  };
-  Sequence rotateSequence = new Sequence(rotateSequenceSet, 8);
-  Sequence sizeSequence = new Sequence(sizeSequenceSet, 8);
-
   GrowGrid(PGraphics _c, color _col) {
     canvas = _c;
     time = 0;
@@ -40,7 +29,6 @@ class GrowGrid {
       }
     }
   }
-
   void draw() {
     update();
     render();
@@ -84,20 +72,6 @@ class GrowGrid {
         println("low trigger!");
         allSizeBang();
       }
-    }
-  }
-  void updateRotateSequence() {
-    rotateSequence.update();
-    if (rotateSequence.getBang()) {
-      int index = rotateSequence.getSignal();
-      colRotateBang(index);
-    }
-  }
-  void updateSizeSequence() {
-    sizeSequence.update();
-    if (sizeSequence.getBang()) {
-      int index = sizeSequence.getSignal();
-      rowSizeBang(index);
     }
   }
 
@@ -164,6 +138,7 @@ class GrowGrid {
       }
     }
   }
+
   void rowSizeBang(int r) {
     for (int i = 0; i < n; i++) {
       recs[i * n + r].sizeBang();
@@ -206,6 +181,7 @@ class GrowGrid {
       recs[i * n + r].yShiftBang();
     }
   }
+
   void colAngleShiftBang(int c) {
     for (int j = 0; j < n; j++) {
       recs[c * n + j].angleShiftBang();
@@ -236,6 +212,31 @@ class GrowGrid {
     int x = floor(random(n));
     int y = floor(random(n));
     recs[x * n + y].vibrateBang();
+  }
+
+  int[][] rotateSequenceSet = {
+    {0, 1, 2, 3, 4, 5, 6, 7},
+    {7, 6, 5, 4, 3, 2, 1, 0},
+  };
+  int[][] sizeSequenceSet = {
+    {0, 1, 2, 3, 4, 5, 6, 7},
+    {7, 6, 5, 4, 3, 2, 1, 0},
+  };
+  Sequence rotateSequence = new Sequence(rotateSequenceSet, 8);
+  Sequence sizeSequence = new Sequence(sizeSequenceSet, 8);
+  void updateRotateSequence() {
+    rotateSequence.update();
+    if (rotateSequence.getBang()) {
+      int index = rotateSequence.getSignal();
+      colRotateBang(index);
+    }
+  }
+  void updateSizeSequence() {
+    sizeSequence.update();
+    if (sizeSequence.getBang()) {
+      int index = sizeSequence.getSignal();
+      rowSizeBang(index);
+    }
   }
 }
 
