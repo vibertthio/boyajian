@@ -15,7 +15,6 @@ boolean bgBlending = false;
 
 // Vibert's
 Animations animations;
-Animations animations2;
 
 float logoScale=1;
 float logoScaleStep=1;
@@ -79,8 +78,7 @@ void defultSetting() {
   myBus.sendNoteOff(0, 113, 0);
 
   // Vibert's
-  animations = new Animations(logoMirror,1);
-  animations2 = new Animations(logoMirror2,2);
+  animations = new Animations(logoMirror, logoMirror2);
 }
 
 void logoDrawing() {
@@ -109,7 +107,7 @@ void logoDrawing() {
   logoMirror2.beginDraw();
   logoMirror2.background(0,0);
   logoMirror2.imageMode(CENTER);
-  animations2.draw();
+  animations.innerDraw();
   logoMirror2.endDraw();
 
   logoMoving2.beginDraw();
@@ -145,7 +143,7 @@ class  LogoDraw {
   }
 
   void draw() {
-   
+
     if (frameCount%50==0) {
       if (logo3Changing) {
         pp=int(random(15));
