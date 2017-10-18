@@ -137,4 +137,6 @@ void testAnimation() {
   // animations.rotateGrid.rowBlinkSequence.bang(4);
   layer[6] = 120;
   layer[3] = 200;
+
+  animations.strips.allCrossStripsAngleShiftBang();
 }

@@ -2,7 +2,7 @@ class CrossStrips {
   CrossStrip[] strips;
   int nOfStrips = 30;
 
-  Strips(PGraphics _c) {
+  CrossStrips(PGraphics _c) {
     strips = new CrossStrip[nOfStrips];
     for (int i = 0; i < nOfStrips; i++) {
       strips[i] = new CrossStrip(_c);

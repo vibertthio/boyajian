@@ -1,17 +1,33 @@
 //VisualStrip.pde
 class Strips {
-  Strip[] strips;
-  int nOfStrips = 30;
+  Strip[] crossStrips;
+  int nOfCrossStrips = 10;
 
   Strips(PGraphics _c) {
-    strips = new Strip[nOfStrips];
-    for (int i = 0; i < nOfStrips; i++) {
-      strips[i] = new Strip(_c);
+    init(_c);
+  }
+  void init(PGraphics _c) {
+    crossStrips = new Strip[nOfCrossStrips];
+    for (int i = 0; i < nOfCrossStrips; i++) {
+      crossStrips[i] = new Strip(_c);
+      crossStrips[i].drift = true;
     }
   }
   void draw() {
-    for (int i = 0; i < nOfStrips; i++) {
-      strips[i].draw();
+    update();
+    render();
+  }
+  void update() {}
+  void render() {
+    for (int i = 0; i < nOfCrossStrips; i++) {
+      crossStrips[i].draw();
+    }
+  }
+
+  // all bang
+  void allCrossStripsAngleShiftBang() {
+    for (int i = 0; i < nOfCrossStrips; i++) {
+      crossStrips[i].angleShiftBang();
     }
   }
 }
@@ -28,11 +44,12 @@ class Strip {
   float heightOfStrip = 15;
   float widthOfStrip = 15;
   float xstr;
-  float ystr;
   float xpos;
   float ypos;
   float xdes;
-  float ydes;
+  float angle = 0;
+  float targetAngle = 0;
+  float scale = 1;
   color startColor;
   color endColor;
   color col;
@@ -46,10 +63,12 @@ class Strip {
   ******/
   int state;
   boolean hr;
+  boolean bang = false;
   boolean cross = false;
   boolean drift = false;
   TimeLine timer;
 
+  // Initialization
   Strip(PGraphics _c) {
     cross = true;
     init(_c);
@@ -62,6 +81,12 @@ class Strip {
     hr = _hr;
     init(_c);
   }
+  Strip(PGraphics _c, boolean _hr, boolean _b) {
+    cross = false;
+    hr = _hr;
+    bang = _b;
+    init(_c);
+  }
   Strip(PGraphics _c, boolean _hr, int _spd) {
     cross = false;
     hr = _hr;
@@ -71,22 +96,73 @@ class Strip {
     canvas = _c;
     timer = new TimeLine(2000);
     xdes = 1000;
-    ydes = 400;
     reset();
   }
   void init(PGraphics _c, int spd) {
     canvas = _c;
     timer = new TimeLine(spd);
     xdes = 1000;
-    ydes = 400;
     reset();
   }
 
+  // Basic
   void draw() {
     update();
     render();
   }
   void update() {
+    if (state != 0) {
+      basicUpdate();
+      angleUpdate();
+    }
+  }
+  void render() {
+    if (state != 0) {
+      canvas.pushMatrix();
+      canvas.noStroke();
+      canvas.fill(col, layer[3]);
+      if (!hr) { canvas.rotate(PI / 2); }
+      canvas.translate(xpos, ypos);
+      if (drift) { canvas.rectMode(CENTER); }
+      else { canvas.rectMode(CORNER); }
+      canvas.rotate(angle);
+      canvas.rect(0, 0, widthOfStrip, heightOfStrip);
+      canvas.popMatrix();
+    }
+  }
+  void reset() {
+    state = 1;
+    if (cross) {
+      hr = (random(1) > 0.5);
+    }
+    startColor = colors[floor(random(5))];
+    widthOfStrip = 15;
+
+    do {
+      endColor = colors[floor(random(5))];
+    } while(startColor == endColor);
+
+    if (hr) {
+      xpos = floor(random(70, 100)) * 10;
+      ypos = floor(random(35, 65)) * 10;
+      xdes = floor(random(50, 120)) * 10;
+    } else {
+      xpos = floor(random(40, 60)) * 10;
+      ypos = floor(random(-100, -70)) * 10;
+      xdes = floor(random(20, 80)) * 10;
+    }
+
+    // test
+    // testControl();
+
+    xstr = xpos;
+    col = startColor;
+    timer.limit = floor(random(600, 2000));
+    timer.startTimer();
+  }
+
+  // Updates
+  void basicUpdate() {
     if (state == 1) {
       float ratio = timer.getPowOut(3);
       widthOfStrip = (xdes - xpos) * ratio;
@@ -110,59 +186,53 @@ class Strip {
 
       if (!timer.state) {
         reset();
+        if (bang) {
+          stop();
+        }
       }
     }
   }
-  void render() {
-    canvas.pushMatrix();
-    canvas.noStroke();
-    canvas.fill(col, layer[3]);
-    if (!hr) { canvas.rotate(PI / 2); }
-    canvas.translate(xpos, ypos);
-    if (drift) { canvas.rectMode(CENTER); }
-    else { canvas.rectMode(CORNER); }
-    canvas.rect(0, 0, widthOfStrip, heightOfStrip);
-    canvas.popMatrix();
-  }
-  void reset() {
-    state = 1;
-    // hr = true;
-    // hr = false;
-    if (cross) {
-      hr = (random(1) > 0.5);
+  void angleUpdate() {
+    if (abs(targetAngle - angle) < 0.01) {
+      angle = targetAngle;
+    } else {
+      angle = angle + (targetAngle - angle) * 0.1;
     }
-    startColor = colors[floor(random(5))];
-    heightOfStrip = 15;
-    widthOfStrip = 15;
+  }
 
-    do {
-      endColor = colors[floor(random(5))];
-    } while(startColor == endColor);
-
+  // Utilities
+  void start() {
+    reset();
+  }
+  void start(float pos) {
+    reset();
     if (hr) {
-      xpos = floor(random(70, 100)) * 10;
-      ypos = floor(random(35, 65)) * 10;
+      xpos = map(pos, 0, 1, 70, 100) * 10;
+      xpos += random(-20, 20);
       xdes = floor(random(50, 120)) * 10;
     } else {
-      xpos = floor(random(40, 60)) * 10;
-      ypos = floor(random(-100, -70)) * 10;
+      xpos = map(pos, 0, 1, 40, 60) * 10;
+      xpos += random(-20, 20);
       xdes = floor(random(20, 80)) * 10;
     }
-
-    // test
-    // testControl();
-
-    xstr = xpos;
-    ystr = ypos;
-    col = startColor;
-    timer.limit = floor(random(600, 2000));
-    timer.startTimer();
+  }
+  void stop() {
+    state = 0;
   }
   void triggerCross() {
     cross = !cross;
   }
   void triggerDrift() {
     drift = !drift;
+  }
+
+  void angleShiftBang() {
+    // angle = targetAngle - PI;
+    targetAngle += PI;
+  }
+  void angleShiftBang(int amt) {
+    // angle = targetAngle - amt * PI;
+    targetAngle += amt * PI;
   }
 
   // testing
