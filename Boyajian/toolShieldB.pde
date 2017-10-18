@@ -7,6 +7,8 @@ pdLine  toolShieldBLineIn;
 pdLine  toolShieldBLineOut;
 
 PShape ShieldB_1;
+PImage ShieldBImg;
+
 float ShieldB_x, ShieldB_y;
 
 void toolShieldBSetting() {
@@ -17,7 +19,7 @@ void toolShieldBSetting() {
   if (showtoolShieldB==false) {
     show[8]=1;
     countLife();
-
+    ShieldBImg=loadImage("toolShieldB/tex_shield_b.png");
     toolShieldBIn=true;
     ShieldB_1 = loadShape("toolShieldB/shieldb.obj");
 
@@ -84,6 +86,11 @@ void toolShieldBdrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(ShieldB_1, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(ShieldB_1, ShieldBImg);
+  }
 }
 void ShieldB(boolean theFlag) {
   if (theFlag==true) {

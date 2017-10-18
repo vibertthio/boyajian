@@ -7,6 +7,7 @@ pdLine  toolSwordBLineIn;
 pdLine  toolSwordBLineOut;
 
 PShape SwordB_1;
+PImage SwordBImg;
 float SwordB_x, SwordB_y;
 
 void toolSwordBSetting() {
@@ -17,7 +18,7 @@ void toolSwordBSetting() {
   if (showtoolSwordB==false) {
     show[11]=1;
     countLife();
-
+    SwordBImg=loadImage("toolSwordB/tex_sword_b.png");
     toolSwordBIn=true;
     SwordB_1 = loadShape("toolSwordB/swordb.obj");
 
@@ -84,6 +85,11 @@ void toolSwordBdrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(SwordB_1, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(SwordB_1, SwordBImg);
+  }
 }
 void SwordB(boolean theFlag) {
   if (theFlag==true) {

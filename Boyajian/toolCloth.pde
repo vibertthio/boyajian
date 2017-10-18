@@ -7,17 +7,18 @@ pdLine  toolClothLineIn;
 pdLine  toolClothLineOut;
 
 PShape Cloth_1;
+PImage ClothImg;
+
 float Cloth_x, Cloth_y;
 
 void toolClothSetting() {
 
   textCloth= RG.getText("召喚鈴刀", "wt.ttf", 72, RFont.CENTER);
 
-
   if (showtoolCloth==false) {
     show[13]=1;
     countLife();
-
+    ClothImg=loadImage("toolCloth/tex_cloth.png");
     toolClothIn=true;
     Cloth_1 = loadShape("toolCloth/cloth.obj");
 
@@ -81,6 +82,11 @@ void toolClothdrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Cloth_1, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Cloth_1, ClothImg);
+  }
 }
 void Cloth(boolean theFlag) {
   if (theFlag==true) {

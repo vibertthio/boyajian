@@ -14,6 +14,7 @@ PShape Taste_5;
 PShape Taste_6;
 
 float Taste_x, Taste_y;
+PImage TasteImg;
 
 void maskTasteSetting() {
 
@@ -23,6 +24,7 @@ void maskTasteSetting() {
   if (showMaskTaste==false) {
     show[6]=1;
     countLife();
+    TasteImg=loadImage("maskTaste/tex_taste.png");
 
     MaskTasteIn=true;
     Taste_1 = loadShape("maskTaste/taste_1.obj");
@@ -117,6 +119,21 @@ void maskTastedrawing() {
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame( Taste_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Taste_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Taste_3, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Taste_4, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Taste_5, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Taste_6, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture( Taste_1, TasteImg);
+    setTexture( Taste_2, TasteImg);
+    setTexture(Taste_3, TasteImg);
+    setTexture( Taste_4, TasteImg);
+    setTexture( Taste_5, TasteImg);
+    setTexture(Taste_6, TasteImg);
+  }
 }
 
 void Taste(boolean theFlag) {

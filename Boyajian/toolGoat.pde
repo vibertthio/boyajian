@@ -7,17 +7,17 @@ pdLine  toolGoatLineIn;
 pdLine  toolGoatLineOut;
 
 PShape Goat_1;
+PImage GoatImg;
 float Goat_x, Goat_y;
 
 void toolGoatSetting() {
 
   textGoat= RG.getText("召喚鈴刀", "wt.ttf", 72, RFont.CENTER);
 
-
   if (showtoolGoat==false) {
     show[14]=1;
     countLife();
-
+    GoatImg=loadImage("toolGoat/tex_goat.png");
     toolGoatIn=true;
     Goat_1 = loadShape("toolGoat/goat.obj");
 
@@ -83,6 +83,11 @@ void toolGoatdrawing() {
     s3d.popMatrix();
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame(Goat_1, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture(Goat_1, GoatImg);
+  }
 }
 void Goat(boolean theFlag) {
   if (theFlag==true) {

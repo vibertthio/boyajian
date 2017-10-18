@@ -21,6 +21,7 @@ PShape RmaskA_3_1;
 PShape RmaskA_3_2;
 PShape RmaskA_4;
 PShape RmaskA_5;
+
 PImage EyeImg;
 
 
@@ -35,10 +36,8 @@ void maskEyeSetting() {
   if (showMaskEye==false) {
     show[1]=1;
     countLife();
-
-    MaskEyeIn=true;
     EyeImg=loadImage("maskEye/tex_eye.png");
-
+    MaskEyeIn=true;
     maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
     maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
     maskA_2 = loadShape("maskEye/maskA_2.obj");
@@ -192,28 +191,27 @@ void maskEyedrawing() {
       s3d.tint( color(255, anim(200, 100, 255, 2), anim(200, 100, 255, 4)));
       s3d.shape(maskA_5);
     }
-
     s3d.popMatrix();
     //---------------
-    if (wireFrameCtl==true) {
-      noWireFrame( maskA_1_1, random(1.80, 2.40), color(0, 165, 250, 120));
-      noWireFrame( maskA_1_2, random(1.80, 2.40), color(0, 165, 250, 120));
-      noWireFrame( maskA_2, random(1.80, 2.40), color(0, 165, 250, 120));
-      noWireFrame( maskA_3_1, random(1.80, 2.40), color(0, 165, 250, 120));
-      noWireFrame( maskA_3_2, random(1.80, 2.40), color(0, 165, 250, 120));
-      noWireFrame( maskA_4, random(1.80, 2.40), color(0, 165, 250, 120));
-      noWireFrame( maskA_5, random(1.80, 2.40), color(0, 165, 250, 120));
-    } else {
-      setTexture( maskA_1_1, EyeImg);
-      setTexture( maskA_1_2, EyeImg);
-      setTexture(maskA_2, EyeImg);
-      setTexture( maskA_3_1, EyeImg);
-      setTexture( maskA_3_2, EyeImg);
-      setTexture( maskA_4, EyeImg);
-      setTexture( maskA_5, EyeImg);
-    }
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame( maskA_1_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_1_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_3_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_3_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_4, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_5, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture( maskA_1_1, EyeImg);
+    setTexture( maskA_1_2, EyeImg);
+    setTexture(maskA_2, EyeImg);
+    setTexture( maskA_3_1, EyeImg);
+    setTexture( maskA_3_2, EyeImg);
+    setTexture( maskA_4, EyeImg);
+    setTexture( maskA_5, EyeImg);
+  }
 }
 
 void Eye(boolean theFlag) {

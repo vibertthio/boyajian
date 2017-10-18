@@ -10,6 +10,8 @@ PShape Faces_1;
 PShape Faces_2;
 PShape Faces_3;
 
+PImage FacesImg;
+
 float Faces_x, Faces_y;
 
 void maskFacesSetting() {
@@ -19,7 +21,7 @@ void maskFacesSetting() {
   if (showMaskFaces==false) {
     show[2]=1;
     countLife();
-
+    FacesImg=loadImage("maskFaces/tex_faces.png");
     MaskFacesIn=true;
     Faces_1 = loadShape("maskFaces/faces_1.obj");
     Faces_2=  loadShape("maskFaces/faces_2.obj");
@@ -100,6 +102,15 @@ void maskFacesdrawing() {
     //---------------
   }
   s3d.popMatrix();
+  if (wireFrameCtl==true) {
+    noWireFrame( Faces_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Faces_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Faces_3, random(1.80, 2.40), color(0, 165, 250, 120));
+  } else {
+    setTexture( Faces_1, FacesImg);
+    setTexture( Faces_2, FacesImg);
+    setTexture(Faces_3, FacesImg);
+  }
 }
 void Faces(boolean theFlag) {
   if (theFlag==true) {
