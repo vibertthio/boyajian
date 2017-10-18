@@ -1,7 +1,7 @@
 
 uniform sampler2D texture;
 float kernel = .005;
-float scale = 1.;
+float scale = 0.7;
 float thresh = 1.;
 uniform float vol ;
 uniform float time;

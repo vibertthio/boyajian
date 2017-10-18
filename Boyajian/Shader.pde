@@ -57,11 +57,10 @@ String[] blendNames = {
   "Luminosity"
 };
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
-int [] indexSelectEffect={ 0, 1, 2, 3, 4};
 
 //vibert
-int blendIndex=7;
-int imgIndex=2;
+int blendIndex=8;
+int imgIndex=3;
 
 PShader contrastGLSL;
 PShader effectGLSL;

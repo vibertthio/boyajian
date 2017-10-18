@@ -21,7 +21,7 @@ void showFrameRate() {
   textSize(16);
 
   String F="F:"+int((int(frameRate/4))*4);
-  String B=indexSelectBlend [blendIndex]  + ":" + blendNames[ indexSelectBlend [blendIndex]  ];
+  String B=indexSelectBlend [blendIndex]  + ":" + blendIndex +":"+blendNames[ indexSelectBlend [blendIndex]  ];
   String I="bgs:" +imgIndex;
   fill(255);
   text(F, 50, 50);
@@ -362,4 +362,48 @@ void cameraMoving() {
       resetCamDo=true;
     }
   }
+}
+
+void randomCam() {
+  cam[0]=random(350, 750);
+  cam[1]=random(100, 300);
+  cam[2]=random(400, 460);
+  cam[3]=random(-1, 1);
+  cam[4]=random(-1, 1);
+  resetCamDo=true;
+}
+
+void defultCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=430;
+  cam[3]=0;
+  cam[4]=0;
+  resetCamDo=true;
+}
+
+void zoonCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=2000;
+  cam[3]=0;
+  cam[4]=0;
+  resetCamDo=true;
+}
+
+void closeCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=200;
+  cam[3]=0;
+  cam[4]=0;
+  resetCamDo=true;
+}
+void superCloseCam() {
+  cam[0]=600;
+  cam[1]=200;
+  cam[2]=0;
+  cam[3]=0;
+  cam[4]=0.2;
+  resetCamDo=true;
 }
