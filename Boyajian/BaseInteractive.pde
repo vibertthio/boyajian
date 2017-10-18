@@ -142,7 +142,7 @@ void keyPressed() {
     animationGrowGridTrigger();
   }
   if (key == 'x') {
-    testAnimation();
+    animationStripTrigger();
   }
 
   // change background and shader algorithm
@@ -251,84 +251,84 @@ void sendNote2p5() {
   //---------------------------------------------ch2
   if (ch==2) {
     if (nn==24)if (vv==127){
-      animationRotateGridTriggerIndex =0;
+      rotateGridTriggerIndex =0;
       animationRotateGridTrigger() ;
     }
 
     if (nn==25)if (vv==127){
-      animationRotateGridTriggerIndex =10;
+      rotateGridTriggerIndex =10;
       animationRotateGridTrigger() ;
     }
 
     if (nn==26)if (vv==127)
     {
-      animationRotateGridTriggerIndex =2;
+      rotateGridTriggerIndex =2;
       animationRotateGridTrigger() ;
     }
 
     if (nn==27)if (vv==127){
-      animationRotateGridTriggerIndex =12;
+      rotateGridTriggerIndex =12;
       animationRotateGridTrigger() ;
     }
 
     if (nn==28)if (vv==127){
-      animationRotateGridTriggerIndex =4;
+      rotateGridTriggerIndex =4;
       animationRotateGridTrigger() ;
     }
 
     if (nn==29)if (vv==127){
-      animationRotateGridTriggerIndex =5;
+      rotateGridTriggerIndex =5;
       animationRotateGridTrigger() ;
     }
 
     if (nn==30)if (vv==127){
-      animationRotateGridTriggerIndex =6;
+      rotateGridTriggerIndex =6;
       animationRotateGridTrigger() ;
     }
 
     if (nn==31)if (vv==127){
-      animationRotateGridTriggerIndex =7;
+      rotateGridTriggerIndex =7;
       animationRotateGridTrigger() ;
     }
 
 //-----------------------------------------------
     if (nn==36)if (vv==127){
-      animationGrowGridTriggerIndex=0;
+      growGridTriggerIndex=0;
       animationGrowGridTrigger() ;
     }
 
     if (nn==37)if (vv==127){
-      animationGrowGridTriggerIndex=12;
+      growGridTriggerIndex=12;
       animationGrowGridTrigger() ;
     }
 
     if (nn==38)if (vv==127){
-      animationGrowGridTriggerIndex=2;
+      growGridTriggerIndex=2;
       animationGrowGridTrigger() ;
     }
 
     if (nn==39)if (vv==127){
-      animationGrowGridTriggerIndex=3;
+      growGridTriggerIndex=3;
       animationGrowGridTrigger() ;
     }
 
     if (nn==40)if (vv==127){
-      animationGrowGridTriggerIndex=4;
+      growGridTriggerIndex=4;
       animationGrowGridTrigger() ;
     }
 
     if (nn==41)if (vv==127){
-      animationGrowGridTriggerIndex=9;
+      growGridTriggerIndex=9;
       animationGrowGridTrigger() ;
     }
 
     if (nn==42)if (vv==127){
-      animationGrowGridTriggerIndex=6;
+      growGridTriggerIndex=6;
       animationGrowGridTrigger() ;
     }
 
     if (nn==43)if (vv==127){
-      animationGrowGridTriggerIndex=5;
+      growGridTriggerIndex=5;
       animationGrowGridTrigger() ;
     }
 

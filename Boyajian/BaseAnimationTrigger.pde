@@ -1,5 +1,6 @@
-int animationRotateGridTriggerIndex = 0;
-int animationGrowGridTriggerIndex = 0;
+int rotateGridTriggerIndex = 0;
+int growGridTriggerIndex = 0;
+int stripTriggerIndex = 0;
 void animationRotateGridTrigger() {
   // animations.rotateGrid.allAngleShiftBang();
   // animations.rotateGrid.allAngleShiftBang(8);
@@ -22,9 +23,10 @@ void animationRotateGridTrigger() {
   // animations.rotateGrid.rowXShiftSequence.bang(4);
   // animations.rotateGrid.rowBlinkSequence.bang(4);
 
+  layer[3] = 0;
   layer[6] = 220;
-  println("Rotate Grid Animation ## " + animationRotateGridTriggerIndex);
-  switch(animationRotateGridTriggerIndex) {
+  println("Rotate Grid Animation ## " + rotateGridTriggerIndex);
+  switch(rotateGridTriggerIndex) {
     case 0:
       animations.rotateGrid.allAngleShiftBang();
       break;
@@ -66,8 +68,8 @@ void animationRotateGridTrigger() {
       animations.rotateGrid.colAngleShiftBang(7);
       break;
   }
-  animationRotateGridTriggerIndex ++;
-  animationRotateGridTriggerIndex %= 13;
+  rotateGridTriggerIndex ++;
+  rotateGridTriggerIndex %= 13;
 }
 void animationGrowGridTrigger() {
   // animations.growGrid.allSizeBang();
@@ -83,10 +85,10 @@ void animationGrowGridTrigger() {
   // animations.growGrid.allCordTrigger();
   // animations.growGrid.rotateSequence.bang(floor(random(2)));
   // animations.growGrid.sizeSequence.bang(floor(random(2)));
-
+  layer[3] = 0;
   layer[6] = 30;
-  println("Grow Grid Animation ## " + animationGrowGridTriggerIndex);
-  switch(animationGrowGridTriggerIndex) {
+  println("Grow Grid Animation ## " + growGridTriggerIndex);
+  switch(growGridTriggerIndex) {
     case 0:
       animations.growGrid.allSizeBang();
       break;
@@ -131,10 +133,10 @@ void animationGrowGridTrigger() {
       animations.growGrid.allVibrateBang();
       break;
   }
-  animationGrowGridTriggerIndex++;
-  animationGrowGridTriggerIndex %= 13;
+  growGridTriggerIndex++;
+  growGridTriggerIndex %= 13;
 }
-void testAnimation() {
+void animationStripTrigger() {
   layer[6] = 120;
   layer[3] = 200;
 
@@ -148,11 +150,67 @@ void testAnimation() {
   // animations.stripsSystem.hrStart(0.8);
   // animations.stripsSystem.vtStart();
   // animations.stripsSystem.vtStart(0.9);
-
-
-  if (random(1) > 0.5) {
-    animations.stripsSystem.hrStart(0.8);
-  } else {
-    animations.stripsSystem.vtStart(0.9);
+  // animations.stripsSystem.hrStartStep(-200);
+  // animations.stripsSystem.vtStartStep(-200);
+  // animations.stripsSystem.hrStart(0.8, -200);
+  // animations.stripsSystem.hrStartStep(-200);
+  // animations.stripsSystem.vtStart(0.9);
+  println("Strips Animation ## " + stripTriggerIndex);
+  switch(stripTriggerIndex) {
+    case 0:
+      animations.stripsSystem.crStrips.angleShiftBang();
+      break;
+    case 1:
+      animations.stripsSystem.crStrips.widthScaleBang();
+      break;
+    case 2:
+      animations.stripsSystem.crStrips.heightScaleBang();
+      break;
+    case 3:
+      animations.stripsSystem.crStrips.yShiftBang();
+      break;
+    case 4:
+      animations.stripsSystem.crStrips.vibrateBang();
+      break;
+    case 5:
+      animations.stripsSystem.crStrips.blinkBang();
+      break;
+    case 6:
+      animations.stripsSystem.crStrips.setColors();
+      break;
+    case 7:
+      animations.stripsSystem.crStrips.angleShiftBang();
+      animations.stripsSystem.crStrips.widthScaleBang();
+      animations.stripsSystem.crStrips.heightScaleBang();
+      break;
+    case 8:
+      animations.stripsSystem.crStrips.vibrateBang();
+      animations.stripsSystem.crStrips.blinkBang();
+      break;
+    case 9:
+      animations.stripsSystem.crStrips.setColors(color(255, 255, 255));
+      animations.stripsSystem.crStrips.angleShiftBang();
+      animations.stripsSystem.crStrips.yShiftBang();
+      animations.stripsSystem.crStrips.vibrateBang();
+      break;
+    case 10:
+      animations.stripsSystem.hrStart(0.8, -200);
+      break;
+    case 11:
+      animations.stripsSystem.hrStart(0.8, -200);
+      animations.stripsSystem.vtStart(0.9);
+      break;
+    case 12:
+      animations.stripsSystem.hrStartStep(-200);
+      break;
+    case 13:
+      animations.stripsSystem.vtStartStep(-200);
+      break;
+    case 14:
+      animations.stripsSystem.hrStartStep(-200);
+      animations.stripsSystem.vtStartStep(-200);
+      break;
   }
+  stripTriggerIndex++;
+  stripTriggerIndex %= 15;
 }

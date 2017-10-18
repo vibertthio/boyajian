@@ -1,3 +1,19 @@
+// horizontal:
+//   x -> 700 ~ 1000
+//   y -> 350 ~ 650
+// vertical:
+//   x ->  400 ~  600
+//   y -> -1000 ~ -700
+
+int horizontalXLowerBound = 700;
+int horizontalXUpperBound = 1000;
+int horizontalYLowerBound = 350;
+int horizontalYUpperBound = 650;
+int verticalXLowerBound = 400;
+int verticalXUpperBound = 600;
+int verticalYLowerBound = -1000;
+int verticalYUpperBound = -700;
+
 class StripsSystem {
   Strips crStrips;
   Strips hrStrips;
@@ -39,6 +55,23 @@ class StripsSystem {
     hrStrips.start(pos);
     hrStrips.setTime(floor(random(200, 300)));
   }
+  void hrStart(float pos, float length) {
+    hrStrips.setDrift(false);
+    hrStrips.start(pos);
+    hrStrips.setDes(length);
+    hrStrips.setTime(floor(random(200, 300)));
+  }
+  void hrStartStep(float length) {
+    hrStrips.setDrift(false);
+    for (int i = 0; i < nOfHrStrips; i++) {
+      float pos = map(i, 0, nOfHrStrips, 0, 1.2);
+      int time = floor(map(pos, 0, 1, 200, 500));
+      hrStrips.strips[i].start(pos);
+      hrStrips.strips[i].setYPos(pos);
+      hrStrips.strips[i].setTime(time);
+    }
+    hrStrips.setDes(length);
+  }
   void vtStart() {
     vtStrips.setDrift(false);
     vtStrips.start();
@@ -48,6 +81,23 @@ class StripsSystem {
     vtStrips.setDrift(false);
     vtStrips.start(pos);
     vtStrips.setTime(floor(random(200, 300)));
+  }
+  void vtStart(float pos, float length) {
+    vtStrips.setDrift(false);
+    vtStrips.start(pos);
+    vtStrips.setDes(length);
+    vtStrips.setTime(floor(random(200, 300)));
+  }
+  void vtStartStep(float length) {
+    vtStrips.setDrift(false);
+    for (int i = 0; i < nOfVtStrips; i++) {
+      float pos = map(i, 0, nOfVtStrips, 0, 1.2);
+      int time = floor(map(pos, 0, 1, 200, 500));
+      vtStrips.strips[i].start(pos + 0.3);
+      vtStrips.strips[i].setYPos(pos);
+      vtStrips.strips[i].setTime(time);
+    }
+    vtStrips.setDes(length);
   }
 }
 
@@ -120,6 +170,11 @@ class Strips {
       strips[i].setColors();
     }
   }
+  void setColors(color c) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].setColors(c);
+    }
+  }
   void setDrift() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].drift = !strips[i].drift;
@@ -128,6 +183,11 @@ class Strips {
   void setDrift(boolean d) {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].drift = d;
+    }
+  }
+  void setDes(float length) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].setDes(length);
     }
   }
 
@@ -164,13 +224,6 @@ class Strips {
     }
   }
 }
-
-// horizontal:
-//   x -> 700 ~ 1000
-//   y -> 350 ~ 650
-// vertical:
-//   x ->  400 ~  600
-//   y -> -700 ~ -1000
 
 class Strip {
   PGraphics canvas;
@@ -310,11 +363,11 @@ class Strip {
     reset();
     if (hr) {
       xpos = map(pos, 0, 1, 70, 100) * 10;
-      xpos += random(-20, 20);
+      // xpos += random(-5, 5);
       xdes = floor(random(50, 120)) * 10;
     } else {
       xpos = map(pos, 0, 1, 40, 60) * 10;
-      xpos += random(-20, 20);
+      // xpos += random(-5, 5);
       xdes = floor(random(20, 80)) * 10;
     }
   }
@@ -342,6 +395,19 @@ class Strip {
   }
   void setTime(int ll) {
     timer.limit = ll;
+  }
+  void setDes(float length) {
+    xdes = xpos + length;
+  }
+  void setYPos(float ratio) {
+    float y;
+    if (hr) {
+      y = map(ratio, 0, 1, horizontalYLowerBound, horizontalYUpperBound);
+    } else {
+      y = map(ratio, 0, 1, verticalYLowerBound, verticalYUpperBound);
+    }
+    ydes = y;
+    ypos = y;
   }
 
   // Updates
