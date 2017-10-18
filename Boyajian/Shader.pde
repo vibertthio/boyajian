@@ -66,6 +66,8 @@ PShader contrastGLSL;
 PShader effectGLSL;
 
 PShader blendGLSL;
+PShader donothing;
+
 PShader finalGLSL;
 
 float contrastA=0.1;
@@ -81,6 +83,8 @@ void shaderSetting() {
   contrastGLSL.set("vel", contrastA, contrastB);
 
   effectGLSL = loadShader("glsl/no.glsl");
+  donothing= loadShader("glsl/no.glsl");
+  donothing.set( "texture", logoMoving2);
 
   blendGLSL= loadShader("glsl/blendMode.glsl");
   blendGLSL.set( "lowLayer", bgs [imgIndex]);

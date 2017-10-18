@@ -1,12 +1,14 @@
 class Slashes {
   Slash[] slash;
   int numberOfSlashes = 40;
+  PGraphics who;
 
   Slashes() {
     init();
   }
 
-  Slashes(int _n) {
+  Slashes(int _n,PGraphics _who ) {
+    who=_who;
     numberOfSlashes = _n;
     init();
   }
@@ -27,7 +29,7 @@ class Slashes {
 
   void draw() {
     for (int i=0; i<numberOfSlashes; i++) {
-      slash[i].draw(logoMirror);
+      slash[i].draw(who);
     }
   }
 }

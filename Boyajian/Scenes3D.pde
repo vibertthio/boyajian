@@ -15,9 +15,14 @@ PImage eyeParticle;
 PImage earParticle;
 PImage earParticle_1;
 PImage black;
+PImage grid;
 
 PShape globe;
 PShape Rglobe;
+
+PShape globe2;
+PShape Rglobe2;
+
 PMatrix mat_scene;
 float randomVel=2;
 
@@ -39,6 +44,7 @@ void s3dSetting() {
   earParticle=loadImage("img/p_smell.png");
   earParticle_1=loadImage("img/p_smell_1.png");
   black=loadImage("img/black.png");
+  grid=loadImage("img/grid.png");
 
   eyeGroups = new EyeGroup[eyeNum];
   earGroups = new EarGroup[earNum];
@@ -57,6 +63,11 @@ void s3dSetting() {
   Rglobe = loadShape("3d/sphere2.obj");
   globe.setStroke(false);
   globe.setTexture(tex);
+
+  globe2 = loadShape("3d/sphere.obj");
+  Rglobe2= loadShape("3d/sphere.obj");
+  globe2.setStroke(false);
+  globe2.setTexture(tex2);
 }
 
 float  Falloff=1.8;
@@ -143,6 +154,12 @@ void s3dDrawing() {
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(186));
 
+  s3d.pushMatrix();//--------------------
+  s3d.rotateY(radians(75));
+  s3d.blendMode(ADD);
+  s3d.scale(0.95);
+  s3d.shape(globe2);
+  s3d.popMatrix();//--------------------
 
   if (vertexNoise==true ) randomVertex(globe);
   else returnVertex(Rglobe, globe);
@@ -152,13 +169,12 @@ void s3dDrawing() {
     noWireFrame(globe, 2.0f, color(255, 60));
     s3d.blendMode(ADD);
   } else {
-    setTexture( globe, tex);
+    setTexture(globe, tex);
     s3d.blendMode(BLEND);
+    s3d.shape(globe);
   }
-  s3d.shape(globe);
-
-
+  
+  s3d.blendMode(BLEND);
   s3d.popMatrix();//--------------------
-  //s3d.ellipse(width/2, height/2, 100, 100);
   s3d.endDraw();
 }

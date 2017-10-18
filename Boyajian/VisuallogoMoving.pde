@@ -1,8 +1,10 @@
 //VisuallogoMoving.pde
 
-
 PGraphics logoMoving;
 PGraphics logoMirror;
+
+PGraphics logoMoving2;
+PGraphics logoMirror2;
 
 int roro = 0;
 int pp = 0;
@@ -13,9 +15,7 @@ boolean bgBlending = false;
 
 // Vibert's
 Animations animations;
-
-PImage bgbg;
-pdLine2 logoRo;
+Animations animations2;
 
 float logoScale=1;
 float logoScaleStep=1;
@@ -25,21 +25,27 @@ float logoMovingSpeed=0.5;
 float ctl82;
 
 color[] colors = {
-  color(253, 148, 38), 
-  color(252, 86, 44), 
-  color(56, 195, 206), 
-  color(124, 156, 124), 
-  color(18, 99, 104), 
+  color(253, 148, 38),
+  color(252, 86, 44),
+  color(56, 195, 206),
+  color(124, 156, 124),
+  color(18, 99, 104),
 };
 
 void defultSetting() {
   textSize(64);
-  logoRo=new pdLine2(0, 0);
+
   logoMoving = createGraphics(1920, 1280, P2D);
   logoMirror = createGraphics(1000, 1000, P2D);
 
-  square = createShape(RECT, 0, 0, width, height);
+  logoMoving2 = createGraphics(1920, 1280, P2D);
+  logoMirror2 = createGraphics(1000, 1000, P2D);
+
   tex= createGraphics(1920, 1280, P2D);
+  tex2= createGraphics(1920, 1280, P2D);
+
+  square = createShape(RECT, 0, 0, width, height);
+
   s3d= createGraphics(width, height, P3D);
   crop2= createGraphics(width, height, P3D);
 
@@ -72,13 +78,9 @@ void defultSetting() {
   myBus.sendNoteOff(0, 112, 0);
   myBus.sendNoteOff(0, 113, 0);
 
-
-
-  bgbg= loadImage("img/bg.png");
-
-
   // Vibert's
-  animations = new Animations(logoMirror);
+  animations = new Animations(logoMirror,1);
+  animations2 = new Animations(logoMirror2,2);
 }
 
 void logoDrawing() {
@@ -88,40 +90,49 @@ void logoDrawing() {
   }
   if (frameCount%100==0) if (bgBlending) blendIndex = int(random(10));
 
-  logoRo.update();
+
   //---------------
   logoMirror.beginDraw();
   logoMirror.background(125);
   logoMirror.imageMode(CENTER);
-  logos_vibert();
+  animations.draw();
   logoMirror.endDraw();
 
-  //---------------
   logoMoving.beginDraw();
   logoMoving.background(125);
   logoMoving.imageMode(CENTER);
-  logoMoving.blendMode(BLEND);
-  logos();//鏡射
+  logos(logoMoving,logoMirror);//鏡射
   logoMoving.endDraw();
+
+
+  //---------------
+  logoMirror2.beginDraw();
+  logoMirror2.background(0,0);
+  logoMirror2.imageMode(CENTER);
+  animations2.draw();
+  logoMirror2.endDraw();
+
+  logoMoving2.beginDraw();
+  logoMoving2.background(255,0);
+  logoMoving2.imageMode(CENTER);
+  logos(logoMoving2,logoMirror2);//鏡射
+  logoMoving2.endDraw();
 }
 
 
-void logos_vibert() {
-  animations.draw();
-}
 
-void logos() {
-  logoMoving.pushMatrix();
-  logoMoving.translate(0+228, logoMirror.height/2);
-  logoMoving.scale(1, 1);
-  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.4, logoMirror.height*1.6);
-  logoMoving.popMatrix();
+void logos(PGraphics who,PGraphics trarget) {
+  who.pushMatrix();
+  who.translate(0+228, trarget.height/2);
+  who.scale(1, 1);
+  who.image(trarget, 0, 0, trarget.width*1.4, trarget.height*1.6);
+  who.popMatrix();
 
-  logoMoving.pushMatrix();
-  logoMoving.translate(logoMirror.width+628, logoMirror.height/2);
-  logoMoving.scale(-1, 1);
-  logoMoving.image(logoMirror, 0, 0, logoMirror.width*1.4, logoMirror.height*1.6);
-  logoMoving.popMatrix();
+  who.pushMatrix();
+  who.translate(trarget.width+628, trarget.height/2);
+  who.scale(-1, 1);
+  who.image(trarget, 0, 0, trarget.width*1.4, trarget.height*1.6);
+  who.popMatrix();
 }
 
 class  LogoDraw {
@@ -134,21 +145,12 @@ class  LogoDraw {
   }
 
   void draw() {
-    if (frameCount%100==0) {
-      if (logo3Rotating) {
-        roro=int(random(-3, 3))*180;
-        logoRo.reset(random(roro));
-      }
-    }
-
+   
     if (frameCount%50==0) {
       if (logo3Changing) {
         pp=int(random(15));
       }
     }
-
-
-
     float soundVol=map(middle, 0, 1, 0.3, 2.0);
     if (ctl82>0.1) {
       logoMovingStep=(logoMovingStep+(logoMovingSpeed*ctl82))%360;

@@ -25,6 +25,7 @@ PImage[] pattern = new PImage[15];
 
 PShape square;
 PGraphics tex;
+PGraphics tex2;
 PGraphics s3d;
 PGraphics scence;
 PGraphics finalRender;
@@ -68,7 +69,7 @@ void settings() {
 void setup() {
   layer[1]=255;//整體alpha
   layer[2]=0;//slash
-  layer[3]=0;//strip
+  layer[3]=200;//strip
   layer[4]=0;//blackColumn
   layer[5]=0;//幾何剪影
   layer[6]=220;//0-115 for growGrid,135~255 for rotateGrid
@@ -92,7 +93,7 @@ void setup() {
   autoCamMetroUpDown.reset();
   autoCamMetroUpDown.tgl=false;
 
-  smooth=new pdLine2(0,100);
+  smooth=new pdLine2(0, 100);
 
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
@@ -126,6 +127,13 @@ void draw() {
   tex.rectMode(CENTER);
   tex.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //blendGLSL 產生的東西繪製在這裡
   tex.endDraw();
+
+  tex2.beginDraw();
+  tex2.background(255,0);
+  tex2.shader(donothing);
+  tex2.rectMode(CENTER);
+  tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //
+  tex2.endDraw();
 
   scence.beginDraw();
   scence.background(0);

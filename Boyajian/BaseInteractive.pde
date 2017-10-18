@@ -118,10 +118,7 @@ void keyPressed() {
   if (key == 'r') defultCam();
   if (key == 't') randomCam();
   if (key == 's') record = !record;
-  if (key == 'b') {
-    blendIndex = int(random(10));
-    imgIndex=int(random(5));
-  }
+
 
   if (key == 'w') wireFrameCtl =!wireFrameCtl;
   if (key == 'k') vertexNoise =!vertexNoise;
