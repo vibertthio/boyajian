@@ -61,13 +61,9 @@ void s3dSetting() {
 
   globe = loadShape("3d/sphere2.obj");
   Rglobe = loadShape("3d/sphere2.obj");
-  globe.setStroke(false);
-  globe.setTexture(tex);
 
   globe2 = loadShape("3d/sphere.obj");
   Rglobe2= loadShape("3d/sphere.obj");
-  globe2.setStroke(false);
-  globe2.setTexture(tex2);
 }
 
 float  Falloff=1.8;
@@ -149,39 +145,47 @@ void s3dDrawing() {
   if (showtoolGoat==true)toolGoatdrawing();
   if (showtoolWind==true)toolWinddrawing();
 
+
+
   s3d.pushMatrix();//--------------------
   s3d.noStroke();
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(186));
-  //s3d.blendMode(LIGHTEST);
 
   if (vertexNoise==true ) randomVertex(globe);
   else returnVertex(Rglobe, globe);
 
+  if (vertexNoise==true ) randomVertex(globe2);
+  else returnVertex(Rglobe2, globe2);
+
+
+
   if (wireFrameCtl==true) {
     s3d.rotateY((float(frameCount)/100)%360);
     noWireFrame(globe, 2.0f, color(255, 60));
+    s3d.blendMode(ADD);
+  } else {   
+    setTexture(globe, tex);
+    s3d.blendMode(BLEND);
+  }
+  s3d.shape(globe);
+
+  if (wireFrameCtl==true) {
+    s3d.rotateY((float(frameCount)/200)%360);
+    s3d.stroke(255);
+    s3d.fill(255);
+    noWireFrame(globe2, 2.0f, color(0, 165, 250, 120));
   } else {
     s3d.blendMode(ADD);
-    setTexture(globe, tex);
-    s3d.shape(globe);
+    setTexture(globe2, tex2);
   }
+  s3d.pushMatrix();//--------------------
+  s3d.rotateY(radians(75));
+  s3d.rotateZ(radians(anim(600, -10, 10, 2)));
+  s3d.scale(1.45);
+  s3d.shape(globe2);
+  s3d.popMatrix();//--------------------
 
-  //if (wireFrameCtl==true) {
-  //  s3d.rotateY((float(frameCount)/200)%360);
-  //  noWireFrame(globe2, 2.0f, color(255, 100));
-  //} else {
-  //  setTexture(globe2, tex2);
-  //  s3d.pushMatrix();//--------------------
-  //  s3d.rotateY(radians(75));
-  //  s3d.scale(0.95);
-  //  s3d.shape(globe2);
-  //  s3d.popMatrix();//--------------------
-  //}
-
-
-
-  s3d.blendMode(BLEND);
   s3d.popMatrix();//--------------------
   s3d.endDraw();
 }

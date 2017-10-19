@@ -20,7 +20,6 @@ void keyPressed() {
       blendIndex=5;
       imgIndex=0;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
       pp=4;
       layer[8]=200;
 
@@ -29,7 +28,7 @@ void keyPressed() {
       blendIndex=5;
       imgIndex=1;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
+
       pp=6;
       layer[8]=230;
 
@@ -38,7 +37,7 @@ void keyPressed() {
       blendIndex=8;
       imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
+
       pp=14;
       layer[8]=200;
 
@@ -47,7 +46,7 @@ void keyPressed() {
       blendIndex=6;
       imgIndex=3;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
+
       pp=8;
       layer[8]=55;
 
@@ -56,7 +55,7 @@ void keyPressed() {
       blendIndex=7;
       imgIndex=4;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
+
       pp=3;
       layer[8]=220;
 
@@ -160,7 +159,7 @@ void keyPressed() {
     } else if (keyCode == RIGHT) {
       imgIndex = ( imgIndex + 1 ) % 5;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
+
     } else if (keyCode == LEFT) {
       if (imgIndex > 0) {
         imgIndex = ( imgIndex - 1 ) % 5;
@@ -168,7 +167,6 @@ void keyPressed() {
         imgIndex = 4;
       }
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      donothing.set( "lowLayer", bgs [imgIndex]);
     }
   }
 }
@@ -380,7 +378,7 @@ void sendCtl2p5() {
   if (nr==72) {
     imgIndex=int(map(vl, 0, 255, 0, 7));
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
-    donothing.set( "lowLayer", bgs [imgIndex]);
+
   }
 
   if (nr==73) {

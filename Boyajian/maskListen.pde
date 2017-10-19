@@ -99,9 +99,9 @@ void maskListendrawing() {
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
-    noWireFrame(Listen_1, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame(Listen_2, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame(Listen_3, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Listen_1, random(1.80, 2.40), color(255, 120));
+    noWireFrame(Listen_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame(Listen_3, random(1.80, 2.40), color(255, 120));
   } else {
     setTexture(Listen_1, ListenImg);
     setTexture(Listen_2, ListenImg);

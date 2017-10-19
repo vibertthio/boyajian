@@ -196,13 +196,13 @@ void maskEyedrawing() {
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
-    noWireFrame( maskA_1_1, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( maskA_1_2, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( maskA_2, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( maskA_3_1, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( maskA_3_2, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( maskA_4, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( maskA_5, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( maskA_1_1, random(1.80, 2.40), color(255, 120));
+    noWireFrame( maskA_1_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame( maskA_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame( maskA_3_1, random(1.80, 2.40), color(255, 120));
+    noWireFrame( maskA_3_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame( maskA_4, random(1.80, 2.40), color(255, 120));
+    noWireFrame( maskA_5, random(1.80, 2.40), color(255, 120));
   } else {
     setTexture( maskA_1_1, EyeImg);
     setTexture( maskA_1_2, EyeImg);
@@ -212,6 +212,7 @@ void maskEyedrawing() {
     setTexture( maskA_4, EyeImg);
     setTexture( maskA_5, EyeImg);
   }
+   
 }
 
 void Eye(boolean theFlag) {

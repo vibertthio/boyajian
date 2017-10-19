@@ -114,9 +114,7 @@ void draw() {
   s3dDrawing() ;
   //---------------*blendGLSL即時參數
   blendGLSL.set( "blendAlpha", 0.7f );
-  donothing.set( "blendAlpha", 0.7f );
   blendGLSL.set( "blendMode", indexSelectBlend [blendIndex] );
-  donothing.set( "blendMode", indexSelectBlend [blendIndex] );
   //---------------*圖騰繪製
   logoDrawing() ;
   //---------------*底圖繪製

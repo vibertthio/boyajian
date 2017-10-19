@@ -103,9 +103,9 @@ void maskFacesdrawing() {
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
-    noWireFrame( Faces_1, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( Faces_2, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( Faces_3, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Faces_1, random(1.80, 2.40), color(255, 120));
+    noWireFrame( Faces_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame( Faces_3, random(1.80, 2.40), color(255, 120));
   } else {
     setTexture( Faces_1, FacesImg);
     setTexture( Faces_2, FacesImg);

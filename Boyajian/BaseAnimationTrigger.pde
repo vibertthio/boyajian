@@ -138,7 +138,7 @@ void animationGrowGridTrigger() {
 }
 void animationStripTrigger() {
   layer[6] = 120;
-  layer[3] = 200;
+  layer[3] = 255;
 
   // animations.stripsSystem.crStrips.angleShiftBang();
   // animations.stripsSystem.crStrips.widthScaleBang();

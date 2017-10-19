@@ -1,6 +1,6 @@
 class Slashes {
   Slash[] slash;
-  int numberOfSlashes = 40;
+  int numberOfSlashes = 80;
   PGraphics who;
 
   Slashes() {
@@ -46,7 +46,7 @@ class Slash {
   float easing = random(0.05, 0.1);
   int timer;
   int tMax;
-  int taille = 20;
+  int taille = 5;
   int delta = 240;
   boolean vertical;
   color c;
@@ -94,7 +94,7 @@ class Slash {
     }
 
      who.noStroke();
-     who.fill(c, layer[2]);
+     who.fill(c, layer[2]*0.5);
     if (vertical) {
       who.quad(x1, y1-taille, x1, y1+taille, x2, y2+taille, x2, y2-taille);
     } else {

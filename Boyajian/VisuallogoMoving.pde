@@ -85,7 +85,7 @@ void logoDrawing() {
   if (frameCount%100==0) if (bgChanging) {
     imgIndex=int(random(5));
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
-    donothing.set( "lowLayer", bgs [imgIndex]);
+
   }
   if (frameCount%100==0) if (bgBlending) blendIndex = int(random(10));
 

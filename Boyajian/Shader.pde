@@ -59,8 +59,8 @@ String[] blendNames = {
 int [] indexSelectBlend={ 0, 1, 4, 7, 10, 12, 15, 17, 19, 22};
 
 //vibert
-int blendIndex=8;
-int imgIndex=3;
+int blendIndex=5;
+int imgIndex=0;
 
 PShader contrastGLSL;
 PShader effectGLSL;
@@ -84,14 +84,15 @@ void shaderSetting() {
 
   effectGLSL = loadShader("glsl/no.glsl");
 
-  donothing= loadShader("glsl/blendMode.glsl");
-  donothing.set( "lowLayer", bgs [imgIndex]);
-  donothing.set( "topLayer", logoMoving2 );
-  donothing.set( "sketchSize", float(width), float(height) );
-  donothing.set( "topLayerResolution", float( tex2.width ), float( tex2.height ) );
-  donothing.set( "lowLayerResolution", float( tex2.width ), float( tex2.height ) );
-  donothing.set( "allAlpha", 1.0f );
-  donothing.set( "showAlpha", 1 );
+  donothing= loadShader("glsl/no.glsl");
+  donothing.set( "texture", logoMoving2);
+  //donothing.set( "lowLayer", bgs [imgIndex]);
+  //donothing.set( "topLayer", logoMoving2 );
+  //donothing.set( "sketchSize", float(width), float(height) );
+  //donothing.set( "topLayerResolution", float( tex2.width ), float( tex2.height ) );
+  //donothing.set( "lowLayerResolution", float( tex2.width ), float( tex2.height ) );
+  //donothing.set( "allAlpha", 1.0f );
+  //donothing.set( "showAlpha", 1 );
 
 
   blendGLSL= loadShader("glsl/blendMode.glsl");

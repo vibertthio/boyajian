@@ -106,10 +106,10 @@ void maskTouchdrawing() {
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
-    noWireFrame( Touch_1, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( Touch_2, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( Touch_3, random(1.80, 2.40), color(0, 165, 250, 120));
-    noWireFrame( Touch_4, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame( Touch_1, random(1.80, 2.40), color(255, 120));
+    noWireFrame( Touch_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame( Touch_3, random(1.80, 2.40), color(255, 120));
+    noWireFrame( Touch_4, random(1.80, 2.40), color(255, 120));
   } else {
     setTexture( Touch_1, TouchImg);
     setTexture( Touch_2, TouchImg);
