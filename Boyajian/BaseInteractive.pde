@@ -127,8 +127,6 @@ void keyPressed() {
     }
   }
 
-
-
   if (key == 'q') splitNum =1;
   if (key == 'a') splitNum =2;
   if (key == 'z') splitNum =4;
@@ -386,7 +384,7 @@ void sendCtl2p5() {
 
   if (nr==50) layer[5]=vl;
   if (nr==51) ctl51=map(vl,0,255,1,2);
-  
+
   if (nr==60) layer[6]=vl;
 
   if (nr==70) layer[7]=vl;
@@ -406,7 +404,7 @@ void sendCtl2p5() {
   if (nr==81) pp=int(map(vl, 0, 255, 0, 14));
   if (nr==82) ctl82=(map(vl, 0, 255, 0.3, 4));
   if (nr==83) ctl83=map(vl, 0, 255, 0.4, 2);
-  
+
   //------------
   if (nr==10) layer[1]=vl;
   if (nr==11) contrastA=vl/255;

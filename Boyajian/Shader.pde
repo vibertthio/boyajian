@@ -105,7 +105,7 @@ void shaderSetting() {
   blendGLSL.set( "showAlpha", 0 );
 
 
-  finalGLSL= loadShader("glsl/blendMode.glsl");
+  finalGLSL= loadShader("glsl/finalMode.glsl");
   finalGLSL.set( "lowLayer", scence);
   finalGLSL.set( "topLayer", ptnGroup);
   finalGLSL.set( "sketchSize", float(width), float(height) );

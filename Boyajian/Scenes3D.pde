@@ -180,6 +180,7 @@ void s3dDrawing() {
     setTexture(globe2, tex2);
   }
   s3d.pushMatrix();//--------------------
+  s3d.blendMode(ADD);
   s3d.rotateY(radians(75));
   s3d.rotateZ(radians(anim(600, -10, 10, 2)));
   s3d.scale(1.45);

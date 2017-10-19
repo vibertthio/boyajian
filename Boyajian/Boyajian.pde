@@ -79,7 +79,7 @@ void setup() {
 
   randomSeed(1000);
   MidiBus.list();
-  myBus = new MidiBus(this, 0, 1);
+  myBus = new MidiBus(this, "Launch Control XL", "Launch Control XL");
   receiveCeiling = new OscP5(this, 12000);
   defultSetting() ;
   s3dSetting() ;
@@ -115,6 +115,7 @@ void draw() {
   s3dDrawing() ;
   //---------------*blendGLSL即時參數
   blendGLSL.set( "blendAlpha", 0.7f );
+  blendGLSL.set("time", millis()/1000.0);
   blendGLSL.set( "blendMode", indexSelectBlend [blendIndex] );
   //---------------*圖騰繪製
   logoDrawing() ;

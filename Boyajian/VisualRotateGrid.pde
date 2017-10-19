@@ -437,7 +437,7 @@ class RotateRectangle {
     }
   }
   void alphaUpdate() {
-    targetAlpha = map(layer[6], 135, 255, 0, 255);
+    targetAlpha = map(layer[6], 135, 255, 0, 230);
     if (abs(targetAlpha - alpha) < 0.05) {
       alpha = targetAlpha;
     } else {

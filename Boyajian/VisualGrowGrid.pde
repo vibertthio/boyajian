@@ -279,7 +279,7 @@ class GrowRectangle {
     canvas.pushMatrix();
     canvas.translate(300, 300);
     canvas.noStroke();
-    canvas.fill(col, map(layer[6],115,0,0,255));
+    canvas.fill(col, map(layer[6],115,0,0,230));
     canvas.rectMode(CENTER);
     canvas.translate(xpos, ypos);
     if (vibrateCount > 0) {
@@ -396,12 +396,12 @@ class GrowRectangle {
   void cordRender() {
     if (cording) {
       canvas.strokeWeight(4);
-      canvas.stroke(col, map(layer[6],115,0,0,255));
+      canvas.stroke(col, map(layer[6],115,0,0,230));
       canvas.line(0, 0, cordLength, 0);
       canvas.rotate(PI * 0.5);
       canvas.line(0, 0, cordLength, 0);
       canvas.noStroke();
-      canvas.fill(col, map(layer[6],115,0,0,255));
+      canvas.fill(col, map(layer[6],115,0,0,230));
       canvas.rect(cordLength, 0, cordLength * 0.5, cordLength * 0.5);
     }
   }
