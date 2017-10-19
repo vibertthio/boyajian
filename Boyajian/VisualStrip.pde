@@ -239,7 +239,7 @@ class Strips {
 
 class Strip {
   PGraphics canvas;
-  float heightOfStrip = 15;
+  float heightOfStrip = 8;
   float widthOfStrip = 15;
   float xstr;
   float xpos;

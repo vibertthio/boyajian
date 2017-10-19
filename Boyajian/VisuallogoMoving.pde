@@ -24,11 +24,11 @@ float logoMovingSpeed=0.5;
 float ctl82;
 
 color[] colors = {
-  color(253, 148, 38), 
-  color(252, 86, 44), 
-  color(56, 195, 206), 
-  color(124, 156, 124), 
-  color(18, 99, 104), 
+  color(253, 148, 38),
+  color(252, 86, 44),
+  color(56, 195, 206),
+  color(124, 156, 124),
+  color(18, 99, 104),
 };
 
 void defultSetting() {
@@ -138,7 +138,7 @@ class  LogoDraw {
   PGraphics canvas;
   PGraphics who;
   float alpha;
-  LogoDraw() {   
+  LogoDraw() {
   }
 
   void draw(PGraphics _c,PGraphics _mirror,float _alpha) {
