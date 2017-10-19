@@ -70,10 +70,10 @@ void settings() {
 void setup() {
   layer[1]=255;//整體alpha
   layer[2]=0;//slash
-  layer[3]=200;//strip
+  layer[3]=0;//strip
   layer[4]=0;//blackColumn
   layer[5]=0;//幾何剪影
-  layer[6]=220;//0-115 for growGrid,135~255 for rotateGrid
+  layer[6]=120;//0-115 for growGrid,135~255 for rotateGrid
   layer[8]=0;//logoDraw
   RG.init(this);
 
@@ -154,7 +154,8 @@ void draw() {
   ptnGroup.imageMode(CENTER);
   finalGLSL.set( "blendAlpha", layer[5]/255 );
   finalGLSL.set( "allAlpha", layer[1]/255 );
-  if (frameCount%10==0) {
+  int kk=((int(map(vol, 0, 1, 200, 1)))+1);
+  if (frameCount%kk==0) {
     indexPtns =int(random(14));
     int index =int(random(5));
 

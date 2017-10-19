@@ -22,6 +22,7 @@ float logoScaleStep=1;
 float logoMovingStep=0;
 float logoMovingSpeed=0.5;
 float ctl82;
+float ctl83;
 
 color[] colors = {
   color(253, 148, 38),
@@ -151,7 +152,7 @@ class  LogoDraw {
         pp=int(random(15));
       }
     }
-    float soundVol=map(middle, 0, 1, 0.3, 2.0);
+    float soundVol=map(vol, 0, 1, 0.3, 2.0);
     if (ctl82>0.1) {
       logoMovingStep=(logoMovingStep+(logoMovingSpeed*ctl82))%360;
     } else {
@@ -159,7 +160,10 @@ class  LogoDraw {
     }
     canvas.pushMatrix();
     canvas.translate(0+250, who.height/2);
-    canvas.scale(logoScale, logoScale);
+    
+    if (ctl83>0.4) canvas.scale(ctl83, ctl83);
+    else canvas.scale(chmiddle*2, chmiddle*2);
+    
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);
     canvas.image(pattern[pp], 0, 0, who.width, who.height);
@@ -167,7 +171,10 @@ class  LogoDraw {
 
     canvas.pushMatrix();
     canvas.translate(who.width+250, who.height/2);
-    canvas.scale(-logoScale, -logoScale);
+    
+    if (ctl83>0.4) canvas.scale(-ctl83, -ctl83);
+    else canvas.scale(chmiddle*-2, chmiddle*-2);
+    
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);
     canvas.image(pattern[pp], 0, 0, who.width, who.height);

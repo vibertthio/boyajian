@@ -24,7 +24,7 @@ void keyPressed() {
     else if (tempEffect==8) effectGLSL = loadShader("glsl/bloom.glsl");
     else if (tempEffect==9) effectGLSL = loadShader("glsl/sobel_2.glsl");
     else if (tempEffect==10) effectGLSL = loadShader("glsl/sobel_1.glsl");
-    
+
     effectGLSL.set("vol", 1.0);
   }
 
@@ -46,7 +46,6 @@ void keyPressed() {
       blendIndex=5;
       imgIndex=1;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
       pp=6;
       layer[8]=230;
     }
@@ -54,7 +53,6 @@ void keyPressed() {
       blendIndex=8;
       imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
       pp=14;
       layer[8]=200;
     }
@@ -62,15 +60,13 @@ void keyPressed() {
       blendIndex=6;
       imgIndex=3;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
       pp=8;
-      layer[8]=55;
+      layer[8]=200;
     }
     if (key == '5') {
       blendIndex=7;
       imgIndex=4;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
       pp=3;
       layer[8]=220;
     }
@@ -389,6 +385,8 @@ void sendCtl2p5() {
   if (nr==40) layer[4]=vl;
 
   if (nr==50) layer[5]=vl;
+  if (nr==51) ctl51=map(vl,0,255,1,2);
+  
   if (nr==60) layer[6]=vl;
 
   if (nr==70) layer[7]=vl;
@@ -407,10 +405,8 @@ void sendCtl2p5() {
   if (nr==80) layer[8]=vl;
   if (nr==81) pp=int(map(vl, 0, 255, 0, 14));
   if (nr==82) ctl82=(map(vl, 0, 255, 0.3, 4));
-
-  if (nr==83) {
-    logoScale=map(vl, 0, 255, 0.4, 2);
-  }
+  if (nr==83) ctl83=map(vl, 0, 255, 0.4, 2);
+  
   //------------
   if (nr==10) layer[1]=vl;
   if (nr==11) contrastA=vl/255;
