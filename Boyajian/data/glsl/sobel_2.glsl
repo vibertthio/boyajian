@@ -12,6 +12,7 @@ void main()
 		//float t=abs(fract(time)-0.5)+0.5;
 		vec2 uv=(vertTexCoord.st);
 		float v=vol;
+		float t=time;
 		float target=2.0*abs(fract(time*0.5)-0.5)+1.0;
 
     //gl_FragColor = 4.*abs(fwidth(texture2D(texture, uv)));

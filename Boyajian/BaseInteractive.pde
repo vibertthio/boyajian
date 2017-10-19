@@ -14,8 +14,18 @@ void keyReleased() {
 
 void keyPressed() {
   if (key=='s') {
-    effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
-    effectGLSL.set("vol", 0.8);
+    if (tempEffect==1) ;
+    else if (tempEffect==2) effectGLSL = loadShader("glsl/radialBlur.glsl");
+    else if (tempEffect==3) effectGLSL = loadShader("glsl/rgbGlitch_1.glsl");
+    else if (tempEffect==4) effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
+    else if (tempEffect==5) effectGLSL = loadShader("glsl/Noisy_Mirror.frag");
+    else if (tempEffect==6) effectGLSL = loadShader("glsl/glitch.glsl");
+    else if (tempEffect==7) effectGLSL = loadShader("glsl/zoomBlur.glsl");
+    else if (tempEffect==8) effectGLSL = loadShader("glsl/bloom.glsl");
+    else if (tempEffect==9) effectGLSL = loadShader("glsl/sobel_2.glsl");
+    else if (tempEffect==10) effectGLSL = loadShader("glsl/sobel_1.glsl");
+    
+    effectGLSL.set("vol", 1.0);
   }
 
 
@@ -69,15 +79,10 @@ void keyPressed() {
   if (keyz[0]==false) {
     if (key == '1') {
       effectGLSL = loadShader("glsl/no.glsl");
-      tempEffect=1;
     }
     if (key == '2') {
       effectGLSL = loadShader("glsl/radialBlur.glsl");
       effectGLSL.set("vol", 1.0);
-      if (keyz[0]==true) {
-        blendIndex=7;
-        imgIndex=2;
-      }
       tempEffect=2;
     }
     if (key == '3') {
@@ -98,26 +103,31 @@ void keyPressed() {
     if (key == '6') {
       effectGLSL = loadShader("glsl/glitch.glsl");
       effectGLSL.set("vol", 0.6);
+      tempEffect=6;
     }
 
     if (key == '7') {
       effectGLSL = loadShader("glsl/zoomBlur.glsl");
       effectGLSL.set("vol", 0.6);
+      tempEffect=7;
     }
 
     if (key == '8') {
       effectGLSL = loadShader("glsl/bloom.glsl");
       effectGLSL.set("vol", 0.6);
+      tempEffect=8;
     }
     if (key == '9') {
       effectGLSL = loadShader("glsl/sobel_2.glsl");
       effectGLSL.set("vol", 1.0);
       effectGLSL.set("resolution", width, height);
+      tempEffect=9;
     }
     if (key == '0') {
       effectGLSL = loadShader("glsl/sobel_1.glsl");
       effectGLSL.set("vol", 1.0);
       effectGLSL.set("resolution", width, height);
+      tempEffect=10;
     }
   }
 

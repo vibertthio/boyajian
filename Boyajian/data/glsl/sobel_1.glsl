@@ -22,6 +22,9 @@ void main( )
     float m = max(resolution.x,resolution.y);
     vec2 texCoords = vertTexCoord.st ;
 
+    float t=time;
+    float v=vol;
+
 
     float c1y = getGrayScale(texture, texCoords.xy-delta/2.0);
     float c2y = getGrayScale(texture, texCoords.xy+delta/2.0);
