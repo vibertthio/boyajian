@@ -1,15 +1,24 @@
 boolean keyz[] = new boolean [20];
-
+int tempEffect=3;
 void keyReleased() {
   if ( key==CODED) {
     if (keyCode == ALT) {
       keyz[0] = false;
     }
   }
+  if (key=='s') {
+    effectGLSL = loadShader("glsl/no.glsl");
+  }
 }
 
 
 void keyPressed() {
+  if (key=='s') {
+    effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
+    effectGLSL.set("vol", 0.8);
+  }
+
+
   if ( key==CODED) {
     if (keyCode == ALT) {
       keyz[0] = true;
@@ -22,7 +31,6 @@ void keyPressed() {
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=4;
       layer[8]=200;
-
     }
     if (key == '2') {
       blendIndex=5;
@@ -31,7 +39,6 @@ void keyPressed() {
 
       pp=6;
       layer[8]=230;
-
     }
     if (key == '3') {
       blendIndex=8;
@@ -40,7 +47,6 @@ void keyPressed() {
 
       pp=14;
       layer[8]=200;
-
     }
     if (key == '4') {
       blendIndex=6;
@@ -49,7 +55,6 @@ void keyPressed() {
 
       pp=8;
       layer[8]=55;
-
     }
     if (key == '5') {
       blendIndex=7;
@@ -58,13 +63,13 @@ void keyPressed() {
 
       pp=3;
       layer[8]=220;
-
     }
   }
 
   if (keyz[0]==false) {
     if (key == '1') {
       effectGLSL = loadShader("glsl/no.glsl");
+      tempEffect=1;
     }
     if (key == '2') {
       effectGLSL = loadShader("glsl/radialBlur.glsl");
@@ -73,18 +78,22 @@ void keyPressed() {
         blendIndex=7;
         imgIndex=2;
       }
+      tempEffect=2;
     }
     if (key == '3') {
       effectGLSL = loadShader("glsl/rgbGlitch_1.glsl");
       effectGLSL.set("vol", 1.0);
+      tempEffect=3;
     }
     if (key == '4') {
       effectGLSL = loadShader("glsl/rgbGlitch_2.glsl");
       effectGLSL.set("vol", 1.0);
+      tempEffect=4;
     }
     if (key == '5') {
       effectGLSL = loadShader("glsl/Noisy_Mirror.frag");
       effectGLSL.set("vol", 0.4);
+      tempEffect=5;
     }
     if (key == '6') {
       effectGLSL = loadShader("glsl/glitch.glsl");
@@ -111,6 +120,8 @@ void keyPressed() {
       effectGLSL.set("resolution", width, height);
     }
   }
+
+
 
   if (key == 'q') splitNum =1;
   if (key == 'a') splitNum =2;
@@ -159,7 +170,6 @@ void keyPressed() {
     } else if (keyCode == RIGHT) {
       imgIndex = ( imgIndex + 1 ) % 5;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
     } else if (keyCode == LEFT) {
       if (imgIndex > 0) {
         imgIndex = ( imgIndex - 1 ) % 5;
@@ -378,7 +388,6 @@ void sendCtl2p5() {
   if (nr==72) {
     imgIndex=int(map(vl, 0, 255, 0, 7));
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
   }
 
   if (nr==73) {

@@ -59,6 +59,7 @@ pdMetro autoCamMetroUpDown ;
 int autoCamMetroUpDownCount=0;
 pdLine2[] countX=new pdLine2[20];
 pdLine2 smooth;
+pdLine effectChange;
 
 void settings() {
   //size(1200, 342, P3D);
@@ -94,6 +95,7 @@ void setup() {
   autoCamMetroUpDown.tgl=false;
 
   smooth=new pdLine2(0, 100);
+  effectChange=new pdLine(0, 200);
 
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
@@ -102,7 +104,6 @@ void setup() {
 }
 
 void draw() {
-  smooth.update();
   background(0);
   workTime=millis();
   blendMode(NORMAL);
