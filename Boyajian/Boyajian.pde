@@ -114,10 +114,9 @@ void draw() {
   s3dDrawing() ;
   //---------------*blendGLSL即時參數
   blendGLSL.set( "blendAlpha", 0.7f );
-  if (frameCount%30==0) {
-    //blendGLSL.set( "allAlpha", 1.0f+random(-0.1,0.0) );
-  }
+  donothing.set( "blendAlpha", 0.7f );
   blendGLSL.set( "blendMode", indexSelectBlend [blendIndex] );
+  donothing.set( "blendMode", indexSelectBlend [blendIndex] );
   //---------------*圖騰繪製
   logoDrawing() ;
   //---------------*底圖繪製
@@ -129,7 +128,7 @@ void draw() {
   tex.endDraw();
 
   tex2.beginDraw();
-  tex2.background(255,0);
+  tex2.background(255, 0);
   tex2.shader(donothing);
   tex2.rectMode(CENTER);
   tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //

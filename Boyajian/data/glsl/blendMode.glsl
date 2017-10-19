@@ -48,6 +48,7 @@ uniform int blendMode;
 uniform float blendAlpha;
 uniform float texAlpha;
 uniform float allAlpha;
+uniform int showAlpha;
 
 
 vec3 darken( vec3 s, vec3 d )
@@ -261,9 +262,11 @@ void main(void)
 {
 	vec2 uv = gl_FragCoord.xy / sketchSize.xy * vec2(1.0,-1.0) + vec2(0.0, 1.0);
 
+
 	// source texture (upper layer) note: y axis is mirrored because of Processing's inverted coordinate system
 	vec2 sPos = vec2( gl_FragCoord.x / topLayerResolution.x, 1.0 - (gl_FragCoord.y / topLayerResolution.y) );
 	vec3 s = texture2D(topLayer, sPos ).rgb;
+	float onlyAlpha =texture2D(topLayer, sPos).a;
 
 	// destination texture (lower layer) note: y axis is mirrored because of Processing's inverted coordinate system
   vec2 dPos = vec2( gl_FragCoord.x / lowLayerResolution.x, (gl_FragCoord.y / lowLayerResolution.y) );
@@ -305,5 +308,11 @@ void main(void)
 
 	// apply opacity
     vec3 pixelColor = mix( d.rgb, c.rgb, max( 0.0, blendAlpha ) );
-	gl_FragColor = vec4( pixelColor.rgb, allAlpha);
+		if(showAlpha==0){
+			gl_FragColor = vec4( pixelColor.rgb, allAlpha);
+		}else{
+			gl_FragColor = vec4( pixelColor.rgb, allAlpha*onlyAlpha);
+		}
+
+
 }

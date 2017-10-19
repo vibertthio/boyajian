@@ -24,11 +24,11 @@ float logoMovingSpeed=0.5;
 float ctl82;
 
 color[] colors = {
-  color(253, 148, 38),
-  color(252, 86, 44),
-  color(56, 195, 206),
-  color(124, 156, 124),
-  color(18, 99, 104),
+  color(253, 148, 38), 
+  color(252, 86, 44), 
+  color(56, 195, 206), 
+  color(124, 156, 124), 
+  color(18, 99, 104), 
 };
 
 void defultSetting() {
@@ -85,6 +85,7 @@ void logoDrawing() {
   if (frameCount%100==0) if (bgChanging) {
     imgIndex=int(random(5));
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
+    donothing.set( "lowLayer", bgs [imgIndex]);
   }
   if (frameCount%100==0) if (bgBlending) blendIndex = int(random(10));
 
@@ -99,27 +100,27 @@ void logoDrawing() {
   logoMoving.beginDraw();
   logoMoving.background(125);
   logoMoving.imageMode(CENTER);
-  logos(logoMoving,logoMirror);//鏡射
+  logos(logoMoving, logoMirror);//鏡射
   logoMoving.endDraw();
 
 
   //---------------
   logoMirror2.beginDraw();
-  logoMirror2.background(0,0);
+  logoMirror2.background(255, 0);
   logoMirror2.imageMode(CENTER);
   animations.innerDraw();
   logoMirror2.endDraw();
 
   logoMoving2.beginDraw();
-  logoMoving2.background(255,0);
+  logoMoving2.background(255, 0);
   logoMoving2.imageMode(CENTER);
-  logos(logoMoving2,logoMirror2);//鏡射
+  logos(logoMoving2, logoMirror2);//鏡射
   logoMoving2.endDraw();
 }
 
 
 
-void logos(PGraphics who,PGraphics trarget) {
+void logos(PGraphics who, PGraphics trarget) {
   who.pushMatrix();
   who.translate(0+228, trarget.height/2);
   who.scale(1, 1);
@@ -135,14 +136,15 @@ void logos(PGraphics who,PGraphics trarget) {
 
 class  LogoDraw {
   PGraphics canvas;
-  LogoDraw(PGraphics _c) {
+  PGraphics who;
+  float alpha;
+  LogoDraw() {   
+  }
+
+  void draw(PGraphics _c,PGraphics _mirror,float _alpha) {
+    alpha=_alpha;
     canvas = _c;
-  }
-
-  void init() {
-  }
-
-  void draw() {
+    who=_mirror;
 
     if (frameCount%50==0) {
       if (logo3Changing) {
@@ -156,19 +158,19 @@ class  LogoDraw {
       logoMovingStep=(logoMovingStep+(logoMovingSpeed*soundVol))%360;
     }
     canvas.pushMatrix();
-    canvas.translate(0+250, logoMirror.height/2);
+    canvas.translate(0+250, who.height/2);
     canvas.scale(logoScale, logoScale);
     canvas.rotate(radians(logoMovingStep));
-    canvas.tint(255, layer[8]);
-    canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
+    canvas.tint(255, alpha);
+    canvas.image(pattern[pp], 0, 0, who.width, who.height);
     canvas.popMatrix();
 
     canvas.pushMatrix();
-    canvas.translate(logoMirror.width+250, logoMirror.height/2);
+    canvas.translate(who.width+250, who.height/2);
     canvas.scale(-logoScale, -logoScale);
     canvas.rotate(radians(logoMovingStep));
-    canvas.tint(255, layer[8]);
-    canvas.image(pattern[pp], 0, 0, logoMirror.width, logoMirror.height);
+    canvas.tint(255, alpha);
+    canvas.image(pattern[pp], 0, 0, who.width, who.height);
     canvas.popMatrix();
   }
 }

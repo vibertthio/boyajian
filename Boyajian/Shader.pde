@@ -83,8 +83,16 @@ void shaderSetting() {
   contrastGLSL.set("vel", contrastA, contrastB);
 
   effectGLSL = loadShader("glsl/no.glsl");
-  donothing= loadShader("glsl/no.glsl");
-  donothing.set( "texture", logoMoving2);
+
+  donothing= loadShader("glsl/blendMode.glsl");
+  donothing.set( "lowLayer", bgs [imgIndex]);
+  donothing.set( "topLayer", logoMoving2 );
+  donothing.set( "sketchSize", float(width), float(height) );
+  donothing.set( "topLayerResolution", float( tex2.width ), float( tex2.height ) );
+  donothing.set( "lowLayerResolution", float( tex2.width ), float( tex2.height ) );
+  donothing.set( "allAlpha", 1.0f );
+  donothing.set( "showAlpha", 1 );
+
 
   blendGLSL= loadShader("glsl/blendMode.glsl");
   blendGLSL.set( "lowLayer", bgs [imgIndex]);
@@ -93,6 +101,7 @@ void shaderSetting() {
   blendGLSL.set( "topLayerResolution", float( tex.width ), float( tex.height ) );
   blendGLSL.set( "lowLayerResolution", float( tex.width ), float( tex.height ) );
   blendGLSL.set( "allAlpha", 1.0f );
+  blendGLSL.set( "showAlpha", 0 );
 
 
   finalGLSL= loadShader("glsl/blendMode.glsl");
@@ -102,6 +111,7 @@ void shaderSetting() {
   finalGLSL.set( "topLayerResolution", float( scence.width ), float( scence.height ) );
   finalGLSL.set( "lowLayerResolution", float( scence.width ), float( scence.height ) );
   finalGLSL.set( "allAlpha", 1.0f );
+  finalGLSL.set( "showAlpha", 0 );
 
 
   square.setTexture(tex);

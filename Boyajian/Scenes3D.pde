@@ -153,13 +153,7 @@ void s3dDrawing() {
   s3d.noStroke();
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(186));
-
-  s3d.pushMatrix();//--------------------
-  s3d.rotateY(radians(75));
-  s3d.blendMode(ADD);
-  s3d.scale(0.95);
-  s3d.shape(globe2);
-  s3d.popMatrix();//--------------------
+  //s3d.blendMode(LIGHTEST);
 
   if (vertexNoise==true ) randomVertex(globe);
   else returnVertex(Rglobe, globe);
@@ -167,13 +161,26 @@ void s3dDrawing() {
   if (wireFrameCtl==true) {
     s3d.rotateY((float(frameCount)/100)%360);
     noWireFrame(globe, 2.0f, color(255, 60));
-    s3d.blendMode(ADD);
   } else {
+    s3d.blendMode(ADD);
     setTexture(globe, tex);
-    s3d.blendMode(BLEND);
     s3d.shape(globe);
   }
-  
+
+  //if (wireFrameCtl==true) {
+  //  s3d.rotateY((float(frameCount)/200)%360);
+  //  noWireFrame(globe2, 2.0f, color(255, 100));
+  //} else {
+  //  setTexture(globe2, tex2);
+  //  s3d.pushMatrix();//--------------------
+  //  s3d.rotateY(radians(75));
+  //  s3d.scale(0.95);
+  //  s3d.shape(globe2);
+  //  s3d.popMatrix();//--------------------
+  //}
+
+
+
   s3d.blendMode(BLEND);
   s3d.popMatrix();//--------------------
   s3d.endDraw();

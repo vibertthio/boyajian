@@ -64,18 +64,6 @@ void resetCam(float x, float y, float z, float rx, float ry) {
 }
 
 
-void autoChBg() {
-  if ( frameCount % 100 == 0  ) {
-    blendIndex = ( blendIndex + 1 ) % 10;
-  }
-  if ( frameCount % 300 == 0  ) {
-    imgIndex = ( imgIndex + 1 ) % 5;
-    blendGLSL.set( "lowLayer", bgs [imgIndex]);
-  }
-}
-
-
-
 
 void randomVertex(PShape who) {
   float ss=map(middle, 0, 1, 1, 1.3);

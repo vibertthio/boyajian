@@ -17,44 +17,49 @@ void keyPressed() {
   }
   if (keyz[0]==true) {
     if (key == '1') {
-      blendIndex=8;
-      imgIndex=3;
+      blendIndex=5;
+      imgIndex=0;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      pp=0;
-      layer[8]=255;
-      layer[6]=125;
+      donothing.set( "lowLayer", bgs [imgIndex]);
+      pp=4;
+      layer[8]=200;
+
     }
     if (key == '2') {
-      blendIndex=7;
-      imgIndex=5;
+      blendIndex=5;
+      imgIndex=1;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
+      donothing.set( "lowLayer", bgs [imgIndex]);
       pp=6;
-      layer[8]=255;
-      layer[6]=125;
+      layer[8]=230;
+
     }
     if (key == '3') {
       blendIndex=8;
-      imgIndex=5;
+      imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      pp=10;
-      layer[8]=255;
-      layer[6]=125;
+      donothing.set( "lowLayer", bgs [imgIndex]);
+      pp=14;
+      layer[8]=200;
+
     }
     if (key == '4') {
-      blendIndex=5;
-      imgIndex=6;
+      blendIndex=6;
+      imgIndex=3;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      pp=3;
-      layer[8]=255;
-      layer[6]=125;
+      donothing.set( "lowLayer", bgs [imgIndex]);
+      pp=8;
+      layer[8]=55;
+
     }
     if (key == '5') {
       blendIndex=7;
-      imgIndex=2;
+      imgIndex=4;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
-      pp=5;
-      layer[8]=255;
-      layer[6]=125;
+      donothing.set( "lowLayer", bgs [imgIndex]);
+      pp=3;
+      layer[8]=220;
+
     }
   }
 
@@ -155,6 +160,7 @@ void keyPressed() {
     } else if (keyCode == RIGHT) {
       imgIndex = ( imgIndex + 1 ) % 5;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
+      donothing.set( "lowLayer", bgs [imgIndex]);
     } else if (keyCode == LEFT) {
       if (imgIndex > 0) {
         imgIndex = ( imgIndex - 1 ) % 5;
@@ -162,6 +168,7 @@ void keyPressed() {
         imgIndex = 4;
       }
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
+      donothing.set( "lowLayer", bgs [imgIndex]);
     }
   }
 }
@@ -247,12 +254,12 @@ void sendNote2p5() {
   //---------------------------------------------ch1
   //---------------------------------------------ch2
   if (ch==2) {
-    if (nn==24)if (vv==127){
+    if (nn==24)if (vv==127) {
       rotateGridTriggerIndex =0;
       animationRotateGridTrigger() ;
     }
 
-    if (nn==25)if (vv==127){
+    if (nn==25)if (vv==127) {
       rotateGridTriggerIndex =10;
       animationRotateGridTrigger() ;
     }
@@ -263,72 +270,71 @@ void sendNote2p5() {
       animationRotateGridTrigger() ;
     }
 
-    if (nn==27)if (vv==127){
+    if (nn==27)if (vv==127) {
       rotateGridTriggerIndex =12;
       animationRotateGridTrigger() ;
     }
 
-    if (nn==28)if (vv==127){
+    if (nn==28)if (vv==127) {
       rotateGridTriggerIndex =4;
       animationRotateGridTrigger() ;
     }
 
-    if (nn==29)if (vv==127){
+    if (nn==29)if (vv==127) {
       rotateGridTriggerIndex =5;
       animationRotateGridTrigger() ;
     }
 
-    if (nn==30)if (vv==127){
+    if (nn==30)if (vv==127) {
       rotateGridTriggerIndex =6;
       animationRotateGridTrigger() ;
     }
 
-    if (nn==31)if (vv==127){
+    if (nn==31)if (vv==127) {
       rotateGridTriggerIndex =7;
       animationRotateGridTrigger() ;
     }
 
-//-----------------------------------------------
-    if (nn==36)if (vv==127){
+    //-----------------------------------------------
+    if (nn==36)if (vv==127) {
       growGridTriggerIndex=0;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==37)if (vv==127){
+    if (nn==37)if (vv==127) {
       growGridTriggerIndex=12;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==38)if (vv==127){
+    if (nn==38)if (vv==127) {
       growGridTriggerIndex=2;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==39)if (vv==127){
+    if (nn==39)if (vv==127) {
       growGridTriggerIndex=3;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==40)if (vv==127){
+    if (nn==40)if (vv==127) {
       growGridTriggerIndex=4;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==41)if (vv==127){
+    if (nn==41)if (vv==127) {
       growGridTriggerIndex=9;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==42)if (vv==127){
+    if (nn==42)if (vv==127) {
       growGridTriggerIndex=6;
       animationGrowGridTrigger() ;
     }
 
-    if (nn==43)if (vv==127){
+    if (nn==43)if (vv==127) {
       growGridTriggerIndex=5;
       animationGrowGridTrigger() ;
     }
-
   }
   //---------------------------------------------ch2
 
@@ -368,10 +374,13 @@ void sendCtl2p5() {
   if (nr==60) layer[6]=vl;
 
   if (nr==70) layer[7]=vl;
-  if (nr==71) blendIndex=int(map(vl, 0, 255, 0, 10));
+  if (nr==71) {
+    blendIndex=int(map(vl, 0, 255, 0, 10));
+  }
   if (nr==72) {
     imgIndex=int(map(vl, 0, 255, 0, 7));
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
+    donothing.set( "lowLayer", bgs [imgIndex]);
   }
 
   if (nr==73) {
