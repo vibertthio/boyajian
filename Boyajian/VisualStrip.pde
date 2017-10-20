@@ -103,7 +103,6 @@ class StripsSystem {
   }
 }
 
-//VisualStrip.pde
 class Strips {
   Strip[] strips;
   int nOfStrips = 10;

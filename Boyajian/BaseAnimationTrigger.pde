@@ -215,3 +215,6 @@ void animationStripTrigger() {
   stripTriggerIndex++;
   stripTriggerIndex %= 15;
 }
+void animationCircleTrigger() {
+  animations.circle.emergeBang();
+}

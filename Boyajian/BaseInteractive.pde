@@ -160,6 +160,9 @@ void keyPressed() {
   if (key == 'x') {
     animationStripTrigger();
   }
+  if (key == 'b') {
+    animationCircleTrigger();
+  }
 
   // change background and shader algorithm
   if (key == CODED) {
