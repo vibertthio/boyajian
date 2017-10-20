@@ -60,9 +60,13 @@ void oscEvent(OscMessage m) {
       if(volTemp<1) vol=volTemp;
       else vol=0.99;
 
-      float sp = map(volTemp, 0, 1, 1, 10);
+      // float sp = map(volTemp, 0, 1, 1, 10);
       // animations.rotateGrid.adjustSpeed(sp);
       // println("speed: " + sp);
+
+      float scale = map(volTemp, 0, 1, 0.5, 2);
+      animations.growGrid.adjustLengthScale(scale);
+      println("scale: " + scale);
 
     }
 

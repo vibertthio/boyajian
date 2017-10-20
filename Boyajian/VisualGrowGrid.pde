@@ -6,6 +6,7 @@ class GrowGrid {
   float low = 50;
   float high = 120;
   float length;
+  float lengthScale = 1;
 
   int n = 8;
   int unit = 100;
@@ -54,10 +55,14 @@ class GrowGrid {
     }
   }
 
+  void adjustLengthScale(float _s) {
+    lengthScale = _s;
+  }
   void updateLength() {
     time++;
     float rate = sin(0.005 * PI * time) * sin(0.005 * PI * time);
     length = low + (high - low) * rate;
+    length *= lengthScale;
   }
   void updateAudioSignal() {
     lowBufferCount++;
@@ -358,9 +363,7 @@ class GrowRectangle {
   void colorUpdate() {
     if (colorRatio < 0.05) {
       colorRatio = 0;
-      // col = endColor;
     } else {
-      println("color ratio: " + colorRatio);
       colorRatio *= 0.9;
       col = lerpColor(
         endColor,
