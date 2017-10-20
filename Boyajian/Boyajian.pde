@@ -94,7 +94,7 @@ void setup() {
   autoCamMetroUpDown.reset();
   autoCamMetroUpDown.tgl=false;
 
-  smooth=new pdLine2(0, 100);
+  smooth=new pdLine2(0, 800);
   effectChange=new pdLine(0, 200);
 
   for (int i=0; i<20; i++) {
@@ -105,6 +105,11 @@ void setup() {
 
 void draw() {
   background(0);
+  smooth.update();
+  if(smooth.bang==true){
+    layer[6]=smooth.o;
+  }
+
   workTime=millis();
   blendMode(NORMAL);
   cameraMoving();
@@ -129,9 +134,13 @@ void draw() {
 
   tex2.beginDraw();
   tex2.background(255, 0);
+  donothing.set( "alpha", 0.8);
   tex2.shader(donothing);
   tex2.rectMode(CENTER);
   tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //
+
+//  tex2.imageMode(CENTER);
+  //tex2.image(logoMoving2,width/2, height/2, tex.width*1.4, tex.height*1.8);  //
   tex2.endDraw();
 
   scence.beginDraw();

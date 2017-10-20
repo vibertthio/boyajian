@@ -95,6 +95,7 @@ void animationGrowGridTrigger() {
   // animations.growGrid.sizeSequence.bang(floor(random(2)));
   layer[3] = 0;
   layer[6] = 40;
+  smooth.oldOne= 40;
   println("Grow Grid Animation ## " + growGridTriggerIndex);
   switch(growGridTriggerIndex) {
     case 0:
@@ -158,7 +159,8 @@ void animationGrowGridTrigger() {
 }
 void animationStripTrigger() {
   layer[6] = 120;
-  layer[3] = 210;
+  smooth.oldOne= 120;
+  layer[3] = 220;
 
   // animations.stripsSystem.crStrips.angleShiftBang();
   // animations.stripsSystem.crStrips.widthScaleBang();

@@ -8,6 +8,7 @@ void keyReleased() {
   }
   if (key=='s') {
     effectGLSL = loadShader("glsl/no.glsl");
+    effectGLSL.set("alpha", 0.8);
   }
 }
 
@@ -24,10 +25,11 @@ void keyPressed() {
     else if (tempEffect==8) effectGLSL = loadShader("glsl/bloom.glsl");
     else if (tempEffect==9) effectGLSL = loadShader("glsl/sobel_2.glsl");
     else if (tempEffect==10) effectGLSL = loadShader("glsl/sobel_1.glsl");
-
     effectGLSL.set("vol", 1.0);
   }
-
+  if(key == ' '){
+    smooth.reset(120);
+  }
 
   if ( key==CODED) {
     if (keyCode == ALT) {
@@ -43,21 +45,23 @@ void keyPressed() {
       layer[8]=200;
     }
     if (key == '2') {
-      blendIndex=5;
+      blendIndex=8;
       imgIndex=1;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=6;
+      layer[6]=200;
       layer[8]=230;
     }
     if (key == '3') {
-      blendIndex=8;
+      blendIndex=3;
       imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=14;
+
       layer[8]=200;
     }
     if (key == '4') {
-      blendIndex=6;
+      blendIndex=3;
       imgIndex=3;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=8;
@@ -75,6 +79,7 @@ void keyPressed() {
   if (keyz[0]==false) {
     if (key == '1') {
       effectGLSL = loadShader("glsl/no.glsl");
+      effectGLSL.set( "alpha", 1.0);
     }
     if (key == '2') {
       effectGLSL = loadShader("glsl/radialBlur.glsl");
@@ -390,7 +395,7 @@ void sendCtl2p5() {
   if (nr==51) ctl51=map(vl,0,255,1,2);
 
   if (nr==60) layer[6]=vl;
-  if (nr==61) ctl61=map(vl,0,255,0.4,1.2);
+  if (nr==61) ctl61=map(vl,0,255,0.2,0.8);
   if (nr==62) ctl62=map(vl,0,255,1,15);
   if (nr==63) {
     if(vl>125)anim_dir=-1;

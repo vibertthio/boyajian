@@ -83,9 +83,11 @@ void shaderSetting() {
   contrastGLSL.set("vel", contrastA, contrastB);
 
   effectGLSL = loadShader("glsl/no.glsl");
+  effectGLSL.set( "alpha", 1.0);
 
   donothing= loadShader("glsl/no.glsl");
   donothing.set( "texture", logoMoving2);
+  donothing.set( "alpha", 1.0);
   //donothing.set( "lowLayer", bgs [imgIndex]);
   //donothing.set( "topLayer", logoMoving2 );
   //donothing.set( "sketchSize", float(width), float(height) );

@@ -107,7 +107,7 @@ class pdLine2 {
     if (bang==true) {
       if (workTime>dd) {
         if (workTime-dd<=duration) {
-          o=easeOutBack(float(workTime-dd)/(duration))*(newOne-oldOne)+oldOne;
+          o=(float(workTime-dd)/(duration))*(newOne-oldOne)+oldOne;
         } else {
           bang=false;
           o=newOne;

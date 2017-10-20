@@ -294,14 +294,14 @@ class Strip {
   }
   void init(PGraphics _c) {
     canvas = _c;
-    setColors(color(200, 200, 200));
+    setColors(color(100));
     timer = new TimeLine(2000);
     xdes = 1000;
     reset();
   }
   void init(PGraphics _c, int spd) {
     canvas = _c;
-    setColors(color(255, 255, 255));
+    setColors(color(100));
     timer = new TimeLine(spd);
     xdes = 1000;
     reset();
@@ -326,7 +326,7 @@ class Strip {
     if (state != 0) {
       canvas.pushMatrix();
       canvas.noStroke();
-      canvas.fill(col, layer[3]*0.5);
+      canvas.fill(col, layer[3]);
       if (!hr) { canvas.rotate(PI / 2); }
       canvas.translate(xpos, ypos);
       if (drift) { canvas.rectMode(CENTER); }

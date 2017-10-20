@@ -79,7 +79,7 @@ void oscEvent(OscMessage m) {
       if(ctl61>0){
         animations.growGrid.adjustLengthScale(ctl61);
       }else{
-        anim_scale = map(vol, 0, 1, 0.2, 0.8);
+        anim_scale = map(vol, 0, 1, 0.2, 0.8     );
         animations.growGrid.adjustLengthScale(anim_scale);
         //println("scale: " + anim_scale);
       }

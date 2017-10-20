@@ -160,10 +160,10 @@ class  LogoDraw {
     }
     canvas.pushMatrix();
     canvas.translate(0+250, who.height/2);
-    
+
     if (ctl83>0.4) canvas.scale(ctl83, ctl83);
     else canvas.scale(chmiddle*2, chmiddle*2);
-    
+
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);
     canvas.image(pattern[pp], 0, 0, who.width, who.height);
@@ -171,10 +171,10 @@ class  LogoDraw {
 
     canvas.pushMatrix();
     canvas.translate(who.width+250, who.height/2);
-    
+
     if (ctl83>0.4) canvas.scale(-ctl83, -ctl83);
     else canvas.scale(chmiddle*-2, chmiddle*-2);
-    
+
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);
     canvas.image(pattern[pp], 0, 0, who.width, who.height);

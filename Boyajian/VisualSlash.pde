@@ -94,7 +94,8 @@ class Slash {
     }
 
      who.noStroke();
-     who.fill(c, layer[2]*0.5);
+     who.fill(c, layer[2]);
+     //who.fill(255,255,0, 255);
     if (vertical) {
       who.quad(x1, y1-taille, x1, y1+taille, x2, y2+taille, x2, y2-taille);
     } else {

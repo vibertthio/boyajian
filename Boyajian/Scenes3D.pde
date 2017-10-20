@@ -95,7 +95,7 @@ void s3dDrawing() {
   s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
   s3d.lightFalloff(Falloff, 0.001, 0.000);
   s3d.directionalLight(255, 256, 255, 0, -100, -300);
-  s3d.pointLight(255, 255, 255, 300, 200, 300);
+  s3d.pointLight(155, 155, 155, 300, 200, 300);
   s3d.ambientLight(73, 52, 20);
   s3d.beginCamera();
   s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
@@ -125,7 +125,7 @@ void s3dDrawing() {
   gl.glHint( GL2.GL_POLYGON_SMOOTH_HINT, GL2.GL_NICEST );
   gl.glEnable(GL2.GL_ALPHA_TEST);
   gl.glAlphaFunc(GL2.GL_GREATER, 0.1);
-  endPGL();
+
 
   if (showMaskEye==true) maskEyedrawing();
   if (showMaskListen==true)maskListendrawing();
@@ -152,6 +152,7 @@ void s3dDrawing() {
   s3d.noStroke();
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(186));
+  s3d.blendMode(ADD );
 
   if (vertexNoise==true ) randomVertex(globe);
   else returnVertex(Rglobe, globe);
@@ -159,35 +160,33 @@ void s3dDrawing() {
   if (vertexNoise==true ) randomVertex(globe2);
   else returnVertex(Rglobe2, globe2);
 
-
-
   if (wireFrameCtl==true) {
-    s3d.rotateY((float(frameCount)/100)%360);
+    //s3d.rotateY((float(frameCount)/100)%360);
     noWireFrame(globe, 2.0f, color(255, 60));
     s3d.blendMode(ADD);
-  } else {   
-    setTexture(globe, tex);
-    s3d.blendMode(BLEND);
-  }
-  s3d.shape(globe);
+    } else {
+      setTexture(globe, tex);
+    }
+    s3d.shape(globe);
 
   if (wireFrameCtl==true) {
-    s3d.rotateY((float(frameCount)/200)%360);
+    //s3d.rotateY((float(frameCount)/200)%360);
     s3d.stroke(255);
     s3d.fill(255);
     noWireFrame(globe2, 2.0f, color(0, 165, 250, 120));
+    s3d.blendMode(ADD);
   } else {
-    s3d.blendMode(BLEND);
     setTexture(globe2, tex2);
   }
   s3d.pushMatrix();//--------------------
-  s3d.blendMode(ADD);
   s3d.rotateY(radians(75));
   s3d.rotateZ(radians(anim(600, -10, 10, 2)));
   s3d.scale(1.45);
   s3d.shape(globe2);
   s3d.popMatrix();//--------------------
 
+  s3d.blendMode(BLEND);
   s3d.popMatrix();//--------------------
   s3d.endDraw();
+  endPGL();
 }
