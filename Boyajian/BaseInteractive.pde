@@ -271,38 +271,38 @@ void sendNote2p5() {
   //---------------------------------------------ch2
   if (ch==2) {
     if (nn==24)if (vv==127) {
-      rotateGridTriggerIndex =0;
+      rotateGridTriggerIndex = 0;
       animationRotateGridTrigger() ;
     }
 
     if (nn==25)if (vv==127) {
-      rotateGridTriggerIndex =10;
+      rotateGridTriggerIndex = 1;
       animationRotateGridTrigger() ;
     }
 
     if (nn==26)if (vv==127)
     {
-      rotateGridTriggerIndex =2;
+      rotateGridTriggerIndex = 2;
       animationRotateGridTrigger() ;
     }
 
     if (nn==27)if (vv==127) {
-      rotateGridTriggerIndex =12;
+      rotateGridTriggerIndex = 3;
       animationRotateGridTrigger() ;
     }
 
     if (nn==28)if (vv==127) {
-      rotateGridTriggerIndex =4;
+      rotateGridTriggerIndex = 4;
       animationRotateGridTrigger() ;
     }
 
     if (nn==29)if (vv==127) {
-      rotateGridTriggerIndex =5;
+      rotateGridTriggerIndex = 5;
       animationRotateGridTrigger() ;
     }
 
     if (nn==30)if (vv==127) {
-      rotateGridTriggerIndex =6;
+      rotateGridTriggerIndex = 6;
       animationRotateGridTrigger() ;
     }
 

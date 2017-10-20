@@ -30,23 +30,27 @@ void animationRotateGridTrigger() {
   println("Rotate Grid Animation ## " + rotateGridTriggerIndex);
   switch(rotateGridTriggerIndex) {
     case 0:
-      animations.rotateGrid.allAngleShiftBang();
+      animations.rotateGrid.allBlinkBang();
       break;
     case 1:
-      animations.rotateGrid.allAngleShiftBang(8);
+      animations.rotateGrid.allStretchBang(10);
+      animations.rotateGrid.allColorBang();
+      // animations.rotateGrid.allAngleShiftBang(8);
       break;
     case 2:
+      animations.rotateGrid.rowColorSequence.bang(1);
       animations.rotateGrid.allStretchBang();
       break;
     case 3:
+      animations.rotateGrid.rowRotateSequence.bang(3);
       animations.rotateGrid.allStretchBang(10);
       break;
     case 4:
       animations.rotateGrid.allStretchBang();
+      // animations.rotateGrid.allAngleShiftBang(4);
       break;
     case 5:
-      animations.rotateGrid.allStretchBang(10);
-      animations.rotateGrid.allColorBang();
+      animations.rotateGrid.allAngleShiftBang();
       break;
     case 6:
       animations.rotateGrid.allXShiftBang();

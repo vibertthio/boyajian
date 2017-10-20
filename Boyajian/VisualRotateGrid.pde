@@ -41,6 +41,7 @@ class RotateGrid {
     rowRotateSequenceUpdate();
     rowXShiftSequenceUpdate();
     rowBlinkSequenceUpdate();
+    rowColorSequenceUpdate();
 
     // cols
     colRotateSequenceUpdate();
@@ -300,11 +301,19 @@ class RotateGrid {
 
   Sequence rowRotateSequence = new Sequence(rowSequenceSet, 2);
   Sequence rowXShiftSequence = new Sequence(rowSequenceSet, 2);
-  Sequence rowBlinkSequence = new Sequence(rowSequenceSet, 8);
+  Sequence rowBlinkSequence = new Sequence(rowSequenceSet, 2);
 
-  Sequence colRotateSequence = new Sequence(colSequenceSet, 8);
-  Sequence colBlinkSequence = new Sequence(colSequenceSet, 8);
+  Sequence colRotateSequence = new Sequence(colSequenceSet, 2);
+  Sequence colBlinkSequence = new Sequence(colSequenceSet, 2);
+  Sequence rowColorSequence = new Sequence(rowSequenceSet, 4);
 
+  void rowColorSequenceUpdate() {
+    rowColorSequence.update();
+    if (rowColorSequence.getBang()) {
+      int index = rowColorSequence.getSignal();
+      rowColorBang(index);
+    }
+  }
   void rowRotateSequenceUpdate() {
     rowRotateSequence.update();
     if (rowRotateSequence.getBang()) {
