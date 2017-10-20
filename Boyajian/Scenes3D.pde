@@ -72,6 +72,7 @@ float  Falloff=1.8;
 void s3dDrawing() {
 
   s3d.beginDraw();
+  s3d.smooth();
   s3d.background(0, 2);
   if (vertexNoise==true && holdVertex==false) {
     if (randomVel<50) randomVel=(randomVel+(randomVel/200));
