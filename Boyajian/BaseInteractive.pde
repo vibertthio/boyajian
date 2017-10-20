@@ -152,6 +152,7 @@ void keyPressed() {
 
   // Vibert's Functions
   if (key == 'v') {
+    println("press v!");
     animationRotateGridTrigger();
   }
   if (key == 'c') {

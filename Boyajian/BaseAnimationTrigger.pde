@@ -2,6 +2,8 @@ int rotateGridTriggerIndex = 0;
 int growGridTriggerIndex = 0;
 int stripTriggerIndex = 0;
 void animationRotateGridTrigger() {
+  // animations.rotateGrid.adjustSpeed(5);
+  // animations.rotateGrid.adjustSpeed(-3);
   // animations.rotateGrid.allAngleShiftBang();
   // animations.rotateGrid.allAngleShiftBang(8);
   // animations.rotateGrid.allStretchBang();
@@ -19,7 +21,7 @@ void animationRotateGridTrigger() {
   // animations.rotateGrid.rowAngleShiftBang(5);
   // animations.rotateGrid.colAngleShiftBang(5);
   // animations.rotateGrid.colAngleShiftBang(4);
-  // animations.rotateGrid.rowRotateSequence.bang(4);
+  // animations.rotateGrid.rowRotateSequence.bang(3);
   // animations.rotateGrid.rowXShiftSequence.bang(4);
   // animations.rotateGrid.rowBlinkSequence.bang(4);
 
@@ -43,6 +45,7 @@ void animationRotateGridTrigger() {
       animations.rotateGrid.allStretchBang();
       break;
     case 5:
+      animations.rotateGrid.allStretchBang(10);
       animations.rotateGrid.allColorBang();
       break;
     case 6:
@@ -65,7 +68,8 @@ void animationRotateGridTrigger() {
       animations.rotateGrid.rowAngleShiftBang(5);
       break;
     case 12:
-      animations.rotateGrid.colAngleShiftBang(7);
+      animations.rotateGrid.rowRotateSequence.bang(3);
+      // animations.rotateGrid.colAngleShiftBang(7);
       break;
   }
   rotateGridTriggerIndex ++;

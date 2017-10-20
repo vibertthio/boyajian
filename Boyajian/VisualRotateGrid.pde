@@ -8,7 +8,7 @@ class RotateGrid {
   float high = low * 8;
   int unit = floor(high - low);
   float time = 240;
-
+  float speed = 1;
   float w;
   float h;
   float angle;
@@ -55,7 +55,10 @@ class RotateGrid {
     angle = 2 * PI * (time / 960);
     w =  (high - low) * sin(angle) * sin(angle) + low;
     h =  (high - low) * cos(angle) * cos(angle) + low;
-    time++;
+    time += speed;
+  }
+  void adjustSpeed(float _s) {
+    speed = _s;
   }
 
   void allAngleShiftBang() {
@@ -283,8 +286,8 @@ class RotateGrid {
   int[][] rowSequenceSet = {
     {3, 5, 7, 9},
     {3, 5, 7, 9},
-    {2, 3, 4, 5, 6, 7, 8, 9, 10},
-    {10, 9, 8, 7, 6, 5, 4, 3, 2},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+    {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
     {5, 6, 4, 7, 3, 8, 2, 9, 1, 10},
     {10, 2, 9, 3, 8, 4, 7, 5, 6},
   };
@@ -363,6 +366,7 @@ class RotateRectangle {
   float targetAngle;
   float targetAlpha;
   float colorRatio = 0;
+  float sizeUpdateRatio = 0.2;
   color originalColor;
   color targetColor;
   boolean vr = true;
@@ -451,13 +455,13 @@ class RotateRectangle {
     if (abs(worg - w) < 1) {
       worg = w;
     } else {
-      w = w + (worg - w) * 0.1;
+      w = w + (worg - w) * sizeUpdateRatio;
     }
 
     if (abs(horg - h) < 1) {
       horg = h;
     } else {
-      h = h + (horg - h) * 0.1;
+      h = h + (horg - h) * sizeUpdateRatio;
     }
   }
   void colorUpdate() {
@@ -465,7 +469,7 @@ class RotateRectangle {
       colorRatio = 0;
       col = originalColor;
     } else {
-      colorRatio *= 0.9;
+      colorRatio *= 0.95;
       col = lerpColor(
         originalColor,
         targetColor,

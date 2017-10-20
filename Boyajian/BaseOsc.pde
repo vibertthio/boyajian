@@ -30,12 +30,12 @@ void oscEvent(OscMessage m) {
       //-----------------------------------------layer6
       if (layer[6]>150) {
         rotateGridTriggerIndex =int(random(2))+6;
-        animationRotateGridTrigger() ;
+        // animationRotateGridTrigger() ;
       }
 
       if (layer[6]<100) {
         growGridTriggerIndex=int(random(2))+5;
-        animationGrowGridTrigger() ;
+        // animationGrowGridTrigger() ;
       }
       //-----------------------------------------layer6
 
@@ -54,12 +54,16 @@ void oscEvent(OscMessage m) {
 
     if (m.checkAddrPattern("/vol")==true)if (m.checkTypetag("f")) {
       float volTemp=0;
-      
+
       volTemp=m.get(0).floatValue()*ctl51;
-      
+
       if(volTemp<1) vol=volTemp;
       else vol=0.99;
-      
+
+      float sp = map(volTemp, 0, 1, 1, 10);
+      // animations.rotateGrid.adjustSpeed(sp);
+      // println("speed: " + sp);
+
     }
 
     //println("vol:"+vol+"   low:"+low+",   middle:"+middle+",   high:"+high );
