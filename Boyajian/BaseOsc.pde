@@ -9,6 +9,14 @@ float high;
 float vol;
 float ctl51=1.0;
 
+float ctl61=0;
+float ctl62=0;
+float ctl63=0;
+
+float anim_sp;
+float anim_dir=1.0;
+float anim_scale;
+
 void oscEvent(OscMessage m) {
 
   if (oscCtl==true) {
@@ -54,20 +62,28 @@ void oscEvent(OscMessage m) {
 
     if (m.checkAddrPattern("/vol")==true)if (m.checkTypetag("f")) {
       float volTemp=0;
-
       volTemp=m.get(0).floatValue()*ctl51;
 
       if(volTemp<1) vol=volTemp;
       else vol=0.99;
 
-      // float sp = map(volTemp, 0, 1, 1, 10);
-      // animations.rotateGrid.adjustSpeed(sp);
-      // println("speed: " + sp);
-
-      float scale = map(volTemp, 0, 1, 0.5, 2);
-      animations.growGrid.adjustLengthScale(scale);
-      println("scale: " + scale);
-
+      //------------------
+      if(ctl62>0){
+        animations.rotateGrid.adjustSpeed(ctl62*anim_dir);
+      }else{
+        anim_sp = map(vol, 0, 1, 1, 15);
+        animations.rotateGrid.adjustSpeed(anim_sp*anim_dir);
+        //println("speed: "+anim_sp*anim_dir);
+      }
+      //------------------
+      if(ctl61>0){
+        animations.growGrid.adjustLengthScale(ctl61);
+      }else{
+        anim_scale = map(vol, 0, 1, 0.2, 0.8);
+        animations.growGrid.adjustLengthScale(anim_scale);
+        //println("scale: " + anim_scale);
+      }
+      //------------------
     }
 
     //println("vol:"+vol+"   low:"+low+",   middle:"+middle+",   high:"+high );

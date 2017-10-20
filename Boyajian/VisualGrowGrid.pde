@@ -8,8 +8,8 @@ class GrowGrid {
   float length;
   float lengthScale = 1;
 
-  int n = 8;
-  int unit = 100;
+  int n = 12;
+  int unit = 70;
   color col;
 
   float highValue = 0;

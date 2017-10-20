@@ -390,6 +390,12 @@ void sendCtl2p5() {
   if (nr==51) ctl51=map(vl,0,255,1,2);
 
   if (nr==60) layer[6]=vl;
+  if (nr==61) ctl61=map(vl,0,255,0.4,1.2);
+  if (nr==62) ctl62=map(vl,0,255,1,15);
+  if (nr==63) {
+    if(vl>125)anim_dir=-1;
+    else anim_dir=1;
+    }
 
   if (nr==70) layer[7]=vl;
   if (nr==71) {
