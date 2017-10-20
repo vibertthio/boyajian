@@ -177,7 +177,7 @@ void s3dDrawing() {
     s3d.fill(255);
     noWireFrame(globe2, 2.0f, color(0, 165, 250, 120));
   } else {
-    s3d.blendMode(ADD);
+    s3d.blendMode(BLEND);
     setTexture(globe2, tex2);
   }
   s3d.pushMatrix();//--------------------

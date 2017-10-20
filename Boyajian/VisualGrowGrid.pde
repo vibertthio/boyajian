@@ -41,7 +41,7 @@ class GrowGrid {
 
     // random behavior
     if (random(1) < 0.1) {
-      randomBlinkBang();
+      // randomBlinkBang();
     }
   }
   void render() {
@@ -62,7 +62,7 @@ class GrowGrid {
     if (highValue != chhigh) {
       highValue = chhigh;
       println("high trigger!");
-      randomVibrateBang();
+      // randomVibrateBang();
 
     }
     if (lowValue != chlow) {
@@ -70,7 +70,7 @@ class GrowGrid {
       if (lowBufferCount >= lowBufferLimit) {
         lowBufferCount = 0;
         println("low trigger!");
-        allSizeBang();
+        // allSizeBang();
       }
     }
   }
