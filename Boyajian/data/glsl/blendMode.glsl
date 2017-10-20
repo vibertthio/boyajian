@@ -273,7 +273,7 @@ void main(void)
   vec2 dPos = vec2( gl_FragCoord.x / lowLayerResolution.x, (gl_FragCoord.y / lowLayerResolution.y) );
 	vec2 moving;
 	float t=time;
-	dPos.x=fract(dPos.x+time*0.05)*2.0;
+	dPos.x=fract(dPos.x)*2.0;
 	dPos.y=fract(dPos.y)*2.0;
 
 	if(dPos.x<1.0){
@@ -287,6 +287,9 @@ void main(void)
 	}else{
 		moving.y=2.0-dPos.y;
 	}
+
+	//  moving.x=dPos.x;
+	//  moving.y=dPos.y;
 
 	vec3 d = texture2D(lowLayer, moving ).rgb;
 
