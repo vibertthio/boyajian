@@ -29,12 +29,12 @@ void oscEvent(OscMessage m) {
 
       //-----------------------------------------layer6
       if (layer[6]>150) {
-        rotateGridTriggerIndex =int(random(2))+6;
+        // rotateGridTriggerIndex =int(random(2))+6;
         // animationRotateGridTrigger() ;
       }
 
       if (layer[6]<100) {
-        growGridTriggerIndex=int(random(2))+5;
+        // growGridTriggerIndex=int(random(2))+5;
         // animationGrowGridTrigger() ;
       }
       //-----------------------------------------layer6

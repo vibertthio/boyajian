@@ -38,12 +38,12 @@ void animationRotateGridTrigger() {
       // animations.rotateGrid.allAngleShiftBang(8);
       break;
     case 2:
-      animations.rotateGrid.rowColorSequence.bang(1);
+      animations.rotateGrid.rowColorSequence.bang(2);
       animations.rotateGrid.allStretchBang();
       break;
     case 3:
       animations.rotateGrid.rowRotateSequence.bang(3);
-      animations.rotateGrid.allStretchBang(10);
+      animations.rotateGrid.rowStretchSequence.bang(3);
       break;
     case 4:
       animations.rotateGrid.allStretchBang();
@@ -77,7 +77,7 @@ void animationRotateGridTrigger() {
       break;
   }
   rotateGridTriggerIndex ++;
-  rotateGridTriggerIndex %= 13;
+  rotateGridTriggerIndex %= 8;
 }
 void animationGrowGridTrigger() {
   // animations.growGrid.allSizeBang();
@@ -98,37 +98,49 @@ void animationGrowGridTrigger() {
   println("Grow Grid Animation ## " + growGridTriggerIndex);
   switch(growGridTriggerIndex) {
     case 0:
-      animations.growGrid.allSizeBang();
-      break;
-    case 1:
-      animations.growGrid.allVibrateBang();
-      break;
-    case 2:
-      animations.growGrid.allRotateBang();
-      break;
-    case 3:
-      animations.growGrid.allRotateBang(4);
-      break;
-    case 4:
+      // animations.growGrid.allVibrateBang();
       animations.growGrid.allBlinkBang();
       break;
-    case 5:
+    case 1:
+      animations.growGrid.allSizeBang();
+      // animations.growGrid.allBlinkBang();
       animations.growGrid.allXShiftBang();
+      animations.growGrid.allRotateBang();
+      animations.growGrid.colColorSequence.bang(1);
+      break;
+    case 2:
+      animations.growGrid.rowColorSequence.bang(1);
+      animations.growGrid.colRotateSequence.bang(1);
+      animations.growGrid.rowSizeSequence.bang(1);
+      break;
+    case 3:
+      animations.growGrid.allYShiftBang();
+      animations.growGrid.allVibrateBang();
+      break;
+    case 4:
+      animations.growGrid.allSizeBang();
+      // animations.growGrid.allBlinkBang();
+      break;
+    case 5:
+      animations.growGrid.allRotateBang(2);
+      // animations.growGrid.allXShiftBang();
       break;
     case 6:
-      animations.growGrid.allYShiftBang();
+      animations.growGrid.allXShiftBang();
+      // animations.growGrid.allYShiftBang();
       break;
     case 7:
-      animations.growGrid.rowSizeBang(2);
+      animations.growGrid.allYShiftBang();
+      // animations.growGrid.rowSizeBang(2);
       break;
     case 8:
       animations.growGrid.colAngleShiftBang(5);
       break;
     case 9:
-      animations.growGrid.rotateSequence.bang(floor(random(2)));
+      animations.growGrid.colRotateSequence.bang(floor(random(2)));
       break;
     case 10:
-      animations.growGrid.sizeSequence.bang(floor(random(2)));
+      animations.growGrid.rowSizeSequence.bang(floor(random(2)));
       break;
     case 11:
       animations.growGrid.allBlinkBang();
@@ -142,7 +154,7 @@ void animationGrowGridTrigger() {
       break;
   }
   growGridTriggerIndex++;
-  growGridTriggerIndex %= 13;
+  growGridTriggerIndex %= 8;
 }
 void animationStripTrigger() {
   layer[6] = 120;

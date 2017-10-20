@@ -307,7 +307,7 @@ void sendNote2p5() {
     }
 
     if (nn==31)if (vv==127) {
-      rotateGridTriggerIndex =7;
+      rotateGridTriggerIndex = 7;
       animationRotateGridTrigger() ;
     }
 

@@ -36,8 +36,10 @@ class GrowGrid {
   void update() {
     updateLength();
     updateAudioSignal();
-    updateRotateSequence();
-    updateSizeSequence();
+    updateColRotateSequence();
+    updateColColorSequence();
+    updateRowSizeSequence();
+    updateRowColorSequence();
 
     // random behavior
     if (random(1) < 0.1) {
@@ -61,7 +63,7 @@ class GrowGrid {
     lowBufferCount++;
     if (highValue != chhigh) {
       highValue = chhigh;
-      println("high trigger!");
+      // println("high trigger!");
       // randomVibrateBang();
 
     }
@@ -69,7 +71,7 @@ class GrowGrid {
       lowValue = chlow;
       if (lowBufferCount >= lowBufferLimit) {
         lowBufferCount = 0;
-        println("low trigger!");
+        // println("low tcrigger!");
         // allSizeBang();
       }
     }
@@ -138,6 +140,13 @@ class GrowGrid {
       }
     }
   }
+  void allColorBang() {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        recs[i * n + j].colorBang();
+      }
+    }
+  }
 
   void rowSizeBang(int r) {
     for (int i = 0; i < n; i++) {
@@ -181,6 +190,11 @@ class GrowGrid {
       recs[i * n + r].yShiftBang();
     }
   }
+  void rowColorBang(int r) {
+    for (int i = 0; i < n; i++) {
+      recs[i * n + r].colorBang();
+    }
+  }
 
   void colAngleShiftBang(int c) {
     for (int j = 0; j < n; j++) {
@@ -195,6 +209,11 @@ class GrowGrid {
   void colRotateBang(int c, int amt) {
     for (int j = 0; j < n; j++) {
       recs[c * n + j].rotateBang(amt);
+    }
+  }
+  void colColorBang(int c) {
+    for (int j = 0; j < n; j++) {
+      recs[c * n + j].colorBang();
     }
   }
 
@@ -214,28 +233,44 @@ class GrowGrid {
     recs[x * n + y].vibrateBang();
   }
 
-  int[][] rotateSequenceSet = {
+  int[][] colSequenceSet = {
     {0, 1, 2, 3, 4, 5, 6, 7},
     {7, 6, 5, 4, 3, 2, 1, 0},
   };
-  int[][] sizeSequenceSet = {
+  int[][] rowSequenceSet = {
     {0, 1, 2, 3, 4, 5, 6, 7},
     {7, 6, 5, 4, 3, 2, 1, 0},
   };
-  Sequence rotateSequence = new Sequence(rotateSequenceSet, 8);
-  Sequence sizeSequence = new Sequence(sizeSequenceSet, 8);
-  void updateRotateSequence() {
-    rotateSequence.update();
-    if (rotateSequence.getBang()) {
-      int index = rotateSequence.getSignal();
+  Sequence colRotateSequence = new Sequence(colSequenceSet, 1);
+  Sequence colColorSequence = new Sequence(colSequenceSet, 2);
+  Sequence rowSizeSequence = new Sequence(rowSequenceSet, 1);
+  Sequence rowColorSequence = new Sequence(rowSequenceSet, 1);
+  void updateColRotateSequence() {
+    colRotateSequence.update();
+    if (colRotateSequence.getBang()) {
+      int index = colRotateSequence.getSignal();
       colRotateBang(index);
     }
   }
-  void updateSizeSequence() {
-    sizeSequence.update();
-    if (sizeSequence.getBang()) {
-      int index = sizeSequence.getSignal();
+  void updateColColorSequence() {
+    colColorSequence.update();
+    if (colColorSequence.getBang()) {
+      int index = colColorSequence.getSignal();
+      colColorBang(index);
+    }
+  }
+  void updateRowSizeSequence() {
+    rowSizeSequence.update();
+    if (rowSizeSequence.getBang()) {
+      int index = rowSizeSequence.getSignal();
       rowSizeBang(index);
+    }
+  }
+  void updateRowColorSequence() {
+    rowColorSequence.update();
+    if (rowColorSequence.getBang()) {
+      int index = rowColorSequence.getSignal();
+      rowColorBang(index);
     }
   }
 }
@@ -252,6 +287,9 @@ class GrowRectangle {
   float angle = PI * .25;
 
   color col;
+  color startColor;
+  color endColor;
+  float colorRatio = 0;
 
   GrowRectangle(GrowGrid _g, PGraphics _c, float _x, float _y) {
     grid = _g;
@@ -261,6 +299,8 @@ class GrowRectangle {
     ypos = _y;
     yorg = _y;
     col = _g.col;
+    startColor = _g.col;
+    endColor = _g.col;
   }
 
   void draw() {
@@ -274,6 +314,7 @@ class GrowRectangle {
     lengthUpdate();
     angleUpdate();
     cordUpdate();
+    colorUpdate();
   }
   void render() {
     canvas.pushMatrix();
@@ -314,6 +355,20 @@ class GrowRectangle {
       angle = angle + (targetAngle - angle) * 0.1;
     }
   }
+  void colorUpdate() {
+    if (colorRatio < 0.05) {
+      colorRatio = 0;
+      // col = endColor;
+    } else {
+      println("color ratio: " + colorRatio);
+      colorRatio *= 0.9;
+      col = lerpColor(
+        endColor,
+        startColor,
+        colorRatio
+      );
+    }
+  }
 
   void sizeBang() {
     length = grid.length * random(1.5, 1.7);
@@ -334,6 +389,10 @@ class GrowRectangle {
     } else {
       targetAngle -= amt * PI;
     }
+  }
+  void colorBang() {
+    startColor = colors[floor(random(colors.length))];
+    colorRatio = 1;
   }
 
   boolean xShifted = false;
@@ -369,7 +428,7 @@ class GrowRectangle {
   int blinkCount = 0;
   void blinkBang() {
     blinking = true;
-    blinkCount = floor(random(10, 60));
+    blinkCount = floor(random(10, 30));
   }
   void blinkUpdate() {
     if (blinking) {
