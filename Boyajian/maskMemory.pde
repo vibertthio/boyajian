@@ -134,7 +134,7 @@ void Memory(boolean theFlag) {
   if (theFlag==true) {
     showMaskMemory=false;
     thread("maskMemorySetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskMemory=true;
     thread("maskMemorySetting");

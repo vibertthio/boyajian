@@ -9,7 +9,7 @@ class EyeGroup extends Particle {
   EyeGroup(PVector p){
     pos = p.get();
     c=color(255, random(150, 255), random(150, 255));
-    id=int(random(2));
+    id=int(random(3));
   }
 
   void run(){
@@ -18,8 +18,9 @@ class EyeGroup extends Particle {
   }
 
   void render() {
-    if(id==0) soundVol=10;
-    if(id==1) soundVol=map(middle,0,1,-5,40);
+    if(id==0) soundVol=map(low,0,1,0.1,1);
+    if(id==1) soundVol=map(middle,0,1,0.1,1);
+    if(id==2) soundVol=map(vol,0,1,0.1,1);
 
     s3d.pushMatrix();
     s3d.translate(pos.x, pos.y, pos.z);
@@ -34,14 +35,15 @@ class EyeGroup extends Particle {
     s3d.rotateY(roty);
 
     s3d.scale(showEyeParticle/255);
+    s3d.scale(soundVol);
 
     if (wireFrameCtl==true) {
       s3d.noFill();
-      s3d.stroke(0, 160, 255, 120);
+      s3d.stroke(0, 160, 255, 200);
       s3d.strokeWeight(2.0f);
-      s3d.ellipse( 0, 0, mass*20+soundVol, mass*20+soundVol);
+      s3d.ellipse( 0, 0, 30, 30);
       } else{
-        s3d.image(eyeParticle, 0, 0, mass*20+soundVol, mass*20+soundVol);
+        s3d.image(eyeParticle, 0, 0, 30, 30);
       }
 
     s3d.popMatrix();
@@ -54,14 +56,15 @@ class EarGroup extends Particle {
   int id;
   float soundVol;
   float defultSize=0;
-  int animCount;
+  float animCount;
+
 
   EarGroup(PVector p){
     pos = p.get();
     c=color(255, random(150, 255), random(150, 255));
     id=int(random(3));
     defultSize=random(20,200);
-    animCount=int(random(400,600));
+    animCount=int(random(60,120));
   }
 
   void run(){
@@ -70,13 +73,16 @@ class EarGroup extends Particle {
   }
 
   void render(){
-    if(id==0) soundVol=low*defultSize;
-    if(id==1) soundVol=middle*defultSize;
-    if(id==2) soundVol=high*defultSize;
+
+    float ss=map(vol,0,1,1,1.4);
+    if(id==0) soundVol=low*defultSize*ss;
+    if(id==1) soundVol=middle*defultSize*ss;
+    if(id==2) soundVol=high*defultSize*ss;
+
     s3d.pushMatrix();
     s3d.translate(pos.x,pos.y,pos.z);
-    s3d.tint(255, 230);
-    s3d.translate(0,anim(animCount,-10,10,8),0);
+    s3d.tint(255,200);
+    s3d.translate(0,anim(int(animCount),-20*ss,20*ss,2),0);
     s3d.scale(showEarParticle/255);
     if (wireFrameCtl==true) {
       s3d.noFill();

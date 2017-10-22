@@ -93,7 +93,7 @@ void Wind(boolean theFlag) {
   if (theFlag==true) {
     showtoolWind=false;
     thread("toolWindSetting");
-    randomCam();
+    //randomCam();
   } else {
     showtoolWind=true;
     thread("toolWindSetting");

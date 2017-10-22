@@ -212,14 +212,14 @@ void maskEyedrawing() {
     setTexture( maskA_4, EyeImg);
     setTexture( maskA_5, EyeImg);
   }
-   
+
 }
 
 void Eye(boolean theFlag) {
   if (theFlag==true) {
     showMaskEye=false;
     thread("maskEyeSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskEye=true;
     thread("maskEyeSetting");

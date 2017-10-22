@@ -116,7 +116,7 @@ void Faces(boolean theFlag) {
   if (theFlag==true) {
     showMaskFaces=false;
     thread("maskFacesSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskFaces=true;
     thread("maskFacesSetting");

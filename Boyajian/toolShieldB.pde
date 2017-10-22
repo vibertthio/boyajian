@@ -96,7 +96,7 @@ void ShieldB(boolean theFlag) {
   if (theFlag==true) {
     showtoolShieldB=false;
     thread("toolShieldBSetting");
-    randomCam();
+    //randomCam();
   } else {
     showtoolShieldB=true;
     thread("toolShieldBSetting");

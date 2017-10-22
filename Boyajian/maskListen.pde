@@ -112,7 +112,7 @@ void Listen(boolean theFlag) {
   if (theFlag==true) {
     showMaskListen=false;
     thread("maskListenSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskListen=true;
     thread("maskListenSetting");

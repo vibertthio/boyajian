@@ -273,7 +273,7 @@ void main(void)
   vec2 dPos = vec2( gl_FragCoord.x / lowLayerResolution.x, (gl_FragCoord.y / lowLayerResolution.y) );
 	vec2 moving;
 	float t=time;
-	dPos.x=fract(dPos.x)*2.0;
+	dPos.x=fract(dPos.x+t*0.005)*2.0;
 	dPos.y=fract(dPos.y)*2.0;
 
 	if(dPos.x<1.0){

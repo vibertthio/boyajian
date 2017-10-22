@@ -95,7 +95,7 @@ void SwordB(boolean theFlag) {
   if (theFlag==true) {
     showtoolSwordB=false;
     thread("toolSwordBSetting");
-    randomCam();
+    //randomCam();
   } else {
     showtoolSwordB=true;
     thread("toolSwordBSetting");

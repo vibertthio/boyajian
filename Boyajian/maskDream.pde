@@ -179,7 +179,7 @@ void Dream(boolean theFlag) {
   if (theFlag==true) {
     showMaskDream=false;
     thread("maskDreamSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskDream=true;
     thread("maskDreamSetting");

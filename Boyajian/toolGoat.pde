@@ -93,7 +93,7 @@ void Goat(boolean theFlag) {
   if (theFlag==true) {
     showtoolGoat=false;
     thread("toolGoatSetting");
-    randomCam();
+    //randomCam();
   } else {
     showtoolGoat=true;
     thread("toolGoatSetting");

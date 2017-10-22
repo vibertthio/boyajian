@@ -382,18 +382,17 @@ void sendNote2p5() {
 
 
 void sendCtl2p5() {
+  //-----------------------------
+  if (nr==40) layer[4]=vl;
   if (nr==41) chColumnThreshold=int(map(vl, 0, 255, 0, 10));
   if (nr==42) chColumnSpeed =int(map(vl, 0, 255, 40, 2));
   if (nr==43) ColumnNum =int(map(vl, 0, 255, 2, 580));
-
-
+  //-----------------------------
   if (nr==20) layer[2]=vl;
-  if (nr==30) layer[3]=vl;
-  if (nr==40) layer[4]=vl;
-
-  if (nr==50) layer[5]=vl;
-  if (nr==51) ctl51=map(vl,0,255,1,2);
-
+  if (nr==21) showLineParticle=int(vl);
+  if (nr==22) showEarParticle=int(vl);
+  if (nr==23) showEyeParticle=int(vl);
+  //-----------------------------
   if (nr==60) layer[6]=vl;
   if (nr==61) ctl61=map(vl,0,255,0.2,0.8);
   if (nr==62) ctl62=map(vl,0,255,1,15);
@@ -401,6 +400,15 @@ void sendCtl2p5() {
     if(vl>125)anim_dir=-1;
     else anim_dir=1;
     }
+  //-----------------------------
+
+  if (nr==30) layer[3]=vl;
+
+
+  if (nr==50) layer[5]=vl;
+  if (nr==51) ctl51=map(vl,0,255,1,2);
+
+
 
   if (nr==70) layer[7]=vl;
   if (nr==71) {
@@ -426,8 +434,7 @@ void sendCtl2p5() {
   if (nr==12) contrastB=vl/255;
   if (nr==13) Falloff=map(vl, 0, 255, 1, 3);
   //------------
-  if (nr==23) showEyeParticle=int(vl);
-  if (nr==22) showEarParticle=int(vl);
+
 }
 
 void controllerChange(ControlChange change) {

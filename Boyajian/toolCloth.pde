@@ -92,7 +92,7 @@ void Cloth(boolean theFlag) {
   if (theFlag==true) {
     showtoolCloth=false;
     thread("toolClothSetting");
-    randomCam();
+    //randomCam();
   } else {
     showtoolCloth=true;
     thread("toolClothSetting");

@@ -140,7 +140,7 @@ void Taste(boolean theFlag) {
   if (theFlag==true) {
     showMaskTaste=false;
     thread("maskTasteSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskTaste=true;
     thread("maskTasteSetting");

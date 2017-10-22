@@ -62,8 +62,8 @@ pdLine2 smooth;
 pdLine effectChange;
 
 void settings() {
-  // size(1200, 342, P3D);
-  size(1920, 548, P3D);
+   size(1200, 342, P3D);
+  //size(1920, 548, P3D);
   PJOGL.profile = 1;
 }
 

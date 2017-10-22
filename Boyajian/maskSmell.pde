@@ -120,7 +120,7 @@ void Smell(boolean theFlag) {
   if (theFlag==true) {
     showMaskSmell=false;
     thread("maskSmellSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskSmell=true;
     thread("maskSmellSetting");

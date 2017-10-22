@@ -122,7 +122,7 @@ void Touch(boolean theFlag) {
   if (theFlag==true) {
     showMaskTouch=false;
     thread("maskTouchSetting");
-    randomCam();
+    //randomCam();
   } else {
     showMaskTouch=true;
     thread("maskTouchSetting");

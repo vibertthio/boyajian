@@ -8,8 +8,7 @@ float camZ=430;
 float easing = 0.02;
 
 float[] cam={960, 200, 430, 0, 0};
-float showEyeParticle=0;
-float showEarParticle=0;
+
 
 PImage eyeParticle;
 PImage earParticle;
@@ -33,9 +32,15 @@ boolean resetCamDo=false;
 color maskNmae=color(255);
 EyeGroup[] eyeGroups;
 EarGroup[] earGroups;
+float showEyeParticle=0;
+float showEarParticle=0;
+float showLineParticle=0;
+
+
 int eyeNum = 200;
 int earNum = 40;
 PVector parentPos;
+Form forms;
 
 
 void s3dSetting() {
@@ -48,7 +53,7 @@ void s3dSetting() {
 
   eyeGroups = new EyeGroup[eyeNum];
   earGroups = new EarGroup[earNum];
-
+  forms= new Form();
   for (int i = 0; i < eyeNum; i++) {
     PVector p = new PVector(random(-600, 600)+width/2, random(-300, 300)+height/2, random(-400, 400));
     eyeGroups[i] = new EyeGroup(p);
@@ -58,6 +63,8 @@ void s3dSetting() {
     PVector p = new PVector(width/2+posAvg(1200, earNum, i)-600, height/2, -90);
     earGroups[i] = new EarGroup(p);
   }
+
+
 
   globe = loadShape("3d/sphere2.obj");
   Rglobe = loadShape("3d/sphere2.obj");
@@ -79,6 +86,10 @@ void s3dDrawing() {
   } else if (vertexNoise==false) {
     if (randomVel>2) randomVel=(randomVel-0.1);
   }
+  if (mousePressed) {
+    //showEyeParticle=200;
+    //showEarParticle=200;
+  }
 
   if (showEyeParticle>1) {
     for (int i = 0; i < eyeNum; i++) {
@@ -90,6 +101,10 @@ void s3dDrawing() {
     for (int i = 0; i < earNum; i++) {
       earGroups[i].run();
     }
+  }
+
+  if (showLineParticle>1) {
+    forms.render(s3d);
   }
 
   s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
@@ -146,8 +161,6 @@ void s3dDrawing() {
   if (showtoolGoat==true)toolGoatdrawing();
   if (showtoolWind==true)toolWinddrawing();
 
-
-
   s3d.pushMatrix();//--------------------
   s3d.noStroke();
   s3d.translate(width/2, height/2);
@@ -164,10 +177,10 @@ void s3dDrawing() {
     //s3d.rotateY((float(frameCount)/100)%360);
     noWireFrame(globe, 2.0f, color(255, 60));
     s3d.blendMode(ADD);
-    } else {
-      setTexture(globe, tex);
-    }
-    s3d.shape(globe);
+  } else {
+    setTexture(globe, tex);
+  }
+  s3d.shape(globe);
 
   if (wireFrameCtl==true) {
     //s3d.rotateY((float(frameCount)/200)%360);

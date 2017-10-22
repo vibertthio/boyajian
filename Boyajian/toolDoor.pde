@@ -92,7 +92,7 @@ void Door(boolean theFlag) {
   if (theFlag==true) {
     showtoolDoor=false;
     thread("toolDoorSetting");
-    randomCam();
+    //randomCam();
   } else {
     showtoolDoor=true;
     thread("toolDoorSetting");

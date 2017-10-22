@@ -16,6 +16,8 @@ class Particle {
   }
 
   void update() {
+    float soundVol=map(vol,0,1,1,5);
+    acc = new PVector(0,(y*-1.0*soundVol),0);
     pos.add(acc);
     if(pos.y<-400){
       pos.y=400;
