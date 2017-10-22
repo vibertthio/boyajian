@@ -57,17 +57,13 @@ vec2 trunc( vec2 x, float num_levels )
 void main( )
 {
 	vec2 uv = vertTexCoord.st;
-  float vvv;
-
-	vvv=vol*0.2;
 
 	float time = mod(time, 32.0); // + modelmat[0].x + modelmat[0].z;
-	float GLITCH = vvv;
-	float v=vvv;
+	float GLITCH = vol*1.0;
 	float gnm = sat( GLITCH );
 	float rnd0 = rand( trunc( vec2(time, time), 6.0 ) );
 	float r0 = sat((1.0-gnm)*0.7 + rnd0);
-	float rnd1 = rand( vec2(trunc( uv.x, (vvv*40.0+40.0)* r0 ), time) ); //橫的格子
+	float rnd1 = rand( vec2(trunc( uv.x, (GLITCH*10.0+40.0)* r0 ), time) ); //橫的格子
 	float r1 = 0.5 - 0.5 * gnm + rnd1;
 	r1 = 1.0 - max( 0.0, ((r1<1.0) ? r1 : 0.9999999) ); //note: weird ass bug on old drivers
 	float rnd2 = rand( vec2(trunc( uv.y, 40.0*r1 ), time) ); //直的格子

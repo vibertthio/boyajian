@@ -37,13 +37,13 @@ void oscEvent(OscMessage m) {
 
       //-----------------------------------------layer6
       if (layer[6]>150) {
-        // rotateGridTriggerIndex =int(random(2))+6;
-        // animationRotateGridTrigger() ;
+        rotateGridTriggerIndex =int(random(2))+6;
+        animationRotateGridTrigger() ;
       }
 
       if (layer[6]<100) {
-        // growGridTriggerIndex=int(random(2))+5;
-        // animationGrowGridTrigger() ;
+        growGridTriggerIndex=int(random(2))+6;
+        animationGrowGridTrigger() ;
       }
       //-----------------------------------------layer6
 
@@ -67,17 +67,18 @@ void oscEvent(OscMessage m) {
       if(volTemp<1) vol=volTemp;
       else vol=0.99;
 
+
       //------------------
       if(ctl62>0){
-        animations.rotateGrid.adjustSpeed(ctl62*anim_dir);
+        animations.rotateGrid.adjustSpeed(map(ctl62,0,255,0.1,8)*anim_dir);
       }else{
-        anim_sp = map(vol, 0, 1, 1, 15);
+        anim_sp = map(vol, 0, 1, 0.1, 8);
         animations.rotateGrid.adjustSpeed(anim_sp*anim_dir);
         //println("speed: "+anim_sp*anim_dir);
       }
       //------------------
       if(ctl61>0){
-        animations.growGrid.adjustLengthScale(ctl61);
+        animations.growGrid.adjustLengthScale(map(ctl61,0,255,0.2,0.8));
       }else{
         anim_scale = map(vol, 0, 1, 0.2, 0.8     );
         animations.growGrid.adjustLengthScale(anim_scale);

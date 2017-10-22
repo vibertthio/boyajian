@@ -373,7 +373,7 @@ void defultCam() {
 void zoonCam() {
   cam[0]=width/2;
   cam[1]=200;
-  cam[2]=2000;
+  cam[2]=2500;
   cam[3]=0;
   cam[4]=0;
   resetCamDo=true;

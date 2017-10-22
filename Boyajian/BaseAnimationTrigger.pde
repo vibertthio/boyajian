@@ -127,11 +127,11 @@ void animationGrowGridTrigger() {
       // animations.growGrid.allXShiftBang();
       break;
     case 6:
-      animations.growGrid.allXShiftBang();
+      animations.growGrid.allYShiftBang();
       // animations.growGrid.allYShiftBang();
       break;
     case 7:
-      animations.growGrid.allYShiftBang();
+      animations.growGrid.allXShiftBang();
       // animations.growGrid.rowSizeBang(2);
       break;
     case 8:

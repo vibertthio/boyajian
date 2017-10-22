@@ -51,8 +51,7 @@ boolean showbgTgl=false ;
 boolean oscCtl=true;
 boolean record=false;
 boolean splitScreen=false;
-
-
+boolean autoBlend=false;
 
 pdMetro autoCamMetro ;
 pdMetro autoCamMetroUpDown ;
@@ -62,8 +61,8 @@ pdLine2 smooth;
 pdLine effectChange;
 
 void settings() {
-   size(1200, 342, P3D);
-  //size(1920, 548, P3D);
+  // size(1200, 342, P3D);
+  size(1920, 548, P3D);
   PJOGL.profile = 1;
 }
 
@@ -106,6 +105,14 @@ void setup() {
 void draw() {
   background(0);
   smooth.update();
+
+  if(autoBlend==true){
+    if(frameCount%5==0){
+      blendIndex=int(random(10));
+    }
+  }
+
+
   if(smooth.bang==true){
     layer[6]=smooth.o;
   }
@@ -155,6 +162,7 @@ void draw() {
 
   //---------------*過一個視覺特效
   effectGLSL.set("time", millis()/1000.0);
+  effectGLSL.set( "vol", vol);
   shader(effectGLSL);
   //effectGLSL.set("pos", 2.00,1.06,1.01);
   //---------------*過一個視覺特效

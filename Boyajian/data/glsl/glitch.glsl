@@ -71,7 +71,7 @@ void main(){
 	const float yuv_threshold = 0.2; //TODO: input, >1.0f == no distort
 	const float time_frq = 2.0;
 
-	  vec2 uv = vertTexCoord.st;
+	vec2 uv = vertTexCoord.st;
 
 	const float min_change_frq = 4.0;
 	float ct = trunc( time_s, min_change_frq );

@@ -23,7 +23,7 @@ vec4 rgbShift( in vec2 p , in vec4 shift) {
     float g = texture2D(texture, p+gs, 0.0).y;
     float b = texture2D(texture, p+bs, 0.0).z;
 
-    return vec4(r,g,b,1.0);
+    return vec4(r*1.2,g*1.2,b*1.2,1.0);
 }
 
 vec4 noise( in vec2 p ) {
@@ -45,13 +45,13 @@ void main( void )
 	  vec2 p = vertTexCoord.st;
     vec4 c = vec4(0.0,0.0,0.0,1.0);
 
-    if(vol>0.88){
+    if(vol>0.85){
       vec4 shift = vec4pow(noise(vec2(SPEED*time,SPEED*time/25.0 )),4.0)
               *vec4(AMPLITUDE,AMPLITUDE,AMPLITUDE,1.0);;
       c = rgbShift(p, shift*1.5);
       gl_FragColor = c;
     }else{
-      gl_FragColor=texture2D(texture,p);
+      gl_FragColor=texture2D(texture,p)*1.5;
     }
 
 }

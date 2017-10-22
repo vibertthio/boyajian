@@ -10,10 +10,20 @@ void keyReleased() {
     effectGLSL = loadShader("glsl/no.glsl");
     effectGLSL.set("alpha", 0.8);
   }
+
+  if (key=='l') {
+    autoBlend=false;
+  }
+
 }
 
 
 void keyPressed() {
+
+  if (key=='l') {
+    autoBlend=true;
+  }
+
   if (key=='s') {
     if (tempEffect==1) ;
     else if (tempEffect==2) effectGLSL = loadShader("glsl/radialBlur.glsl");
@@ -45,11 +55,10 @@ void keyPressed() {
       layer[8]=200;
     }
     if (key == '2') {
-      blendIndex=8;
+      blendIndex=5;
       imgIndex=1;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=6;
-      layer[6]=200;
       layer[8]=230;
     }
     if (key == '3') {
@@ -57,7 +66,6 @@ void keyPressed() {
       imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=14;
-
       layer[8]=200;
     }
     if (key == '4') {
@@ -323,7 +331,7 @@ void sendNote2p5() {
     }
 
     if (nn==37)if (vv==127) {
-      growGridTriggerIndex=12;
+      growGridTriggerIndex=1;
       animationGrowGridTrigger() ;
     }
 
@@ -343,7 +351,7 @@ void sendNote2p5() {
     }
 
     if (nn==41)if (vv==127) {
-      growGridTriggerIndex=9;
+      growGridTriggerIndex=5;
       animationGrowGridTrigger() ;
     }
 
@@ -353,7 +361,7 @@ void sendNote2p5() {
     }
 
     if (nn==43)if (vv==127) {
-      growGridTriggerIndex=5;
+      growGridTriggerIndex=7;
       animationGrowGridTrigger() ;
     }
   }
@@ -380,7 +388,6 @@ void sendNote2p5() {
 }
 
 
-
 void sendCtl2p5() {
   //-----------------------------
   if (nr==40) layer[4]=vl;
@@ -394,8 +401,8 @@ void sendCtl2p5() {
   if (nr==23) showEyeParticle=int(vl);
   //-----------------------------
   if (nr==60) layer[6]=vl;
-  if (nr==61) ctl61=map(vl,0,255,0.2,0.8);
-  if (nr==62) ctl62=map(vl,0,255,1,15);
+  if (nr==61) ctl61=vl;
+  if (nr==62) ctl62=vl;
   if (nr==63) {
     if(vl>125)anim_dir=-1;
     else anim_dir=1;
@@ -404,11 +411,8 @@ void sendCtl2p5() {
 
   if (nr==30) layer[3]=vl;
 
-
   if (nr==50) layer[5]=vl;
   if (nr==51) ctl51=map(vl,0,255,1,2);
-
-
 
   if (nr==70) layer[7]=vl;
   if (nr==71) {

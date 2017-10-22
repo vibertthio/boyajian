@@ -12,13 +12,13 @@ uniform float time;
 
 float getGrayScale(sampler2D sampler, vec2 coods){
     vec4 color = texture2D(texture,coods);
-    float gray = (color.r + color.g + color.b)/3.0;
+    float gray = (color.r + color.g + color.b)/3.0*(vol+0.5);
     return gray;
 }
 
 void main( )
 {
-    vec2 delta = vec2(0.0,0.003);
+    vec2 delta = vec2(vol*0.001,0.003);
     float m = max(resolution.x,resolution.y);
     vec2 texCoords = vertTexCoord.st ;
 
