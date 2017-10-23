@@ -1,3 +1,4 @@
+
 // horizontal:
 //   x -> 700 ~ 1000
 //   y -> 350 ~ 650
@@ -106,6 +107,8 @@ class StripsSystem {
 class Strips {
   Strip[] strips;
   int nOfStrips = 10;
+  boolean map = false;
+  int mapCount = 0;
 
   // Initialization
   Strips(PGraphics _c) {
@@ -138,7 +141,26 @@ class Strips {
     update();
     render();
   }
-  void update() {}
+  void update() {
+    if (!strips[mapCount].timer.state && (mapCount < nOfStrips - 1)) {
+      float x;
+      float y;
+      if (strips[mapCount].hr == strips[mapCount + 1].hr) {
+        x = strips[mapCount].xdes;
+        y = strips[mapCount].ydes;
+      } else if (strips[mapCount].hr) {
+        x = -1 * strips[mapCount].ydes;
+        y = strips[mapCount].xdes;
+      } else {
+        x = strips[mapCount].ydes;
+        y = -1 * strips[mapCount].xdes;
+      }
+
+      mapCount++;
+      strips[mapCount].start();
+      // strips[mapCount].start(x, y);
+    }
+  }
   void render() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].draw();
@@ -155,6 +177,16 @@ class Strips {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].start(pos);
     }
+  }
+  void startMap() {
+    stop();
+    map = true;
+    mapCount = 0;
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].continuous = false;
+      strips[i].drift = false;
+    }
+    strips[mapCount].start();
   }
   void stop() {
     for (int i = 0; i < nOfStrips; i++) {
@@ -234,6 +266,16 @@ class Strips {
       strips[i].start();
     }
   }
+  void beadingTrigger(boolean _s) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].beading = _s;
+    }
+  }
+  void beadingTrigger() {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].beading = !strips[i].beading;
+    }
+  }
 }
 
 class Strip {
@@ -266,7 +308,12 @@ class Strip {
   boolean cross = false;
   boolean drift = true;
   boolean colorful = false;
+  boolean continuous = true;
   TimeLine timer;
+
+  // Circles
+  boolean beading = false;
+  Ball ball;
 
   // Initialization
   Strip(PGraphics _c) {
@@ -293,11 +340,7 @@ class Strip {
     init(_c, _spd);
   }
   void init(PGraphics _c) {
-    canvas = _c;
-    setColors(color(100));
-    timer = new TimeLine(2000);
-    xdes = 1000;
-    reset();
+    init(_c, 2000);
   }
   void init(PGraphics _c, int spd) {
     canvas = _c;
@@ -331,6 +374,7 @@ class Strip {
       canvas.translate(xpos, ypos);
       if (drift) { canvas.rectMode(CENTER); }
       else { canvas.rectMode(CORNER); }
+      if (beading) { ball.draw(); }
       canvas.rotate(angle);
       if (vibrateCount > 0) { canvas.translate(random(-10, 10), random(-10, 10)); }
       canvas.rect(0, 0, widthOfStrip * widthScale, heightOfStrip * heightScale);
@@ -362,8 +406,15 @@ class Strip {
     col = startColor;
     xstr = xpos;
     ydes = ypos;
-    timer.limit = floor(random(600, 2000));
+    int ll = floor(random(600, 2000));
+    timer.limit = ll;
     timer.startTimer();
+
+    // reset Circle
+    if (beading) {
+      ball = new Ball(canvas, 0, 0, ll);
+      ball.targetRadius = 3 * heightOfStrip;
+    }
   }
 
   // Utilities
@@ -381,6 +432,11 @@ class Strip {
       // xpos += random(-5, 5);
       xdes = floor(random(20, 80)) * 10;
     }
+  }
+  void start(float _x, float _y) {
+    reset();
+    xpos = _x;
+    ypos = _y;
   }
   void stop() {
     state = 0;
@@ -428,8 +484,13 @@ class Strip {
       widthOfStrip = (xdes - xpos) * ratio;
 
       if (!timer.state) {
-        state = 2;
-        timer.startTimer();
+        if (continuous) {
+          state = 2;
+          timer.startTimer();
+          if (beading) {
+            ball.moveBang((xdes - xpos) * 0.5, (ydes - ypos) * 0.5);
+          }
+        }
       }
     } else if (state == 2) {
       float ratio = timer.getPowOut(3);
@@ -438,10 +499,16 @@ class Strip {
       }
 
       if (!timer.state) {
-        state = 3;
-        timer.startTimer();
-        if (colorful) {
-          col = endColor;
+        if (continuous) {
+          state = 3;
+          timer.startTimer();
+          if (beading) {
+            ball.radiusBang(4);
+            ball.alphaBang(0);
+          }
+          if (colorful) {
+            col = endColor;
+          }
         }
       }
     } else if (state == 3) {

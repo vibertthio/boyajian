@@ -3,8 +3,8 @@ class GrowGrid {
   PGraphics canvas;
   GrowRectangle[] recs;
   int time;
-  float low = 50;
-  float high = 120;
+  float low = 35;
+  float high = 85;
   float length;
   float lengthScale = 1;
 
@@ -239,12 +239,12 @@ class GrowGrid {
   }
 
   int[][] colSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7},
-    {7, 6, 5, 4, 3, 2, 1, 0},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
+    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
   };
   int[][] rowSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7},
-    {7, 6, 5, 4, 3, 2, 1, 0},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
+    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
   };
   Sequence colRotateSequence = new Sequence(colSequenceSet, 1);
   Sequence colColorSequence = new Sequence(colSequenceSet, 2);

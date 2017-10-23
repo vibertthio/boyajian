@@ -238,5 +238,5 @@ void animationStripTrigger() {
   stripTriggerIndex %= 15;
 }
 void animationCircleTrigger() {
-  animations.circle.emergeBang();
+  animations.stripsSystem.crStrips.startMap();
 }

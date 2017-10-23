@@ -8,8 +8,6 @@ class Animations {
   Slashes slashes;
   LogoDraw logodraws;
 
-  Circle circle;
-
   Animations(PGraphics _c, PGraphics _ic) {
     canvas = _c;
     innerCanvas = _ic;
@@ -18,15 +16,12 @@ class Animations {
     logodraws = new LogoDraw();
     slashes = new Slashes(50, _ic);
     stripsSystem = new StripsSystem(_ic);
-
-    circle = new Circle(_c);
   }
 
   void draw() {
     if (layer[8] > 10)  { logodraws.draw(canvas, logoMirror, layer[8]); }
     if (layer[6] < 115) { growGrid.draw(); }
     if (layer[6] > 135) { rotateGrid.draw(); }
-    circle.draw();
   }
 
   void innerDraw() {
