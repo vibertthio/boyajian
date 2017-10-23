@@ -19,19 +19,19 @@ class Animations {
   }
 
   void draw() {
-    if (layer[8] > 10)  { logodraws.draw(canvas, logoMirror, layer[8]); }
+    if (layer[8] > 2)  { logodraws.draw(canvas, logoMirror, layer[8]); }
     if (layer[6] < 115) { growGrid.draw(); }
     if (layer[6] > 135) { rotateGrid.draw(); }
   }
 
   void innerDraw() {
 
-    if (layer[3] > 10 || layer[2] > 10) {
+    if (layer[3] > 2 || layer[2] > 2) {
       //if(layer[3] >layer[2]) logodraws.draw(innerCanvas, logoMirror2,layer[3]);
       //else logodraws.draw(innerCanvas, logoMirror2,layer[2]);
     }
 
-    if (layer[3] > 10) { stripsSystem.draw(); }
-    if (layer[2] > 10) { slashes.draw(); }
+    if (layer[3] > 2) { stripsSystem.draw(); }
+    if (layer[2] > 2) { slashes.draw(); }
   }
 }

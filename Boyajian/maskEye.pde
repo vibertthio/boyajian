@@ -213,6 +213,15 @@ void maskEyedrawing() {
     setTexture( maskA_5, EyeImg);
   }
 
+  if (vertexNoise==true) {
+    addWireFrame(maskA_1_1);
+    addWireFrame(maskA_1_2);
+    addWireFrame(maskA_2);
+    addWireFrame(maskA_3_1);
+    addWireFrame(maskA_3_2);
+    addWireFrame(maskA_4);
+    addWireFrame(maskA_5);
+  }
 }
 
 void Eye(boolean theFlag) {

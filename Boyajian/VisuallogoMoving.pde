@@ -107,13 +107,13 @@ void logoDrawing() {
 
   //---------------
   logoMirror2.beginDraw();
-  logoMirror2.background(255, 0);
+  logoMirror2.background(125,2);
   logoMirror2.imageMode(CENTER);
   animations.innerDraw();
   logoMirror2.endDraw();
 
   logoMoving2.beginDraw();
-  logoMoving2.background(255, 0);
+  logoMoving2.background(125,2);
   logoMoving2.imageMode(CENTER);
   logos(logoMoving2, logoMirror2);//鏡射
   logoMoving2.endDraw();

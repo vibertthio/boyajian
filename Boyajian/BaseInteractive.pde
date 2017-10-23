@@ -11,30 +11,16 @@ void keyReleased() {
     effectGLSL.set("alpha", 0.8);
   }
 
-  if (key=='l') {
-    autoBlend=false;
-  }
-  
-  if (key=='p') {
-    autoBg=false;
-  }
-
-
+  if (key=='l')  autoBlend=false;
+  if (key=='p') autoBg=false;
 }
 
 
 void keyPressed() {
 
-  if (key=='l') {
-    autoBlend=true;
-  }
-  
-  if (key=='p') {
-    autoBg=true;
-  }
-  if (key=='o') {
-    oneShotBang=true;
-  }
+  if (key=='l') autoBlend=true;
+  if (key=='p') autoBg=true;
+  if (key=='o')  oneShotBang=true;
 
 
   if (key=='s') {
@@ -50,7 +36,7 @@ void keyPressed() {
     else if (tempEffect==10) effectGLSL = loadShader("glsl/sobel_1.glsl");
     effectGLSL.set("vol", 1.0);
   }
-  if(key == ' '){
+  if (key == ' ') {
     smooth.reset(120);
   }
 
@@ -293,8 +279,7 @@ void sendNote2p5() {
     if (nn==43)if (vv==127)Wind(true);
     else Wind(false);
   }
-  //---------------------------------------------ch1
-  //---------------------------------------------ch2
+  //---------------------------------------------ch2 up
   if (ch==2) {
     if (nn==24)if (vv==127) {
       rotateGridTriggerIndex = 0;
@@ -337,7 +322,8 @@ void sendNote2p5() {
       animationRotateGridTrigger() ;
     }
 
-    //-----------------------------------------------
+    //---------------------------------------------ch2 down
+
     if (nn==36)if (vv==127) {
       growGridTriggerIndex=0;
       animationGrowGridTrigger() ;
@@ -378,7 +364,51 @@ void sendNote2p5() {
       animationGrowGridTrigger() ;
     }
   }
-  //---------------------------------------------ch2
+  //---------------------------------------------ch3 up
+
+  if (ch==3) {
+    if (nn==24)if (vv==127) {
+      stripTriggerIndex=0;
+      animationStripTrigger() ;
+      println("test");
+    }
+
+    if (nn==25)if (vv==127) {
+      stripTriggerIndex=1;
+      animationStripTrigger() ;
+    }
+
+    if (nn==26)if (vv==127)
+    {
+      stripTriggerIndex=2;
+      animationStripTrigger() ;
+    }
+
+    if (nn==27)if (vv==127) {
+      stripTriggerIndex=3;
+      animationStripTrigger() ;
+    }
+
+    if (nn==28)if (vv==127) {
+      stripTriggerIndex=4;
+      animationStripTrigger() ;
+    }
+
+    if (nn==29)if (vv==127) {
+      stripTriggerIndex=5;
+      animationStripTrigger() ;
+    }
+
+    if (nn==30)if (vv==127) {
+      stripTriggerIndex=6;
+      animationStripTrigger() ;
+    }
+
+    if (nn==31)if (vv==127) {
+      stripTriggerIndex=7;
+      animationStripTrigger() ;
+    }
+  }
 
 
   if (nn==105)if (vv==127)holdVertex=true;
@@ -409,7 +439,7 @@ void sendCtl2p5() {
   if (nr==43) ColumnNum =int(map(vl, 0, 255, 2, 580));
   //-----------------------------
   if (nr==20) layer[2]=vl;
-  if (nr==21) showLineParticle=int(vl);
+  if (nr==21) showLine=int(vl);
   if (nr==22) showEarParticle=int(vl);
   if (nr==23) showEyeParticle=int(vl);
   //-----------------------------
@@ -417,15 +447,16 @@ void sendCtl2p5() {
   if (nr==61) ctl61=vl;
   if (nr==62) ctl62=vl;
   if (nr==63) {
-    if(vl>125)anim_dir=-1;
+    if (vl>125)anim_dir=-1;
     else anim_dir=1;
-    }
+  }
   //-----------------------------
 
   if (nr==30) layer[3]=vl;
+  if (nr==31) showCylinder=int(vl);
 
   if (nr==50) layer[5]=vl;
-  if (nr==51) ctl51=map(vl,0,255,1,2);
+  if (nr==51) ctl51=map(vl, 0, 255, 1, 2);
 
   if (nr==70) layer[7]=vl;
   if (nr==71) {
@@ -451,7 +482,6 @@ void sendCtl2p5() {
   if (nr==12) contrastB=vl/255;
   if (nr==13) Falloff=map(vl, 0, 255, 1, 3);
   //------------
-
 }
 
 void controllerChange(ControlChange change) {

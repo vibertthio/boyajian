@@ -36,18 +36,21 @@ void oscEvent(OscMessage m) {
     if (m.checkAddrPattern("/beat")==true)if (m.checkTypetag("i")) {
 
       //-----------------------------------------layer6
-      if (layer[6]>150) {
+      if (layer[6]>135) {
         rotateGridTriggerIndex =int(random(2))+6;
         animationRotateGridTrigger() ;
       }
 
-      if (layer[6]<100) {
+      if (layer[6]<115) {
         growGridTriggerIndex=int(random(2))+6;
         animationGrowGridTrigger() ;
       }
-      //-----------------------------------------layer6
 
-
+      //-----------------------------------------layer3
+      if (layer[3]>200) {
+        stripTriggerIndex=3;
+        animationStripTrigger() ;
+      }
       //-----------------------------------------camera
       if (layer[8]>250) {
         int k=int(random(3));
@@ -64,22 +67,22 @@ void oscEvent(OscMessage m) {
       float volTemp=0;
       volTemp=m.get(0).floatValue()*ctl51;
 
-      if(volTemp<1) vol=volTemp;
+      if (volTemp<1) vol=volTemp;
       else vol=0.99;
 
 
       //------------------
-      if(ctl62>0){
-        animations.rotateGrid.adjustSpeed(map(ctl62,0,255,0.1,8)*anim_dir);
-      }else{
+      if (ctl62>0) {
+        animations.rotateGrid.adjustSpeed(map(ctl62, 0, 255, 0.1, 8)*anim_dir);
+      } else {
         anim_sp = map(vol, 0, 1, 0.1, 8);
         animations.rotateGrid.adjustSpeed(anim_sp*anim_dir);
         //println("speed: "+anim_sp*anim_dir);
       }
       //------------------
-      if(ctl61>0){
-        animations.growGrid.adjustLengthScale(map(ctl61,0,255,0.2,0.8));
-      }else{
+      if (ctl61>0) {
+        animations.growGrid.adjustLengthScale(map(ctl61, 0, 255, 0.2, 0.8));
+      } else {
         anim_scale = map(vol, 0, 1, 0.2, 0.8     );
         animations.growGrid.adjustLengthScale(anim_scale);
         //println("scale: " + anim_scale);

@@ -219,7 +219,7 @@ void draw() {
 
   resetShader();
 
-  if (layer[4]>10) {//分割圖騰
+  if (layer[4]>2) {//分割圖騰
     visualColumnDrawing();
   }
 

@@ -11,6 +11,10 @@ PShape Listen_1;
 PShape Listen_2;
 PShape Listen_3;
 
+PShape rListen_1;
+PShape rListen_2;
+PShape rListen_3;
+
 PImage ListenImg;
 
 float Listen_x, Listen_y;
@@ -27,6 +31,10 @@ void maskListenSetting() {
     Listen_1 = loadShape("maskListen/listen_1.obj");
     Listen_2=  loadShape("maskListen/listen_2.obj");
     Listen_3 = loadShape("maskListen/listen_3.obj");
+
+    rListen_1 = loadShape("maskListen/listen_1.obj");
+    rListen_2=  loadShape("maskListen/listen_2.obj");
+    rListen_3 = loadShape("maskListen/listen_3.obj");
     showMaskListen =true;
   } else if (showMaskListen==true) {
     MaskListenIn=false;
@@ -85,14 +93,20 @@ void maskListendrawing() {
     s3d.scale(0.35);
     //---------------
     s3d.pushMatrix();
+    if (vertexNoise==true) randomVertex(Listen_1);
+    else returnVertex(rListen_1, Listen_1);
     s3d.shape(Listen_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    if (vertexNoise==true) randomVertex(Listen_2);
+    else returnVertex(rListen_2, Listen_2);
     s3d.shape(Listen_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    if (vertexNoise==true) randomVertex(Listen_3);
+    else returnVertex(rListen_3, Listen_3);
     s3d.shape(Listen_3);
     s3d.popMatrix();
     //---------------
@@ -106,6 +120,11 @@ void maskListendrawing() {
     setTexture(Listen_1, ListenImg);
     setTexture(Listen_2, ListenImg);
     setTexture(Listen_3, ListenImg);
+  }
+  if (vertexNoise==true) {
+    addWireFrame(Listen_1);
+    addWireFrame(Listen_2);
+    addWireFrame(Listen_3);
   }
 }
 void Listen(boolean theFlag) {

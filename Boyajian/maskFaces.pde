@@ -10,6 +10,10 @@ PShape Faces_1;
 PShape Faces_2;
 PShape Faces_3;
 
+PShape rFaces_1;
+PShape rFaces_2;
+PShape rFaces_3;
+
 PImage FacesImg;
 
 float Faces_x, Faces_y;
@@ -26,6 +30,10 @@ void maskFacesSetting() {
     Faces_1 = loadShape("maskFaces/faces_1.obj");
     Faces_2=  loadShape("maskFaces/faces_2.obj");
     Faces_3 = loadShape("maskFaces/faces_3.obj");
+
+    rFaces_1 = loadShape("maskFaces/faces_1.obj");
+    rFaces_2=  loadShape("maskFaces/faces_2.obj");
+    rFaces_3 = loadShape("maskFaces/faces_3.obj");
     showMaskFaces =true;
   } else if (showMaskFaces==true) {
     MaskFacesIn=false;
@@ -88,28 +96,40 @@ void maskFacesdrawing() {
     //---------------
     s3d.pushMatrix();
     s3d.rotateZ(anim(90,0,0.2,4));
+    if (vertexNoise==true) randomVertex(Faces_1);
+    else returnVertex(rFaces_1, Faces_1);
     s3d.shape(Faces_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.rotateZ(anim(90,0,0.2,4));
+    if (vertexNoise==true) randomVertex(Faces_2);
+    else returnVertex(rFaces_2, Faces_2);
     s3d.shape(Faces_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    if (vertexNoise==true) randomVertex(Faces_3);
+    else returnVertex(rFaces_3, Faces_3);
     s3d.shape(Faces_3);
     s3d.popMatrix();
     //---------------
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
-    noWireFrame( Faces_1, random(1.80, 2.40), color(255, 120));
-    noWireFrame( Faces_2, random(1.80, 2.40), color(255, 120));
-    noWireFrame( Faces_3, random(1.80, 2.40), color(255, 120));
+    noWireFrame(Faces_1, random(1.80, 2.40), color(255, 120));
+    noWireFrame(Faces_2, random(1.80, 2.40), color(255, 120));
+    noWireFrame(Faces_3, random(1.80, 2.40), color(255, 120));
   } else {
-    setTexture( Faces_1, FacesImg);
-    setTexture( Faces_2, FacesImg);
+    setTexture(Faces_1, FacesImg);
+    setTexture(Faces_2, FacesImg);
     setTexture(Faces_3, FacesImg);
+  }
+
+  if (vertexNoise==true) {
+    addWireFrame(Faces_1);
+    addWireFrame(Faces_2);
+    addWireFrame(Faces_3);
   }
 }
 void Faces(boolean theFlag) {

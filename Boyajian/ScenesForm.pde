@@ -17,7 +17,7 @@ class Form {
 
     canvas=_c;
     canvas.noFill();
-    canvas.stroke(255, showLineParticle*0.8);
+    canvas.stroke(255, showLine*0.8);
     canvas.blendMode(ADD);
     canvas.strokeWeight(1);
     for (float w = 0; w <= width; w += stepSize) {

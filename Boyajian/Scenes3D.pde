@@ -30,17 +30,21 @@ boolean wireFrameCtl=false;
 boolean vertexNoise=false;
 boolean resetCamDo=false;
 color maskNmae=color(255);
+
 EyeGroup[] eyeGroups;
 EarGroup[] earGroups;
+
 float showEyeParticle=0;
 float showEarParticle=0;
-float showLineParticle=0;
+float showLine=0;
+float showCylinder=0;
 
 
 int eyeNum = 200;
 int earNum = 40;
 PVector parentPos;
 Form forms;
+Cylinder cylinders;
 
 
 void s3dSetting() {
@@ -54,6 +58,7 @@ void s3dSetting() {
   eyeGroups = new EyeGroup[eyeNum];
   earGroups = new EarGroup[earNum];
   forms= new Form();
+  cylinders= new Cylinder();
   for (int i = 0; i < eyeNum; i++) {
     PVector p = new PVector(random(-600, 600)+width/2, random(-300, 300)+height/2, random(-400, 400));
     eyeGroups[i] = new EyeGroup(p);
@@ -63,8 +68,6 @@ void s3dSetting() {
     PVector p = new PVector(width/2+posAvg(1200, earNum, i)-600, height/2, -90);
     earGroups[i] = new EarGroup(p);
   }
-
-
 
   globe = loadShape("3d/sphere2.obj");
   Rglobe = loadShape("3d/sphere2.obj");
@@ -103,9 +106,8 @@ void s3dDrawing() {
     }
   }
 
-  if (showLineParticle>1) {
-    forms.render(s3d);
-  }
+  if (showLine>1) forms.render(s3d);
+  if (showCylinder>1) cylinders.render(s3d);
 
   s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
   s3d.lightFalloff(Falloff, 0.001, 0.000);
@@ -180,6 +182,11 @@ void s3dDrawing() {
   } else {
     setTexture(globe, tex);
   }
+
+  if (vertexNoise==true) {
+    //addWireFrame(globe);
+  }
+
   s3d.shape(globe);
 
   if (wireFrameCtl==true) {
@@ -189,12 +196,14 @@ void s3dDrawing() {
     noWireFrame(globe2, 2.0f, color(0, 165, 250, 120));
     s3d.blendMode(ADD);
   } else {
+    globe2.setStroke(true);
     setTexture(globe2, tex2);
   }
   s3d.pushMatrix();//--------------------
   s3d.rotateY(radians(75));
   s3d.rotateZ(radians(anim(600, -10, 10, 2)));
   s3d.scale(1.45);
+
   s3d.shape(globe2);
   s3d.popMatrix();//--------------------
 
@@ -202,4 +211,10 @@ void s3dDrawing() {
   s3d.popMatrix();//--------------------
   s3d.endDraw();
   endPGL();
+}
+
+void addWireFrame(PShape who) {
+  who.setStroke(color(35, 255));
+  who.setStrokeWeight(1.8);
+  who.setStroke(true);
 }

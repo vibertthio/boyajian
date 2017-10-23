@@ -10,6 +10,11 @@ PShape Smell_1;
 PShape Smell_2;
 PShape Smell_3;
 
+PShape rSmell_1;
+PShape rSmell_2;
+PShape rSmell_3;
+
+
 PImage SmellImg;
 
 float Smell_x, Smell_y;
@@ -27,6 +32,10 @@ void maskSmellSetting() {
     Smell_1 = loadShape("maskSmell/smell_1.obj");
     Smell_2=  loadShape("maskSmell/smell_2.obj");
     Smell_3 = loadShape("maskSmell/smell_3.obj");
+
+    rSmell_1 = loadShape("maskSmell/smell_1.obj");
+    rSmell_2=  loadShape("maskSmell/smell_2.obj");
+    rSmell_3 = loadShape("maskSmell/smell_3.obj");
     showMaskSmell =true;
   } else if (showMaskSmell==true) {
     MaskSmellIn=false;
@@ -86,10 +95,14 @@ void maskSmelldrawing() {
     //---------------
     s3d.pushMatrix();
     s3d.translate(0, anim(180,0,-40,8));
+    if (vertexNoise==true) randomVertex(Smell_1);
+    else returnVertex(rSmell_1, Smell_1);
     s3d.shape(Smell_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    if (vertexNoise==true) randomVertex(Smell_2);
+    else returnVertex(rSmell_2, Smell_2);
     s3d.shape(Smell_2);
     s3d.popMatrix();
     //---------------
@@ -97,6 +110,8 @@ void maskSmelldrawing() {
     {
       s3d.pushMatrix();
       s3d.tint( color(map(pow(sin((float(frameCount)%300)/300*6.28), 4.0), 0, 1, 0, 255), 255, 255));
+      if (vertexNoise==true) randomVertex(Smell_3);
+      else returnVertex(rSmell_3, Smell_3);
       s3d.shape(Smell_3);
       s3d.popMatrix();
     }
@@ -113,6 +128,12 @@ void maskSmelldrawing() {
     setTexture(Smell_1, SmellImg);
     setTexture(Smell_2, SmellImg);
     setTexture(Smell_3, SmellImg);
+  }
+
+  if (vertexNoise==true) {
+    addWireFrame(Smell_1);
+    addWireFrame(Smell_2);
+    addWireFrame(Smell_3);
   }
 }
 
