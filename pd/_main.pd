@@ -279,7 +279,7 @@
 #X obj -168 40 packOSC;
 #X obj -168 66 s allOsc;
 #X msg -168 10 send /beat 1;
-#X floatatom 287 16 5 0 0 0 - - -, f 5;
+#X floatatom 168 -3 5 0 0 0 - - -, f 5;
 #X obj 229 14 *~ 1;
 #X floatatom 450 403 5 0 0 0 - - -, f 5;
 #X obj 439 463 expr int($f1*100)/100;
@@ -383,9 +383,9 @@
 #X connect 90 0 15 0;
 #X connect 90 0 13 0;
 #X connect 90 0 65 0;
-#X connect 90 0 39 0;
 #X connect 90 0 80 0;
 #X connect 90 0 11 0;
+#X connect 90 0 39 0;
 #X connect 91 0 95 0;
 #X connect 92 0 93 0;
 #X connect 93 0 94 0;

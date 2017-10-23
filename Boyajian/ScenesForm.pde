@@ -1,6 +1,6 @@
 class Form {
 
-  float stepSize = 10;
+  float stepSize = 30;
   float maxDepth = 200;
   PGraphics canvas;
   float soundVol;

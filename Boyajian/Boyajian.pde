@@ -52,6 +52,9 @@ boolean oscCtl=true;
 boolean record=false;
 boolean splitScreen=false;
 boolean autoBlend=false;
+boolean oneShotBang=false;
+
+boolean autoBg=false;
 
 pdMetro autoCamMetro ;
 pdMetro autoCamMetroUpDown ;
@@ -106,14 +109,19 @@ void draw() {
   background(0);
   smooth.update();
 
-  if(autoBlend==true){
-    if(frameCount%5==0){
+  if (autoBlend==true) {
+    if (frameCount%5==0) {
       blendIndex=int(random(10));
+    }
+  }
+  if (autoBg==true) {
+    if (frameCount%5==0) {
+      blendGLSL.set( "lowLayer", bgs [int(random(7))]);
     }
   }
 
 
-  if(smooth.bang==true){
+  if (smooth.bang==true) {
     layer[6]=smooth.o;
   }
 
@@ -146,7 +154,7 @@ void draw() {
   tex2.rectMode(CENTER);
   tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //
 
-//  tex2.imageMode(CENTER);
+  //  tex2.imageMode(CENTER);
   //tex2.image(logoMoving2,width/2, height/2, tex.width*1.4, tex.height*1.8);  //
   tex2.endDraw();
 
@@ -214,6 +222,20 @@ void draw() {
   if (layer[4]>10) {//分割圖騰
     visualColumnDrawing();
   }
+
+  if (oneShotBang==true) {
+    countWhite=(countWhite+20)%400;
+    float countWhiteAlpha=0;
+    if (countWhite<255) {
+      countWhiteAlpha=countWhite;
+      fill(255, 255-countWhiteAlpha);
+      rect(0, 0, width, height);
+    } else {
+      oneShotBang=false;
+      countWhite=0;
+    }
+  }
+
 
   if (countWhiteAdd>0) {
     countWhite=(countWhite+countWhiteAdd)%400;

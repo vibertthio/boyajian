@@ -14,6 +14,11 @@ void keyReleased() {
   if (key=='l') {
     autoBlend=false;
   }
+  
+  if (key=='p') {
+    autoBg=false;
+  }
+
 
 }
 
@@ -23,6 +28,14 @@ void keyPressed() {
   if (key=='l') {
     autoBlend=true;
   }
+  
+  if (key=='p') {
+    autoBg=true;
+  }
+  if (key=='o') {
+    oneShotBang=true;
+  }
+
 
   if (key=='s') {
     if (tempEffect==1) ;
