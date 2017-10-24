@@ -304,6 +304,12 @@ float anim(int num, float start, float end, float pp) {
   return map(pow(sin((float(frameCount)%num)/num*6.28), pp), 0, 1, start, end);
 }
 
+float animLine(int num, float start, float end, float speed) {
+  float k=(num-speed);
+  float i=float(frameCount)%(num-speed);
+  return map(i/k, 0, 1, start, end);
+}
+
 void noWireFrame(PShape who, float sw, color cc) {
   who.setStroke(true);
   who.setTexture(null);

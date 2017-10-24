@@ -89,6 +89,11 @@ void maskTastedrawing() {
     s3d.scale(0.60);
     //---------------
     s3d.pushMatrix();
+    if(vol>0.8){
+      s3d.scale(1+random(0.2));
+    }else{
+      s3d.scale(1);
+    }
     s3d.shape(Taste_1);
     s3d.popMatrix();
     //---------------

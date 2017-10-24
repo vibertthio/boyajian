@@ -7,8 +7,18 @@ pdLine  toolWindLineIn;
 pdLine  toolWindLineOut;
 
 PShape Wind_1;
+PShape Wind_2;
+PShape Wind_3;
+
+PShape rWind_1;
+PShape rWind_2;
+PShape rWind_3;
+
 PImage WindImg;
 float Wind_x, Wind_y;
+
+float WindSpeed=1;
+float WindRo;
 
 void toolWindSetting() {
 
@@ -19,7 +29,13 @@ void toolWindSetting() {
     countLife();
     WindImg=loadImage("toolWind/tex_wind.png");
     toolWindIn=true;
-    Wind_1 = loadShape("toolWind/wind.obj");
+    Wind_1 = loadShape("toolWind/wind_1.obj");
+    Wind_2 = loadShape("toolWind/wind_2.obj");
+    Wind_3 = loadShape("toolWind/wind_2.obj");
+
+    rWind_1 = loadShape("toolWind/wind_1.obj");
+    rWind_2 = loadShape("toolWind/wind_2.obj");
+    rWind_3 = loadShape("toolWind/wind_2.obj");
 
     showtoolWind =true;
   } else if (showtoolWind==true) {
@@ -81,12 +97,30 @@ void toolWinddrawing() {
     s3d.rotateZ(anim(90,0,0.2,4));
     s3d.shape(Wind_1);
     s3d.popMatrix();
+
+
+    WindRo=(WindRo+WindSpeed*map(vol,0,1,5,20))%360;
+    s3d.pushMatrix();
+    s3d.translate(-300,0,0);
+    s3d.rotateZ(radians(-WindRo));
+    s3d.shape(Wind_2);
+    s3d.popMatrix();
+
+    s3d.pushMatrix();
+    s3d.translate(300,0,0);
+    s3d.rotateZ(radians(WindRo));
+    s3d.shape(Wind_3);
+    s3d.popMatrix();
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
     noWireFrame(Wind_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Wind_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Wind_3, random(1.80, 2.40), color(0, 165, 250, 120));
   } else {
     setTexture(Wind_1, WindImg);
+    setTexture(Wind_2, WindImg);
+    setTexture(Wind_3, WindImg);
   }
 }
 void Wind(boolean theFlag) {

@@ -98,19 +98,22 @@ void maskFacesdrawing() {
     s3d.rotateZ(anim(90,0,0.2,4));
     if (vertexNoise==true) randomVertex(Faces_1);
     else returnVertex(rFaces_1, Faces_1);
+    s3d.scale(vol*0.2+1.0);
     s3d.shape(Faces_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(anim(90,0,0.2,4));
+    s3d.rotateZ(anim(90,0,-0.2,4));
     if (vertexNoise==true) randomVertex(Faces_2);
     else returnVertex(rFaces_2, Faces_2);
+    s3d.scale(vol*0.2+1.0);
     s3d.shape(Faces_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     if (vertexNoise==true) randomVertex(Faces_3);
     else returnVertex(rFaces_3, Faces_3);
+    s3d.scale(1,vol*0.4+1.0,1);
     s3d.shape(Faces_3);
     s3d.popMatrix();
     //---------------

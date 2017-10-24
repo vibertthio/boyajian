@@ -101,12 +101,23 @@ void maskListendrawing() {
     s3d.pushMatrix();
     if (vertexNoise==true) randomVertex(Listen_2);
     else returnVertex(rListen_2, Listen_2);
+    if(vol>0.8){
+      s3d.scale(1+random(0.3));
+    }else{
+      s3d.scale(1);
+    }
+
     s3d.shape(Listen_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     if (vertexNoise==true) randomVertex(Listen_3);
     else returnVertex(rListen_3, Listen_3);
+    if(vol>0.8){
+      s3d.scale(1+random(0.3));
+    }else{
+      s3d.scale(1);
+    }
     s3d.shape(Listen_3);
     s3d.popMatrix();
     //---------------

@@ -23,6 +23,9 @@ PShape RDream_6;
 PImage DreamImg;
 float Dream_x, Dream_y;
 
+float DreamSpeed=1;
+float DreamRo;
+
 void maskDreamSetting() {
 
   textDream= RG.getText("食夢術士", "wt.ttf", 72, RFont.CENTER);
@@ -120,7 +123,8 @@ void maskDreamdrawing() {
     //---------------
     s3d.pushMatrix();
     s3d.translate(0, 0, 0);
-    s3d.rotateZ(radians(float(frameCount%50)/50*360));
+    DreamRo=(DreamRo+DreamSpeed*map(vol,0,1,5,20))%360;
+    s3d.rotateZ(radians(DreamRo));
     s3d.translate(0, 30, 0);
     s3d.shape(Dream_3);
     if (vertexNoise==true) randomVertex(Dream_3);
@@ -130,7 +134,7 @@ void maskDreamdrawing() {
     s3d.pushMatrix();
     s3d.translate(0, 188, -44);
     if ((frameCount%400)>300) {
-      s3d.rotateX(radians(anim(400, 0, -40, 8)));
+      s3d.rotateX(radians(anim(100, 0, -40, 8)));
     }
     s3d.translate(0, 0, 0);
     s3d.shape(Dream_4);
