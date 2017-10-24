@@ -21,8 +21,8 @@ class GrowGrid {
     canvas = _c;
     time = 0;
     col = _col;
-    highValue = chhigh;
-    lowValue = chlow;
+    highValue = high;
+    lowValue = low;
     recs = new GrowRectangle[n * n];
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -66,14 +66,13 @@ class GrowGrid {
   }
   void updateAudioSignal() {
     lowBufferCount++;
-    if (highValue != chhigh) {
-      highValue = chhigh;
+    if (highValue != high) {
+      highValue = high;
       // println("high trigger!");
       // randomVibrateBang();
-
     }
-    if (lowValue != chlow) {
-      lowValue = chlow;
+    if (lowValue != low) {
+      lowValue = low;
       if (lowBufferCount >= lowBufferLimit) {
         lowBufferCount = 0;
         // println("low tcrigger!");
@@ -239,12 +238,12 @@ class GrowGrid {
   }
 
   int[][] colSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
-    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, 
+    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}, 
   };
   int[][] rowSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
-    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, 
+    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}, 
   };
   Sequence colRotateSequence = new Sequence(colSequenceSet, 1);
   Sequence colColorSequence = new Sequence(colSequenceSet, 2);
@@ -325,14 +324,20 @@ class GrowRectangle {
     canvas.pushMatrix();
     canvas.translate(300, 300);
     canvas.noStroke();
-    canvas.fill(col, map(layer[6],115,0,0,230));
+    canvas.fill(col, map(layer[6], 115, 0, 0, 230));
     canvas.rectMode(CENTER);
     canvas.translate(xpos, ypos);
     if (vibrateCount > 0) {
       canvas.translate(random(-5, 5), random(-5, 5));
     }
     canvas.rotate(angle);
-    canvas.rect(0, 0, length, length);
+    if (vol>0.7) {
+      float k=random(1.0, 1.1);
+      canvas.rect(0, 0, length*k, length*k);
+    } else {
+      canvas.rect(0, 0, length, length);
+    }
+
     cordRender();
     canvas.popMatrix();
   }
@@ -366,10 +371,10 @@ class GrowRectangle {
     } else {
       colorRatio *= 0.9;
       col = lerpColor(
-        endColor,
-        startColor,
+        endColor, 
+        startColor, 
         colorRatio
-      );
+        );
     }
   }
 
@@ -458,13 +463,18 @@ class GrowRectangle {
   void cordRender() {
     if (cording) {
       canvas.strokeWeight(4);
-      canvas.stroke(col, map(layer[6],115,0,0,230));
+      canvas.stroke(col, map(layer[6], 115, 0, 0, 230));
       canvas.line(0, 0, cordLength, 0);
       canvas.rotate(PI * 0.5);
       canvas.line(0, 0, cordLength, 0);
       canvas.noStroke();
-      canvas.fill(col, map(layer[6],115,0,0,230));
-      canvas.rect(cordLength, 0, cordLength * 0.5, cordLength * 0.5);
+      canvas.fill(col, map(layer[6], 115, 0, 0, 230));
+      if (vol>0.7) {
+        float k=random(1.0, 1.1);
+        canvas.rect(cordLength, 0, cordLength * 0.5*k, cordLength * 0.5*k);
+      } else {
+        canvas.rect(cordLength, 0, cordLength * 0.5, cordLength * 0.5);
+      }
     }
   }
 }

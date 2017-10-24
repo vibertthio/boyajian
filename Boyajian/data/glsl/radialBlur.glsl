@@ -29,7 +29,7 @@ void main(void ) {
 
         d *= .5 + .01*hash(d*time);
 
-        if(vol>0.85){
+        if(vol>0.87){
             uv += d * (vol*0.01+0.0001);
           }
     }

@@ -186,9 +186,7 @@ void s3dDrawing() {
     setTexture(globe, tex);
   }
 
-  if (vertexNoise==true) {
-    //addWireFrame(globe);
-  }
+
 
   s3d.shape(globe);
 
@@ -205,8 +203,10 @@ void s3dDrawing() {
   s3d.pushMatrix();//--------------------
   s3d.rotateY(radians(75));
   s3d.rotateZ(radians(anim(600, -10, 10, 2)));
-  s3d.scale(1.45*map(ctl33,0,255,1,0.1));
-
+  s3d.scale(1.45*map(ctl33, 0, 255, 1, 0.1));
+  if (vertexNoise==true) {
+    //addWireFrame(globe2);
+  }
   s3d.shape(globe2);
   s3d.popMatrix();//--------------------
 

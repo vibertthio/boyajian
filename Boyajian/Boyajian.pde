@@ -149,7 +149,7 @@ void draw() {
 
   tex2.beginDraw();
   tex2.background(255, 0);
-  donothing.set( "alpha", 0.8);
+  donothing.set( "alpha", 1.5);
   tex2.shader(donothing);
   tex2.rectMode(CENTER);
   tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //
@@ -261,6 +261,6 @@ void draw() {
   //line(width/2,0,width/2,height);
   //noFill();
   //rect(0,0,width,height);
-  //showFrameRate();//訊息
+  showFrameRate();//訊息
   //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }

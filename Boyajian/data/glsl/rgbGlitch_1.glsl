@@ -45,7 +45,7 @@ void main( void )
 	  vec2 p = vertTexCoord.st;
     vec4 c = vec4(0.0,0.0,0.0,1.0);
 
-    if(vol>0.85){
+    if(vol>0.87){
       vec4 shift = vec4pow(noise(vec2(SPEED*time,SPEED*time/25.0 )),4.0)
               *vec4(AMPLITUDE,AMPLITUDE,AMPLITUDE,1.0);;
       c = rgbShift(p, shift*1.5);

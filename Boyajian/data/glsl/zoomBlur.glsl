@@ -41,7 +41,7 @@ void main(void)
         s += d;
     }
     total /= 64.0;
-    float r = 1.5/(1.0+dot(p,p));
+    float r = 2.5/(1.0+dot(p,p));
 
 	 gl_FragColor = vec4( total*r,1.0);
 }

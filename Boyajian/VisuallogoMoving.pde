@@ -24,12 +24,14 @@ float logoMovingSpeed=0.5;
 float ctl82;
 float ctl83;
 
+PImage grass;
+
 color[] colors = {
-  color(253, 148, 38),
-  color(252, 86, 44),
-  color(56, 195, 206),
-  color(124, 156, 124),
-  color(18, 99, 104),
+  color(253, 148, 38), 
+  color(252, 86, 44), 
+  color(56, 195, 206), 
+  color(124, 156, 124), 
+  color(18, 99, 104), 
 };
 
 void defultSetting() {
@@ -53,6 +55,7 @@ void defultSetting() {
   columnImg= createGraphics(width, height, P2D);
   scence= createGraphics(width, height, P2D);
   finalRender= createGraphics(width, height, P2D);
+  grass=loadImage("img/grass_2.png");
 
   myBus.sendNoteOff(0, 24, 0);
   myBus.sendNoteOff(0, 25, 0);
@@ -86,7 +89,6 @@ void logoDrawing() {
   if (frameCount%100==0) if (bgChanging) {
     imgIndex=int(random(5));
     blendGLSL.set( "lowLayer", bgs [imgIndex]);
-
   }
   if (frameCount%100==0) if (bgBlending) blendIndex = int(random(10));
 
@@ -107,13 +109,14 @@ void logoDrawing() {
 
   //---------------
   logoMirror2.beginDraw();
-  logoMirror2.background(125,2);
+  logoMirror2.background(125, 2);
+
   logoMirror2.imageMode(CENTER);
   animations.innerDraw();
   logoMirror2.endDraw();
 
   logoMoving2.beginDraw();
-  logoMoving2.background(125,2);
+  logoMoving2.background(125, 2);
   logoMoving2.imageMode(CENTER);
   logos(logoMoving2, logoMirror2);//鏡射
   logoMoving2.endDraw();
@@ -142,7 +145,7 @@ class  LogoDraw {
   LogoDraw() {
   }
 
-  void draw(PGraphics _c,PGraphics _mirror,float _alpha) {
+  void draw(PGraphics _c, PGraphics _mirror, float _alpha) {
     alpha=_alpha;
     canvas = _c;
     who=_mirror;
@@ -161,8 +164,10 @@ class  LogoDraw {
     canvas.pushMatrix();
     canvas.translate(0+250, who.height/2);
 
-    if (ctl83>0.4) canvas.scale(ctl83, ctl83);
-    else canvas.scale(chmiddle*2, chmiddle*2);
+    if (ctl83>0.55) { 
+      canvas.scale(ctl83, ctl83);
+      //println(ctl83);
+    } else canvas.scale(map(vol,0,1,0.55,2), map(vol,0,1,0.55,2));
 
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);
@@ -172,8 +177,8 @@ class  LogoDraw {
     canvas.pushMatrix();
     canvas.translate(who.width+250, who.height/2);
 
-    if (ctl83>0.4) canvas.scale(-ctl83, -ctl83);
-    else canvas.scale(chmiddle*-2, chmiddle*-2);
+    if (ctl83>0.55) canvas.scale(-ctl83, -ctl83);
+    else canvas.scale(map(vol,0,1,0.55,2)*-1, map(vol,0,1,0.55,2)*-1);
 
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);

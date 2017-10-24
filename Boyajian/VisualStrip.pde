@@ -455,7 +455,7 @@ class Strip {
     } while(startColor == endColor);
   }
   void setColors(color c) {
-    colorful = false;
+    colorful = true;
     startColor = c;
     endColor = c;
     col = c;
