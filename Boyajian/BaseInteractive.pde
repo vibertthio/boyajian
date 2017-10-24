@@ -148,6 +148,7 @@ void keyPressed() {
   if (key == 'e') zoonCam();
   if (key == 'r') defultCam();
   if (key == 't') randomCam();
+  if (key == 'g') superRandomCam();
   if (key == 's') record = !record;
 
 
@@ -453,7 +454,9 @@ void sendCtl2p5() {
   //-----------------------------
 
   if (nr==30) layer[3]=vl;
-  if (nr==31) showCylinder=int(vl);
+  if (nr==31) showCylinder=vl;
+  if (nr==32) ctl32=vl;
+  if (nr==33) ctl33=vl;
 
   if (nr==50) layer[5]=vl;
   if (nr==51) ctl51=map(vl, 0, 255, 1, 2);

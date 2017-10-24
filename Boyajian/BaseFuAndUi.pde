@@ -395,3 +395,12 @@ void superCloseCam() {
   cam[4]=0.2;
   resetCamDo=true;
 }
+
+void superRandomCam() {
+  cam[0]=random(width/2-150,width/2+150);
+  cam[1]=random(height/2-150,height/2+150);
+  cam[2]=random(-400, 400);
+  cam[3]=random(-1, 1);
+  cam[4]=random(-1, 1);
+  resetCamDo=true;
+}

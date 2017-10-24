@@ -64,8 +64,8 @@ pdLine2 smooth;
 pdLine effectChange;
 
 void settings() {
-  size(1200, 342, P3D);
-  // size(1920, 548, P3D);
+  //size(1200, 342, P3D);
+  size(1920, 548, P3D);
   PJOGL.profile = 1;
 }
 
@@ -255,11 +255,12 @@ void draw() {
   noStroke();
   rect(0, 0, width, height);
   popStyle();
+  noCursor();
 
   //stroke(255,0,0);
   //line(width/2,0,width/2,height);
   //noFill();
   //rect(0,0,width,height);
-  showFrameRate();//訊息
+  //showFrameRate();//訊息
   //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }
