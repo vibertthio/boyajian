@@ -58,8 +58,8 @@ void maskFacesdrawing() {
     Faces_x=width/2+countX[2].o;
 
     //----fade
-    if (MaskFacesIn==true) Faces_y=height/2+29+map(easeOutBack(MaskFacesLine.o), 0, 1, 500, 0);
-    else  Faces_y=height/2+29+map(easeInBack(MaskFacesLine.o), 0, 1, 0, -500);
+    if (MaskFacesIn==true) Faces_y=height/2+19+map(easeOutBack(MaskFacesLine.o), 0, 1, 500, 0);
+    else  Faces_y=height/2+19+map(easeInBack(MaskFacesLine.o), 0, 1, 0, -500);
     //----fadeEnd
     s3d.translate(Faces_x, Faces_y+anim(300, 0, -50, 2), -50);
 

@@ -59,7 +59,7 @@ class Cylinder {
       canvas.scale(ww[i], hh[i], ww[i]);
 
       model.disableStyle();
-      canvas.tint(colors[id[i]],255);
+      canvas.tint(colors[id[i]],200);
       canvas.shape(model);
       model.enableStyle();
       canvas.popMatrix();

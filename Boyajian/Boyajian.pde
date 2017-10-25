@@ -54,11 +54,16 @@ boolean splitScreen=false;
 boolean autoBlend=false;
 boolean oneShotBang=false;
 
+boolean beatIn=true;
+
 boolean autoBg=false;
 
 pdMetro autoCamMetro ;
 pdMetro autoCamMetroUpDown ;
+pdMetro autoSuperCamMetro ;
+
 int autoCamMetroUpDownCount=0;
+
 pdLine2[] countX=new pdLine2[20];
 pdLine2 smooth;
 pdLine effectChange;
@@ -93,6 +98,11 @@ void setup() {
   autoCamMetro=new pdMetro(1000);
   autoCamMetro.reset();
   autoCamMetro.tgl=false;
+
+  autoSuperCamMetro=new pdMetro(2000);
+  autoSuperCamMetro.reset();
+  autoSuperCamMetro.tgl=false;
+
 
   autoCamMetroUpDown=new pdMetro(1500);
   autoCamMetroUpDown.reset();
@@ -144,7 +154,13 @@ void draw() {
 
   tex2.beginDraw();
   tex2.background(255, 0);
-  donothing.set( "alpha", 1.5);
+  //donothing.set( "alpha", 1.0);
+  
+  //---------------*blendGLSL即時參數
+  donothing.set( "blendAlpha", 0.7f );
+  donothing.set("time", millis()/1000.0);
+  donothing.set( "blendMode", indexSelectBlend [blendIndex] );
+  
   tex2.shader(donothing);
   tex2.rectMode(CENTER);
   tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //
@@ -246,7 +262,7 @@ void draw() {
 
   pushStyle();//黑色fadeOut遮罩
   blendMode(BLEND);
-  fill(0, 0, 0, 255-layer[1]);
+  fill(0, 255-layer[1]);
   noStroke();
   rect(0, 0, width, height);
   popStyle();

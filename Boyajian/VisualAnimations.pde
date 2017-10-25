@@ -19,7 +19,7 @@ class Animations {
   }
 
   void draw() {
-    if (layer[8] > 2)  { logodraws.draw(canvas, logoMirror, layer[8]); }
+    if (layer[8] > 2)  { logodraws.draw(canvas, logoMirror, layer[8]*0.8); }
     if (layer[6] < 115) { growGrid.draw(); }
     if (layer[6] > 135) { rotateGrid.draw(); }
   }

@@ -377,6 +377,7 @@ class Strip {
       if (beading) { ball.draw(); }
       canvas.rotate(angle);
       if (vibrateCount > 0) { canvas.translate(random(-10, 10), random(-10, 10)); }
+      canvas.noStroke();
       canvas.rect(0, 0, widthOfStrip * widthScale, heightOfStrip * heightScale);
       canvas.popMatrix();
     }

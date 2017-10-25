@@ -26,7 +26,7 @@ void animationRotateGridTrigger() {
   // animations.rotateGrid.rowBlinkSequence.bang(4);
 
   layer[3] = 0;
-  layer[6] = 190;
+  layer[6] = 220;
   println("Rotate Grid Animation ## " + rotateGridTriggerIndex);
   switch(rotateGridTriggerIndex) {
     case 0:
@@ -94,7 +94,7 @@ void animationGrowGridTrigger() {
   // animations.growGrid.rotateSequence.bang(floor(random(2)));
   // animations.growGrid.sizeSequence.bang(floor(random(2)));
   layer[3] = 0;
-  layer[6] = 60;
+  layer[6] = 30;
   smooth.oldOne= 60;
   println("Grow Grid Animation ## " + growGridTriggerIndex);
   switch(growGridTriggerIndex) {

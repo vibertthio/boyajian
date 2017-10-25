@@ -18,7 +18,7 @@ void main(void ) {
     vec2 uv = vertTexCoord.st;
     vec3  res = vec3(0);
     float invert;
-    if(vol>0.5){
+    if(vol>0.7){
       invert=-1.0;
     }else{
       invert=1.0;
@@ -34,5 +34,5 @@ void main(void ) {
           }
     }
 
-    gl_FragColor = vec4(res/float(SAMPLES)*2.0, 1);
+    gl_FragColor = vec4(res/float(SAMPLES)*1.2, 1);
 }

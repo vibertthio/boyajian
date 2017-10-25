@@ -17,8 +17,7 @@ PShape rWind_3;
 PImage WindImg;
 float Wind_x, Wind_y;
 
-float WindSpeed=1;
-float WindRo;
+
 
 void toolWindSetting() {
 
@@ -60,8 +59,8 @@ void toolWinddrawing() {
   {
     Wind_x=width/2+countX[15].o;
 
-    if (toolWindIn==true) Wind_y=height/2+42+ map(easeOutBack(toolWindLine.o), 0, 1, 500, 0);
-    else  Wind_y=height/2+42+map(easeInBack(toolWindLine.o), 0, 1, 0, -500);
+    if (toolWindIn==true) Wind_y=height/2+10+ map(easeOutBack(toolWindLine.o), 0, 1, 500, 0);
+    else  Wind_y=height/2+10+map(easeInBack(toolWindLine.o), 0, 1, 0, -500);
 
     s3d.translate(Wind_x, Wind_y+anim(300, 0, -50, 2), -50);
 
@@ -94,21 +93,22 @@ void toolWinddrawing() {
     s3d.scale(0.31);
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(anim(90,0,0.2,4));
     s3d.shape(Wind_1);
     s3d.popMatrix();
 
 
-    WindRo=(WindRo+WindSpeed*map(vol,0,1,5,20))%360;
+    float angle=(step%90)/90;
+    float angleMap=map(angle,0,1,0,360);
+
     s3d.pushMatrix();
     s3d.translate(-300,0,0);
-    s3d.rotateZ(radians(-WindRo));
+    s3d.rotateZ(radians(-angleMap));
     s3d.shape(Wind_2);
     s3d.popMatrix();
 
     s3d.pushMatrix();
     s3d.translate(300,0,0);
-    s3d.rotateZ(radians(WindRo));
+    s3d.rotateZ(radians(angleMap));
     s3d.shape(Wind_3);
     s3d.popMatrix();
   }

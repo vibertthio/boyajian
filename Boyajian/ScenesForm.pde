@@ -24,7 +24,7 @@ class Form {
       canvas.beginShape();
       for (float h = -stepSize; h <= height + stepSize; h += stepSize) {
         float d = maxDepth * map(noise(w * 0.01, h * 0.01, frameCount * 0.05), 0, 1, -1*soundVol, 1*soundVol);
-        canvas.curveVertex(w, d+300, h*2-500);
+        canvas.curveVertex(w, d+370, h*2-700);
       }
       canvas.endShape();
     }

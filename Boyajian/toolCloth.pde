@@ -7,6 +7,8 @@ pdLine  toolClothLineIn;
 pdLine  toolClothLineOut;
 
 PShape Cloth_1;
+PShape Cloth_2;
+PShape Cloth_3;
 PImage ClothImg;
 
 float Cloth_x, Cloth_y;
@@ -20,7 +22,9 @@ void toolClothSetting() {
     countLife();
     ClothImg=loadImage("toolCloth/tex_cloth.png");
     toolClothIn=true;
-    Cloth_1 = loadShape("toolCloth/cloth.obj");
+    Cloth_1 = loadShape("toolCloth/cloth_1.obj");
+    Cloth_2 = loadShape("toolCloth/cloth_2.obj");
+    Cloth_3 = loadShape("toolCloth/cloth_3.obj");
 
     showtoolCloth =true;
   } else if (showtoolCloth==true) {
@@ -45,8 +49,8 @@ void toolClothdrawing() {
   {
     Cloth_x=width/2+countX[13].o;
 
-    if (toolClothIn==true) Cloth_y=height/2+-25+ map(easeOutBack(toolClothLine.o), 0, 1, 500, 0);
-    else  Cloth_y=height/2+69+map(easeInBack(toolClothLine.o), 0, 1, 0, -500);
+    if (toolClothIn==true) Cloth_y=height/2-15+ map(easeOutBack(toolClothLine.o), 0, 1, 500, 0);
+    else  Cloth_y=height/2-15+map(easeInBack(toolClothLine.o), 0, 1, 0, -500);
 
     s3d.translate(Cloth_x, Cloth_y+anim(300, 0, -50, 2), -50);
 
@@ -78,14 +82,30 @@ void toolClothdrawing() {
     s3d.scale(0.47);
     //---------------
     s3d.pushMatrix();
+    s3d.translate(0, anim(400,0,20,2), 0);
     s3d.shape(Cloth_1);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.translate(0, anim(200,0,-20,2), 0);
+    s3d.shape(Cloth_2);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.translate(0, anim(200,0,-20,2), 0);
+    s3d.translate(0, anim(100,0,-30,2), 0);
+    s3d.shape(Cloth_3);
     s3d.popMatrix();
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
     noWireFrame(Cloth_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Cloth_2, random(1.80, 2.40), color(255, 255, 250, 120));
+    noWireFrame(Cloth_3, random(1.80, 2.40), color(150, 165, 250, 150));
   } else {
     setTexture(Cloth_1, ClothImg);
+    setTexture(Cloth_2, ClothImg);
+    setTexture(Cloth_3, ClothImg);
   }
 }
 void Cloth(boolean theFlag) {

@@ -56,8 +56,8 @@ void maskTouchdrawing() {
   {
     Touch_x=width/2+countX[7].o;
 
-    if (MaskTouchIn==true) Touch_y=height/2+62+map(easeOutBack(MaskTouchLine.o), 0, 1, 500, 0);
-    else   Touch_y=height/2+62+map(easeInBack(MaskTouchLine.o), 0, 1, 0, -500);
+    if (MaskTouchIn==true) Touch_y=height/2+52+map(easeOutBack(MaskTouchLine.o), 0, 1, 500, 0);
+    else   Touch_y=height/2+52+map(easeInBack(MaskTouchLine.o), 0, 1, 0, -500);
 
     s3d.translate(Touch_x, Touch_y+anim(300, 0, -50, 2), -50);
 

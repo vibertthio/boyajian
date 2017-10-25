@@ -61,14 +61,14 @@ void keyPressed() {
       layer[8]=230;
     }
     if (key == '3') {
-      blendIndex=3;
+      blendIndex=5;
       imgIndex=2;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=14;
       layer[8]=200;
     }
     if (key == '4') {
-      blendIndex=3;
+      blendIndex=6;
       imgIndex=3;
       blendGLSL.set( "lowLayer", bgs [imgIndex]);
       pp=8;
@@ -418,6 +418,12 @@ void sendNote2p5() {
   if (nn==106)if (vv==127)autoCam(true);
   else autoCam(false);
 
+  if (nn==107)if (vv==127)autoSuperCam(true);
+  else autoSuperCam(false);
+
+  if (nn==108)if (vv==127)beatIn=true;
+  else beatIn=false;
+
   if (nn==110)if (vv==127)autoBg(true);
   else autoBg(false);
 
@@ -454,7 +460,7 @@ void sendCtl2p5() {
   //-----------------------------
 
   if (nr==30) layer[3]=vl;
-  if (nr==31) showCylinder=vl;
+  if (nr==31) showCylinder=easeOutSine((vl/255))*255;
   if (nr==32) ctl32=vl;
   if (nr==33) ctl33=vl;
 

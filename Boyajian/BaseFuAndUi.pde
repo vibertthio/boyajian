@@ -270,6 +270,16 @@ void autoCam(boolean theFlag) {
   }
 }
 
+void autoSuperCam(boolean theFlag) {
+  if (theFlag==true) autoSuperCamMetro.tgl=true;
+  else {
+    autoSuperCamMetro.tgl=false;
+    defultCam();
+  }
+}
+
+
+
 void autoCamUpDown(boolean theFlag) {
   if (theFlag==true) autoCamMetroUpDown.tgl=true;
   else {
@@ -330,11 +340,17 @@ void cameraMoving() {
     defultCam();
   }
   autoCamMetro.update();
+  autoSuperCamMetro.update();
   autoCamMetroUpDown.update();
 
   if (autoCamMetro.bang==true) {
     autoCamMetro.bang=false;
     randomCam();
+  }
+
+  if (autoSuperCamMetro.bang==true) {
+    autoSuperCamMetro.bang=false;
+    superRandomCam();
   }
 
   if (autoCamMetroUpDown.bang==true) {

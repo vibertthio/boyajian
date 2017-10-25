@@ -7,6 +7,7 @@ pdLine  toolDoorLineIn;
 pdLine  toolDoorLineOut;
 
 PShape Door_1;
+PShape Door_2;
 PImage DoorImg;
 float Door_x, Door_y;
 
@@ -20,7 +21,8 @@ void toolDoorSetting() {
     countLife();
     DoorImg=loadImage("toolDoor/tex_door.png");
     toolDoorIn=true;
-    Door_1 = loadShape("toolDoor/door.obj");
+    Door_1 = loadShape("toolDoor/door_1.obj");
+    Door_2 = loadShape("toolDoor/door_2.obj");
 
     showtoolDoor =true;
   } else if (showtoolDoor==true) {
@@ -45,8 +47,8 @@ void toolDoordrawing() {
   {
     Door_x=width/2+countX[12].o;
 
-    if (toolDoorIn==true) Door_y=height/2+69+ map(easeOutBack(toolDoorLine.o), 0, 1, 500, 0);
-    else  Door_y=height/2+69+map(easeInBack(toolDoorLine.o), 0, 1, 0, -500);
+    if (toolDoorIn==true) Door_y=height/2+44+ map(easeOutBack(toolDoorLine.o), 0, 1, 500, 0);
+    else  Door_y=height/2+44+map(easeInBack(toolDoorLine.o), 0, 1, 0, -500);
 
     s3d.translate(Door_x, Door_y+anim(300, 0, -50, 2), -50);
 
@@ -77,8 +79,28 @@ void toolDoordrawing() {
     s3d.rotateY(radians(anim(550,-30,30,8)));
     s3d.scale(0.36);
     //---------------
+    float angle=(step%90)/90;
+    float angleMap=map(angle,0,1,0,360);
+
     s3d.pushMatrix();
+    s3d.rotateY(radians(-angleMap));
     s3d.shape(Door_1);
+    s3d.popMatrix();
+
+    s3d.pushMatrix();
+    s3d.translate(100,0,0);
+    s3d.rotateY(radians(angleMap+30));
+    s3d.shape(Door_1);
+    s3d.popMatrix();
+
+    s3d.pushMatrix();
+    s3d.translate(-100,0,0);
+    s3d.rotateY(radians(angleMap+60));
+    s3d.shape(Door_1);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.shape(Door_2);
     s3d.popMatrix();
   }
   s3d.popMatrix();

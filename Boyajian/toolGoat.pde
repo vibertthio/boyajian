@@ -7,6 +7,8 @@ pdLine  toolGoatLineIn;
 pdLine  toolGoatLineOut;
 
 PShape Goat_1;
+PShape Goat_2;
+PShape Goat_3;
 PImage GoatImg;
 float Goat_x, Goat_y;
 
@@ -19,7 +21,9 @@ void toolGoatSetting() {
     countLife();
     GoatImg=loadImage("toolGoat/tex_goat.png");
     toolGoatIn=true;
-    Goat_1 = loadShape("toolGoat/goat.obj");
+    Goat_1 = loadShape("toolGoat/goat_1.obj");
+    Goat_2 = loadShape("toolGoat/goat_2.obj");
+    Goat_3 = loadShape("toolGoat/goat_3.obj");
 
     showtoolGoat =true;
   } else if (showtoolGoat==true) {
@@ -76,17 +80,38 @@ void toolGoatdrawing() {
     s3d.rotateY(radians(anim(570,-30,30,8)));
     //--------------抖動
     s3d.scale(0.73);
+    s3d.rotateY(anim(300,-0.2,0.2,4));
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(anim(90,0,0.2,4));
     s3d.shape(Goat_1);
+    s3d.popMatrix();
+    //---------------
+    float angle=2*abs(((step%180)/180)-0.5);
+    float angleMap=map(angle,0,1,0,70);
+
+    s3d.pushMatrix();
+    s3d.translate(angleMap*-1,0,0);
+    if (vol>0.8) s3d.scale(random(1, 1.1));
+    else s3d.scale(1);
+    s3d.shape(Goat_2);
+    s3d.popMatrix();
+    //---------------
+    s3d.pushMatrix();
+    s3d.translate(angleMap,0,0);
+    if (vol>0.8) s3d.scale(random(1, 1.1));
+    else s3d.scale(1);
+    s3d.shape(Goat_3);
     s3d.popMatrix();
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
     noWireFrame(Goat_1, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Goat_2, random(1.80, 2.40), color(0, 165, 250, 120));
+    noWireFrame(Goat_3, random(1.80, 2.40), color(0, 165, 250, 120));
   } else {
     setTexture(Goat_1, GoatImg);
+    setTexture(Goat_2, GoatImg);
+    setTexture(Goat_3, GoatImg);
   }
 }
 void Goat(boolean theFlag) {

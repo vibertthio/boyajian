@@ -98,5 +98,5 @@ void main( )
 	sum.a *= RCP_NUM_SAMPLES_F;
 
 	gl_FragColor.a = 1.0;
-	gl_FragColor.rgb = sum.rgb*2.0; // * outcol0.a;
+	gl_FragColor.rgb = sum.rgb*1.3; // * outcol0.a;
 }

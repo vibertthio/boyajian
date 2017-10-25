@@ -106,15 +106,15 @@ void maskMemorydrawing() {
     s3d.shape(Memory_3);
     s3d.popMatrix();
     //---------------
-    float flyAngle=2*abs(((step%90)/90)-0.5);
-    float flyAngleMap=map(flyAngle,0,1,10,-20);
+    float angle=2*abs(((step%90)/90)-0.5);
+    float angleMap=map(angle,0,1,10,-20);
     s3d.pushMatrix();
-    s3d.rotateZ(radians(flyAngleMap));
+    s3d.rotateZ(radians(angleMap));
     s3d.shape(Memory_4);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(radians(flyAngleMap*-1));
+    s3d.rotateZ(radians(angleMap*-1));
     s3d.shape(Memory_5);
     s3d.popMatrix();
     //---------------

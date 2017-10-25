@@ -33,7 +33,7 @@ void oscEvent(OscMessage m) {
     if (m.checkAddrPattern("/middle")==true) if (m.checkTypetag("f"))middle=m.get(0).floatValue();
     if (m.checkAddrPattern("/high")==true) if (m.checkTypetag("f"))high=m.get(0).floatValue();
 
-    if (m.checkAddrPattern("/beat")==true)if (m.checkTypetag("i")) {
+    if (m.checkAddrPattern("/beat")==true)if (m.checkTypetag("i")) if (beatIn==true) {
 
       //-----------------------------------------layer6
       if (layer[6]>135) {
@@ -53,10 +53,10 @@ void oscEvent(OscMessage m) {
       }
       //-----------------------------------------camera
       if (layer[8]>250) {
-        int k=int(random(3));
+        int k=int(random(2));
         if (k==0)defultCam() ;
         else if (k==1)closeCam();
-        else if (k==2)superCloseCam();
+        //else if (k==2)superCloseCam();
       }
 
       //-----------------------------------------camera

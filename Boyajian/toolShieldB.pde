@@ -49,8 +49,8 @@ void toolShieldBdrawing() {
     ShieldB_x=width/2+countX[8].o;
 
     //----fade
-    if (toolShieldBIn==true)ShieldB_y=height/2+56+map(easeOutBack(toolShieldBLine.o), 0, 1, 500, 0);
-    else  ShieldB_y=height/2+56+map(easeInBack(toolShieldBLine.o), 0, 1, 0, -500);
+    if (toolShieldBIn==true)ShieldB_y=height/2+46+map(easeOutBack(toolShieldBLine.o), 0, 1, 500, 0);
+    else  ShieldB_y=height/2+46+map(easeInBack(toolShieldBLine.o), 0, 1, 0, -500);
 
     s3d.translate(ShieldB_x, ShieldB_y+anim(300, 0, -50, 2), -50);
 

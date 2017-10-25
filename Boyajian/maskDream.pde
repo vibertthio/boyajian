@@ -23,8 +23,6 @@ PShape RDream_6;
 PImage DreamImg;
 float Dream_x, Dream_y;
 
-float DreamSpeed=1;
-float DreamRo;
 
 void maskDreamSetting() {
 
@@ -75,8 +73,8 @@ void maskDreamdrawing() {
     Dream_x=width/2+countX[0].o;
 
     //----fade
-    if (MaskDreamIn==true)Dream_y=height/2-3+map(easeOutBack(MaskDreamLine.o), 0, 1, 500, 0);
-    else  Dream_y=height/2-3+map(easeInBack(MaskDreamLine.o), 0, 1, 0, -500);
+    if (MaskDreamIn==true)Dream_y=height/2-10+map(easeOutBack(MaskDreamLine.o), 0, 1, 500, 0);
+    else  Dream_y=height/2-10+map(easeInBack(MaskDreamLine.o), 0, 1, 0, -500);
     //----fadeEnd
 
     s3d.translate(Dream_x, Dream_y+anim(300, 0, -50, 2), -50);
@@ -108,37 +106,47 @@ void maskDreamdrawing() {
     //--------------抖動
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
     s3d.scale(0.52);
-    //---------------
+
+    //---------------手1
+    float handAngle=2*abs(((step%360)/360)-0.5);
+    float handMap=map(handAngle,0,1,5,20);
+
     s3d.pushMatrix();
 
     if (vertexNoise==true) randomVertex(Dream_1);
     else returnVertex(RDream_1, Dream_1);
-
-    float handAngle=2*abs(((step%360)/360)-0.5);
-    float handMap=map(handAngle,0,1,20,5);
+    
     s3d.rotateY(radians(handMap));
-
     s3d.shape(Dream_1);
     s3d.popMatrix();
-    //---------------
+
+    //---------------手2
     s3d.pushMatrix();
     if (vertexNoise==true) randomVertex(Dream_2);
     else returnVertex(RDream_2, Dream_2);
 
     s3d.rotateY(radians(handMap*-1));
     s3d.shape(Dream_2);
-
     s3d.popMatrix();
-    //---------------
+
+    //---------------眼睛
     s3d.pushMatrix();
     s3d.translate(0, 0, 0);
-    DreamRo=(DreamRo+DreamSpeed*map(vol,0,1,5,20))%360;
-    s3d.rotateZ(radians(DreamRo));
+
+    float angle=(step%90)/90;
+    float angleMap=map(angle,0,1,0,360);
+
+    s3d.rotateZ(radians(angleMap));
     s3d.translate(0, 30, 0);
+
+    if (vol>0.8) s3d.scale(random(1, 1.2));
+    else s3d.scale(1);
+
     s3d.shape(Dream_3);
     if (vertexNoise==true) randomVertex(Dream_3);
     else returnVertex(RDream_3, Dream_3);
     s3d.popMatrix();
+
     //---------------
     s3d.pushMatrix();
     s3d.translate(0, 188, -44);
@@ -152,15 +160,20 @@ void maskDreamdrawing() {
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    
     Dream_5.disableStyle();//寶石
-    s3d.colorMode(HSB, 100);
-    s3d.tint( color(anim(30, 0, 100, 4), 100, 100));
-    s3d.shape(Dream_5);
+    //s3d.colorMode(HSB, 100);
+    //s3d.tint( color(anim(30, 0, 100, 4), 100, 100));
+    
     if (vertexNoise==true) randomVertex(Dream_5);
     else returnVertex(RDream_5, Dream_5);
-    Dream_5.enableStyle();
+    //s3d.colorMode(RGB);
+    s3d.shape(Dream_5);
+    //Dream_5.enableStyle();
+    
     s3d.popMatrix();
-    s3d.colorMode(RGB);
+    
+    
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_6);

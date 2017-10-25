@@ -62,8 +62,8 @@ void maskSmelldrawing() {
     Smell_x=width/2+countX[5].o;
 
 
-    if (MaskSmellIn==true)Smell_y=height/2+-27+ map(easeOutBack(MaskSmellLine.o), 0, 1, 500, 0);
-    else Smell_y=height/2+-27+map(easeInBack(MaskSmellLine.o), 0, 1, 0, -500);
+    if (MaskSmellIn==true)Smell_y=height/2+-35+ map(easeOutBack(MaskSmellLine.o), 0, 1, 500, 0);
+    else Smell_y=height/2+-35+map(easeInBack(MaskSmellLine.o), 0, 1, 0, -500);
 
     s3d.translate(Smell_x, Smell_y+anim(300, 0, -50, 2), -50);
 

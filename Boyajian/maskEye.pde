@@ -76,8 +76,8 @@ void maskEyedrawing() {
   //----fade
   Eye_x=width/2+countX[1].o;
 
-  if (MaskEyeIn==true)Eye_y=height/2+13+map(easeOutBack(MaskEyeLine.o), 0, 1, 500, 0);
-  else  Eye_y=height/2+13+map(easeInBack(MaskEyeLine.o), 0, 1, 0, -500);
+  if (MaskEyeIn==true)Eye_y=height/2+5+map(easeOutBack(MaskEyeLine.o), 0, 1, 500, 0);
+  else  Eye_y=height/2+5+map(easeInBack(MaskEyeLine.o), 0, 1, 0, -500);
   //----fadeEnd
 
   s3d.strokeWeight(1);

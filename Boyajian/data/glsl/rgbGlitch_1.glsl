@@ -48,10 +48,10 @@ void main( void )
     if(vol>0.87){
       vec4 shift = vec4pow(noise(vec2(SPEED*time,SPEED*time/25.0 )),4.0)
               *vec4(AMPLITUDE,AMPLITUDE,AMPLITUDE,1.0);;
-      c = rgbShift(p, shift*1.5);
+      c = rgbShift(p, shift*1.2);
       gl_FragColor = c;
     }else{
-      gl_FragColor=texture2D(texture,p)*1.5;
+      gl_FragColor=texture2D(texture,p)*1.3;
     }
 
 }

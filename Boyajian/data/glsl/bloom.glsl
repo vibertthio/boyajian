@@ -1,7 +1,7 @@
 
 uniform sampler2D texture;
 float kernel = .005;
-float scale = 0.7;
+float scale = 0.3;
 float thresh = 1.;
 uniform float vol ;
 uniform float time;
@@ -34,6 +34,6 @@ void main()
     // use the blurred colour if it's bright enough
     if (length(sum)>thresh)
     {
-        gl_FragColor +=sum*scale;
+        gl_FragColor +=sum*(scale+vol*0.2);
     }
 }
