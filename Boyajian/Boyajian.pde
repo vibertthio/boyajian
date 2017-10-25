@@ -62,6 +62,8 @@ int autoCamMetroUpDownCount=0;
 pdLine2[] countX=new pdLine2[20];
 pdLine2 smooth;
 pdLine effectChange;
+float step=0;
+float allVol=0;
 
 void settings() {
   //size(1200, 342, P3D);
@@ -106,32 +108,25 @@ void setup() {
 }
 
 void draw() {
-  background(0);
-  smooth.update();
-
+  workTime=millis();
+  allVol=float(int(map(vol, 0, 1, 2, 10)));
+  step=(step+allVol)%360;
+  //---------------
   if (autoBlend==true) {
-    if (frameCount%5==0) {
-      blendIndex=int(random(10));
-    }
+    if (frameCount%5==0) blendIndex=int(random(10));
   }
   if (autoBg==true) {
-    if (frameCount%5==0) {
-      blendGLSL.set( "lowLayer", bgs [int(random(7))]);
-    }
+    if (frameCount%5==0) blendGLSL.set( "lowLayer", bgs [int(random(7))]);
   }
+  smooth.update();
+  if (smooth.bang==true) layer[6]=smooth.o;
 
-
-  if (smooth.bang==true) {
-    layer[6]=smooth.o;
-  }
-
-  workTime=millis();
+  for (int i=0; i<20; i++) countX[i].update();
+  //---------------
+  background(0);
   blendMode(NORMAL);
   cameraMoving();
 
-  for (int i=0; i<20; i++) {
-    countX[i].update();
-  }
   s3dDrawing() ;
   //---------------*blendGLSL即時參數
   blendGLSL.set( "blendAlpha", 0.7f );

@@ -26,7 +26,7 @@ PImage EyeImg;
 
 
 float Eye_x, Eye_y;
-float step=0;
+
 
 void maskEyeSetting() {
 
@@ -70,8 +70,7 @@ void maskEyeSetting() {
 
 
 void maskEyedrawing() {
-  float soundVol=float(int(map(middle, 0, 1, 2, 10)));
-  step=(step+soundVol)%360;
+  
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
 
   //----fade
@@ -125,6 +124,9 @@ void maskEyedrawing() {
     if (vertexNoise==true) randomVertex(maskA_1_1);
     else returnVertex(RmaskA_1_1, maskA_1_1);
 
+    if (vol>0.8) s3d.scale(random(1, 1.2),random(1, 1.2),1);
+    else s3d.scale(1);
+
     s3d.shape(maskA_1_1);
     s3d.popMatrix();
 
@@ -135,6 +137,9 @@ void maskEyedrawing() {
 
     if (vertexNoise==true) randomVertex(maskA_1_2);
     else returnVertex(RmaskA_1_2, maskA_1_2);
+
+    if (vol>0.8) s3d.scale(random(1, 1.2),random(1, 1.2),1);
+    else s3d.scale(1);
 
     s3d.shape(maskA_1_2);
     s3d.popMatrix();

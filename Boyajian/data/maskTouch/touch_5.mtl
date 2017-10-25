@@ -1,0 +1,9 @@
+newmtl touch_1:touch
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd tex_touch.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 94.12

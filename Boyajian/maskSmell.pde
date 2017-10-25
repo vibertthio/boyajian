@@ -93,16 +93,22 @@ void maskSmelldrawing() {
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
     s3d.scale(0.70);
     //---------------
-    s3d.pushMatrix();
+    s3d.pushMatrix();//牙齒
     s3d.translate(0, anim(180,0,-40,8));
     if (vertexNoise==true) randomVertex(Smell_1);
     else returnVertex(rSmell_1, Smell_1);
+    if (vol>0.8) {
+      s3d.scale(1, random(1, 1.2),1);
+    } else {
+      s3d.scale(1);
+    }
     s3d.shape(Smell_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     if (vertexNoise==true) randomVertex(Smell_2);
     else returnVertex(rSmell_2, Smell_2);
+
     s3d.shape(Smell_2);
     s3d.popMatrix();
     //---------------
@@ -110,8 +116,10 @@ void maskSmelldrawing() {
     {
       s3d.pushMatrix();
       s3d.tint( color(map(pow(sin((float(frameCount)%300)/300*6.28), 4.0), 0, 1, 0, 255), 255, 255));
+
       if (vertexNoise==true) randomVertex(Smell_3);
       else returnVertex(rSmell_3, Smell_3);
+
       s3d.shape(Smell_3);
       s3d.popMatrix();
     }

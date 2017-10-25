@@ -91,6 +91,9 @@ void maskMemorydrawing() {
     s3d.scale(0.61);
     //---------------
     s3d.pushMatrix();
+    if (vol>0.8) s3d.scale(random(1, 1.2),random(1, 1.3),1);
+    else s3d.scale(1);
+
     s3d.shape(Memory_1);
     s3d.popMatrix();
     //---------------
@@ -103,13 +106,15 @@ void maskMemorydrawing() {
     s3d.shape(Memory_3);
     s3d.popMatrix();
     //---------------
+    float flyAngle=2*abs(((step%90)/90)-0.5);
+    float flyAngleMap=map(flyAngle,0,1,10,-20);
     s3d.pushMatrix();
-    s3d.rotateZ(radians(anim(180, 10, -40, 2)));
+    s3d.rotateZ(radians(flyAngleMap));
     s3d.shape(Memory_4);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.rotateZ(radians(anim(180, 10, -40, 2)*-1));
+    s3d.rotateZ(radians(flyAngleMap*-1));
     s3d.shape(Memory_5);
     s3d.popMatrix();
     //---------------

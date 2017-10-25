@@ -10,6 +10,7 @@ PShape Touch_1;
 PShape Touch_2;
 PShape Touch_3;
 PShape Touch_4;
+PShape Touch_5;
 
 PImage TouchImg;
 
@@ -29,6 +30,7 @@ void maskTouchSetting() {
     Touch_2=  loadShape("maskTouch/touch_2.obj");
     Touch_3 = loadShape("maskTouch/touch_3.obj");
     Touch_4 = loadShape("maskTouch/touch_4.obj");
+    Touch_5 = loadShape("maskTouch/touch_5.obj");
     showMaskTouch =true;
   } else if (showMaskTouch==true) {
     MaskTouchIn=false;
@@ -87,13 +89,13 @@ void maskTouchdrawing() {
     s3d.rotateZ(map(pow(sin(float(frameCount%10)/10*6.28), 8.0), 0, 1, 0, PI*-0.01));
     s3d.scale(0.50);
     //---------------
-    s3d.pushMatrix();
-    s3d.shape(Touch_1);
-    s3d.popMatrix();
-    //---------------
-    s3d.pushMatrix();
-    s3d.shape(Touch_2);
-    s3d.popMatrix();
+    // s3d.pushMatrix();
+    // s3d.shape(Touch_1);
+    // s3d.popMatrix();
+    // //---------------
+    // s3d.pushMatrix();
+    // s3d.shape(Touch_2);
+    // s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.shape(Touch_3);
@@ -103,18 +105,39 @@ void maskTouchdrawing() {
     s3d.shape(Touch_4);
     s3d.popMatrix();
     //---------------
+    s3d.pushMatrix();
+    for (int i=0; i<10; i++) {
+      s3d.pushMatrix();
+      if (i<5) {
+        s3d.translate(60, i*60-30, 0);
+      } else {
+        s3d.translate(-60, i*60-30-5*60, 0);
+      }
+      if (vol>0.8) {
+        s3d.scale(1, 1, random(1, 3));
+      } else {
+        s3d.scale(1);
+      }
+      s3d.shape(Touch_5);
+      s3d.popMatrix();
+    }
+
+    s3d.popMatrix();
+    //---------------
   }
   s3d.popMatrix();
   if (wireFrameCtl==true) {
-    noWireFrame( Touch_1, random(1.80, 2.40), color(255, 120));
-    noWireFrame( Touch_2, random(1.80, 2.40), color(255, 120));
+    // noWireFrame( Touch_1, random(1.80, 2.40), color(255, 120));
+    // noWireFrame( Touch_2, random(1.80, 2.40), color(255, 120));
     noWireFrame( Touch_3, random(1.80, 2.40), color(255, 120));
     noWireFrame( Touch_4, random(1.80, 2.40), color(255, 120));
+    noWireFrame( Touch_5, random(1.80, 2.40), color(255, 120));
   } else {
-    setTexture( Touch_1, TouchImg);
-    setTexture( Touch_2, TouchImg);
+    // setTexture( Touch_1, TouchImg);
+    // setTexture( Touch_2, TouchImg);
     setTexture(Touch_3, TouchImg);
     setTexture(Touch_4, TouchImg);
+    setTexture(Touch_5, TouchImg);
   }
 }
 

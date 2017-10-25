@@ -110,15 +110,24 @@ void maskDreamdrawing() {
     s3d.scale(0.52);
     //---------------
     s3d.pushMatrix();
-    s3d.shape(Dream_1);
+
     if (vertexNoise==true) randomVertex(Dream_1);
     else returnVertex(RDream_1, Dream_1);
+
+    float handAngle=2*abs(((step%360)/360)-0.5);
+    float handMap=map(handAngle,0,1,20,5);
+    s3d.rotateY(radians(handMap));
+
+    s3d.shape(Dream_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    s3d.shape(Dream_2);
     if (vertexNoise==true) randomVertex(Dream_2);
     else returnVertex(RDream_2, Dream_2);
+
+    s3d.rotateY(radians(handMap*-1));
+    s3d.shape(Dream_2);
+
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
