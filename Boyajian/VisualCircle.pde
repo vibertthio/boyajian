@@ -128,6 +128,7 @@ class Circle {
 
 class Ball {
   PGraphics canvas;
+  Strip strip;
   float xpos;
   float ypos;
   float xdes;
@@ -146,17 +147,18 @@ class Ball {
 
 
 
-  Ball(PGraphics _c) {
-    init(_c);
+  Ball(Strip _s, PGraphics _c) {
+    init(_s, _c);
   }
-  Ball(PGraphics _c, float _x, float _y, int _ll) {
-    init(_c, _x, _y);
+  Ball(Strip _s, PGraphics _c, float _x, float _y, int _ll) {
+    init(_s, _c, _x, _y);
     radiusTimer.limit = _ll;
   }
-  void init(PGraphics _c) {
-    init(_c, 800, 500);
+  void init(Strip _s, PGraphics _c) {
+    init(_s, _c, 800, 500);
   }
-  void init(PGraphics _c, float _x, float _y) {
+  void init(Strip _s, PGraphics _c, float _x, float _y) {
+    strip = _s;
     canvas = _c;
     radiusTimer = new TimeLine(radiusTimeLimit);
     xpos = _x;
@@ -177,9 +179,10 @@ class Ball {
   void render() {
     canvas.pushMatrix();
     canvas.noStroke();
-    canvas.fill(col, alpha);
+    canvas.fill(strip.col, alpha);
     canvas.translate(xpos, ypos);
-    canvas.ellipse(0, 0, radius, radius);
+    // canvas.ellipse(0, 0, radius, radius);
+    canvas.ellipse(0, 0, radius * strip.heightScale, radius * strip.heightScale);
     canvas.popMatrix();
   }
 

@@ -164,18 +164,27 @@ void keyPressed() {
   }
 
   // Vibert's Functions
-  if (key == 'v') {
-    println("press v!");
-    animationRotateGridTrigger();
+  if (key == 'x') {
+    animationStripTrigger();
   }
   if (key == 'c') {
     animationGrowGridTrigger();
   }
-  if (key == 'x') {
-    animationStripTrigger();
+  if (key == 'v') {
+    println("press v!");
+    animationRotateGridTrigger();
   }
-  if (key == 'b') {
-    animationCircleTrigger();
+  if (key == 'X') {
+    stripChangeAmount();
+  }
+  if (key == 'C') {
+    stripColorfulTrigger();
+  }
+  if (key == 'V') {
+    stripMapTrigger();
+  }
+  if (key == 'B') {
+    stripBeadingTrigger();
   }
 
   // change background and shader algorithm

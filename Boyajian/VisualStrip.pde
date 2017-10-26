@@ -31,7 +31,6 @@ class StripsSystem {
     hrStrips = new Strips(_c, nOfHrStrips, true, true);
     vtStrips = new Strips(_c, nOfVtStrips, false, true);
 
-    crStrips.setColors();
     hrStrips.setColors();
     vtStrips.setColors();
     hrStrips.stop();
@@ -106,8 +105,11 @@ class StripsSystem {
 }
 
 class Strips {
+  PGraphics canvas;
   Strip[] strips;
-  int nOfStrips = 10;
+  int nOfStrips = 15;
+  int maxNumberOfStrips = 100;
+  int minNumberOfStrips = 10;
   boolean map = false;
   int mapCount = 0;
 
@@ -124,12 +126,14 @@ class Strips {
     init(_c, _hr, _b);
   }
   void init(PGraphics _c, boolean _hr, boolean _b) {
+    canvas = _c;
     strips = new Strip[nOfStrips];
     for (int i = 0; i < nOfStrips; i++) {
       strips[i] = new Strip(_c, _hr, _b);
     }
   }
   void initCross(PGraphics _c) {
+    canvas = _c;
     strips = new Strip[nOfStrips];
     for (int i = 0; i < nOfStrips; i++) {
       strips[i] = new Strip(_c);
@@ -143,28 +147,26 @@ class Strips {
     render();
   }
   void update() {
-    if (!strips[mapCount].timer.state && (mapCount < nOfStrips - 1)) {
-      float x;
-      float y;
-      if (strips[mapCount].hr == strips[mapCount + 1].hr) {
-        x = strips[mapCount].xdes;
-        y = strips[mapCount].ydes;
-      } else if (strips[mapCount].hr) {
-        x = -1 * strips[mapCount].ydes;
-        y = strips[mapCount].xdes;
-      } else {
-        x = strips[mapCount].ydes;
-        y = -1 * strips[mapCount].xdes;
-      }
-
-      mapCount++;
-      strips[mapCount].start();
-      // strips[mapCount].start(x, y);
-    }
+    mapUpdate();
   }
   void render() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].draw();
+    }
+  }
+
+  // Update
+  void mapUpdate() {
+    if (map) {
+      if (!strips[mapCount].timer.state && (mapCount < nOfStrips - 1)) {
+        mapCount++;
+        strips[mapCount].start();
+        strips[mapCount].timer.limit = floor(random(200, 400));
+        mapRandomEvent();
+      } else if (mapCount == nOfStrips - 1) {
+        println("## end of map");
+        endMap();
+      }
     }
   }
 
@@ -188,6 +190,17 @@ class Strips {
       strips[i].drift = false;
     }
     strips[mapCount].start();
+    strips[mapCount].timer.limit = floor(random(200, 400));
+  }
+  void endMap() {
+    stop();
+    map = false;
+    mapCount = 0;
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].continuous = true;
+      strips[i].drift = true;
+    }
+    start();
   }
   void stop() {
     for (int i = 0; i < nOfStrips; i++) {
@@ -222,6 +235,51 @@ class Strips {
   void setDes(float length) {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].setDes(length);
+    }
+  }
+  void modifyNumberOfStrips(int amt) {
+    int number = nOfStrips + amt;
+    if (number > maxNumberOfStrips) {
+      number = minNumberOfStrips;
+    }
+    nOfStrips = number;
+    initCross(canvas);
+  }
+  void addNumberOfStrips(int amt) {
+    nOfStrips = max(minNumberOfStrips, min(maxNumberOfStrips, nOfStrips + amt));
+    initCross(canvas);
+  }
+  void setNumberOfStrips(int n) {
+    nOfStrips = max(minNumberOfStrips, min(maxNumberOfStrips, n));
+    initCross(canvas);
+  }
+  void mapRandomEvent() {
+    // Strips
+    float chanceOfAngleShift = map(mapCount, 0, nOfStrips, 0, 0.4);
+    if (random(1) < chanceOfAngleShift) {
+      angleShiftBang();
+    }
+    float chanceOfScaleBang = map(mapCount, 0, nOfStrips, 0.3, 0.9);
+    if (random(1) < chanceOfScaleBang) {
+      heightScaleBang();
+    }
+    float chanceOfYShift = map(mapCount, 0, nOfStrips, 0.3, 0.5);
+    if (random(1) < chanceOfYShift) {
+      yShiftBang();
+    }
+    if (random(1) < 0.2) {
+      yShiftBang(5);
+    }
+    if (random(1) < 0.2) {
+      yShiftBang(-5);
+    }
+
+    // Individual
+    if (random(1) < 0.1) {
+      strips[mapCount].blinkBang();
+    }
+    if (random(1) < 0.1) {
+      strips[mapCount].angleShiftBang();
     }
   }
 
@@ -280,11 +338,17 @@ class Strips {
   void beadingTrigger(boolean _s) {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].beading = _s;
+      if (strips[i].beading) {
+        strips[i].setBead();
+      }
     }
   }
   void beadingTrigger() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].beading = !strips[i].beading;
+      if (strips[i].beading) {
+        strips[i].setBead();
+      }
     }
   }
 }
@@ -381,7 +445,6 @@ class Strip {
     if (state != 0) {
       canvas.pushMatrix();
       canvas.noStroke();
-      canvas.fill(col, layer[3]);
       if (!hr) { canvas.rotate(PI / 2); }
       canvas.translate(xpos, ypos);
       if (drift) { canvas.rectMode(CENTER); }
@@ -390,6 +453,7 @@ class Strip {
       canvas.rotate(angle);
       if (vibrateCount > 0) { canvas.translate(random(-10, 10), random(-10, 10)); }
       canvas.noStroke();
+      canvas.fill(col, layer[3]);
       canvas.rect(0, 0, widthOfStrip * widthScale, heightOfStrip * heightScale);
       canvas.popMatrix();
     }
@@ -405,10 +469,12 @@ class Strip {
     }
     if (hr) {
       xpos = floor(random(70, 100)) * 10;
-      ypos = floor(random(35, 65)) * 10;
+      ypos = floor(random(25, 100)) * 10;
+      // ypos = floor(random(35, 65)) * 10;
       xdes = floor(random(50, 120)) * 10;
     } else {
-      xpos = floor(random(40, 60)) * 10;
+      // xpos = floor(random(40, 60)) * 10;
+      xpos = floor(random(40, 80)) * 10;
       ypos = floor(random(-100, -70)) * 10;
       xdes = floor(random(20, 80)) * 10;
     }
@@ -425,10 +491,10 @@ class Strip {
 
     // reset Circle
     if (beading) {
-      ball = new Ball(canvas, 0, 0, ll);
-      ball.targetRadius = 3 * heightOfStrip;
+      setBead();
     }
   }
+
 
   // Utilities
   void start() {
@@ -488,6 +554,10 @@ class Strip {
     }
     ydes = y;
     ypos = y;
+  }
+  void setBead() {
+    ball = new Ball(this, canvas, 0, 0, timer.limit);
+    ball.targetRadius = 3 * heightOfStrip;
   }
 
   // Updates

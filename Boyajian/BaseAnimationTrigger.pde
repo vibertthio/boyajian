@@ -1,6 +1,7 @@
 int rotateGridTriggerIndex = 0;
 int growGridTriggerIndex = 0;
 int stripTriggerIndex = 0;
+boolean stripColorful = false;
 void animationRotateGridTrigger() {
   // animations.rotateGrid.adjustSpeed(5);
   // animations.rotateGrid.adjustSpeed(-3);
@@ -261,6 +262,25 @@ void animationStripTrigger() {
   stripTriggerIndex++;
   stripTriggerIndex %= 8;
 }
-void animationCircleTrigger() {
+void stripColorfulTrigger() {
+  if (stripColorful) {
+    println("## Strips becomes all-white!");
+    animations.stripsSystem.crStrips.setColors(color(255, 255, 255));
+  } else {
+    println("## Strips becomes colorful!");
+    animations.stripsSystem.crStrips.setColors();
+  }
+  stripColorful = !stripColorful;
+}
+void stripBeadingTrigger() {
+  println("## Strips beading trigger.");
+  animations.stripsSystem.crStrips.beadingTrigger();
+}
+void stripMapTrigger() {
+  println("## Strips map trigger.");
   animations.stripsSystem.crStrips.startMap();
+}
+void stripChangeAmount() {
+  animations.stripsSystem.crStrips.modifyNumberOfStrips(10);
+  println("## Strip number change to " + animations.stripsSystem.crStrips.nOfStrips + ".");
 }
