@@ -300,14 +300,14 @@ class RotateGrid {
     {7, 8, 6, 9},
   };
 
-  Sequence rowColorSequence = new Sequence(rowSequenceSet, 2);
-  Sequence rowStretchSequence = new Sequence(rowSequenceSet, 2);
-  Sequence rowRotateSequence = new Sequence(rowSequenceSet, 2);
-  Sequence rowXShiftSequence = new Sequence(rowSequenceSet, 2);
-  Sequence rowBlinkSequence = new Sequence(rowSequenceSet, 2);
+  Sequence rowColorSequence = new Sequence(rowSequenceSet, 4);
+  Sequence rowStretchSequence = new Sequence(rowSequenceSet, 4);
+  Sequence rowRotateSequence = new Sequence(rowSequenceSet, 4);
+  Sequence rowXShiftSequence = new Sequence(rowSequenceSet, 4);
+  Sequence rowBlinkSequence = new Sequence(rowSequenceSet, 4);
 
-  Sequence colRotateSequence = new Sequence(colSequenceSet, 2);
-  Sequence colBlinkSequence = new Sequence(colSequenceSet, 2);
+  Sequence colRotateSequence = new Sequence(colSequenceSet, 4);
+  Sequence colBlinkSequence = new Sequence(colSequenceSet, 4);
 
   void rowStretchSequenceUpdate() {
     rowStretchSequence.update();

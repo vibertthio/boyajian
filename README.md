@@ -10,6 +10,7 @@ It's prototyped in Processing.
 - [Download](#1-download)
 - [Dependencies](#2-dependencies)
 - [Run](#3-run)
+- [Other Instructions](#3-other-instructinos)
 
 ## 1. Download
 
@@ -32,3 +33,8 @@ If you have on idea how to download Processing libraries, you can follow the [in
 ## 3. Run
 
 Second, open the file ./Boyajian/Boyajian.pde with your processing IDE.
+
+## 4. Other Instructions
+
+### Adjust Sequence Speed
+在 RotateGrid 當中，你可以到 303 ~ 310 當中去調整 Sequence 的產生的最後一個參數，代表經過幾個 frameCount 的數量來進行序列，所以愈少 Sequence 切換愈快。同理，在 GrowGrid 裡面，位置在 248 ~ 251。

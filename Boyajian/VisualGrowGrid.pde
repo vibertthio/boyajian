@@ -238,17 +238,17 @@ class GrowGrid {
   }
 
   int[][] colSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, 
-    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}, 
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
+    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
   };
   int[][] rowSequenceSet = {
-    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, 
-    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}, 
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
+    {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
   };
-  Sequence colRotateSequence = new Sequence(colSequenceSet, 1);
-  Sequence colColorSequence = new Sequence(colSequenceSet, 2);
-  Sequence rowSizeSequence = new Sequence(rowSequenceSet, 1);
-  Sequence rowColorSequence = new Sequence(rowSequenceSet, 1);
+  Sequence colRotateSequence = new Sequence(colSequenceSet, 4);
+  Sequence colColorSequence = new Sequence(colSequenceSet, 4);
+  Sequence rowSizeSequence = new Sequence(rowSequenceSet, 4);
+  Sequence rowColorSequence = new Sequence(rowSequenceSet, 4);
   void updateColRotateSequence() {
     colRotateSequence.update();
     if (colRotateSequence.getBang()) {
@@ -371,8 +371,8 @@ class GrowRectangle {
     } else {
       colorRatio *= 0.9;
       col = lerpColor(
-        endColor, 
-        startColor, 
+        endColor,
+        startColor,
         colorRatio
         );
     }
