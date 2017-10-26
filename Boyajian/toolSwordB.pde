@@ -18,9 +18,9 @@ void toolSwordBSetting() {
   if (showtoolSwordB==false) {
     show[11]=1;
     countLife();
-    SwordBImg=loadImage("toolSwordB/tex_sword_b.png");
+    
     toolSwordBIn=true;
-    SwordB_1 = loadShape("toolSwordB/swordb.obj");
+
 
     showtoolSwordB =true;
   } else if (showtoolSwordB==true) {

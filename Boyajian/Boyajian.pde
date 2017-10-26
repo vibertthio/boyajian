@@ -85,6 +85,7 @@ void setup() {
   layer[6]=120;//0-115 for growGrid,135~255 for rotateGrid
   layer[8]=0;//logoDraw
   RG.init(this);
+  loadModel();
 
   randomSeed(1000);
   MidiBus.list();
@@ -155,12 +156,12 @@ void draw() {
   tex2.beginDraw();
   tex2.background(255, 0);
   //donothing.set( "alpha", 1.0);
-  
+
   //---------------*blendGLSL即時參數
   donothing.set( "blendAlpha", 0.7f );
   donothing.set("time", millis()/1000.0);
   donothing.set( "blendMode", indexSelectBlend [blendIndex] );
-  
+
   tex2.shader(donothing);
   tex2.rectMode(CENTER);
   tex2.rect(width/2, height/2, tex.width*1.4, tex.height*1.8);  //

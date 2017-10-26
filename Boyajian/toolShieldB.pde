@@ -19,9 +19,9 @@ void toolShieldBSetting() {
   if (showtoolShieldB==false) {
     show[8]=1;
     countLife();
-    ShieldBImg=loadImage("toolShieldB/tex_shield_b.png");
+    
     toolShieldBIn=true;
-    ShieldB_1 = loadShape("toolShieldB/shieldb.obj");
+
 
     showtoolShieldB =true;
   } else if (showtoolShieldB==true) {

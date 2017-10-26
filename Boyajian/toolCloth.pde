@@ -20,11 +20,8 @@ void toolClothSetting() {
   if (showtoolCloth==false) {
     show[13]=1;
     countLife();
-    ClothImg=loadImage("toolCloth/tex_cloth.png");
+  
     toolClothIn=true;
-    Cloth_1 = loadShape("toolCloth/cloth_1.obj");
-    Cloth_2 = loadShape("toolCloth/cloth_2.obj");
-    Cloth_3 = loadShape("toolCloth/cloth_3.obj");
 
     showtoolCloth =true;
   } else if (showtoolCloth==true) {

@@ -25,15 +25,9 @@ void maskFacesSetting() {
   if (showMaskFaces==false) {
     show[2]=1;
     countLife();
-    FacesImg=loadImage("maskFaces/tex_faces.png");
-    MaskFacesIn=true;
-    Faces_1 = loadShape("maskFaces/faces_1.obj");
-    Faces_2=  loadShape("maskFaces/faces_2.obj");
-    Faces_3 = loadShape("maskFaces/faces_3.obj");
 
-    rFaces_1 = loadShape("maskFaces/faces_1.obj");
-    rFaces_2=  loadShape("maskFaces/faces_2.obj");
-    rFaces_3 = loadShape("maskFaces/faces_3.obj");
+    MaskFacesIn=true;
+
     showMaskFaces =true;
   } else if (showMaskFaces==true) {
     MaskFacesIn=false;

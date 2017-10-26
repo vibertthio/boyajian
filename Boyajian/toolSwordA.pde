@@ -21,8 +21,7 @@ void toolSwordASetting() {
     countLife();
 
     toolSwordAIn=true;
-    SwordA_1 = loadShape("toolSwordA/sworda.obj");
-    SwordAImg=loadImage("toolSwordA/tex_sword_a.png");
+
     showtoolSwordA =true;
   } else if (showtoolSwordA==true) {
     toolSwordAIn=false;

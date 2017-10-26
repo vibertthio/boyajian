@@ -32,22 +32,10 @@ void maskDreamSetting() {
   if (showMaskDream==false) {
     show[0]=1;
     countLife();
-    DreamImg=loadImage("maskDream/tex_dream_01.png");
+    
     MaskDreamIn=true;
 
-    Dream_1 = loadShape("maskDream/dream_1.obj");
-    Dream_2=  loadShape("maskDream/dream_2.obj");
-    Dream_3 = loadShape("maskDream/dream_3.obj");
-    Dream_4 = loadShape("maskDream/dream_4.obj");
-    Dream_5 = loadShape("maskDream/dream_5.obj");
-    Dream_6 = loadShape("maskDream/dream_6.obj");
 
-    RDream_1 = loadShape("maskDream/dream_1.obj");
-    RDream_2=  loadShape("maskDream/dream_2.obj");
-    RDream_3 = loadShape("maskDream/dream_3.obj");
-    RDream_4 = loadShape("maskDream/dream_4.obj");
-    RDream_5 = loadShape("maskDream/dream_5.obj");
-    RDream_6 = loadShape("maskDream/dream_6.obj");
     showMaskDream =true;
   } else if (showMaskDream==true) {
     MaskDreamIn=false;
@@ -115,7 +103,7 @@ void maskDreamdrawing() {
 
     if (vertexNoise==true) randomVertex(Dream_1);
     else returnVertex(RDream_1, Dream_1);
-    
+
     s3d.rotateY(radians(handMap));
     s3d.shape(Dream_1);
     s3d.popMatrix();
@@ -160,20 +148,20 @@ void maskDreamdrawing() {
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
-    
+
     Dream_5.disableStyle();//寶石
     //s3d.colorMode(HSB, 100);
     //s3d.tint( color(anim(30, 0, 100, 4), 100, 100));
-    
+
     if (vertexNoise==true) randomVertex(Dream_5);
     else returnVertex(RDream_5, Dream_5);
     //s3d.colorMode(RGB);
     s3d.shape(Dream_5);
     //Dream_5.enableStyle();
-    
+
     s3d.popMatrix();
-    
-    
+
+
     //---------------
     s3d.pushMatrix();
     s3d.shape(Dream_6);

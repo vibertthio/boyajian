@@ -24,13 +24,9 @@ void maskMemorySetting() {
   if (showMaskMemory==false) {
     show[4]=1;
     countLife();
-    MemoryImg=loadImage("maskMemory/tex_memory_02.png");
+
     MaskMemoryIn=true;
-    Memory_1 = loadShape("maskMemory/memory_1.obj");
-    Memory_2=  loadShape("maskMemory/memory_2.obj");
-    Memory_3 = loadShape("maskMemory/memory_3.obj");
-    Memory_4 = loadShape("maskMemory/memory_4.obj");
-    Memory_5 = loadShape("maskMemory/memory_5.obj");
+
     showMaskMemory =true;
   } else if (showMaskMemory==true) {
     MaskMemoryIn=false;

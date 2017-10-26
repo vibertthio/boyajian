@@ -27,15 +27,9 @@ void maskSmellSetting() {
   if (showMaskSmell==false) {
     show[5]=1;
     countLife();
-    SmellImg=loadImage("maskSmell/tex_smell.png");
-    MaskSmellIn=true;
-    Smell_1 = loadShape("maskSmell/smell_1.obj");
-    Smell_2=  loadShape("maskSmell/smell_2.obj");
-    Smell_3 = loadShape("maskSmell/smell_3.obj");
 
-    rSmell_1 = loadShape("maskSmell/smell_1.obj");
-    rSmell_2=  loadShape("maskSmell/smell_2.obj");
-    rSmell_3 = loadShape("maskSmell/smell_3.obj");
+    MaskSmellIn=true;
+
     showMaskSmell =true;
   } else if (showMaskSmell==true) {
     MaskSmellIn=false;

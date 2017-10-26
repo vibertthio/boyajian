@@ -38,21 +38,8 @@ void maskEyeSetting() {
     countLife();
     EyeImg=loadImage("maskEye/tex_eye.png");
     MaskEyeIn=true;
-    maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
-    maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
-    maskA_2 = loadShape("maskEye/maskA_2.obj");
-    maskA_3_1 = loadShape("maskEye/maskA_3_1.obj");
-    maskA_3_2 = loadShape("maskEye/maskA_3_2.obj");
-    maskA_4 = loadShape("maskEye/maskA_4.obj");
-    maskA_5 = loadShape("maskEye/maskA_5.obj");
 
-    RmaskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
-    RmaskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
-    RmaskA_2 = loadShape("maskEye/maskA_2.obj");
-    RmaskA_3_1 = loadShape("maskEye/maskA_3_1.obj");
-    RmaskA_3_2 = loadShape("maskEye/maskA_3_2.obj");
-    RmaskA_4 = loadShape("maskEye/maskA_4.obj");
-    RmaskA_5 = loadShape("maskEye/maskA_5.obj");
+
     showMaskEye=true;
   } else if (showMaskEye==true) {
     show[1]=0;
@@ -70,7 +57,7 @@ void maskEyeSetting() {
 
 
 void maskEyedrawing() {
-  
+
   showMaskEye=returnState(MaskEyeLine, MaskEyeIn);
 
   //----fade

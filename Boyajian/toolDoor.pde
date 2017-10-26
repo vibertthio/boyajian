@@ -19,10 +19,9 @@ void toolDoorSetting() {
   if (showtoolDoor==false) {
     show[12]=1;
     countLife();
-    DoorImg=loadImage("toolDoor/tex_door.png");
+
     toolDoorIn=true;
-    Door_1 = loadShape("toolDoor/door_1.obj");
-    Door_2 = loadShape("toolDoor/door_2.obj");
+
 
     showtoolDoor =true;
   } else if (showtoolDoor==true) {

@@ -24,13 +24,9 @@ void maskTouchSetting() {
   if (showMaskTouch==false) {
     show[7]=1;
     countLife();
-    TouchImg=loadImage("maskTouch/tex_touch.png");
+
     MaskTouchIn=true;
-    Touch_1 = loadShape("maskTouch/touch_1.obj");
-    Touch_2=  loadShape("maskTouch/touch_2.obj");
-    Touch_3 = loadShape("maskTouch/touch_3.obj");
-    Touch_4 = loadShape("maskTouch/touch_4.obj");
-    Touch_5 = loadShape("maskTouch/touch_5.obj");
+
     showMaskTouch =true;
   } else if (showMaskTouch==true) {
     MaskTouchIn=false;

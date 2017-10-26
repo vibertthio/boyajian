@@ -24,15 +24,10 @@ void maskTasteSetting() {
   if (showMaskTaste==false) {
     show[6]=1;
     countLife();
-    TasteImg=loadImage("maskTaste/tex_taste.png");
+
 
     MaskTasteIn=true;
-    Taste_1 = loadShape("maskTaste/taste_1.obj");
-    Taste_2=  loadShape("maskTaste/taste_2.obj");
-    Taste_3 = loadShape("maskTaste/taste_3.obj");
-    Taste_4 = loadShape("maskTaste/taste_4.obj");
-    Taste_5 = loadShape("maskTaste/taste_5.obj");
-    Taste_6 = loadShape("maskTaste/taste_6.obj");
+
     showMaskTaste =true;
   } else if (showMaskTaste==true) {
     MaskTasteIn=false;

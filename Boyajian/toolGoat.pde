@@ -19,11 +19,9 @@ void toolGoatSetting() {
   if (showtoolGoat==false) {
     show[14]=1;
     countLife();
-    GoatImg=loadImage("toolGoat/tex_goat.png");
+
     toolGoatIn=true;
-    Goat_1 = loadShape("toolGoat/goat_1.obj");
-    Goat_2 = loadShape("toolGoat/goat_2.obj");
-    Goat_3 = loadShape("toolGoat/goat_3.obj");
+
 
     showtoolGoat =true;
   } else if (showtoolGoat==true) {

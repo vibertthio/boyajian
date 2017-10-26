@@ -26,15 +26,10 @@ void maskListenSetting() {
   if (showMaskListen==false) {
     show[3]=1;
     countLife();
-    ListenImg=loadImage("maskListen/tex_listen.png");
+
     MaskListenIn=true;
     Listen_1 = loadShape("maskListen/listen_1.obj");
-    Listen_2=  loadShape("maskListen/listen_2.obj");
-    Listen_3 = loadShape("maskListen/listen_3.obj");
 
-    rListen_1 = loadShape("maskListen/listen_1.obj");
-    rListen_2=  loadShape("maskListen/listen_2.obj");
-    rListen_3 = loadShape("maskListen/listen_3.obj");
     showMaskListen =true;
   } else if (showMaskListen==true) {
     MaskListenIn=false;
