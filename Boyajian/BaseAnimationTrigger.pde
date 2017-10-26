@@ -99,7 +99,6 @@ void animationGrowGridTrigger() {
   println("Grow Grid Animation ## " + growGridTriggerIndex);
   switch(growGridTriggerIndex) {
     case 0:
-      // animations.growGrid.allVibrateBang();
       animations.growGrid.allBlinkBang();
       break;
     case 1:
@@ -180,30 +179,55 @@ void animationStripTrigger() {
   println("Strips Animation ## " + stripTriggerIndex);
   switch(stripTriggerIndex) {
     case 0:
-      animations.stripsSystem.crStrips.angleShiftBang();
+      animations.stripsSystem.vtStart(0.0, 200);
+      animations.stripsSystem.hrStart(0.8, -200);
+      animations.stripsSystem.hrStrips.heightScaleBang(10);
+      animations.stripsSystem.vtStrips.heightScaleBang(5);
+      animations.stripsSystem.crStrips.blinkBang();
+      animations.stripsSystem.crStrips.heightScaleBang(10);
       break;
     case 1:
-      animations.stripsSystem.crStrips.widthScaleBang(8);
+      animations.stripsSystem.hrStartStep(-200);
+      animations.stripsSystem.hrStrips.heightScaleBang(10);
+      animations.stripsSystem.crStrips.widthScaleBang(2);
+      animations.stripsSystem.crStrips.heightScaleBang(4);
+      animations.stripsSystem.crStrips.yShiftBang(-3);
+      animations.stripsSystem.crStrips.angleShiftBang(-3);
       break;
     case 2:
-      animations.stripsSystem.crStrips.heightScaleBang(4);
+      animations.stripsSystem.hrStartStep(-200);
+      animations.stripsSystem.vtStartStep(-200);
+      animations.stripsSystem.hrStrips.heightScaleBang(10);
+      animations.stripsSystem.vtStrips.heightScaleBang(10);
+      animations.stripsSystem.crStrips.heightScaleBang(5);
+      animations.stripsSystem.crStrips.yShiftBang(-5);
+      // animations.stripsSystem.crStrips.widthScaleBang(5);
       break;
     case 3:
+      animations.stripsSystem.vtStart(0.7, 200);
       animations.stripsSystem.crStrips.yShiftBang();
+      animations.stripsSystem.vtStrips.heightScaleBang(6);
+      animations.stripsSystem.crStrips.heightScaleBang(6);
       break;
     case 4:
-      animations.stripsSystem.crStrips.vibrateBang();
+      // animations.stripsSystem.crStrips.blinkBang();
+      animations.stripsSystem.crStrips.heightScaleBang(10);
+      animations.stripsSystem.crStrips.yShiftBang(10);
       break;
     case 5:
-      animations.stripsSystem.crStrips.blinkBang();
-      break;
-    case 6:
-      animations.stripsSystem.crStrips.setColors();
-      break;
-    case 7:
       animations.stripsSystem.crStrips.angleShiftBang();
       animations.stripsSystem.crStrips.widthScaleBang(4);
       animations.stripsSystem.crStrips.heightScaleBang(8);
+      break;
+    case 6:
+      animations.stripsSystem.crStrips.yShiftBang();
+      // animations.stripsSystem.crStrips.setColors();
+      break;
+    case 7:
+      animations.stripsSystem.crStrips.yShiftBang(6);
+      // animations.stripsSystem.crStrips.angleShiftBang();
+      // animations.stripsSystem.crStrips.widthScaleBang(4);
+      // animations.stripsSystem.crStrips.heightScaleBang(8);
       break;
     case 8:
       animations.stripsSystem.crStrips.vibrateBang();
@@ -235,7 +259,7 @@ void animationStripTrigger() {
       break;
   }
   stripTriggerIndex++;
-  stripTriggerIndex %= 15;
+  stripTriggerIndex %= 8;
 }
 void animationCircleTrigger() {
   animations.stripsSystem.crStrips.startMap();

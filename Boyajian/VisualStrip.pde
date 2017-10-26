@@ -19,7 +19,7 @@ class StripsSystem {
   Strips crStrips;
   Strips hrStrips;
   Strips vtStrips;
-  int nOfCrStrips = 15;
+  int nOfCrStrips = 30;
   int nOfHrStrips = 15;
   int nOfVtStrips = 15;
 
@@ -31,6 +31,7 @@ class StripsSystem {
     hrStrips = new Strips(_c, nOfHrStrips, true, true);
     vtStrips = new Strips(_c, nOfVtStrips, false, true);
 
+    crStrips.setColors();
     hrStrips.setColors();
     vtStrips.setColors();
     hrStrips.stop();
@@ -230,6 +231,11 @@ class Strips {
       strips[i].angleShiftBang();
     }
   }
+  void angleShiftBang(int amt) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].angleShiftBang(amt);
+    }
+  }
   void widthScaleBang() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].widthScaleBang();
@@ -253,6 +259,11 @@ class Strips {
   void yShiftBang() {
     for (int i = 0; i < nOfStrips; i++) {
       strips[i].yShiftBang();
+    }
+  }
+  void yShiftBang(int amt) {
+    for (int i = 0; i < nOfStrips; i++) {
+      strips[i].yShiftBang(amt);
     }
   }
   void vibrateBang() {
@@ -307,7 +318,8 @@ class Strip {
   boolean bang = false;
   boolean cross = false;
   boolean drift = true;
-  boolean colorful = false;
+  // boolean colorful = false;
+  boolean colorful = true;
   boolean continuous = true;
   TimeLine timer;
 
@@ -456,7 +468,7 @@ class Strip {
     } while(startColor == endColor);
   }
   void setColors(color c) {
-    colorful = true;
+    colorful = false;
     startColor = c;
     endColor = c;
     col = c;
@@ -556,9 +568,9 @@ class Strip {
   void angleShiftBang() {
     // angle = targetAngle - PI;
     if (random(1) > 0.5) {
-      targetAngle += PI;
+      targetAngle += 2 * PI;
     } else {
-      targetAngle -= PI;
+      targetAngle -= 2 * PI;
     }
   }
   void angleShiftBang(int amt) {
