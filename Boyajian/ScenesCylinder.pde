@@ -23,10 +23,10 @@ class Cylinder {
       pos[i]=random(-300, 300);
       id[i]=int(random(5));
       ro[i]=random(0, 360);
-      ss[i]=random(0.3,2);
-      up[i]=random(1,5);
+      ss[i]=random(0.3, 2);
+      up[i]=random(1, 5);
       int k=int(random(2));
-      if(k==0)invert[i]=1;
+      if (k==0)invert[i]=1;
       else if (k==1)invert[i]=-1;
     }
   }
@@ -36,9 +36,10 @@ class Cylinder {
     canvas.blendMode(ADD);
     canvas.pushMatrix();
     canvas.translate(width/2, height/2, 0);
+
     canvas.scale(showCylinder/255);
-    canvas.rotateX(radians(anim(800,0,360,2)));
-    canvas.rotateZ(radians(anim(1600,0,90,2)));
+    canvas.rotateX(radians(anim(800, 0, 360, 2)));
+    canvas.rotateZ(radians(anim(1600, 0, 90, 2)));
 
     for (int i=0; i<20; i++) {
 
@@ -47,11 +48,12 @@ class Cylinder {
 
       ro[i]=(ro[i]+ss[i])%360;
 
-      if(pos[i]>400){
+      if (pos[i]>400) {
         pos[i]=-400;
-      }else{
-        if(ctl32>0)pos[i]=pos[i]+(up[i]*map(ctl32,0,255,1,6));
-        else pos[i]=pos[i]+(up[i]*map(vol,0,1,1,3));
+      } else {
+
+        if (ctl32>0)pos[i]=pos[i]+(up[i]*map(ctl32, 0, 255, 1, 6));
+        else pos[i]=pos[i]+(up[i]*map(vol, 0, 1, 1, 3));
       }
       canvas.pushMatrix();
       canvas.translate(0, pos[i]*invert[i], 0);
@@ -59,7 +61,7 @@ class Cylinder {
       canvas.scale(ww[i], hh[i], ww[i]);
 
       model.disableStyle();
-      canvas.tint(colors[id[i]],200);
+      canvas.tint(colors[id[i]], 200);
       canvas.shape(model);
       model.enableStyle();
       canvas.popMatrix();
@@ -67,8 +69,7 @@ class Cylinder {
     canvas.blendMode(BLEND);
     canvas.popMatrix();
   }
-  void addRo(float who,float speed){
+  void addRo(float who, float speed) {
     who=(who+speed)%360;
   }
-
 }

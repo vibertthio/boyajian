@@ -13,6 +13,13 @@ PShape Taste_4;
 PShape Taste_5;
 PShape Taste_6;
 
+PShape rTaste_1;
+PShape rTaste_2;
+PShape rTaste_3;
+PShape rTaste_4;
+PShape rTaste_5;
+PShape rTaste_6;
+
 float Taste_x, Taste_y;
 PImage TasteImg;
 
@@ -89,21 +96,34 @@ void maskTastedrawing() {
     }else{
       s3d.scale(1);
     }
+
+    if (vertexNoise==true) randomVertex(Taste_1);
+    else returnVertex(rTaste_1, Taste_1);
+
     s3d.shape(Taste_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.rotateY(radians(anim(180, 0, 180, 2)));
+
+    if (vertexNoise==true) randomVertex(Taste_2);
+    else returnVertex(rTaste_2, Taste_2);
     s3d.shape(Taste_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.rotateY(radians(anim(150, 30, 300, 2)));
+
+    if (vertexNoise==true) randomVertex(Taste_3);
+    else returnVertex(rTaste_3, Taste_3);
     s3d.shape(Taste_3);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.rotateY(radians(anim(300, 30, 130, 2)));
+
+    if (vertexNoise==true) randomVertex(Taste_4);
+    else returnVertex(rTaste_4, Taste_4);
     s3d.shape(Taste_4);
     s3d.popMatrix();
     //---------------
@@ -114,6 +134,9 @@ void maskTastedrawing() {
     //---------------
     s3d.pushMatrix();
     s3d.rotateY(radians(anim(160, 0, 130, 2)));
+
+    if (vertexNoise==true) randomVertex(Taste_6);
+    else returnVertex(rTaste_6, Taste_6);
     s3d.shape(Taste_6);
     s3d.popMatrix();
     //---------------

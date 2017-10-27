@@ -57,6 +57,7 @@ vec2 trunc( vec2 x, float num_levels )
 void main( )
 {
 	vec2 uv = vertTexCoord.st;
+	vec2 uv2 = vertTexCoord.st;
 
 	float time = mod(time, 32.0); // + modelmat[0].x + modelmat[0].z;
 	float GLITCH = vol*1.0;
@@ -97,6 +98,11 @@ void main( )
 	sum.rgb /= wsum;
 	sum.a *= RCP_NUM_SAMPLES_F;
 
-	gl_FragColor.a = 1.0;
-	gl_FragColor.rgb = sum.rgb*1.3; // * outcol0.a;
+	if(vol>0.85){
+		gl_FragColor.a = 1.0;
+		gl_FragColor.rgb = sum.rgb*1.3; // * outcol0.a;
+	}else{
+		gl_FragColor=texture2D( texture, uv2 )*1.2;
+	}
+
 }

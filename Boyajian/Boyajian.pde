@@ -53,8 +53,9 @@ boolean record=false;
 boolean splitScreen=false;
 boolean autoBlend=false;
 boolean oneShotBang=false;
+boolean showcc=false;
 
-boolean beatIn=true;
+boolean beatIn=false;
 
 boolean autoBg=false;
 
@@ -66,9 +67,11 @@ int autoCamMetroUpDownCount=0;
 
 pdLine2[] countX=new pdLine2[20];
 pdLine2 smooth;
+pdLine2 smooth2_1;
 pdLine effectChange;
 float step=0;
 float allVol=0;
+
 
 void settings() {
   //size(1200, 342, P3D);
@@ -96,11 +99,11 @@ void setup() {
   shaderSetting();
   uiSetting();
 
-  autoCamMetro=new pdMetro(1000);
+  autoCamMetro=new pdMetro(2000);
   autoCamMetro.reset();
   autoCamMetro.tgl=false;
 
-  autoSuperCamMetro=new pdMetro(2000);
+  autoSuperCamMetro=new pdMetro(200);
   autoSuperCamMetro.reset();
   autoSuperCamMetro.tgl=false;
 
@@ -109,8 +112,10 @@ void setup() {
   autoCamMetroUpDown.reset();
   autoCamMetroUpDown.tgl=false;
 
-  smooth=new pdLine2(0, 800);
-  effectChange=new pdLine(0, 200);
+  smooth=new pdLine2(0, 100);
+  smooth2_1=new pdLine2(0, 300);
+
+  effectChange=new pdLine(0, 00);
 
   for (int i=0; i<20; i++) {
     countX[i]=new pdLine2(0, 1000);
@@ -130,6 +135,7 @@ void draw() {
     if (frameCount%5==0) blendGLSL.set( "lowLayer", bgs [int(random(7))]);
   }
   smooth.update();
+  smooth2_1.update();
   if (smooth.bang==true) layer[6]=smooth.o;
 
   for (int i=0; i<20; i++) countX[i].update();
@@ -193,11 +199,15 @@ void draw() {
   finalGLSL.set( "blendAlpha", layer[5]/255 );
   finalGLSL.set( "allAlpha", layer[1]/255 );
   int kk=((int(map(vol, 0, 1, 200, 1)))+1);
+  if (kk<=1) {
+    kk=2;
+  }
+
   if (frameCount%kk==0) {
     indexPtns =int(random(14));
     int index =int(random(5));
-
     finalGLSL.set( "blendMode", indexSelectBlend [index]);
+    println("yes");
   }
   if (frameCount%30==0) {
     ptnScale=random(0.5, 1.5);
@@ -273,6 +283,6 @@ void draw() {
   //line(width/2,0,width/2,height);
   //noFill();
   //rect(0,0,width,height);
-  showFrameRate();//訊息
+  //showFrameRate();//訊息
   //if(record==true)saveFrame("data/record/"+frameCount+".png");
 }

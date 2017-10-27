@@ -20,10 +20,9 @@ void toolShieldASetting() {
   if (showtoolShieldA==false) {
     show[9]=1;
     countLife();
-    ShieldAImg=loadImage("toolShieldA/tex_shielda.png");
+  
     toolShieldAIn=true;
-    ShieldA_1 = loadShape("toolShieldA/shielda_1.obj");
-    ShieldA_2 = loadShape("toolShieldA/shielda_2.obj");
+
 
     showtoolShieldA =true;
   } else if (showtoolShieldA==true) {

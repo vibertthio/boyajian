@@ -110,6 +110,9 @@ void s3dDrawing() {
   }
 
   if (showLine>1) forms.render(s3d);
+
+  if (smooth2_1.bang==true ) showCylinder=smooth2_1.o;  
+
   if (showCylinder>1) cylinders.render(s3d);
 
   s3d.setMatrix(getMatrix()); // replace the PGraphics-matrix
@@ -118,7 +121,16 @@ void s3dDrawing() {
   s3d.pointLight(155, 155, 155, 300, 200, 300);
   s3d.ambientLight(73, 52, 20);
   s3d.beginCamera();
-  s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
+  if (autoSuperCamMetro.tgl==false) {
+    s3d.camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX), camX, camY, 0, 0, 1, 0);
+  } else {
+
+    float xxx=cos(float(frameCount%720)/720*2*3.1415926)*400+width/2;
+    float yyy=height/2;
+    float zzz=sin(float(frameCount%720)/720*2*3.1415926)*400;
+    s3d.camera(xxx, yyy, zzz, width/2, height/2, 0, 0, 1, 0);
+  }
+
   //println(rotX, rotY, camX, camY, camZ);
   parentPos=new PVector(camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX));
   s3d.endCamera();
@@ -170,8 +182,8 @@ void s3dDrawing() {
   s3d.noStroke();
   s3d.translate(width/2, height/2);
   s3d.rotateY(radians(186));
-  
-  
+
+
   s3d.blendMode(ADD);
 
   if (vertexNoise==true ) randomVertex(globe);

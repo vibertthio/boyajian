@@ -12,6 +12,12 @@ PShape Memory_3;
 PShape Memory_4;
 PShape Memory_5;
 
+PShape rMemory_1;
+PShape rMemory_2;
+PShape rMemory_3;
+PShape rMemory_4;
+PShape rMemory_5;
+
 PImage MemoryImg;
 
 float Memory_x, Memory_y;
@@ -90,15 +96,26 @@ void maskMemorydrawing() {
     if (vol>0.8) s3d.scale(random(1, 1.2),random(1, 1.3),1);
     else s3d.scale(1);
 
+    if (vertexNoise==true) randomVertex(Memory_1);
+    else returnVertex(rMemory_1, Memory_1);
+
     s3d.shape(Memory_1);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+
+    if (vertexNoise==true) randomVertex(Memory_2);
+    else returnVertex(rMemory_2, Memory_2);
+
     s3d.shape(Memory_2);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.rotateX(radians(anim(10, 2, 0, 2)));
+
+    if (vertexNoise==true) randomVertex(Memory_3);
+    else returnVertex(rMemory_3, Memory_3);
+
     s3d.shape(Memory_3);
     s3d.popMatrix();
     //---------------
@@ -106,11 +123,18 @@ void maskMemorydrawing() {
     float angleMap=map(angle,0,1,10,-20);
     s3d.pushMatrix();
     s3d.rotateZ(radians(angleMap));
+
+    if (vertexNoise==true) randomVertex(Memory_4);
+    else returnVertex(rMemory_4, Memory_4);
     s3d.shape(Memory_4);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
     s3d.rotateZ(radians(angleMap*-1));
+
+    if (vertexNoise==true) randomVertex(Memory_5);
+    else returnVertex(rMemory_5, Memory_5);
+
     s3d.shape(Memory_5);
     s3d.popMatrix();
     //---------------

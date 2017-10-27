@@ -12,6 +12,12 @@ PShape Touch_3;
 PShape Touch_4;
 PShape Touch_5;
 
+PShape rTouch_1;
+PShape rTouch_2;
+PShape rTouch_3;
+PShape rTouch_4;
+PShape rTouch_5;
+
 PImage TouchImg;
 
 float Touch_x, Touch_y;
@@ -94,10 +100,16 @@ void maskTouchdrawing() {
     // s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+
+    if (vertexNoise==true) randomVertex(Touch_3);
+    else returnVertex(rTouch_3, Touch_3);
+
     s3d.shape(Touch_3);
     s3d.popMatrix();
     //---------------
     s3d.pushMatrix();
+    if (vertexNoise==true) randomVertex(Touch_4);
+    else returnVertex(rTouch_4, Touch_4);
     s3d.shape(Touch_4);
     s3d.popMatrix();
     //---------------
@@ -114,6 +126,10 @@ void maskTouchdrawing() {
       } else {
         s3d.scale(1);
       }
+
+      if (vertexNoise==true) randomVertex(Touch_5);
+      else returnVertex(rTouch_5, Touch_5);
+
       s3d.shape(Touch_5);
       s3d.popMatrix();
     }

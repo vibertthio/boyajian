@@ -5,6 +5,10 @@ void keyReleased() {
     if (keyCode == ALT) {
       keyz[0] = false;
     }
+    if (keyCode == SHIFT) {
+      keyz[1] = false;
+      println("test");
+    }
   }
   if (key=='s') {
     effectGLSL = loadShader("glsl/no.glsl");
@@ -13,6 +17,7 @@ void keyReleased() {
 
   if (key=='l')  autoBlend=false;
   if (key=='p') autoBg=false;
+  if (key == 'w') wireFrameCtl =false;
 }
 
 
@@ -43,6 +48,9 @@ void keyPressed() {
   if ( key==CODED) {
     if (keyCode == ALT) {
       keyz[0] = true;
+    }
+    if (keyCode == SHIFT) {
+      keyz[1] = true;
     }
   }
   if (keyz[0]==true) {
@@ -152,7 +160,7 @@ void keyPressed() {
   if (key == 's') record = !record;
 
 
-  if (key == 'w') wireFrameCtl =!wireFrameCtl;
+  if (key == 'w') wireFrameCtl =true;
   if (key == 'k') vertexNoise =!vertexNoise;
   if (key == 'h') holdVertex =!holdVertex;
 
@@ -171,21 +179,10 @@ void keyPressed() {
     animationGrowGridTrigger();
   }
   if (key == 'v') {
-    println("press v!");
+    //println("press v!");
     animationRotateGridTrigger();
   }
-  if (key == 'X') {
-    stripChangeAmount();
-  }
-  if (key == 'C') {
-    stripColorfulTrigger();
-  }
-  if (key == 'V') {
-    stripMapTrigger();
-  }
-  if (key == 'B') {
-    stripBeadingTrigger();
-  }
+
 
   // change background and shader algorithm
   if (key == CODED) {
@@ -418,6 +415,19 @@ void sendNote2p5() {
       stripTriggerIndex=7;
       animationStripTrigger() ;
     }
+
+    if (nn==36)if (vv==127) {
+      showcc= !showcc;
+      if (showcc==true) {
+        smooth2_1.reset(255);
+      } else {
+        smooth2_1.reset(0);
+      }
+    }
+    //if (nn==37)if (vv==127) stripChangeAmount();
+    //if (nn==38)if (vv==127) stripColorfulTrigger();
+    if (nn==37)if (vv==127)  stripMapTrigger();
+    if (nn==38)if (vv==127) stripBeadingTrigger();
   }
 
 
@@ -474,7 +484,8 @@ void sendCtl2p5() {
   if (nr==33) ctl33=vl;
 
   if (nr==50) layer[5]=vl;
-  if (nr==51) ctl51=map(vl, 0, 255, 1, 2);
+  if (nr==51) ctl51=map(vl, 0, 255, 0.5, 2.5);
+  if (nr==52) ctl52=map(vl, 0, 255, 1.01, 2.1);
 
   if (nr==70) layer[7]=vl;
   if (nr==71) {
@@ -492,7 +503,7 @@ void sendCtl2p5() {
   if (nr==80) layer[8]=vl;
   if (nr==81) pp=int(map(vl, 0, 255, 0, 14));
   if (nr==82) ctl82=(map(vl, 0, 255, 0.3, 4));
-  if (nr==83) ctl83=map(vl, 0, 255, 0.55, 2);
+  if (nr==83) ctl83=map(vl, 0, 255, 0.55, 1);
 
   //------------
   if (nr==10) layer[1]=vl;

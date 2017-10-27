@@ -11,9 +11,9 @@ class Form {
   }
 
   void render(PGraphics _c) {
-    if(id==0)soundVol=map(low,0,1,0.1,1);
-    else if(id==1)soundVol=map(middle,0,1,0.1,1);
-    else if(id==2)soundVol=map(high,0,1,0.1,1);
+    if(id==0)soundVol=map(low+ctl52,0,1,0.1,1);
+    else if(id==1)soundVol=map(middle+ctl52,0,1,0.1,1);
+    else if(id==2)soundVol=map(high+ctl52,0,1,0.1,1);
 
     canvas=_c;
     canvas.noFill();

@@ -26,15 +26,9 @@ void toolWindSetting() {
   if (showtoolWind==false) {
     show[15]=1;
     countLife();
-    WindImg=loadImage("toolWind/tex_wind.png");
-    toolWindIn=true;
-    Wind_1 = loadShape("toolWind/wind_1.obj");
-    Wind_2 = loadShape("toolWind/wind_2.obj");
-    Wind_3 = loadShape("toolWind/wind_2.obj");
 
-    rWind_1 = loadShape("toolWind/wind_1.obj");
-    rWind_2 = loadShape("toolWind/wind_2.obj");
-    rWind_3 = loadShape("toolWind/wind_2.obj");
+    toolWindIn=true;
+
 
     showtoolWind =true;
   } else if (showtoolWind==true) {

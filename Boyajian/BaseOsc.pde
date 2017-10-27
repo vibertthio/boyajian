@@ -7,7 +7,9 @@ float middle;
 float high;
 
 float vol;
+float slowvol;
 float ctl51=1.0;
+float ctl52=0.0;
 
 float ctl61=0;
 float ctl62=0;
@@ -62,14 +64,20 @@ void oscEvent(OscMessage m) {
       //-----------------------------------------camera
     }
 
+    if (m.checkAddrPattern("/slowvol")==true)if (m.checkTypetag("f")) {
+      slowvol=m.get(0).floatValue()*ctl51;
+    }
 
     if (m.checkAddrPattern("/vol")==true)if (m.checkTypetag("f")) {
       float volTemp=0;
       volTemp=m.get(0).floatValue()*ctl51;
 
-      if (volTemp<1) vol=volTemp;
-      else vol=0.99;
 
+      if (volTemp<1) { 
+        vol=volTemp*ctl52;
+      } else { 
+        vol=0.99*ctl52;
+      }
 
       //------------------
       if (ctl62>0) {

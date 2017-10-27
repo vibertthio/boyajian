@@ -13,7 +13,7 @@ void loadModel(){
   RDream_5 = loadShape("maskDream/dream_5.obj");
   RDream_6 = loadShape("maskDream/dream_6.obj");
   DreamImg=loadImage("maskDream/tex_dream_01.png");
-
+//-----------------------
   maskA_1_2 = loadShape("maskEye/maskA_1_2.obj");
   maskA_2 = loadShape("maskEye/maskA_2.obj");
   maskA_3_1 = loadShape("maskEye/maskA_3_1.obj");
@@ -29,7 +29,7 @@ void loadModel(){
   RmaskA_4 = loadShape("maskEye/maskA_4.obj");
   RmaskA_5 = loadShape("maskEye/maskA_5.obj");
   maskA_1_1 = loadShape("maskEye/maskA_1_1.obj");
-
+//-----------------------
   Faces_1 = loadShape("maskFaces/faces_1.obj");
   Faces_2=  loadShape("maskFaces/faces_2.obj");
   Faces_3 = loadShape("maskFaces/faces_3.obj");
@@ -38,14 +38,20 @@ void loadModel(){
   rFaces_2=  loadShape("maskFaces/faces_2.obj");
   rFaces_3 = loadShape("maskFaces/faces_3.obj");
   FacesImg=loadImage("maskFaces/tex_faces.png");
-
+//-----------------------
   Memory_1 = loadShape("maskMemory/memory_1.obj");
   Memory_2=  loadShape("maskMemory/memory_2.obj");
   Memory_3 = loadShape("maskMemory/memory_3.obj");
   Memory_4 = loadShape("maskMemory/memory_4.obj");
   Memory_5 = loadShape("maskMemory/memory_5.obj");
-  MemoryImg=loadImage("maskMemory/tex_memory_02.png");
 
+  rMemory_1 = loadShape("maskMemory/memory_1.obj");
+  rMemory_2=  loadShape("maskMemory/memory_2.obj");
+  rMemory_3 = loadShape("maskMemory/memory_3.obj");
+  rMemory_4 = loadShape("maskMemory/memory_4.obj");
+  rMemory_5 = loadShape("maskMemory/memory_5.obj");
+  MemoryImg=loadImage("maskMemory/tex_memory_02.png");
+//-----------------------
   Listen_2=  loadShape("maskListen/listen_2.obj");
   Listen_3 = loadShape("maskListen/listen_3.obj");
 
@@ -53,7 +59,7 @@ void loadModel(){
   rListen_2=  loadShape("maskListen/listen_2.obj");
   rListen_3 = loadShape("maskListen/listen_3.obj");
   ListenImg=loadImage("maskListen/tex_listen.png");
-
+//-----------------------
   Smell_1 = loadShape("maskSmell/smell_1.obj");
   Smell_2=  loadShape("maskSmell/smell_2.obj");
   Smell_3 = loadShape("maskSmell/smell_3.obj");
@@ -62,21 +68,36 @@ void loadModel(){
   rSmell_2=  loadShape("maskSmell/smell_2.obj");
   rSmell_3 = loadShape("maskSmell/smell_3.obj");
   SmellImg=loadImage("maskSmell/tex_smell.png");
-
+//-----------------------
   Taste_1 = loadShape("maskTaste/taste_1.obj");
   Taste_2=  loadShape("maskTaste/taste_2.obj");
   Taste_3 = loadShape("maskTaste/taste_3.obj");
   Taste_4 = loadShape("maskTaste/taste_4.obj");
   Taste_5 = loadShape("maskTaste/taste_5.obj");
   Taste_6 = loadShape("maskTaste/taste_6.obj");
-  TasteImg=loadImage("maskTaste/tex_taste.png");
 
+  rTaste_1 = loadShape("maskTaste/taste_1.obj");
+  rTaste_2=  loadShape("maskTaste/taste_2.obj");
+  rTaste_3 = loadShape("maskTaste/taste_3.obj");
+  rTaste_4 = loadShape("maskTaste/taste_4.obj");
+  rTaste_5 = loadShape("maskTaste/taste_5.obj");
+  rTaste_6 = loadShape("maskTaste/taste_6.obj");
+
+  TasteImg=loadImage("maskTaste/tex_taste.png");
+//-----------------------
   Touch_1 = loadShape("maskTouch/touch_1.obj");
   Touch_2=  loadShape("maskTouch/touch_2.obj");
   Touch_3 = loadShape("maskTouch/touch_3.obj");
   Touch_4 = loadShape("maskTouch/touch_4.obj");
   Touch_5 = loadShape("maskTouch/touch_5.obj");
+
+  rTouch_1 = loadShape("maskTouch/touch_1.obj");
+  rTouch_2=  loadShape("maskTouch/touch_2.obj");
+  rTouch_3 = loadShape("maskTouch/touch_3.obj");
+  rTouch_4 = loadShape("maskTouch/touch_4.obj");
+  rTouch_5 = loadShape("maskTouch/touch_5.obj");
   TouchImg=loadImage("maskTouch/tex_touch.png");
+  //-----------------------
 
   Cloth_1 = loadShape("toolCloth/cloth_1.obj");
   Cloth_2 = loadShape("toolCloth/cloth_2.obj");

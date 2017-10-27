@@ -167,7 +167,7 @@ class  LogoDraw {
     if (ctl83>0.55) { 
       canvas.scale(ctl83, ctl83);
       //println(ctl83);
-    } else canvas.scale(map(vol,0,1,0.55,2), map(vol,0,1,0.55,2));
+    } else canvas.scale(map(slowvol,0,1,0.75,1), map(slowvol,0,1,0.75,1));
 
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);
@@ -178,7 +178,7 @@ class  LogoDraw {
     canvas.translate(who.width+250, who.height/2);
 
     if (ctl83>0.55) canvas.scale(-ctl83, -ctl83);
-    else canvas.scale(map(vol,0,1,0.55,2)*-1, map(vol,0,1,0.55,2)*-1);
+    else canvas.scale(map(slowvol,0,1,0.75,1)*-1, map(slowvol,0,1,0.75,1)*-1);
 
     canvas.rotate(radians(logoMovingStep));
     canvas.tint(255, alpha);

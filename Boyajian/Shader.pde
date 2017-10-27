@@ -82,8 +82,8 @@ void shaderSetting() {
   contrastGLSL = loadShader("glsl/contrast.glsl");
   contrastGLSL.set("vel", contrastA, contrastB);
 
-  effectGLSL = loadShader("glsl/no.glsl");
-  effectGLSL.set( "alpha", 1.0);
+  effectGLSL = loadShader("glsl/rgbGlitch_1.glsl");
+  //effectGLSL.set( "alpha", 1.0);
 
   //donothing= loadShader("glsl/no.glsl");
   //donothing.set( "texture", logoMoving2);

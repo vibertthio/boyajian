@@ -12,13 +12,17 @@ vec3 deform(vec2 p )
 {
   vec2 uv;
 
- vec2 q = vec2( sin(1.1*time+p.x),sin(1.2*time+p.y) );
+ //vec2 q = vec2( sin(1.1*time+p.x),sin(1.2*time+p.y) );
+ vec2 q = vec2(p.x,p.y);
 
  float a = atan(q.y,q.x);
  float r = sqrt(dot(q,q));
 
- uv.x = sin(time)*0.3+sin(1.0)+p.x*sqrt(r*r+1.0);
- uv.y = sin(time)*0.2+sin(1.0)+p.y*sqrt(r*r+1.0);
+ // uv.x = sin(time)*0.3+sin(1.0)+p.x*sqrt(r*r+1.0);
+ // uv.y = sin(time)*0.2+sin(1.0)+p.y*sqrt(r*r+1.0);
+
+ uv.x = sin(2.0)+p.x*sqrt(r*r+0.0);
+ uv.y = sin(1.0)+p.y*sqrt(r*r+0.0);
 
  return texture2D(texture,uv*.5).xyz;
 }
@@ -26,6 +30,7 @@ vec3 deform(vec2 p )
 void main(void)
 {
     float vv=vol;
+    vec2 uv=vec2(vertTexCoord.st);
     vec2 p = vec2(vertTexCoord.st)*2.0-vec2(1.0 ,1.0);
     vec2 s = p;
 
@@ -41,7 +46,8 @@ void main(void)
         s += d;
     }
     total /= 64.0;
-    float r = 1.5/(1.0+dot(p,p));
+    float r = 2.0/(1.0+dot(p,p));
+    vec4 ccc=texture2D(texture,uv);
 
-	 gl_FragColor = vec4( total*r,1.0);
+	 gl_FragColor = vec4( total*r,1.0)+ccc;
 }
