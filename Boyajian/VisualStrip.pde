@@ -239,6 +239,7 @@ class Strips {
   }
   void modifyNumberOfStrips(int amt) {
     int number = nOfStrips + amt;
+    mapCount = 0;
     if (number > maxNumberOfStrips) {
       number = minNumberOfStrips;
     }
